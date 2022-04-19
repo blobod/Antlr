@@ -1,6 +1,6 @@
 grammar language;
 language
-    :  (declaration)* AT_SIGN START (stmts)* (expression)* AT_SIGN STOP EOF ;
+    :  (declaration)* AT_SIGN START (declaration)* (stmts)* (expression)* AT_SIGN STOP EOF ;
 declaration
     : type_definition
     | function_declaration;
@@ -8,8 +8,7 @@ stmts
     : stmt;
 
 stmt
-    : expression
-    | conditional_statement
+    : conditional_statement
     | iterative_statement;
 
 expression
@@ -17,8 +16,8 @@ expression
 
 //CONDITINAL STATEMENT
 conditional_statement
-    : if_statment;
-if_statment
+    : if_statement;
+if_statement
     : IF LPAR condition RPAR LCBRAC stmt RCBRAC ?(ELSE LCBRAC stmt RCBRAC);
 //CONDITINAL STATEMENT
 
@@ -28,7 +27,7 @@ iterative_statement
     | while_loop
     | forever_loop;
 for_loop
-    : FOR LPAR int_type COMMA (condition) COMMA EXPRESSION LCBRAC stmt RCBRAC;
+    : FOR LPAR type COMMA (condition) COMMA EXPRESSION LCBRAC stmt RCBRAC;
 while_loop
     : WHILE LPAR (condition) RPAR LCBRAC stmt RCBRAC;
 forever_loop
@@ -69,27 +68,20 @@ isNOTequal
 
 //TYPES
 type_definition
-    : int_type
-    | double_type
-    | text_type
-    | bool_type;
-int_type
-    : INT_TYPE ID ASSIGN iDorVALUE;
-double_type
-    : DOUBLE_TYPE ID ASSIGN iDorVALUE;
-text_type
-    : TXT_TYPE ID ASSIGN iDorVALUE;
-bool_type
-    : BOOL_TYPE ID ASSIGN iDorVALUE;
+    : data_type;
+
+data_type
+    : type ID ASSIGN iDorVALUE;
+
 //TYPES
 
 //Function declaration
 function_declaration
-    : TYPE ID LPAR param RPAR LCBRAC stmt RCBRAC
-    | VOID ID LPAR param RPAR LCBRAC stmt RCBRAC;
+    : type ID LPAR param* RPAR LCBRAC stmt* declaration* RCBRAC
+    | VOID ID LPAR param* RPAR LCBRAC stmt* declaration* RCBRAC;
 param
-    : (TYPE ID)
-    | (TYPE ID COMMA)+;
+    : (type ID)
+    | (type ID COMMA)+;
 
 //Function Declaration
 
@@ -131,7 +123,7 @@ LCBRAC
     : '{';
 RCBRAC
     : '}';
-TYPE
+type
     : INT_TYPE
     | DOUBLE_TYPE
     | TXT_TYPE
