@@ -1,19 +1,25 @@
 grammar language;
 language
-    :  (declaration)* AT_SIGN START (declaration)* (stmts)* (expression)* AT_SIGN STOP EOF ;
+    :  (declaration)* AT_SIGN? START? ID* (stmts) AT_SIGN? STOP? EOF;
 declaration
     : type_definition
     | function_declaration;
+
+
 stmts
-    : stmt;
+    : stmt
+    | expression;
 
 stmt
     : conditional_statement
     | iterative_statement;
 
 expression
-    : iDorVALUE EXPRESSION iDorVALUE (EXPRESSION iDorVALUE)*;
-
+    : iDorVALUE PLUS iDorVALUE (PLUS iDorVALUE)*
+    | iDorVALUE MINUS iDorVALUE (MINUS iDorVALUE)*
+    | iDorVALUE MULTIPLIKATION iDorVALUE (MULTIPLIKATION iDorVALUE)*
+    | iDorVALUE DIVISION iDorVALUE (DIVISION iDorVALUE)*
+    | iDorVALUE POWER_OF iDorVALUE;
 //CONDITINAL STATEMENT
 conditional_statement
     : if_statement;
@@ -27,11 +33,14 @@ iterative_statement
     | while_loop
     | forever_loop;
 for_loop
-    : FOR LPAR type COMMA (condition) COMMA EXPRESSION LCBRAC stmt RCBRAC;
+    : FOR LPAR type COMMA (condition) COMMA stmt LCBRAC stmt RCBRAC
+    | FOR LPAR type COMMA (condition) COMMA expression LCBRAC stmt RCBRAC;
 while_loop
-    : WHILE LPAR (condition) RPAR LCBRAC stmt RCBRAC;
+    : WHILE LPAR (condition) RPAR LCBRAC stmt RCBRAC|
+    | WHILE LPAR (condition) RPAR LCBRAC expression RCBRAC;
 forever_loop
-    : FOREVER LCBRAC stmt RCBRAC;
+    : FOREVER LCBRAC stmt RCBRAC
+    | FOREVER LCBRAC expression RCBRAC;
 // ITERATIVE STATEMENT
 
 //CONDITIONS
@@ -77,10 +86,10 @@ data_type
 
 //Function declaration
 function_declaration
-    : type ID LPAR param* RPAR LCBRAC stmt* declaration* RCBRAC
-    | VOID ID LPAR param* RPAR LCBRAC stmt* declaration* RCBRAC;
+    : type ID LPAR param RPAR LCBRAC stmt ID* expression RCBRAC
+    | VOID ID LPAR param RPAR LCBRAC stmt ID* expression RCBRAC;
 param
-    : (type ID)
+    : (type ID)?
     | (type ID COMMA)+;
 
 //Function Declaration
@@ -90,12 +99,16 @@ IF
     : 'if';
 ELSE
     : 'else';
-EXPRESSION
-    : '+'
-    | '-'
-    | '*'
-    | '/'
-    | '^';
+PLUS
+    : '+';
+MINUS
+    : '-';
+MULTIPLIKATION
+    :'*';
+DIVISION
+    :'/';
+POWER_OF
+    :'^';
 OR
     : '||';
 STOP
