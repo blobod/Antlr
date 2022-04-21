@@ -1,6 +1,10 @@
 grammar language;
 language
-    :  (declaration)* AT_SIGN? START? ID* (stmts) AT_SIGN? STOP? EOF;
+    :  (stmts* EOF)
+    | declaration* entrypoint;
+entrypoint
+    : (AT_SIGN START stmts+ AT_SIGN STOP);
+
 declaration
     : type_definition
     | function_declaration;
@@ -8,6 +12,7 @@ declaration
 
 stmts
     : stmt
+    | ID
     | expression;
 
 stmt
@@ -15,11 +20,12 @@ stmt
     | iterative_statement;
 
 expression
-    : iDorVALUE PLUS iDorVALUE (PLUS iDorVALUE)*
-    | iDorVALUE MINUS iDorVALUE (MINUS iDorVALUE)*
-    | iDorVALUE MULTIPLIKATION iDorVALUE (MULTIPLIKATION iDorVALUE)*
-    | iDorVALUE DIVISION iDorVALUE (DIVISION iDorVALUE)*
-    | iDorVALUE POWER_OF iDorVALUE;
+    : left=iDorVALUE PLUS right=iDorVALUE
+    | iDorVALUE MINUS iDorVALUE
+    | iDorVALUE MULTIPLIKATION iDorVALUE
+    | iDorVALUE DIVISION iDorVALUE
+    | iDorVALUE POWER_OF iDorVALUE
+    | iDorVALUE;
 //CONDITINAL STATEMENT
 conditional_statement
     : if_statement;
@@ -36,7 +42,7 @@ for_loop
     : FOR LPAR type COMMA (condition) COMMA stmt LCBRAC stmt RCBRAC
     | FOR LPAR type COMMA (condition) COMMA expression LCBRAC stmt RCBRAC;
 while_loop
-    : WHILE LPAR (condition) RPAR LCBRAC stmt RCBRAC|
+    : WHILE LPAR (condition) RPAR LCBRAC stmt RCBRAC
     | WHILE LPAR (condition) RPAR LCBRAC expression RCBRAC;
 forever_loop
     : FOREVER LCBRAC stmt RCBRAC
