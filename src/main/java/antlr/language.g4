@@ -25,7 +25,8 @@ expression
     | iDorVALUE MULTIPLIKATION iDorVALUE
     | iDorVALUE DIVISION iDorVALUE
     | iDorVALUE POWER_OF iDorVALUE
-    | iDorVALUE;
+    | ((PLUS | MINUS | MULTIPLIKATION | DIVISION)* LPAR expression+ RPAR)
+    | (PLUS | MINUS | MULTIPLIKATION | DIVISION)* iDorVALUE;
 //CONDITINAL STATEMENT
 conditional_statement
     : if_statement;
