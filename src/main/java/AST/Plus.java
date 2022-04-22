@@ -7,6 +7,10 @@ public class Plus implements ASTNode {
     public ASTNode left;
     public ASTNode right;
 
+<<<<<<< Updated upstream
+=======
+public abstract class Plus extends Expression {
+>>>>>>> Stashed changes
     public Plus(ASTNode left, ASTNode right) {
         this.left = left;
         this.right = right;

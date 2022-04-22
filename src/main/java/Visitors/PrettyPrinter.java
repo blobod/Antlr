@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 package Visitors;
 
 import AST.Expression;
@@ -25,3 +26,5 @@ public class PrettyPrinter implements Visitor{
         return null;
     }
 }
+=======
+>>>>>>> Stashed changes
