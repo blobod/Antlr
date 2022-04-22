@@ -31,7 +31,37 @@ public class Calculator implements Visitor {
     }
 
 
+    @Override
+    public void VisitMultiplication(Multiplication multiplication){
 
+        multiplication.getLeft().accept(this);
+        int left = res;
+        multiplication.getRight().accept(this);
+        int right = res;
+        res = left * right;
+    }
+
+    @Override
+    public void VisitDivision(Division division){
+
+        division.getLeft().accept(this);
+        int left = res;
+        division.getRight().accept(this);
+        int right = res;
+        res = left / right;
+
+    }
+
+
+    @Override
+    public void VisitPower(Power power){
+        power.getLeft().accept(this);
+        int left = res;
+        power.getRight().accept(this);
+        int right = res;
+        res = left^right;
+
+    }
 
 
 

@@ -4,7 +4,11 @@ public interface Visitor {
 
     void VisitPlus(Plus plus);
 
-    Void VisitMinus(Minus minus);
+    void VisitMinus(Minus minus);
+
+    void VisitMultiplication(Multiplication multiplication);
+    void VisitDivision(Division division);
+    void VisitPower(Power power);
 
 
 
