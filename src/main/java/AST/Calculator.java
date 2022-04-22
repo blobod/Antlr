@@ -1,5 +1,5 @@
 package AST;
-import AST.Visitor;
+
 public class Calculator implements Visitor {
 
 
@@ -15,9 +15,24 @@ public class Calculator implements Visitor {
 
     res = left + right;
 
+    }
 
+
+    @Override
+    public void VisitMinus(Minus minus){
+
+       minus.getLeft().accept(this);
+       int left = res;
+       minus.getRight().accept(this);
+       int right = res;
+
+       res = left - right;
 
     }
+
+
+
+
 
 
 

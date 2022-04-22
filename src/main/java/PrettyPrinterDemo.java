@@ -1,4 +1,3 @@
-import AST.IntegerNode;
 import AST.Minus;
 import AST.Plus;
 import Visitors.PrettyPrinter;
