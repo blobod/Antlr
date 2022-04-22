@@ -12,7 +12,7 @@ public class AntlrToAST extends languageBaseVisitor<ASTNode>{
     @Override public ASTNode visitStmt(languageParser.StmtContext ctx) { return visitChildren(ctx); }
 
     @Override public ASTNode visitExpression(languageParser.ExpressionContext ctx) {
-        Expression ny = new Expression();
+
         //Check that we are in a plus rule
        // return Plus(ctx.left().accept(this), ctx.right().accept(this));
         return visitChildren(ctx);

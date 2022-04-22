@@ -2,16 +2,18 @@ package AST;
 
 import Visitors.Visitor;
 
-import java.util.ArrayList;
+public abstract class Expression implements ASTNode<Object> {
+    ASTNode left;
+    ASTNode right;
 
-public class Expression implements ASTNode<Object>{
-
-    char Operator;
+    public Expression(ASTNode left, ASTNode right) {
+        this.left = left;
+        this.right = right;
+    }
 
     @Override
     public Object accept(Visitor v) {
         return v.visit(this);
     }
-    //ArrayList<String > Operators;
-    //ASTNode Operand;
+
 }

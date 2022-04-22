@@ -2,8 +2,8 @@ package AST;
 
 import Visitors.Visitor;
 
-public class Plus extends Expression {
-    public Plus(ASTNode left, ASTNode right) {
+public class Minus extends Expression {
+    public Minus(ASTNode left, ASTNode right) {
         super(left, right);
     }
 
@@ -12,7 +12,9 @@ public class Plus extends Expression {
         Float left_value = (Float) left.accept(v);
         Float right_value = (Float) right.accept(v);
 
-        return left_value + right_value;
+        return left_value-right_value;
     }
 
 }
+
+

@@ -1,7 +1,8 @@
 package Visitors;
 
 import AST.Expression;
-import AST.Integer;
+import AST.IntegerNode;
+import AST.Minus;
 import AST.Plus;
 
 public class PrettyPrinter implements Visitor{
@@ -14,13 +15,20 @@ public class PrettyPrinter implements Visitor{
     @Override
     public Object visit(Plus n) {
         System.out.println("Plus");
-        n.left.accept(this);
-        n.right.accept(this);
+        System.out.println(n.accept(this));
         return null;
     }
 
     @Override
-    public Object visit(Integer n) {
+    public Object visit(Minus n) {
+        System.out.println("Minus");
+        System.out.println(n.accept(this));
+        return null;
+
+    }
+
+    @Override
+    public Object visit(IntegerNode n) {
         System.out.println(n.value);
         return null;
     }
