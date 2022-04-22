@@ -11,9 +11,13 @@ public abstract class Expression implements ASTNode<Object> {
         this.right = right;
     }
 
-    @Override
-    public Object accept(Visitor v) {
-        return v.visit(this);
+
+    public ASTNode getLeft() {
+        return left;
+    }
+
+    public ASTNode getRight() {
+        return right;
     }
 
 }

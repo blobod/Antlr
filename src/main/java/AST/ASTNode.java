@@ -1,8 +1,8 @@
 package AST;
 
-import Visitors.Visitor;
+import AST.Visitor;
 
 public interface ASTNode<Object> {
 
-    Object accept(Visitor v);
+   void accept(Visitor v);
 }

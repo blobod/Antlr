@@ -1,6 +1,6 @@
 package AST;
 
-import Visitors.Visitor;
+import AST.Visitor;
 
 public class Plus extends Expression {
     public Plus(ASTNode left, ASTNode right) {
@@ -8,11 +8,9 @@ public class Plus extends Expression {
     }
 
     @Override
-    public Object accept(Visitor v) {
-        Float left_value = (Float) left.accept(v);
-        Float right_value = (Float) right.accept(v);
-
-        return left_value + right_value;
+    public void accept(Visitor v) {
+       v.VisitPlus(this);
     }
+
 
 }

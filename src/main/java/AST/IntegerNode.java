@@ -5,9 +5,9 @@ import Visitors.Visitor;
 public class IntegerNode implements ASTNode{
 
 
-    public Integer value;
+    public Double value;
 
-    public IntegerNode(Integer value) {
+    public IntegerNode(Double value) {
         this.value = value;
     }
 
@@ -15,4 +15,6 @@ public class IntegerNode implements ASTNode{
     public Object accept(Visitor v) {
         return value.floatValue();
     }
+
+
 }
