@@ -3,8 +3,8 @@ package AST;
 import Visitors.Visitor;
 
 public abstract class Expression implements ASTNode<Object> {
-    ASTNode left;
-    ASTNode right;
+    public ASTNode left;
+    public ASTNode right;
 
     public Expression(ASTNode left, ASTNode right) {
         this.left = left;

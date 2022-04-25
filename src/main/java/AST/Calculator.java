@@ -14,7 +14,6 @@ public class Calculator implements Visitor {
     int right = res;
 
     res = left + right;
-
     }
 
 
@@ -62,8 +61,4 @@ public class Calculator implements Visitor {
         res = left^right;
 
     }
-
-
-
-
 }

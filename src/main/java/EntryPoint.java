@@ -1,5 +1,4 @@
-import gen.languageLexer;
-import gen.languageParser;
+import antlr.*;
 import org.antlr.v4.runtime.CharStream;
 import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.tree.ParseTree;
