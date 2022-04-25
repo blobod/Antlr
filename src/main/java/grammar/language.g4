@@ -39,13 +39,11 @@ iterative_statement
     | while_loop
     | forever_loop;
 for_loop
-    : FOR LPAR type COMMA (condition) COMMA stmt LCBRAC stmt RCBRAC
-    | FOR LPAR type COMMA (condition) COMMA expression LCBRAC stmt RCBRAC;
+    : FOR LPAR type COMMA (condition) COMMA (stmt |expression)+ LCBRAC stmt RCBRAC;
 while_loop
     : WHILE LPAR (condition) RPAR LCBRAC (stmt | expression)* RCBRAC;
 forever_loop
-    : FOREVER LCBRAC stmt RCBRAC
-    | FOREVER LCBRAC expression RCBRAC;
+    : FOREVER LCBRAC (stmt | expression)+ RCBRAC;
 // ITERATIVE STATEMENT
 
 //CONDITIONS
