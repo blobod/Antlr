@@ -1,9 +1,16 @@
+<<<<<<< Updated upstream:src/main/java/gen/languageParser.java
 // Generated from /Users/abdallahziadalnaif/Desktop/Antlr-main/src/antlr/language.g4 by ANTLR 4.9.2
 package gen;
+=======
+// Generated from C:/Users/thetr/OneDrive/Dokumenter/GitHub/Antlr/src/main/java/grammar\language.g4 by ANTLR 4.9.2
+package grammar;
+>>>>>>> Stashed changes:src/main/java/grammar/languageParser.java
 import org.antlr.v4.runtime.atn.*;
 import org.antlr.v4.runtime.dfa.DFA;
 import org.antlr.v4.runtime.*;
 import org.antlr.v4.runtime.tree.*;
+
+import java.util.Currency;
 import java.util.List;
 
 @SuppressWarnings({"all", "warnings", "unchecked", "unused", "cast"})
@@ -411,31 +418,231 @@ public class languageParser extends Parser {
 	}
 
 	public static class ExpressionContext extends ParserRuleContext {
+<<<<<<< Updated upstream:src/main/java/gen/languageParser.java
+=======
+		public ExpressionContext(ParserRuleContext parent, int invokingState) {
+			super(parent, invokingState);
+		}
+		@Override public int getRuleIndex() { return RULE_expression; }
+	 
+		public ExpressionContext() { }
+		public void copyFrom(ExpressionContext ctx) {
+			super.copyFrom(ctx);
+		}
+	}
+	public static class AdditionContext extends ExpressionContext {
+>>>>>>> Stashed changes:src/main/java/grammar/languageParser.java
 		public List<IDorVALUEContext> iDorVALUE() {
 			return getRuleContexts(IDorVALUEContext.class);
 		}
 		public IDorVALUEContext iDorVALUE(int i) {
 			return getRuleContext(IDorVALUEContext.class,i);
 		}
+<<<<<<< Updated upstream:src/main/java/gen/languageParser.java
 		public List<TerminalNode> EXPRESSION() { return getTokens(languageParser.EXPRESSION); }
 		public TerminalNode EXPRESSION(int i) {
 			return getToken(languageParser.EXPRESSION, i);
-		}
-		public ExpressionContext(ParserRuleContext parent, int invokingState) {
-			super(parent, invokingState);
-		}
-		@Override public int getRuleIndex() { return RULE_expression; }
+=======
+		public TerminalNode PLUS() { return getToken(languageParser.PLUS, 0); }
+		public AdditionContext(ExpressionContext ctx) { copyFrom(ctx); }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof languageListener ) ((languageListener)listener).enterExpression(this);
+			if ( listener instanceof languageListener ) ((languageListener)listener).enterAddition(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof languageListener ) ((languageListener)listener).exitExpression(this);
+			if ( listener instanceof languageListener ) ((languageListener)listener).exitAddition(this);
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof languageVisitor ) return ((languageVisitor<? extends T>)visitor).visitExpression(this);
+			if ( visitor instanceof languageVisitor ) return ((languageVisitor<? extends T>)visitor).visitAddition(this);
+			else return visitor.visitChildren(this);
+		}
+	}
+	public static class MultiplicationContext extends ExpressionContext {
+		public List<IDorVALUEContext> iDorVALUE() {
+			return getRuleContexts(IDorVALUEContext.class);
+		}
+		public IDorVALUEContext iDorVALUE(int i) {
+			return getRuleContext(IDorVALUEContext.class,i);
+		}
+		public TerminalNode MULTIPLIKATION() { return getToken(languageParser.MULTIPLIKATION, 0); }
+		public MultiplicationContext(ExpressionContext ctx) { copyFrom(ctx); }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof languageListener ) ((languageListener)listener).enterMultiplication(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof languageListener ) ((languageListener)listener).exitMultiplication(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof languageVisitor ) return ((languageVisitor<? extends T>)visitor).visitMultiplication(this);
+			else return visitor.visitChildren(this);
+		}
+	}
+	public static class Paranthesis_moreContext extends ExpressionContext {
+		public TerminalNode LPAR() { return getToken(languageParser.LPAR, 0); }
+		public TerminalNode RPAR() { return getToken(languageParser.RPAR, 0); }
+		public List<ExpressionContext> expression() {
+			return getRuleContexts(ExpressionContext.class);
+		}
+		public ExpressionContext expression(int i) {
+			return getRuleContext(ExpressionContext.class,i);
+		}
+		public List<TerminalNode> PLUS() { return getTokens(languageParser.PLUS); }
+		public TerminalNode PLUS(int i) {
+			return getToken(languageParser.PLUS, i);
+		}
+		public List<TerminalNode> MINUS() { return getTokens(languageParser.MINUS); }
+		public TerminalNode MINUS(int i) {
+			return getToken(languageParser.MINUS, i);
+		}
+		public List<TerminalNode> MULTIPLIKATION() { return getTokens(languageParser.MULTIPLIKATION); }
+		public TerminalNode MULTIPLIKATION(int i) {
+			return getToken(languageParser.MULTIPLIKATION, i);
+		}
+		public List<TerminalNode> DIVISION() { return getTokens(languageParser.DIVISION); }
+		public TerminalNode DIVISION(int i) {
+			return getToken(languageParser.DIVISION, i);
+		}
+		public Paranthesis_moreContext(ExpressionContext ctx) { copyFrom(ctx); }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof languageListener ) ((languageListener)listener).enterParanthesis_more(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof languageListener ) ((languageListener)listener).exitParanthesis_more(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof languageVisitor ) return ((languageVisitor<? extends T>)visitor).visitParanthesis_more(this);
+			else return visitor.visitChildren(this);
+		}
+	}
+	public static class NumberContext extends ExpressionContext {
+		public IDorVALUEContext iDorVALUE() {
+			return getRuleContext(IDorVALUEContext.class,0);
+		}
+		public NumberContext(ExpressionContext ctx) { copyFrom(ctx); }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof languageListener ) ((languageListener)listener).enterNumber(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof languageListener ) ((languageListener)listener).exitNumber(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof languageVisitor ) return ((languageVisitor<? extends T>)visitor).visitNumber(this);
+			else return visitor.visitChildren(this);
+		}
+	}
+	public static class ParanthesisContext extends ExpressionContext {
+		public IDorVALUEContext iDorVALUE() {
+			return getRuleContext(IDorVALUEContext.class,0);
+		}
+		public List<TerminalNode> PLUS() { return getTokens(languageParser.PLUS); }
+		public TerminalNode PLUS(int i) {
+			return getToken(languageParser.PLUS, i);
+		}
+		public List<TerminalNode> MINUS() { return getTokens(languageParser.MINUS); }
+		public TerminalNode MINUS(int i) {
+			return getToken(languageParser.MINUS, i);
+		}
+		public List<TerminalNode> MULTIPLIKATION() { return getTokens(languageParser.MULTIPLIKATION); }
+		public TerminalNode MULTIPLIKATION(int i) {
+			return getToken(languageParser.MULTIPLIKATION, i);
+		}
+		public List<TerminalNode> DIVISION() { return getTokens(languageParser.DIVISION); }
+		public TerminalNode DIVISION(int i) {
+			return getToken(languageParser.DIVISION, i);
+		}
+		public ParanthesisContext(ExpressionContext ctx) { copyFrom(ctx); }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof languageListener ) ((languageListener)listener).enterParanthesis(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof languageListener ) ((languageListener)listener).exitParanthesis(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof languageVisitor ) return ((languageVisitor<? extends T>)visitor).visitParanthesis(this);
+			else return visitor.visitChildren(this);
+		}
+	}
+	public static class SubstraktionContext extends ExpressionContext {
+		public List<IDorVALUEContext> iDorVALUE() {
+			return getRuleContexts(IDorVALUEContext.class);
+		}
+		public IDorVALUEContext iDorVALUE(int i) {
+			return getRuleContext(IDorVALUEContext.class,i);
+		}
+		public TerminalNode MINUS() { return getToken(languageParser.MINUS, 0); }
+		public SubstraktionContext(ExpressionContext ctx) { copyFrom(ctx); }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof languageListener ) ((languageListener)listener).enterSubstraktion(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof languageListener ) ((languageListener)listener).exitSubstraktion(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof languageVisitor ) return ((languageVisitor<? extends T>)visitor).visitSubstraktion(this);
+			else return visitor.visitChildren(this);
+		}
+	}
+	public static class Power_ofContext extends ExpressionContext {
+		public List<IDorVALUEContext> iDorVALUE() {
+			return getRuleContexts(IDorVALUEContext.class);
+		}
+		public IDorVALUEContext iDorVALUE(int i) {
+			return getRuleContext(IDorVALUEContext.class,i);
+		}
+		public TerminalNode POWER_OF() { return getToken(languageParser.POWER_OF, 0); }
+		public Power_ofContext(ExpressionContext ctx) { copyFrom(ctx); }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof languageListener ) ((languageListener)listener).enterPower_of(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof languageListener ) ((languageListener)listener).exitPower_of(this);
+>>>>>>> Stashed changes:src/main/java/grammar/languageParser.java
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof languageVisitor ) return ((languageVisitor<? extends T>)visitor).visitPower_of(this);
+			else return visitor.visitChildren(this);
+		}
+	}
+	public static class DivisionContext extends ExpressionContext {
+		public List<IDorVALUEContext> iDorVALUE() {
+			return getRuleContexts(IDorVALUEContext.class);
+		}
+		public IDorVALUEContext iDorVALUE(int i) {
+			return getRuleContext(IDorVALUEContext.class,i);
+		}
+		public TerminalNode DIVISION() { return getToken(languageParser.DIVISION, 0); }
+		public DivisionContext(ExpressionContext ctx) { copyFrom(ctx); }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof languageListener ) ((languageListener)listener).enterDivision(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof languageListener ) ((languageListener)listener).exitDivision(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof languageVisitor ) return ((languageVisitor<? extends T>)visitor).visitDivision(this);
 			else return visitor.visitChildren(this);
 		}
 	}
@@ -445,6 +652,7 @@ public class languageParser extends Parser {
 		enterRule(_localctx, 8, RULE_expression);
 		int _la;
 		try {
+<<<<<<< Updated upstream:src/main/java/gen/languageParser.java
 			enterOuterAlt(_localctx, 1);
 			{
 			setState(92);
@@ -458,17 +666,163 @@ public class languageParser extends Parser {
 			_la = _input.LA(1);
 			while (_la==EXPRESSION) {
 				{
+=======
+			setState(141);
+			_errHandler.sync(this);
+			switch ( getInterpreter().adaptivePredict(_input,13,_ctx) ) {
+			case 1:
+				_localctx = new AdditionContext(_localctx);
+				enterOuterAlt(_localctx, 1);
+				{
+				setState(99);
+				iDorVALUE();
+				setState(100);
+				match(PLUS);
+				setState(101);
+				iDorVALUE();
+				}
+				break;
+			case 2:
+				_localctx = new SubstraktionContext(_localctx);
+				enterOuterAlt(_localctx, 2);
+				{
+				setState(103);
+				iDorVALUE();
+				setState(104);
+				match(MINUS);
+				setState(105);
+				iDorVALUE();
+				}
+				break;
+			case 3:
+				_localctx = new MultiplicationContext(_localctx);
+				enterOuterAlt(_localctx, 3);
+				{
+				setState(107);
+				iDorVALUE();
+				setState(108);
+				match(MULTIPLIKATION);
+				setState(109);
+				iDorVALUE();
+				}
+				break;
+			case 4:
+				_localctx = new DivisionContext(_localctx);
+				enterOuterAlt(_localctx, 4);
+				{
+				setState(111);
+				iDorVALUE();
+				setState(112);
+				match(DIVISION);
+				setState(113);
+				iDorVALUE();
+				}
+				break;
+			case 5:
+				_localctx = new Power_ofContext(_localctx);
+				enterOuterAlt(_localctx, 5);
+>>>>>>> Stashed changes:src/main/java/grammar/languageParser.java
 				{
 				setState(95);
 				match(EXPRESSION);
 				setState(96);
 				iDorVALUE();
 				}
+<<<<<<< Updated upstream:src/main/java/gen/languageParser.java
 				}
 				setState(101);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 			}
+=======
+				break;
+			case 6:
+				_localctx = new Paranthesis_moreContext(_localctx);
+				enterOuterAlt(_localctx, 6);
+				{
+				{
+				setState(122);
+				_errHandler.sync(this);
+				_la = _input.LA(1);
+				while ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << PLUS) | (1L << MINUS) | (1L << MULTIPLIKATION) | (1L << DIVISION))) != 0)) {
+					{
+					{
+					setState(119);
+					_la = _input.LA(1);
+					if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << PLUS) | (1L << MINUS) | (1L << MULTIPLIKATION) | (1L << DIVISION))) != 0)) ) {
+					_errHandler.recoverInline(this);
+					}
+					else {
+						if ( _input.LA(1)==Token.EOF ) matchedEOF = true;
+						_errHandler.reportMatch(this);
+						consume();
+					}
+					}
+					}
+					setState(124);
+					_errHandler.sync(this);
+					_la = _input.LA(1);
+				}
+				setState(125);
+				match(LPAR);
+				setState(127); 
+				_errHandler.sync(this);
+				_la = _input.LA(1);
+				do {
+					{
+					{
+					setState(126);
+					expression();
+					}
+					}
+					setState(129); 
+					_errHandler.sync(this);
+					_la = _input.LA(1);
+				} while ( (((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << PLUS) | (1L << MINUS) | (1L << MULTIPLIKATION) | (1L << DIVISION) | (1L << LPAR) | (1L << INT) | (1L << DOUBLE) | (1L << TXT) | (1L << BOOL) | (1L << ID))) != 0) );
+				setState(131);
+				match(RPAR);
+				}
+				}
+				break;
+			case 7:
+				_localctx = new ParanthesisContext(_localctx);
+				enterOuterAlt(_localctx, 7);
+				{
+				setState(136);
+				_errHandler.sync(this);
+				_la = _input.LA(1);
+				while ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << PLUS) | (1L << MINUS) | (1L << MULTIPLIKATION) | (1L << DIVISION))) != 0)) {
+					{
+					{
+					setState(133);
+					_la = _input.LA(1);
+					if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << PLUS) | (1L << MINUS) | (1L << MULTIPLIKATION) | (1L << DIVISION))) != 0)) ) {
+					_errHandler.recoverInline(this);
+					}
+					else {
+						if ( _input.LA(1)==Token.EOF ) matchedEOF = true;
+						_errHandler.reportMatch(this);
+						consume();
+					}
+					}
+					}
+					setState(138);
+					_errHandler.sync(this);
+					_la = _input.LA(1);
+				}
+				setState(139);
+				iDorVALUE();
+				}
+				break;
+			case 8:
+				_localctx = new NumberContext(_localctx);
+				enterOuterAlt(_localctx, 8);
+				{
+				setState(140);
+				iDorVALUE();
+				}
+				break;
+>>>>>>> Stashed changes:src/main/java/grammar/languageParser.java
 			}
 		}
 		catch (RecognitionException re) {
@@ -511,7 +865,11 @@ public class languageParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
+<<<<<<< Updated upstream:src/main/java/gen/languageParser.java
 			setState(102);
+=======
+			setState(143);
+>>>>>>> Stashed changes:src/main/java/grammar/languageParser.java
 			if_statement();
 			}
 		}
@@ -574,6 +932,7 @@ public class languageParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
+<<<<<<< Updated upstream:src/main/java/gen/languageParser.java
 			setState(104);
 			match(IF);
 			setState(105);
@@ -587,16 +946,74 @@ public class languageParser extends Parser {
 			setState(109);
 			stmt();
 			setState(111);
+=======
+			setState(145);
+			match(IF);
+			setState(146);
+			match(LPAR);
+			setState(147);
+			condition();
+			setState(148);
+			match(RPAR);
+			setState(149);
+			match(LCBRAC);
+			setState(154);
+			_errHandler.sync(this);
+			_la = _input.LA(1);
+			while ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << IF) | (1L << PLUS) | (1L << MINUS) | (1L << MULTIPLIKATION) | (1L << DIVISION) | (1L << FOR) | (1L << WHILE) | (1L << FOREVER) | (1L << LPAR) | (1L << INT) | (1L << DOUBLE) | (1L << TXT) | (1L << BOOL) | (1L << ID))) != 0)) {
+				{
+				setState(152);
+				_errHandler.sync(this);
+				switch (_input.LA(1)) {
+				case IF:
+				case FOR:
+				case WHILE:
+				case FOREVER:
+					{
+					setState(150);
+					stmt();
+					}
+					break;
+				case PLUS:
+				case MINUS:
+				case MULTIPLIKATION:
+				case DIVISION:
+				case LPAR:
+				case INT:
+				case DOUBLE:
+				case TXT:
+				case BOOL:
+				case ID:
+					{
+					setState(151);
+					expression();
+					}
+					break;
+				default:
+					throw new NoViableAltException(this);
+				}
+				}
+				setState(156);
+				_errHandler.sync(this);
+				_la = _input.LA(1);
+			}
+			setState(158);
+>>>>>>> Stashed changes:src/main/java/grammar/languageParser.java
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			if (_la==RCBRAC) {
 				{
+<<<<<<< Updated upstream:src/main/java/gen/languageParser.java
 				setState(110);
+=======
+				setState(157);
+>>>>>>> Stashed changes:src/main/java/grammar/languageParser.java
 				match(RCBRAC);
 				}
 			}
 
 			{
+<<<<<<< Updated upstream:src/main/java/gen/languageParser.java
 			setState(113);
 			match(ELSE);
 			setState(114);
@@ -604,6 +1021,15 @@ public class languageParser extends Parser {
 			setState(115);
 			stmt();
 			setState(116);
+=======
+			setState(160);
+			match(ELSE);
+			setState(161);
+			match(LCBRAC);
+			setState(162);
+			stmt();
+			setState(163);
+>>>>>>> Stashed changes:src/main/java/grammar/languageParser.java
 			match(RCBRAC);
 			}
 			}
@@ -652,27 +1078,43 @@ public class languageParser extends Parser {
 		Iterative_statementContext _localctx = new Iterative_statementContext(_ctx, getState());
 		enterRule(_localctx, 14, RULE_iterative_statement);
 		try {
+<<<<<<< Updated upstream:src/main/java/gen/languageParser.java
 			setState(121);
+=======
+			setState(168);
+>>>>>>> Stashed changes:src/main/java/grammar/languageParser.java
 			_errHandler.sync(this);
 			switch (_input.LA(1)) {
 			case FOR:
 				enterOuterAlt(_localctx, 1);
 				{
+<<<<<<< Updated upstream:src/main/java/gen/languageParser.java
 				setState(118);
+=======
+				setState(165);
+>>>>>>> Stashed changes:src/main/java/grammar/languageParser.java
 				for_loop();
 				}
 				break;
 			case WHILE:
 				enterOuterAlt(_localctx, 2);
 				{
+<<<<<<< Updated upstream:src/main/java/gen/languageParser.java
 				setState(119);
+=======
+				setState(166);
+>>>>>>> Stashed changes:src/main/java/grammar/languageParser.java
 				while_loop();
 				}
 				break;
 			case FOREVER:
 				enterOuterAlt(_localctx, 3);
 				{
+<<<<<<< Updated upstream:src/main/java/gen/languageParser.java
 				setState(120);
+=======
+				setState(167);
+>>>>>>> Stashed changes:src/main/java/grammar/languageParser.java
 				forever_loop();
 				}
 				break;
@@ -700,16 +1142,36 @@ public class languageParser extends Parser {
 		public List<TerminalNode> COMMA() { return getTokens(languageParser.COMMA); }
 		public TerminalNode COMMA(int i) {
 			return getToken(languageParser.COMMA, i);
+<<<<<<< Updated upstream:src/main/java/gen/languageParser.java
 		}
 		public TerminalNode EXPRESSION() { return getToken(languageParser.EXPRESSION, 0); }
 		public TerminalNode LCBRAC() { return getToken(languageParser.LCBRAC, 0); }
 		public StmtContext stmt() {
 			return getRuleContext(StmtContext.class,0);
 		}
+=======
+		}
+		public TerminalNode LCBRAC() { return getToken(languageParser.LCBRAC, 0); }
+		public List<StmtContext> stmt() {
+			return getRuleContexts(StmtContext.class);
+		}
+		public StmtContext stmt(int i) {
+			return getRuleContext(StmtContext.class,i);
+		}
+>>>>>>> Stashed changes:src/main/java/grammar/languageParser.java
 		public TerminalNode RCBRAC() { return getToken(languageParser.RCBRAC, 0); }
 		public ConditionContext condition() {
 			return getRuleContext(ConditionContext.class,0);
 		}
+<<<<<<< Updated upstream:src/main/java/gen/languageParser.java
+=======
+		public List<ExpressionContext> expression() {
+			return getRuleContexts(ExpressionContext.class);
+		}
+		public ExpressionContext expression(int i) {
+			return getRuleContext(ExpressionContext.class,i);
+		}
+>>>>>>> Stashed changes:src/main/java/grammar/languageParser.java
 		public For_loopContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
@@ -731,6 +1193,7 @@ public class languageParser extends Parser {
 
 	public final For_loopContext for_loop() throws RecognitionException {
 		For_loopContext _localctx = new For_loopContext(_ctx, getState());
+<<<<<<< Updated upstream:src/main/java/gen/languageParser.java
 		enterRule(_localctx, 16, RULE_for_loop);
 		try {
 			enterOuterAlt(_localctx, 1);
@@ -756,6 +1219,72 @@ public class languageParser extends Parser {
 			setState(131);
 			stmt();
 			setState(132);
+=======
+		enterRule(_localctx, 18, RULE_for_loop);
+		int _la;
+		try {
+			enterOuterAlt(_localctx, 1);
+			{
+			setState(170);
+			match(FOR);
+			setState(171);
+			match(LPAR);
+			setState(172);
+			type();
+			setState(173);
+			match(COMMA);
+			{
+			setState(174);
+			condition();
+			}
+			setState(175);
+			match(COMMA);
+			setState(178); 
+			_errHandler.sync(this);
+			_la = _input.LA(1);
+			do {
+				{
+				setState(178);
+				_errHandler.sync(this);
+				switch (_input.LA(1)) {
+				case IF:
+				case FOR:
+				case WHILE:
+				case FOREVER:
+					{
+					setState(176);
+					stmt();
+					}
+					break;
+				case PLUS:
+				case MINUS:
+				case MULTIPLIKATION:
+				case DIVISION:
+				case LPAR:
+				case INT:
+				case DOUBLE:
+				case TXT:
+				case BOOL:
+				case ID:
+					{
+					setState(177);
+					expression();
+					}
+					break;
+				default:
+					throw new NoViableAltException(this);
+				}
+				}
+				setState(180); 
+				_errHandler.sync(this);
+				_la = _input.LA(1);
+			} while ( (((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << IF) | (1L << PLUS) | (1L << MINUS) | (1L << MULTIPLIKATION) | (1L << DIVISION) | (1L << FOR) | (1L << WHILE) | (1L << FOREVER) | (1L << LPAR) | (1L << INT) | (1L << DOUBLE) | (1L << TXT) | (1L << BOOL) | (1L << ID))) != 0) );
+			setState(182);
+			match(LCBRAC);
+			setState(183);
+			stmt();
+			setState(184);
+>>>>>>> Stashed changes:src/main/java/grammar/languageParser.java
 			match(RCBRAC);
 			}
 		}
@@ -807,6 +1336,7 @@ public class languageParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
+<<<<<<< Updated upstream:src/main/java/gen/languageParser.java
 			setState(134);
 			match(WHILE);
 			setState(135);
@@ -822,6 +1352,61 @@ public class languageParser extends Parser {
 			setState(139);
 			stmt();
 			setState(140);
+=======
+			setState(186);
+			match(WHILE);
+			setState(187);
+			match(LPAR);
+			{
+			setState(188);
+			condition();
+			}
+			setState(189);
+			match(RPAR);
+			setState(190);
+			match(LCBRAC);
+			setState(195);
+			_errHandler.sync(this);
+			_la = _input.LA(1);
+			while ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << IF) | (1L << PLUS) | (1L << MINUS) | (1L << MULTIPLIKATION) | (1L << DIVISION) | (1L << FOR) | (1L << WHILE) | (1L << FOREVER) | (1L << LPAR) | (1L << INT) | (1L << DOUBLE) | (1L << TXT) | (1L << BOOL) | (1L << ID))) != 0)) {
+				{
+				setState(193);
+				_errHandler.sync(this);
+				switch (_input.LA(1)) {
+				case IF:
+				case FOR:
+				case WHILE:
+				case FOREVER:
+					{
+					setState(191);
+					stmt();
+					}
+					break;
+				case PLUS:
+				case MINUS:
+				case MULTIPLIKATION:
+				case DIVISION:
+				case LPAR:
+				case INT:
+				case DOUBLE:
+				case TXT:
+				case BOOL:
+				case ID:
+					{
+					setState(192);
+					expression();
+					}
+					break;
+				default:
+					throw new NoViableAltException(this);
+				}
+				}
+				setState(197);
+				_errHandler.sync(this);
+				_la = _input.LA(1);
+			}
+			setState(198);
+>>>>>>> Stashed changes:src/main/java/grammar/languageParser.java
 			match(RCBRAC);
 			}
 		}
@@ -839,10 +1424,22 @@ public class languageParser extends Parser {
 	public static class Forever_loopContext extends ParserRuleContext {
 		public TerminalNode FOREVER() { return getToken(languageParser.FOREVER, 0); }
 		public TerminalNode LCBRAC() { return getToken(languageParser.LCBRAC, 0); }
-		public StmtContext stmt() {
-			return getRuleContext(StmtContext.class,0);
-		}
 		public TerminalNode RCBRAC() { return getToken(languageParser.RCBRAC, 0); }
+<<<<<<< Updated upstream:src/main/java/gen/languageParser.java
+=======
+		public List<StmtContext> stmt() {
+			return getRuleContexts(StmtContext.class);
+		}
+		public StmtContext stmt(int i) {
+			return getRuleContext(StmtContext.class,i);
+		}
+		public List<ExpressionContext> expression() {
+			return getRuleContexts(ExpressionContext.class);
+		}
+		public ExpressionContext expression(int i) {
+			return getRuleContext(ExpressionContext.class,i);
+		}
+>>>>>>> Stashed changes:src/main/java/grammar/languageParser.java
 		public Forever_loopContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
@@ -864,6 +1461,7 @@ public class languageParser extends Parser {
 
 	public final Forever_loopContext forever_loop() throws RecognitionException {
 		Forever_loopContext _localctx = new Forever_loopContext(_ctx, getState());
+<<<<<<< Updated upstream:src/main/java/gen/languageParser.java
 		enterRule(_localctx, 20, RULE_forever_loop);
 		try {
 			enterOuterAlt(_localctx, 1);
@@ -875,6 +1473,58 @@ public class languageParser extends Parser {
 			setState(144);
 			stmt();
 			setState(145);
+=======
+		enterRule(_localctx, 22, RULE_forever_loop);
+		int _la;
+		try {
+			enterOuterAlt(_localctx, 1);
+			{
+			setState(200);
+			match(FOREVER);
+			setState(201);
+			match(LCBRAC);
+			setState(204); 
+			_errHandler.sync(this);
+			_la = _input.LA(1);
+			do {
+				{
+				setState(204);
+				_errHandler.sync(this);
+				switch (_input.LA(1)) {
+				case IF:
+				case FOR:
+				case WHILE:
+				case FOREVER:
+					{
+					setState(202);
+					stmt();
+					}
+					break;
+				case PLUS:
+				case MINUS:
+				case MULTIPLIKATION:
+				case DIVISION:
+				case LPAR:
+				case INT:
+				case DOUBLE:
+				case TXT:
+				case BOOL:
+				case ID:
+					{
+					setState(203);
+					expression();
+					}
+					break;
+				default:
+					throw new NoViableAltException(this);
+				}
+				}
+				setState(206); 
+				_errHandler.sync(this);
+				_la = _input.LA(1);
+			} while ( (((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << IF) | (1L << PLUS) | (1L << MINUS) | (1L << MULTIPLIKATION) | (1L << DIVISION) | (1L << FOR) | (1L << WHILE) | (1L << FOREVER) | (1L << LPAR) | (1L << INT) | (1L << DOUBLE) | (1L << TXT) | (1L << BOOL) | (1L << ID))) != 0) );
+			setState(208);
+>>>>>>> Stashed changes:src/main/java/grammar/languageParser.java
 			match(RCBRAC);
 			}
 		}
@@ -926,14 +1576,21 @@ public class languageParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
+<<<<<<< Updated upstream:src/main/java/gen/languageParser.java
 			setState(147);
 			idORvalue_condition();
 			setState(152);
+=======
+			setState(210);
+			idORvalue_condition();
+			setState(215);
+>>>>>>> Stashed changes:src/main/java/grammar/languageParser.java
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			while (_la==OR) {
 				{
 				{
+<<<<<<< Updated upstream:src/main/java/gen/languageParser.java
 				setState(148);
 				match(OR);
 				setState(149);
@@ -941,6 +1598,15 @@ public class languageParser extends Parser {
 				}
 				}
 				setState(154);
+=======
+				setState(211);
+				match(OR);
+				setState(212);
+				idORvalue_condition();
+				}
+				}
+				setState(217);
+>>>>>>> Stashed changes:src/main/java/grammar/languageParser.java
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 			}
@@ -1005,6 +1671,7 @@ public class languageParser extends Parser {
 		IdORvalue_conditionContext _localctx = new IdORvalue_conditionContext(_ctx, getState());
 		enterRule(_localctx, 24, RULE_idORvalue_condition);
 		try {
+<<<<<<< Updated upstream:src/main/java/gen/languageParser.java
 			setState(179);
 			_errHandler.sync(this);
 			switch ( getInterpreter().adaptivePredict(_input,10,_ctx) ) {
@@ -1016,61 +1683,114 @@ public class languageParser extends Parser {
 				setState(156);
 				greather();
 				setState(157);
+=======
+			setState(242);
+			_errHandler.sync(this);
+			switch ( getInterpreter().adaptivePredict(_input,25,_ctx) ) {
+			case 1:
+				enterOuterAlt(_localctx, 1);
+				{
+				setState(218);
+				iDorVALUE();
+				setState(219);
+				greather();
+				setState(220);
+>>>>>>> Stashed changes:src/main/java/grammar/languageParser.java
 				iDorVALUE();
 				}
 				break;
 			case 2:
 				enterOuterAlt(_localctx, 2);
 				{
+<<<<<<< Updated upstream:src/main/java/gen/languageParser.java
 				setState(159);
 				iDorVALUE();
 				setState(160);
 				lesser();
 				setState(161);
+=======
+				setState(222);
+				iDorVALUE();
+				setState(223);
+				lesser();
+				setState(224);
+>>>>>>> Stashed changes:src/main/java/grammar/languageParser.java
 				iDorVALUE();
 				}
 				break;
 			case 3:
 				enterOuterAlt(_localctx, 3);
 				{
+<<<<<<< Updated upstream:src/main/java/gen/languageParser.java
 				setState(163);
 				iDorVALUE();
 				setState(164);
 				equal();
 				setState(165);
+=======
+				setState(226);
+				iDorVALUE();
+				setState(227);
+				equal();
+				setState(228);
+>>>>>>> Stashed changes:src/main/java/grammar/languageParser.java
 				iDorVALUE();
 				}
 				break;
 			case 4:
 				enterOuterAlt(_localctx, 4);
 				{
+<<<<<<< Updated upstream:src/main/java/gen/languageParser.java
 				setState(167);
 				iDorVALUE();
 				setState(168);
 				greatherORequal();
 				setState(169);
+=======
+				setState(230);
+				iDorVALUE();
+				setState(231);
+				greatherORequal();
+				setState(232);
+>>>>>>> Stashed changes:src/main/java/grammar/languageParser.java
 				iDorVALUE();
 				}
 				break;
 			case 5:
 				enterOuterAlt(_localctx, 5);
 				{
+<<<<<<< Updated upstream:src/main/java/gen/languageParser.java
 				setState(171);
 				iDorVALUE();
 				setState(172);
 				lesserORequal();
 				setState(173);
+=======
+				setState(234);
+				iDorVALUE();
+				setState(235);
+				lesserORequal();
+				setState(236);
+>>>>>>> Stashed changes:src/main/java/grammar/languageParser.java
 				iDorVALUE();
 				}
 				break;
 			case 6:
 				enterOuterAlt(_localctx, 6);
 				{
+<<<<<<< Updated upstream:src/main/java/gen/languageParser.java
 				setState(175);
 				iDorVALUE();
 				setState(176);
 				isNOTequal();
 				setState(177);
+=======
+				setState(238);
+				iDorVALUE();
+				setState(239);
+				isNOTequal();
+				setState(240);
+>>>>>>> Stashed changes:src/main/java/grammar/languageParser.java
 				iDorVALUE();
 				}
 				break;
@@ -1114,7 +1834,11 @@ public class languageParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
+<<<<<<< Updated upstream:src/main/java/gen/languageParser.java
 			setState(181);
+=======
+			setState(244);
+>>>>>>> Stashed changes:src/main/java/grammar/languageParser.java
 			_la = _input.LA(1);
 			if ( !(_la==T__0 || _la==T__1) ) {
 			_errHandler.recoverInline(this);
@@ -1164,7 +1888,11 @@ public class languageParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
+<<<<<<< Updated upstream:src/main/java/gen/languageParser.java
 			setState(183);
+=======
+			setState(246);
+>>>>>>> Stashed changes:src/main/java/grammar/languageParser.java
 			_la = _input.LA(1);
 			if ( !(_la==T__2 || _la==T__3) ) {
 			_errHandler.recoverInline(this);
@@ -1214,7 +1942,11 @@ public class languageParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
+<<<<<<< Updated upstream:src/main/java/gen/languageParser.java
 			setState(185);
+=======
+			setState(248);
+>>>>>>> Stashed changes:src/main/java/grammar/languageParser.java
 			_la = _input.LA(1);
 			if ( !(_la==T__4 || _la==T__5) ) {
 			_errHandler.recoverInline(this);
@@ -1264,7 +1996,11 @@ public class languageParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
+<<<<<<< Updated upstream:src/main/java/gen/languageParser.java
 			setState(187);
+=======
+			setState(250);
+>>>>>>> Stashed changes:src/main/java/grammar/languageParser.java
 			_la = _input.LA(1);
 			if ( !(_la==T__6 || _la==T__7) ) {
 			_errHandler.recoverInline(this);
@@ -1314,7 +2050,11 @@ public class languageParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
+<<<<<<< Updated upstream:src/main/java/gen/languageParser.java
 			setState(189);
+=======
+			setState(252);
+>>>>>>> Stashed changes:src/main/java/grammar/languageParser.java
 			_la = _input.LA(1);
 			if ( !(_la==T__8 || _la==T__9) ) {
 			_errHandler.recoverInline(this);
@@ -1364,7 +2104,11 @@ public class languageParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
+<<<<<<< Updated upstream:src/main/java/gen/languageParser.java
 			setState(191);
+=======
+			setState(254);
+>>>>>>> Stashed changes:src/main/java/grammar/languageParser.java
 			_la = _input.LA(1);
 			if ( !(_la==T__10 || _la==T__11) ) {
 			_errHandler.recoverInline(this);
@@ -1408,6 +2152,7 @@ public class languageParser extends Parser {
 			if ( visitor instanceof languageVisitor ) return ((languageVisitor<? extends T>)visitor).visitType_definition(this);
 			else return visitor.visitChildren(this);
 		}
+
 	}
 
 	public final Type_definitionContext type_definition() throws RecognitionException {
@@ -1416,7 +2161,11 @@ public class languageParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
+<<<<<<< Updated upstream:src/main/java/gen/languageParser.java
 			setState(193);
+=======
+			setState(256);
+>>>>>>> Stashed changes:src/main/java/grammar/languageParser.java
 			data_type();
 			}
 		}
@@ -1465,6 +2214,7 @@ public class languageParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
+<<<<<<< Updated upstream:src/main/java/gen/languageParser.java
 			setState(195);
 			type();
 			setState(196);
@@ -1472,6 +2222,15 @@ public class languageParser extends Parser {
 			setState(197);
 			match(ASSIGN);
 			setState(198);
+=======
+			setState(258);
+			type();
+			setState(259);
+			match(ID);
+			setState(260);
+			match(ASSIGN);
+			setState(261);
+>>>>>>> Stashed changes:src/main/java/grammar/languageParser.java
 			iDorVALUE();
 			}
 		}
@@ -1538,7 +2297,11 @@ public class languageParser extends Parser {
 		enterRule(_localctx, 42, RULE_function_declaration);
 		int _la;
 		try {
+<<<<<<< Updated upstream:src/main/java/gen/languageParser.java
 			setState(249);
+=======
+			setState(295);
+>>>>>>> Stashed changes:src/main/java/grammar/languageParser.java
 			_errHandler.sync(this);
 			switch (_input.LA(1)) {
 			case INT_TYPE:
@@ -1547,6 +2310,7 @@ public class languageParser extends Parser {
 			case BOOL_TYPE:
 				enterOuterAlt(_localctx, 1);
 				{
+<<<<<<< Updated upstream:src/main/java/gen/languageParser.java
 				setState(200);
 				type();
 				setState(201);
@@ -1572,11 +2336,27 @@ public class languageParser extends Parser {
 				setState(210);
 				match(LCBRAC);
 				setState(214);
+=======
+				setState(263);
+				type();
+				setState(264);
+				match(ID);
+				setState(265);
+				match(LPAR);
+				setState(266);
+				param();
+				setState(267);
+				match(RPAR);
+				setState(268);
+				match(LCBRAC);
+				setState(274);
+>>>>>>> Stashed changes:src/main/java/grammar/languageParser.java
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 				while ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << IF) | (1L << FOR) | (1L << WHILE) | (1L << FOREVER))) != 0)) {
 					{
 					{
+<<<<<<< Updated upstream:src/main/java/gen/languageParser.java
 					setState(211);
 					stmt();
 					}
@@ -1600,12 +2380,43 @@ public class languageParser extends Parser {
 					_la = _input.LA(1);
 				}
 				setState(223);
+=======
+					setState(272);
+					_errHandler.sync(this);
+					switch ( getInterpreter().adaptivePredict(_input,26,_ctx) ) {
+					case 1:
+						{
+						setState(269);
+						stmt();
+						}
+						break;
+					case 2:
+						{
+						setState(270);
+						match(ID);
+						}
+						break;
+					case 3:
+						{
+						setState(271);
+						expression();
+						}
+						break;
+					}
+					}
+					setState(276);
+					_errHandler.sync(this);
+					_la = _input.LA(1);
+				}
+				setState(277);
+>>>>>>> Stashed changes:src/main/java/grammar/languageParser.java
 				match(RCBRAC);
 				}
 				break;
 			case VOID:
 				enterOuterAlt(_localctx, 2);
 				{
+<<<<<<< Updated upstream:src/main/java/gen/languageParser.java
 				setState(225);
 				match(VOID);
 				setState(226);
@@ -1631,11 +2442,27 @@ public class languageParser extends Parser {
 				setState(235);
 				match(LCBRAC);
 				setState(239);
+=======
+				setState(279);
+				match(VOID);
+				setState(280);
+				match(ID);
+				setState(281);
+				match(LPAR);
+				setState(282);
+				param();
+				setState(283);
+				match(RPAR);
+				setState(284);
+				match(LCBRAC);
+				setState(290);
+>>>>>>> Stashed changes:src/main/java/grammar/languageParser.java
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 				while ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << IF) | (1L << FOR) | (1L << WHILE) | (1L << FOREVER))) != 0)) {
 					{
 					{
+<<<<<<< Updated upstream:src/main/java/gen/languageParser.java
 					setState(236);
 					stmt();
 					}
@@ -1659,6 +2486,36 @@ public class languageParser extends Parser {
 					_la = _input.LA(1);
 				}
 				setState(248);
+=======
+					setState(288);
+					_errHandler.sync(this);
+					switch ( getInterpreter().adaptivePredict(_input,28,_ctx) ) {
+					case 1:
+						{
+						setState(285);
+						stmt();
+						}
+						break;
+					case 2:
+						{
+						setState(286);
+						match(ID);
+						}
+						break;
+					case 3:
+						{
+						setState(287);
+						expression();
+						}
+						break;
+					}
+					}
+					setState(292);
+					_errHandler.sync(this);
+					_la = _input.LA(1);
+				}
+				setState(293);
+>>>>>>> Stashed changes:src/main/java/grammar/languageParser.java
 				match(RCBRAC);
 				}
 				break;
@@ -1715,6 +2572,7 @@ public class languageParser extends Parser {
 		ParamContext _localctx = new ParamContext(_ctx, getState());
 		enterRule(_localctx, 44, RULE_param);
 		try {
+<<<<<<< Updated upstream:src/main/java/gen/languageParser.java
 			int _alt;
 			setState(262);
 			_errHandler.sync(this);
@@ -1727,16 +2585,39 @@ public class languageParser extends Parser {
 				type();
 				setState(252);
 				match(ID);
+=======
+			setState(310);
+			_errHandler.sync(this);
+			switch ( getInterpreter().adaptivePredict(_input,33,_ctx) ) {
+			case 1:
+				enterOuterAlt(_localctx, 1);
+				{
+				setState(300);
+				_errHandler.sync(this);
+				_la = _input.LA(1);
+				if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << INT_TYPE) | (1L << DOUBLE_TYPE) | (1L << TXT_TYPE) | (1L << BOOL_TYPE))) != 0)) {
+					{
+					setState(297);
+					type();
+					setState(298);
+					match(ID);
+					}
+>>>>>>> Stashed changes:src/main/java/grammar/languageParser.java
 				}
 				}
 				break;
 			case 2:
 				enterOuterAlt(_localctx, 2);
 				{
+<<<<<<< Updated upstream:src/main/java/gen/languageParser.java
 				setState(258); 
+=======
+				setState(306); 
+>>>>>>> Stashed changes:src/main/java/grammar/languageParser.java
 				_errHandler.sync(this);
 				_alt = 1;
 				do {
+<<<<<<< Updated upstream:src/main/java/gen/languageParser.java
 					switch (_alt) {
 					case 1:
 						{
@@ -1754,6 +2635,19 @@ public class languageParser extends Parser {
 						throw new NoViableAltException(this);
 					}
 					setState(260); 
+=======
+					{
+					{
+					setState(302);
+					type();
+					setState(303);
+					match(ID);
+					setState(304);
+					match(COMMA);
+					}
+					}
+					setState(308); 
+>>>>>>> Stashed changes:src/main/java/grammar/languageParser.java
 					_errHandler.sync(this);
 					_alt = getInterpreter().adaptivePredict(_input,18,_ctx);
 				} while ( _alt!=2 && _alt!=org.antlr.v4.runtime.atn.ATN.INVALID_ALT_NUMBER );
@@ -1803,7 +2697,11 @@ public class languageParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
+<<<<<<< Updated upstream:src/main/java/gen/languageParser.java
 			setState(264);
+=======
+			setState(312);
+>>>>>>> Stashed changes:src/main/java/grammar/languageParser.java
 			_la = _input.LA(1);
 			if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << INT_TYPE) | (1L << DOUBLE_TYPE) | (1L << TXT_TYPE) | (1L << BOOL_TYPE))) != 0)) ) {
 			_errHandler.recoverInline(this);
@@ -1857,7 +2755,11 @@ public class languageParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
+<<<<<<< Updated upstream:src/main/java/gen/languageParser.java
 			setState(266);
+=======
+			setState(314);
+>>>>>>> Stashed changes:src/main/java/grammar/languageParser.java
 			_la = _input.LA(1);
 			if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << INT) | (1L << DOUBLE) | (1L << TXT) | (1L << BOOL))) != 0)) ) {
 			_errHandler.recoverInline(this);
@@ -1908,7 +2810,11 @@ public class languageParser extends Parser {
 		IDorVALUEContext _localctx = new IDorVALUEContext(_ctx, getState());
 		enterRule(_localctx, 50, RULE_iDorVALUE);
 		try {
+<<<<<<< Updated upstream:src/main/java/gen/languageParser.java
 			setState(270);
+=======
+			setState(318);
+>>>>>>> Stashed changes:src/main/java/grammar/languageParser.java
 			_errHandler.sync(this);
 			switch (_input.LA(1)) {
 			case INT:
@@ -1917,14 +2823,22 @@ public class languageParser extends Parser {
 			case BOOL:
 				enterOuterAlt(_localctx, 1);
 				{
+<<<<<<< Updated upstream:src/main/java/gen/languageParser.java
 				setState(268);
+=======
+				setState(316);
+>>>>>>> Stashed changes:src/main/java/grammar/languageParser.java
 				value();
 				}
 				break;
 			case ID:
 				enterOuterAlt(_localctx, 2);
 				{
+<<<<<<< Updated upstream:src/main/java/gen/languageParser.java
 				setState(269);
+=======
+				setState(317);
+>>>>>>> Stashed changes:src/main/java/grammar/languageParser.java
 				match(ID);
 				}
 				break;
@@ -1944,6 +2858,7 @@ public class languageParser extends Parser {
 	}
 
 	public static final String _serializedATN =
+<<<<<<< Updated upstream:src/main/java/gen/languageParser.java
 		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3.\u0113\4\2\t\2\4"+
 		"\3\t\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7\4\b\t\b\4\t\t\t\4\n\t\n\4\13\t"+
 		"\13\4\f\t\f\4\r\t\r\4\16\t\16\4\17\t\17\4\20\t\20\4\21\t\21\4\22\t\22"+
@@ -2033,6 +2948,121 @@ public class languageParser extends Parser {
 		"\u010f\u0111\7+\2\2\u0110\u010e\3\2\2\2\u0110\u010f\3\2\2\2\u0111\65\3"+
 		"\2\2\2\279AGMV\\eq{\u009a\u00b5\u00d0\u00d8\u00de\u00e9\u00f1\u00f7\u00fb"+
 		"\u0106\u0108\u0110";
+=======
+		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\62\u0143\4\2\t\2"+
+		"\4\3\t\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7\4\b\t\b\4\t\t\t\4\n\t\n\4\13"+
+		"\t\13\4\f\t\f\4\r\t\r\4\16\t\16\4\17\t\17\4\20\t\20\4\21\t\21\4\22\t\22"+
+		"\4\23\t\23\4\24\t\24\4\25\t\25\4\26\t\26\4\27\t\27\4\30\t\30\4\31\t\31"+
+		"\4\32\t\32\4\33\t\33\4\34\t\34\3\2\3\2\7\2;\n\2\f\2\16\2>\13\2\3\2\3\2"+
+		"\7\2B\n\2\f\2\16\2E\13\2\3\2\5\2H\n\2\3\3\3\3\3\3\3\3\3\3\3\3\3\3\5\3"+
+		"Q\n\3\6\3S\n\3\r\3\16\3T\3\3\3\3\3\3\3\4\3\4\5\4\\\n\4\3\5\3\5\5\5`\n"+
+		"\5\3\6\3\6\5\6d\n\6\3\7\3\7\3\7\3\7\3\7\3\7\3\7\3\7\3\7\3\7\3\7\3\7\3"+
+		"\7\3\7\3\7\3\7\3\7\3\7\3\7\3\7\3\7\7\7{\n\7\f\7\16\7~\13\7\3\7\3\7\6\7"+
+		"\u0082\n\7\r\7\16\7\u0083\3\7\3\7\3\7\7\7\u0089\n\7\f\7\16\7\u008c\13"+
+		"\7\3\7\3\7\5\7\u0090\n\7\3\b\3\b\3\t\3\t\3\t\3\t\3\t\3\t\3\t\7\t\u009b"+
+		"\n\t\f\t\16\t\u009e\13\t\3\t\5\t\u00a1\n\t\3\t\3\t\3\t\3\t\3\t\3\n\3\n"+
+		"\3\n\5\n\u00ab\n\n\3\13\3\13\3\13\3\13\3\13\3\13\3\13\3\13\6\13\u00b5"+
+		"\n\13\r\13\16\13\u00b6\3\13\3\13\3\13\3\13\3\f\3\f\3\f\3\f\3\f\3\f\3\f"+
+		"\7\f\u00c4\n\f\f\f\16\f\u00c7\13\f\3\f\3\f\3\r\3\r\3\r\3\r\6\r\u00cf\n"+
+		"\r\r\r\16\r\u00d0\3\r\3\r\3\16\3\16\3\16\7\16\u00d8\n\16\f\16\16\16\u00db"+
+		"\13\16\3\17\3\17\3\17\3\17\3\17\3\17\3\17\3\17\3\17\3\17\3\17\3\17\3\17"+
+		"\3\17\3\17\3\17\3\17\3\17\3\17\3\17\3\17\3\17\3\17\3\17\5\17\u00f5\n\17"+
+		"\3\20\3\20\3\21\3\21\3\22\3\22\3\23\3\23\3\24\3\24\3\25\3\25\3\26\3\26"+
+		"\3\27\3\27\3\27\3\27\3\27\3\30\3\30\3\30\3\30\3\30\3\30\3\30\3\30\3\30"+
+		"\7\30\u0113\n\30\f\30\16\30\u0116\13\30\3\30\3\30\3\30\3\30\3\30\3\30"+
+		"\3\30\3\30\3\30\3\30\3\30\7\30\u0123\n\30\f\30\16\30\u0126\13\30\3\30"+
+		"\3\30\5\30\u012a\n\30\3\31\3\31\3\31\5\31\u012f\n\31\3\31\3\31\3\31\3"+
+		"\31\6\31\u0135\n\31\r\31\16\31\u0136\5\31\u0139\n\31\3\32\3\32\3\33\3"+
+		"\33\3\34\3\34\5\34\u0141\n\34\3\34\2\2\35\2\4\6\b\n\f\16\20\22\24\26\30"+
+		"\32\34\36 \"$&(*,.\60\62\64\66\2\13\3\2\21\24\3\2\3\4\3\2\5\6\3\2\7\b"+
+		"\3\2\t\n\3\2\13\f\3\2\r\16\3\2#&\4\2((*,\2\u0157\2G\3\2\2\2\4I\3\2\2\2"+
+		"\6[\3\2\2\2\b_\3\2\2\2\nc\3\2\2\2\f\u008f\3\2\2\2\16\u0091\3\2\2\2\20"+
+		"\u0093\3\2\2\2\22\u00aa\3\2\2\2\24\u00ac\3\2\2\2\26\u00bc\3\2\2\2\30\u00ca"+
+		"\3\2\2\2\32\u00d4\3\2\2\2\34\u00f4\3\2\2\2\36\u00f6\3\2\2\2 \u00f8\3\2"+
+		"\2\2\"\u00fa\3\2\2\2$\u00fc\3\2\2\2&\u00fe\3\2\2\2(\u0100\3\2\2\2*\u0102"+
+		"\3\2\2\2,\u0104\3\2\2\2.\u0129\3\2\2\2\60\u0138\3\2\2\2\62\u013a\3\2\2"+
+		"\2\64\u013c\3\2\2\2\66\u0140\3\2\2\28;\5\b\5\29;\5\f\7\2:8\3\2\2\2:9\3"+
+		"\2\2\2;>\3\2\2\2<:\3\2\2\2<=\3\2\2\2=?\3\2\2\2><\3\2\2\2?H\7\2\2\3@B\5"+
+		"\6\4\2A@\3\2\2\2BE\3\2\2\2CA\3\2\2\2CD\3\2\2\2DF\3\2\2\2EC\3\2\2\2FH\5"+
+		"\4\3\2G<\3\2\2\2GC\3\2\2\2H\3\3\2\2\2IJ\7\35\2\2JR\7\33\2\2KL\7/\2\2L"+
+		"M\7\37\2\2MS\7 \2\2NQ\5\b\5\2OQ\5\f\7\2PN\3\2\2\2PO\3\2\2\2QS\3\2\2\2"+
+		"RK\3\2\2\2RP\3\2\2\2ST\3\2\2\2TR\3\2\2\2TU\3\2\2\2UV\3\2\2\2VW\7\35\2"+
+		"\2WX\7\27\2\2X\5\3\2\2\2Y\\\5*\26\2Z\\\5.\30\2[Y\3\2\2\2[Z\3\2\2\2\\\7"+
+		"\3\2\2\2]`\5\n\6\2^`\7/\2\2_]\3\2\2\2_^\3\2\2\2`\t\3\2\2\2ad\5\16\b\2"+
+		"bd\5\22\n\2ca\3\2\2\2cb\3\2\2\2d\13\3\2\2\2ef\5\66\34\2fg\7\21\2\2gh\5"+
+		"\66\34\2h\u0090\3\2\2\2ij\5\66\34\2jk\7\22\2\2kl\5\66\34\2l\u0090\3\2"+
+		"\2\2mn\5\66\34\2no\7\23\2\2op\5\66\34\2p\u0090\3\2\2\2qr\5\66\34\2rs\7"+
+		"\24\2\2st\5\66\34\2t\u0090\3\2\2\2uv\5\66\34\2vw\7\25\2\2wx\5\66\34\2"+
+		"x\u0090\3\2\2\2y{\t\2\2\2zy\3\2\2\2{~\3\2\2\2|z\3\2\2\2|}\3\2\2\2}\177"+
+		"\3\2\2\2~|\3\2\2\2\177\u0081\7\37\2\2\u0080\u0082\5\f\7\2\u0081\u0080"+
+		"\3\2\2\2\u0082\u0083\3\2\2\2\u0083\u0081\3\2\2\2\u0083\u0084\3\2\2\2\u0084"+
+		"\u0085\3\2\2\2\u0085\u0086\7 \2\2\u0086\u0090\3\2\2\2\u0087\u0089\t\2"+
+		"\2\2\u0088\u0087\3\2\2\2\u0089\u008c\3\2\2\2\u008a\u0088\3\2\2\2\u008a"+
+		"\u008b\3\2\2\2\u008b\u008d\3\2\2\2\u008c\u008a\3\2\2\2\u008d\u0090\5\66"+
+		"\34\2\u008e\u0090\5\66\34\2\u008fe\3\2\2\2\u008fi\3\2\2\2\u008fm\3\2\2"+
+		"\2\u008fq\3\2\2\2\u008fu\3\2\2\2\u008f|\3\2\2\2\u008f\u008a\3\2\2\2\u008f"+
+		"\u008e\3\2\2\2\u0090\r\3\2\2\2\u0091\u0092\5\20\t\2\u0092\17\3\2\2\2\u0093"+
+		"\u0094\7\17\2\2\u0094\u0095\7\37\2\2\u0095\u0096\5\32\16\2\u0096\u0097"+
+		"\7 \2\2\u0097\u009c\7!\2\2\u0098\u009b\5\n\6\2\u0099\u009b\5\f\7\2\u009a"+
+		"\u0098\3\2\2\2\u009a\u0099\3\2\2\2\u009b\u009e\3\2\2\2\u009c\u009a\3\2"+
+		"\2\2\u009c\u009d\3\2\2\2\u009d\u00a0\3\2\2\2\u009e\u009c\3\2\2\2\u009f"+
+		"\u00a1\7\"\2\2\u00a0\u009f\3\2\2\2\u00a0\u00a1\3\2\2\2\u00a1\u00a2\3\2"+
+		"\2\2\u00a2\u00a3\7\20\2\2\u00a3\u00a4\7!\2\2\u00a4\u00a5\5\n\6\2\u00a5"+
+		"\u00a6\7\"\2\2\u00a6\21\3\2\2\2\u00a7\u00ab\5\24\13\2\u00a8\u00ab\5\26"+
+		"\f\2\u00a9\u00ab\5\30\r\2\u00aa\u00a7\3\2\2\2\u00aa\u00a8\3\2\2\2\u00aa"+
+		"\u00a9\3\2\2\2\u00ab\23\3\2\2\2\u00ac\u00ad\7\30\2\2\u00ad\u00ae\7\37"+
+		"\2\2\u00ae\u00af\5\62\32\2\u00af\u00b0\7\34\2\2\u00b0\u00b1\5\32\16\2"+
+		"\u00b1\u00b4\7\34\2\2\u00b2\u00b5\5\n\6\2\u00b3\u00b5\5\f\7\2\u00b4\u00b2"+
+		"\3\2\2\2\u00b4\u00b3\3\2\2\2\u00b5\u00b6\3\2\2\2\u00b6\u00b4\3\2\2\2\u00b6"+
+		"\u00b7\3\2\2\2\u00b7\u00b8\3\2\2\2\u00b8\u00b9\7!\2\2\u00b9\u00ba\5\n"+
+		"\6\2\u00ba\u00bb\7\"\2\2\u00bb\25\3\2\2\2\u00bc\u00bd\7\31\2\2\u00bd\u00be"+
+		"\7\37\2\2\u00be\u00bf\5\32\16\2\u00bf\u00c0\7 \2\2\u00c0\u00c5\7!\2\2"+
+		"\u00c1\u00c4\5\n\6\2\u00c2\u00c4\5\f\7\2\u00c3\u00c1\3\2\2\2\u00c3\u00c2"+
+		"\3\2\2\2\u00c4\u00c7\3\2\2\2\u00c5\u00c3\3\2\2\2\u00c5\u00c6\3\2\2\2\u00c6"+
+		"\u00c8\3\2\2\2\u00c7\u00c5\3\2\2\2\u00c8\u00c9\7\"\2\2\u00c9\27\3\2\2"+
+		"\2\u00ca\u00cb\7\32\2\2\u00cb\u00ce\7!\2\2\u00cc\u00cf\5\n\6\2\u00cd\u00cf"+
+		"\5\f\7\2\u00ce\u00cc\3\2\2\2\u00ce\u00cd\3\2\2\2\u00cf\u00d0\3\2\2\2\u00d0"+
+		"\u00ce\3\2\2\2\u00d0\u00d1\3\2\2\2\u00d1\u00d2\3\2\2\2\u00d2\u00d3\7\""+
+		"\2\2\u00d3\31\3\2\2\2\u00d4\u00d9\5\34\17\2\u00d5\u00d6\7\26\2\2\u00d6"+
+		"\u00d8\5\34\17\2\u00d7\u00d5\3\2\2\2\u00d8\u00db\3\2\2\2\u00d9\u00d7\3"+
+		"\2\2\2\u00d9\u00da\3\2\2\2\u00da\33\3\2\2\2\u00db\u00d9\3\2\2\2\u00dc"+
+		"\u00dd\5\66\34\2\u00dd\u00de\5\36\20\2\u00de\u00df\5\66\34\2\u00df\u00f5"+
+		"\3\2\2\2\u00e0\u00e1\5\66\34\2\u00e1\u00e2\5 \21\2\u00e2\u00e3\5\66\34"+
+		"\2\u00e3\u00f5\3\2\2\2\u00e4\u00e5\5\66\34\2\u00e5\u00e6\5\"\22\2\u00e6"+
+		"\u00e7\5\66\34\2\u00e7\u00f5\3\2\2\2\u00e8\u00e9\5\66\34\2\u00e9\u00ea"+
+		"\5$\23\2\u00ea\u00eb\5\66\34\2\u00eb\u00f5\3\2\2\2\u00ec\u00ed\5\66\34"+
+		"\2\u00ed\u00ee\5&\24\2\u00ee\u00ef\5\66\34\2\u00ef\u00f5\3\2\2\2\u00f0"+
+		"\u00f1\5\66\34\2\u00f1\u00f2\5(\25\2\u00f2\u00f3\5\66\34\2\u00f3\u00f5"+
+		"\3\2\2\2\u00f4\u00dc\3\2\2\2\u00f4\u00e0\3\2\2\2\u00f4\u00e4\3\2\2\2\u00f4"+
+		"\u00e8\3\2\2\2\u00f4\u00ec\3\2\2\2\u00f4\u00f0\3\2\2\2\u00f5\35\3\2\2"+
+		"\2\u00f6\u00f7\t\3\2\2\u00f7\37\3\2\2\2\u00f8\u00f9\t\4\2\2\u00f9!\3\2"+
+		"\2\2\u00fa\u00fb\t\5\2\2\u00fb#\3\2\2\2\u00fc\u00fd\t\6\2\2\u00fd%\3\2"+
+		"\2\2\u00fe\u00ff\t\7\2\2\u00ff\'\3\2\2\2\u0100\u0101\t\b\2\2\u0101)\3"+
+		"\2\2\2\u0102\u0103\5,\27\2\u0103+\3\2\2\2\u0104\u0105\5\62\32\2\u0105"+
+		"\u0106\7/\2\2\u0106\u0107\7\'\2\2\u0107\u0108\5\66\34\2\u0108-\3\2\2\2"+
+		"\u0109\u010a\5\62\32\2\u010a\u010b\7/\2\2\u010b\u010c\7\37\2\2\u010c\u010d"+
+		"\5\60\31\2\u010d\u010e\7 \2\2\u010e\u0114\7!\2\2\u010f\u0113\5\n\6\2\u0110"+
+		"\u0113\7/\2\2\u0111\u0113\5\f\7\2\u0112\u010f\3\2\2\2\u0112\u0110\3\2"+
+		"\2\2\u0112\u0111\3\2\2\2\u0113\u0116\3\2\2\2\u0114\u0112\3\2\2\2\u0114"+
+		"\u0115\3\2\2\2\u0115\u0117\3\2\2\2\u0116\u0114\3\2\2\2\u0117\u0118\7\""+
+		"\2\2\u0118\u012a\3\2\2\2\u0119\u011a\7\36\2\2\u011a\u011b\7/\2\2\u011b"+
+		"\u011c\7\37\2\2\u011c\u011d\5\60\31\2\u011d\u011e\7 \2\2\u011e\u0124\7"+
+		"!\2\2\u011f\u0123\5\n\6\2\u0120\u0123\7/\2\2\u0121\u0123\5\f\7\2\u0122"+
+		"\u011f\3\2\2\2\u0122\u0120\3\2\2\2\u0122\u0121\3\2\2\2\u0123\u0126\3\2"+
+		"\2\2\u0124\u0122\3\2\2\2\u0124\u0125\3\2\2\2\u0125\u0127\3\2\2\2\u0126"+
+		"\u0124\3\2\2\2\u0127\u0128\7\"\2\2\u0128\u012a\3\2\2\2\u0129\u0109\3\2"+
+		"\2\2\u0129\u0119\3\2\2\2\u012a/\3\2\2\2\u012b\u012c\5\62\32\2\u012c\u012d"+
+		"\7/\2\2\u012d\u012f\3\2\2\2\u012e\u012b\3\2\2\2\u012e\u012f\3\2\2\2\u012f"+
+		"\u0139\3\2\2\2\u0130\u0131\5\62\32\2\u0131\u0132\7/\2\2\u0132\u0133\7"+
+		"\34\2\2\u0133\u0135\3\2\2\2\u0134\u0130\3\2\2\2\u0135\u0136\3\2\2\2\u0136"+
+		"\u0134\3\2\2\2\u0136\u0137\3\2\2\2\u0137\u0139\3\2\2\2\u0138\u012e\3\2"+
+		"\2\2\u0138\u0134\3\2\2\2\u0139\61\3\2\2\2\u013a\u013b\t\t\2\2\u013b\63"+
+		"\3\2\2\2\u013c\u013d\t\n\2\2\u013d\65\3\2\2\2\u013e\u0141\5\64\33\2\u013f"+
+		"\u0141\7/\2\2\u0140\u013e\3\2\2\2\u0140\u013f\3\2\2\2\u0141\67\3\2\2\2"+
+		"%:<CGPRT[_c|\u0083\u008a\u008f\u009a\u009c\u00a0\u00aa\u00b4\u00b6\u00c3"+
+		"\u00c5\u00ce\u00d0\u00d9\u00f4\u0112\u0114\u0122\u0124\u0129\u012e\u0136"+
+		"\u0138\u0140";
+>>>>>>> Stashed changes:src/main/java/grammar/languageParser.java
 	public static final ATN _ATN =
 		new ATNDeserializer().deserialize(_serializedATN.toCharArray());
 	static {

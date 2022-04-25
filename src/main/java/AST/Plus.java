@@ -1,6 +1,7 @@
 package AST;
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 import Visitors.Visitor;
 
 public class Plus implements ASTNode {
@@ -13,6 +14,8 @@ public class Plus implements ASTNode {
 public abstract class Plus extends Expression {
 >>>>>>> Stashed changes
 =======
+=======
+>>>>>>> Stashed changes
 public class Plus extends Expression {
 >>>>>>> Stashed changes
     public Plus(ASTNode left, ASTNode right) {

@@ -1,6 +1,12 @@
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream:src/antlr/languageParser.java
 // Generated from /Users/abdallahziadalnaif/Desktop/Antlr-main/src/main/java/antlr/language.g4 by ANTLR 4.9.2
 package antlr;
+=======
+<<<<<<< Updated upstream:src/main/java/gen/languageParser.java
+// Generated from /Users/abdallahziadalnaif/Desktop/Antlr-main/src/antlr/language.g4 by ANTLR 4.9.2
+package gen;
+>>>>>>> Stashed changes
 =======
 // Generated from C:/Users/thetr/OneDrive/Dokumenter/GitHub/Antlr/src/main/java/grammar\language.g4 by ANTLR 4.9.2
 package grammar;
@@ -8,13 +14,19 @@ package grammar;
 import org.antlr.v4.runtime.atn.*;
 import org.antlr.v4.runtime.dfa.DFA;
 import org.antlr.v4.runtime.*;
+<<<<<<< Updated upstream
 import org.antlr.v4.runtime.misc.*;
+=======
+>>>>>>> Stashed changes
 import org.antlr.v4.runtime.tree.*;
 
 import java.util.Currency;
 import java.util.List;
+<<<<<<< Updated upstream
 import java.util.Iterator;
 import java.util.ArrayList;
+=======
+>>>>>>> Stashed changes
 
 @SuppressWarnings({"all", "warnings", "unchecked", "unused", "cast"})
 public class languageParser extends Parser {
@@ -421,7 +433,11 @@ public class languageParser extends Parser {
 	}
 
 	public static class ExpressionContext extends ParserRuleContext {
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream:src/antlr/languageParser.java
+=======
+<<<<<<< Updated upstream:src/main/java/gen/languageParser.java
+>>>>>>> Stashed changes
 =======
 		public ExpressionContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
@@ -441,7 +457,11 @@ public class languageParser extends Parser {
 		public IDorVALUEContext iDorVALUE(int i) {
 			return getRuleContext(IDorVALUEContext.class,i);
 		}
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream:src/antlr/languageParser.java
+=======
+<<<<<<< Updated upstream:src/main/java/gen/languageParser.java
+>>>>>>> Stashed changes
 		public List<TerminalNode> EXPRESSION() { return getTokens(languageParser.EXPRESSION); }
 		public TerminalNode EXPRESSION(int i) {
 			return getToken(languageParser.EXPRESSION, i);
@@ -655,7 +675,11 @@ public class languageParser extends Parser {
 		enterRule(_localctx, 8, RULE_expression);
 		int _la;
 		try {
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream:src/antlr/languageParser.java
+=======
+<<<<<<< Updated upstream:src/main/java/gen/languageParser.java
+>>>>>>> Stashed changes
 			enterOuterAlt(_localctx, 1);
 			{
 			setState(92);
@@ -731,7 +755,11 @@ public class languageParser extends Parser {
 				setState(96);
 				iDorVALUE();
 				}
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream:src/antlr/languageParser.java
+=======
+<<<<<<< Updated upstream:src/main/java/gen/languageParser.java
+>>>>>>> Stashed changes
 				}
 				setState(101);
 				_errHandler.sync(this);
@@ -868,7 +896,11 @@ public class languageParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream:src/antlr/languageParser.java
+=======
+<<<<<<< Updated upstream:src/main/java/gen/languageParser.java
+>>>>>>> Stashed changes
 			setState(102);
 =======
 			setState(143);
@@ -935,7 +967,11 @@ public class languageParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream:src/antlr/languageParser.java
+=======
+<<<<<<< Updated upstream:src/main/java/gen/languageParser.java
+>>>>>>> Stashed changes
 			setState(104);
 			match(IF);
 			setState(105);
@@ -1006,7 +1042,11 @@ public class languageParser extends Parser {
 			_la = _input.LA(1);
 			if (_la==RCBRAC) {
 				{
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream:src/antlr/languageParser.java
+=======
+<<<<<<< Updated upstream:src/main/java/gen/languageParser.java
+>>>>>>> Stashed changes
 				setState(110);
 =======
 				setState(157);
@@ -1016,7 +1056,11 @@ public class languageParser extends Parser {
 			}
 
 			{
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream:src/antlr/languageParser.java
+=======
+<<<<<<< Updated upstream:src/main/java/gen/languageParser.java
+>>>>>>> Stashed changes
 			setState(113);
 			match(ELSE);
 			setState(114);
@@ -1081,7 +1125,11 @@ public class languageParser extends Parser {
 		Iterative_statementContext _localctx = new Iterative_statementContext(_ctx, getState());
 		enterRule(_localctx, 14, RULE_iterative_statement);
 		try {
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream:src/antlr/languageParser.java
+=======
+<<<<<<< Updated upstream:src/main/java/gen/languageParser.java
+>>>>>>> Stashed changes
 			setState(121);
 =======
 			setState(168);
@@ -1091,7 +1139,11 @@ public class languageParser extends Parser {
 			case FOR:
 				enterOuterAlt(_localctx, 1);
 				{
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream:src/antlr/languageParser.java
+=======
+<<<<<<< Updated upstream:src/main/java/gen/languageParser.java
+>>>>>>> Stashed changes
 				setState(118);
 =======
 				setState(165);
@@ -1102,7 +1154,11 @@ public class languageParser extends Parser {
 			case WHILE:
 				enterOuterAlt(_localctx, 2);
 				{
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream:src/antlr/languageParser.java
+=======
+<<<<<<< Updated upstream:src/main/java/gen/languageParser.java
+>>>>>>> Stashed changes
 				setState(119);
 =======
 				setState(166);
@@ -1113,7 +1169,11 @@ public class languageParser extends Parser {
 			case FOREVER:
 				enterOuterAlt(_localctx, 3);
 				{
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream:src/antlr/languageParser.java
+=======
+<<<<<<< Updated upstream:src/main/java/gen/languageParser.java
+>>>>>>> Stashed changes
 				setState(120);
 =======
 				setState(167);
@@ -1145,7 +1205,11 @@ public class languageParser extends Parser {
 		public List<TerminalNode> COMMA() { return getTokens(languageParser.COMMA); }
 		public TerminalNode COMMA(int i) {
 			return getToken(languageParser.COMMA, i);
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream:src/antlr/languageParser.java
+=======
+<<<<<<< Updated upstream:src/main/java/gen/languageParser.java
+>>>>>>> Stashed changes
 		}
 		public TerminalNode EXPRESSION() { return getToken(languageParser.EXPRESSION, 0); }
 		public TerminalNode LCBRAC() { return getToken(languageParser.LCBRAC, 0); }
@@ -1166,7 +1230,11 @@ public class languageParser extends Parser {
 		public ConditionContext condition() {
 			return getRuleContext(ConditionContext.class,0);
 		}
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream:src/antlr/languageParser.java
+=======
+<<<<<<< Updated upstream:src/main/java/gen/languageParser.java
+>>>>>>> Stashed changes
 =======
 		public List<ExpressionContext> expression() {
 			return getRuleContexts(ExpressionContext.class);
@@ -1196,7 +1264,11 @@ public class languageParser extends Parser {
 
 	public final For_loopContext for_loop() throws RecognitionException {
 		For_loopContext _localctx = new For_loopContext(_ctx, getState());
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream:src/antlr/languageParser.java
+=======
+<<<<<<< Updated upstream:src/main/java/gen/languageParser.java
+>>>>>>> Stashed changes
 		enterRule(_localctx, 16, RULE_for_loop);
 		try {
 			enterOuterAlt(_localctx, 1);
@@ -1339,7 +1411,11 @@ public class languageParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream:src/antlr/languageParser.java
+=======
+<<<<<<< Updated upstream:src/main/java/gen/languageParser.java
+>>>>>>> Stashed changes
 			setState(134);
 			match(WHILE);
 			setState(135);
@@ -1428,7 +1504,11 @@ public class languageParser extends Parser {
 		public TerminalNode FOREVER() { return getToken(languageParser.FOREVER, 0); }
 		public TerminalNode LCBRAC() { return getToken(languageParser.LCBRAC, 0); }
 		public TerminalNode RCBRAC() { return getToken(languageParser.RCBRAC, 0); }
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream:src/antlr/languageParser.java
+=======
+<<<<<<< Updated upstream:src/main/java/gen/languageParser.java
+>>>>>>> Stashed changes
 =======
 		public List<StmtContext> stmt() {
 			return getRuleContexts(StmtContext.class);
@@ -1464,7 +1544,11 @@ public class languageParser extends Parser {
 
 	public final Forever_loopContext forever_loop() throws RecognitionException {
 		Forever_loopContext _localctx = new Forever_loopContext(_ctx, getState());
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream:src/antlr/languageParser.java
+=======
+<<<<<<< Updated upstream:src/main/java/gen/languageParser.java
+>>>>>>> Stashed changes
 		enterRule(_localctx, 20, RULE_forever_loop);
 		try {
 			enterOuterAlt(_localctx, 1);
@@ -1579,7 +1663,11 @@ public class languageParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream:src/antlr/languageParser.java
+=======
+<<<<<<< Updated upstream:src/main/java/gen/languageParser.java
+>>>>>>> Stashed changes
 			setState(147);
 			idORvalue_condition();
 			setState(152);
@@ -1593,7 +1681,11 @@ public class languageParser extends Parser {
 			while (_la==OR) {
 				{
 				{
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream:src/antlr/languageParser.java
+=======
+<<<<<<< Updated upstream:src/main/java/gen/languageParser.java
+>>>>>>> Stashed changes
 				setState(148);
 				match(OR);
 				setState(149);
@@ -1674,7 +1766,11 @@ public class languageParser extends Parser {
 		IdORvalue_conditionContext _localctx = new IdORvalue_conditionContext(_ctx, getState());
 		enterRule(_localctx, 24, RULE_idORvalue_condition);
 		try {
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream:src/antlr/languageParser.java
+=======
+<<<<<<< Updated upstream:src/main/java/gen/languageParser.java
+>>>>>>> Stashed changes
 			setState(179);
 			_errHandler.sync(this);
 			switch ( getInterpreter().adaptivePredict(_input,10,_ctx) ) {
@@ -1705,7 +1801,11 @@ public class languageParser extends Parser {
 			case 2:
 				enterOuterAlt(_localctx, 2);
 				{
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream:src/antlr/languageParser.java
+=======
+<<<<<<< Updated upstream:src/main/java/gen/languageParser.java
+>>>>>>> Stashed changes
 				setState(159);
 				iDorVALUE();
 				setState(160);
@@ -1724,7 +1824,11 @@ public class languageParser extends Parser {
 			case 3:
 				enterOuterAlt(_localctx, 3);
 				{
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream:src/antlr/languageParser.java
+=======
+<<<<<<< Updated upstream:src/main/java/gen/languageParser.java
+>>>>>>> Stashed changes
 				setState(163);
 				iDorVALUE();
 				setState(164);
@@ -1743,7 +1847,11 @@ public class languageParser extends Parser {
 			case 4:
 				enterOuterAlt(_localctx, 4);
 				{
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream:src/antlr/languageParser.java
+=======
+<<<<<<< Updated upstream:src/main/java/gen/languageParser.java
+>>>>>>> Stashed changes
 				setState(167);
 				iDorVALUE();
 				setState(168);
@@ -1762,7 +1870,11 @@ public class languageParser extends Parser {
 			case 5:
 				enterOuterAlt(_localctx, 5);
 				{
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream:src/antlr/languageParser.java
+=======
+<<<<<<< Updated upstream:src/main/java/gen/languageParser.java
+>>>>>>> Stashed changes
 				setState(171);
 				iDorVALUE();
 				setState(172);
@@ -1781,7 +1893,11 @@ public class languageParser extends Parser {
 			case 6:
 				enterOuterAlt(_localctx, 6);
 				{
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream:src/antlr/languageParser.java
+=======
+<<<<<<< Updated upstream:src/main/java/gen/languageParser.java
+>>>>>>> Stashed changes
 				setState(175);
 				iDorVALUE();
 				setState(176);
@@ -1837,7 +1953,11 @@ public class languageParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream:src/antlr/languageParser.java
+=======
+<<<<<<< Updated upstream:src/main/java/gen/languageParser.java
+>>>>>>> Stashed changes
 			setState(181);
 =======
 			setState(244);
@@ -1891,7 +2011,11 @@ public class languageParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream:src/antlr/languageParser.java
+=======
+<<<<<<< Updated upstream:src/main/java/gen/languageParser.java
+>>>>>>> Stashed changes
 			setState(183);
 =======
 			setState(246);
@@ -1945,7 +2069,11 @@ public class languageParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream:src/antlr/languageParser.java
+=======
+<<<<<<< Updated upstream:src/main/java/gen/languageParser.java
+>>>>>>> Stashed changes
 			setState(185);
 =======
 			setState(248);
@@ -1999,7 +2127,11 @@ public class languageParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream:src/antlr/languageParser.java
+=======
+<<<<<<< Updated upstream:src/main/java/gen/languageParser.java
+>>>>>>> Stashed changes
 			setState(187);
 =======
 			setState(250);
@@ -2053,7 +2185,11 @@ public class languageParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream:src/antlr/languageParser.java
+=======
+<<<<<<< Updated upstream:src/main/java/gen/languageParser.java
+>>>>>>> Stashed changes
 			setState(189);
 =======
 			setState(252);
@@ -2107,7 +2243,11 @@ public class languageParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream:src/antlr/languageParser.java
+=======
+<<<<<<< Updated upstream:src/main/java/gen/languageParser.java
+>>>>>>> Stashed changes
 			setState(191);
 =======
 			setState(254);
@@ -2164,7 +2304,11 @@ public class languageParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream:src/antlr/languageParser.java
+=======
+<<<<<<< Updated upstream:src/main/java/gen/languageParser.java
+>>>>>>> Stashed changes
 			setState(193);
 =======
 			setState(256);
@@ -2217,7 +2361,11 @@ public class languageParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream:src/antlr/languageParser.java
+=======
+<<<<<<< Updated upstream:src/main/java/gen/languageParser.java
+>>>>>>> Stashed changes
 			setState(195);
 			type();
 			setState(196);
@@ -2300,7 +2448,11 @@ public class languageParser extends Parser {
 		enterRule(_localctx, 42, RULE_function_declaration);
 		int _la;
 		try {
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream:src/antlr/languageParser.java
+=======
+<<<<<<< Updated upstream:src/main/java/gen/languageParser.java
+>>>>>>> Stashed changes
 			setState(249);
 =======
 			setState(295);
@@ -2313,7 +2465,11 @@ public class languageParser extends Parser {
 			case BOOL_TYPE:
 				enterOuterAlt(_localctx, 1);
 				{
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream:src/antlr/languageParser.java
+=======
+<<<<<<< Updated upstream:src/main/java/gen/languageParser.java
+>>>>>>> Stashed changes
 				setState(200);
 				type();
 				setState(201);
@@ -2359,7 +2515,11 @@ public class languageParser extends Parser {
 				while ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << IF) | (1L << FOR) | (1L << WHILE) | (1L << FOREVER))) != 0)) {
 					{
 					{
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream:src/antlr/languageParser.java
+=======
+<<<<<<< Updated upstream:src/main/java/gen/languageParser.java
+>>>>>>> Stashed changes
 					setState(211);
 					stmt();
 					}
@@ -2419,7 +2579,11 @@ public class languageParser extends Parser {
 			case VOID:
 				enterOuterAlt(_localctx, 2);
 				{
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream:src/antlr/languageParser.java
+=======
+<<<<<<< Updated upstream:src/main/java/gen/languageParser.java
+>>>>>>> Stashed changes
 				setState(225);
 				match(VOID);
 				setState(226);
@@ -2465,7 +2629,11 @@ public class languageParser extends Parser {
 				while ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << IF) | (1L << FOR) | (1L << WHILE) | (1L << FOREVER))) != 0)) {
 					{
 					{
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream:src/antlr/languageParser.java
+=======
+<<<<<<< Updated upstream:src/main/java/gen/languageParser.java
+>>>>>>> Stashed changes
 					setState(236);
 					stmt();
 					}
@@ -2575,7 +2743,11 @@ public class languageParser extends Parser {
 		ParamContext _localctx = new ParamContext(_ctx, getState());
 		enterRule(_localctx, 44, RULE_param);
 		try {
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream:src/antlr/languageParser.java
+=======
+<<<<<<< Updated upstream:src/main/java/gen/languageParser.java
+>>>>>>> Stashed changes
 			int _alt;
 			setState(262);
 			_errHandler.sync(this);
@@ -2612,7 +2784,11 @@ public class languageParser extends Parser {
 			case 2:
 				enterOuterAlt(_localctx, 2);
 				{
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream:src/antlr/languageParser.java
+=======
+<<<<<<< Updated upstream:src/main/java/gen/languageParser.java
+>>>>>>> Stashed changes
 				setState(258); 
 =======
 				setState(306); 
@@ -2620,7 +2796,11 @@ public class languageParser extends Parser {
 				_errHandler.sync(this);
 				_alt = 1;
 				do {
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream:src/antlr/languageParser.java
+=======
+<<<<<<< Updated upstream:src/main/java/gen/languageParser.java
+>>>>>>> Stashed changes
 					switch (_alt) {
 					case 1:
 						{
@@ -2700,7 +2880,11 @@ public class languageParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream:src/antlr/languageParser.java
+=======
+<<<<<<< Updated upstream:src/main/java/gen/languageParser.java
+>>>>>>> Stashed changes
 			setState(264);
 =======
 			setState(312);
@@ -2758,7 +2942,11 @@ public class languageParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream:src/antlr/languageParser.java
+=======
+<<<<<<< Updated upstream:src/main/java/gen/languageParser.java
+>>>>>>> Stashed changes
 			setState(266);
 =======
 			setState(314);
@@ -2813,7 +3001,11 @@ public class languageParser extends Parser {
 		IDorVALUEContext _localctx = new IDorVALUEContext(_ctx, getState());
 		enterRule(_localctx, 50, RULE_iDorVALUE);
 		try {
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream:src/antlr/languageParser.java
+=======
+<<<<<<< Updated upstream:src/main/java/gen/languageParser.java
+>>>>>>> Stashed changes
 			setState(270);
 =======
 			setState(318);
@@ -2826,7 +3018,11 @@ public class languageParser extends Parser {
 			case BOOL:
 				enterOuterAlt(_localctx, 1);
 				{
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream:src/antlr/languageParser.java
+=======
+<<<<<<< Updated upstream:src/main/java/gen/languageParser.java
+>>>>>>> Stashed changes
 				setState(268);
 =======
 				setState(316);
@@ -2837,7 +3033,11 @@ public class languageParser extends Parser {
 			case ID:
 				enterOuterAlt(_localctx, 2);
 				{
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream:src/antlr/languageParser.java
+=======
+<<<<<<< Updated upstream:src/main/java/gen/languageParser.java
+>>>>>>> Stashed changes
 				setState(269);
 =======
 				setState(317);
@@ -2861,7 +3061,11 @@ public class languageParser extends Parser {
 	}
 
 	public static final String _serializedATN =
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream:src/antlr/languageParser.java
+=======
+<<<<<<< Updated upstream:src/main/java/gen/languageParser.java
+>>>>>>> Stashed changes
 		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3.\u0113\4\2\t\2\4"+
 		"\3\t\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7\4\b\t\b\4\t\t\t\4\n\t\n\4\13\t"+
 		"\13\4\f\t\f\4\r\t\r\4\16\t\16\4\17\t\17\4\20\t\20\4\21\t\21\4\22\t\22"+

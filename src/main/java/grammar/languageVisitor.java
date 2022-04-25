@@ -1,6 +1,12 @@
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream:src/antlr/languageVisitor.java
 // Generated from /Users/abdallahziadalnaif/Desktop/Antlr-main/src/main/java/antlr/language.g4 by ANTLR 4.9.2
 package antlr;
+=======
+<<<<<<< Updated upstream:src/main/java/gen/languageVisitor.java
+// Generated from /Users/abdallahziadalnaif/Desktop/Antlr-main/src/antlr/language.g4 by ANTLR 4.9.2
+package gen;
+>>>>>>> Stashed changes
 =======
 // Generated from C:/Users/thetr/OneDrive/Dokumenter/GitHub/Antlr/src/main/java/grammar\language.g4 by ANTLR 4.9.2
 package grammar;
