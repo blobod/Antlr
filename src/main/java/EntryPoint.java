@@ -1,5 +1,9 @@
+<<<<<<< Updated upstream
 import gen.languageLexer;
 import gen.languageParser;
+=======
+import grammar.*;
+>>>>>>> Stashed changes
 import org.antlr.v4.runtime.CharStream;
 import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.tree.ParseTree;
@@ -19,7 +23,7 @@ public class EntryPoint {
 
         ParseTree tree = parser.language();
 
-        AntlrToAST visitor = new AntlrToAST();
+        AntlrToExpression visitor = new AntlrToExpression();
         visitor.visit(tree);
     }catch(IOException e){
         e.printStackTrace();

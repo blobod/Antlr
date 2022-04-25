@@ -20,13 +20,14 @@ stmt
     | iterative_statement;
 
 expression
-    : left=iDorVALUE PLUS right=iDorVALUE
-    | iDorVALUE MINUS iDorVALUE
-    | iDorVALUE MULTIPLIKATION iDorVALUE
-    | iDorVALUE DIVISION iDorVALUE
-    | iDorVALUE POWER_OF iDorVALUE
-    | ((PLUS | MINUS | MULTIPLIKATION | DIVISION)* LPAR expression+ RPAR)
-    | (PLUS | MINUS | MULTIPLIKATION | DIVISION)* iDorVALUE;
+    : iDorVALUE PLUS iDorVALUE # Addition
+    | iDorVALUE MINUS iDorVALUE # Substraktion
+    | iDorVALUE MULTIPLIKATION iDorVALUE # Multiplication
+    | iDorVALUE DIVISION iDorVALUE # Division
+    | iDorVALUE POWER_OF iDorVALUE # Power_of
+    | ((PLUS | MINUS | MULTIPLIKATION | DIVISION)* LPAR expression+ RPAR) # Paranthesis_more
+    | (PLUS | MINUS | MULTIPLIKATION | DIVISION)* iDorVALUE #Paranthesis
+    | iDorVALUE # Number;
 //CONDITINAL STATEMENT
 conditional_statement
     : if_statement;
@@ -84,9 +85,6 @@ isNOTequal
 
 //TYPES
 type_definition
-    : data_type;
-
-data_type
     : type ID ASSIGN iDorVALUE;
 
 //TYPES
