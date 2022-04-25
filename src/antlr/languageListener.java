@@ -1,6 +1,11 @@
 <<<<<<< Updated upstream:src/antlr/languageListener.java
+<<<<<<< Updated upstream:src/antlr/languageListener.java
 // Generated from /Users/abdallahziadalnaif/Desktop/Antlr-main/src/main/java/antlr/language.g4 by ANTLR 4.9.2
 package antlr;
+=======
+// Generated from C:/Users/thetr/OneDrive/Dokumenter/GitHub/Antlr/src/main/java/grammar\language.g4 by ANTLR 4.9.2
+package grammar;
+>>>>>>> Stashed changes:src/main/java/grammar/languageListener.java
 =======
 // Generated from C:/Users/thetr/OneDrive/Dokumenter/GitHub/Antlr/src/main/java/grammar\language.g4 by ANTLR 4.9.2
 package grammar;
@@ -55,6 +60,7 @@ public interface languageListener extends ParseTreeListener {
 	/**
 	 * Enter a parse tree produced by the {@code Addition}
 	 * labeled alternative in {@link languageParser#expression}.
+<<<<<<< Updated upstream:src/antlr/languageListener.java
 	 * @param ctx the parse tree
 	 */
 	void enterAddition(languageParser.AdditionContext ctx);
@@ -147,6 +153,100 @@ public interface languageListener extends ParseTreeListener {
 	 * labeled alternative in {@link languageParser#expression}.
 	 * @param ctx the parse tree
 	 */
+=======
+	 * @param ctx the parse tree
+	 */
+	void enterAddition(languageParser.AdditionContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code Addition}
+	 * labeled alternative in {@link languageParser#expression}.
+	 * @param ctx the parse tree
+	 */
+	void exitAddition(languageParser.AdditionContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code Substraktion}
+	 * labeled alternative in {@link languageParser#expression}.
+	 * @param ctx the parse tree
+	 */
+	void enterSubstraktion(languageParser.SubstraktionContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code Substraktion}
+	 * labeled alternative in {@link languageParser#expression}.
+	 * @param ctx the parse tree
+	 */
+	void exitSubstraktion(languageParser.SubstraktionContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code Multiplication}
+	 * labeled alternative in {@link languageParser#expression}.
+	 * @param ctx the parse tree
+	 */
+	void enterMultiplication(languageParser.MultiplicationContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code Multiplication}
+	 * labeled alternative in {@link languageParser#expression}.
+	 * @param ctx the parse tree
+	 */
+	void exitMultiplication(languageParser.MultiplicationContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code Division}
+	 * labeled alternative in {@link languageParser#expression}.
+	 * @param ctx the parse tree
+	 */
+	void enterDivision(languageParser.DivisionContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code Division}
+	 * labeled alternative in {@link languageParser#expression}.
+	 * @param ctx the parse tree
+	 */
+	void exitDivision(languageParser.DivisionContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code Power_of}
+	 * labeled alternative in {@link languageParser#expression}.
+	 * @param ctx the parse tree
+	 */
+	void enterPower_of(languageParser.Power_ofContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code Power_of}
+	 * labeled alternative in {@link languageParser#expression}.
+	 * @param ctx the parse tree
+	 */
+	void exitPower_of(languageParser.Power_ofContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code Paranthesis_more}
+	 * labeled alternative in {@link languageParser#expression}.
+	 * @param ctx the parse tree
+	 */
+	void enterParanthesis_more(languageParser.Paranthesis_moreContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code Paranthesis_more}
+	 * labeled alternative in {@link languageParser#expression}.
+	 * @param ctx the parse tree
+	 */
+	void exitParanthesis_more(languageParser.Paranthesis_moreContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code Paranthesis}
+	 * labeled alternative in {@link languageParser#expression}.
+	 * @param ctx the parse tree
+	 */
+	void enterParanthesis(languageParser.ParanthesisContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code Paranthesis}
+	 * labeled alternative in {@link languageParser#expression}.
+	 * @param ctx the parse tree
+	 */
+	void exitParanthesis(languageParser.ParanthesisContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code Number}
+	 * labeled alternative in {@link languageParser#expression}.
+	 * @param ctx the parse tree
+	 */
+	void enterNumber(languageParser.NumberContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code Number}
+	 * labeled alternative in {@link languageParser#expression}.
+	 * @param ctx the parse tree
+	 */
+>>>>>>> Stashed changes:src/main/java/grammar/languageListener.java
 	void exitNumber(languageParser.NumberContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link languageParser#conditional_statement}.

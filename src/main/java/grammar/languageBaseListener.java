@@ -1,11 +1,21 @@
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+=======
+<<<<<<< Updated upstream:src/antlr/languageBaseListener.java
+>>>>>>> Stashed changes
 <<<<<<< Updated upstream:src/antlr/languageBaseListener.java
 // Generated from /Users/abdallahziadalnaif/Desktop/Antlr-main/src/main/java/antlr/language.g4 by ANTLR 4.9.2
 package antlr;
 =======
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream:src/main/java/gen/languageBaseListener.java
 // Generated from /Users/abdallahziadalnaif/Desktop/Antlr-main/src/antlr/language.g4 by ANTLR 4.9.2
 package gen;
+>>>>>>> Stashed changes
+=======
+// Generated from C:/Users/thetr/OneDrive/Dokumenter/GitHub/Antlr/src/main/java/grammar\language.g4 by ANTLR 4.9.2
+package grammar;
+>>>>>>> Stashed changes:src/main/java/grammar/languageBaseListener.java
 >>>>>>> Stashed changes
 =======
 // Generated from C:/Users/thetr/OneDrive/Dokumenter/GitHub/Antlr/src/main/java/grammar\language.g4 by ANTLR 4.9.2
@@ -159,12 +169,110 @@ public class languageBaseListener implements languageListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+<<<<<<< Updated upstream
+	@Override public void enterNumber(languageParser.NumberContext ctx) { }
+=======
+<<<<<<< Updated upstream:src/antlr/languageBaseListener.java
+	@Override public void enterNumber(languageParser.NumberContext ctx) { }
+=======
+	@Override public void enterAddition(languageParser.AdditionContext ctx) { }
+>>>>>>> Stashed changes:src/main/java/grammar/languageBaseListener.java
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+<<<<<<< Updated upstream:src/antlr/languageBaseListener.java
+=======
+	@Override public void exitAddition(languageParser.AdditionContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterSubstraktion(languageParser.SubstraktionContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitSubstraktion(languageParser.SubstraktionContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterMultiplication(languageParser.MultiplicationContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitMultiplication(languageParser.MultiplicationContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterDivision(languageParser.DivisionContext ctx) { }
+>>>>>>> Stashed changes
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+<<<<<<< Updated upstream
+=======
+	@Override public void exitDivision(languageParser.DivisionContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterPower_of(languageParser.Power_ofContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitPower_of(languageParser.Power_ofContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterParanthesis_more(languageParser.Paranthesis_moreContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitParanthesis_more(languageParser.Paranthesis_moreContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterParanthesis(languageParser.ParanthesisContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitParanthesis(languageParser.ParanthesisContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterNumber(languageParser.NumberContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+>>>>>>> Stashed changes:src/main/java/grammar/languageBaseListener.java
+>>>>>>> Stashed changes
 	@Override public void exitNumber(languageParser.NumberContext ctx) { }
 	/**
 	 * {@inheritDoc}

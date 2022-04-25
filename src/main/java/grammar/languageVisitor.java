@@ -1,11 +1,21 @@
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+=======
+<<<<<<< Updated upstream:src/antlr/languageVisitor.java
+>>>>>>> Stashed changes
 <<<<<<< Updated upstream:src/antlr/languageVisitor.java
 // Generated from /Users/abdallahziadalnaif/Desktop/Antlr-main/src/main/java/antlr/language.g4 by ANTLR 4.9.2
 package antlr;
 =======
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream:src/main/java/gen/languageVisitor.java
 // Generated from /Users/abdallahziadalnaif/Desktop/Antlr-main/src/antlr/language.g4 by ANTLR 4.9.2
 package gen;
+>>>>>>> Stashed changes
+=======
+// Generated from C:/Users/thetr/OneDrive/Dokumenter/GitHub/Antlr/src/main/java/grammar\language.g4 by ANTLR 4.9.2
+package grammar;
+>>>>>>> Stashed changes:src/main/java/grammar/languageVisitor.java
 >>>>>>> Stashed changes
 =======
 // Generated from C:/Users/thetr/OneDrive/Dokumenter/GitHub/Antlr/src/main/java/grammar\language.g4 by ANTLR 4.9.2
@@ -48,6 +58,10 @@ public interface languageVisitor<T> extends ParseTreeVisitor<T> {
 	/**
 	 * Visit a parse tree produced by the {@code Addition}
 	 * labeled alternative in {@link languageParser#expression}.
+<<<<<<< Updated upstream
+=======
+<<<<<<< Updated upstream:src/antlr/languageVisitor.java
+>>>>>>> Stashed changes
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
@@ -100,6 +114,63 @@ public interface languageVisitor<T> extends ParseTreeVisitor<T> {
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
+<<<<<<< Updated upstream
+=======
+=======
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitAddition(languageParser.AdditionContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code Substraktion}
+	 * labeled alternative in {@link languageParser#expression}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitSubstraktion(languageParser.SubstraktionContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code Multiplication}
+	 * labeled alternative in {@link languageParser#expression}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitMultiplication(languageParser.MultiplicationContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code Division}
+	 * labeled alternative in {@link languageParser#expression}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitDivision(languageParser.DivisionContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code Power_of}
+	 * labeled alternative in {@link languageParser#expression}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitPower_of(languageParser.Power_ofContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code Paranthesis_more}
+	 * labeled alternative in {@link languageParser#expression}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitParanthesis_more(languageParser.Paranthesis_moreContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code Paranthesis}
+	 * labeled alternative in {@link languageParser#expression}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitParanthesis(languageParser.ParanthesisContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code Number}
+	 * labeled alternative in {@link languageParser#expression}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+>>>>>>> Stashed changes:src/main/java/grammar/languageVisitor.java
+>>>>>>> Stashed changes
 	T visitNumber(languageParser.NumberContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link languageParser#conditional_statement}.
