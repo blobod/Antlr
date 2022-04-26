@@ -1,17 +1,5 @@
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-import gen.languageLexer;
-import gen.languageParser;
-=======
-import grammar.*;
->>>>>>> Stashed changes
-=======
-import grammar.*;
->>>>>>> Stashed changes
-=======
-import grammar.*;
->>>>>>> Stashed changes
+import grammar.languageLexer;
+import grammar.languageParser;
 import org.antlr.v4.runtime.CharStream;
 import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.tree.ParseTree;

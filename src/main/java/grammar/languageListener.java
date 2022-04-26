@@ -1,26 +1,5 @@
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-=======
-<<<<<<< Updated upstream:src/antlr/languageListener.java
->>>>>>> Stashed changes
-<<<<<<< Updated upstream:src/antlr/languageListener.java
-// Generated from /Users/abdallahziadalnaif/Desktop/Antlr-main/src/main/java/antlr/language.g4 by ANTLR 4.9.2
-package antlr;
-=======
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream:src/main/java/gen/languageListener.java
-// Generated from /Users/abdallahziadalnaif/Desktop/Antlr-main/src/antlr/language.g4 by ANTLR 4.9.2
-package gen;
->>>>>>> Stashed changes
-=======
-// Generated from C:/Users/thetr/OneDrive/Dokumenter/GitHub/Antlr/src/main/java/grammar\language.g4 by ANTLR 4.9.2
+// Generated from C:/Users/thetr/Desktop/Antlr/src/main/java/grammar\language.g4 by ANTLR 4.9.2
 package grammar;
->>>>>>> Stashed changes:src/main/java/grammar/languageListener.java
->>>>>>> Stashed changes
-=======
-// Generated from C:/Users/thetr/OneDrive/Dokumenter/GitHub/Antlr/src/main/java/grammar\language.g4 by ANTLR 4.9.2
-package grammar;
->>>>>>> Stashed changes:src/main/java/grammar/languageListener.java
 import org.antlr.v4.runtime.tree.ParseTreeListener;
 
 /**
@@ -38,6 +17,16 @@ public interface languageListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitLanguage(languageParser.LanguageContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link languageParser#entrypoint}.
+	 * @param ctx the parse tree
+	 */
+	void enterEntrypoint(languageParser.EntrypointContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link languageParser#entrypoint}.
+	 * @param ctx the parse tree
+	 */
+	void exitEntrypoint(languageParser.EntrypointContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link languageParser#declaration}.
 	 * @param ctx the parse tree
@@ -71,10 +60,6 @@ public interface languageListener extends ParseTreeListener {
 	/**
 	 * Enter a parse tree produced by the {@code Addition}
 	 * labeled alternative in {@link languageParser#expression}.
-<<<<<<< Updated upstream
-=======
-<<<<<<< Updated upstream:src/antlr/languageListener.java
->>>>>>> Stashed changes
 	 * @param ctx the parse tree
 	 */
 	void enterAddition(languageParser.AdditionContext ctx);
@@ -133,18 +118,6 @@ public interface languageListener extends ParseTreeListener {
 	 */
 	void exitPower_of(languageParser.Power_ofContext ctx);
 	/**
-	 * Enter a parse tree produced by the {@code Paranthesis_more}
-	 * labeled alternative in {@link languageParser#expression}.
-	 * @param ctx the parse tree
-	 */
-	void enterParanthesis_more(languageParser.Paranthesis_moreContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code Paranthesis_more}
-	 * labeled alternative in {@link languageParser#expression}.
-	 * @param ctx the parse tree
-	 */
-	void exitParanthesis_more(languageParser.Paranthesis_moreContext ctx);
-	/**
 	 * Enter a parse tree produced by the {@code Paranthesis}
 	 * labeled alternative in {@link languageParser#expression}.
 	 * @param ctx the parse tree
@@ -157,100 +130,29 @@ public interface languageListener extends ParseTreeListener {
 	 */
 	void exitParanthesis(languageParser.ParanthesisContext ctx);
 	/**
-	 * Enter a parse tree produced by the {@code Number}
+	 * Enter a parse tree produced by the {@code Bigger_expression}
 	 * labeled alternative in {@link languageParser#expression}.
 	 * @param ctx the parse tree
 	 */
-	void enterNumber(languageParser.NumberContext ctx);
+	void enterBigger_expression(languageParser.Bigger_expressionContext ctx);
 	/**
-	 * Exit a parse tree produced by the {@code Number}
+	 * Exit a parse tree produced by the {@code Bigger_expression}
 	 * labeled alternative in {@link languageParser#expression}.
 	 * @param ctx the parse tree
 	 */
-<<<<<<< Updated upstream
-=======
-=======
-	 * @param ctx the parse tree
-	 */
-	void enterAddition(languageParser.AdditionContext ctx);
+	void exitBigger_expression(languageParser.Bigger_expressionContext ctx);
 	/**
-	 * Exit a parse tree produced by the {@code Addition}
+	 * Enter a parse tree produced by the {@code Variable}
 	 * labeled alternative in {@link languageParser#expression}.
 	 * @param ctx the parse tree
 	 */
-	void exitAddition(languageParser.AdditionContext ctx);
+	void enterVariable(languageParser.VariableContext ctx);
 	/**
-	 * Enter a parse tree produced by the {@code Substraktion}
+	 * Exit a parse tree produced by the {@code Variable}
 	 * labeled alternative in {@link languageParser#expression}.
 	 * @param ctx the parse tree
 	 */
-	void enterSubstraktion(languageParser.SubstraktionContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code Substraktion}
-	 * labeled alternative in {@link languageParser#expression}.
-	 * @param ctx the parse tree
-	 */
-	void exitSubstraktion(languageParser.SubstraktionContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code Multiplication}
-	 * labeled alternative in {@link languageParser#expression}.
-	 * @param ctx the parse tree
-	 */
-	void enterMultiplication(languageParser.MultiplicationContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code Multiplication}
-	 * labeled alternative in {@link languageParser#expression}.
-	 * @param ctx the parse tree
-	 */
-	void exitMultiplication(languageParser.MultiplicationContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code Division}
-	 * labeled alternative in {@link languageParser#expression}.
-	 * @param ctx the parse tree
-	 */
-	void enterDivision(languageParser.DivisionContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code Division}
-	 * labeled alternative in {@link languageParser#expression}.
-	 * @param ctx the parse tree
-	 */
-	void exitDivision(languageParser.DivisionContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code Power_of}
-	 * labeled alternative in {@link languageParser#expression}.
-	 * @param ctx the parse tree
-	 */
-	void enterPower_of(languageParser.Power_ofContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code Power_of}
-	 * labeled alternative in {@link languageParser#expression}.
-	 * @param ctx the parse tree
-	 */
-	void exitPower_of(languageParser.Power_ofContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code Paranthesis_more}
-	 * labeled alternative in {@link languageParser#expression}.
-	 * @param ctx the parse tree
-	 */
-	void enterParanthesis_more(languageParser.Paranthesis_moreContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code Paranthesis_more}
-	 * labeled alternative in {@link languageParser#expression}.
-	 * @param ctx the parse tree
-	 */
-	void exitParanthesis_more(languageParser.Paranthesis_moreContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code Paranthesis}
-	 * labeled alternative in {@link languageParser#expression}.
-	 * @param ctx the parse tree
-	 */
-	void enterParanthesis(languageParser.ParanthesisContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code Paranthesis}
-	 * labeled alternative in {@link languageParser#expression}.
-	 * @param ctx the parse tree
-	 */
-	void exitParanthesis(languageParser.ParanthesisContext ctx);
+	void exitVariable(languageParser.VariableContext ctx);
 	/**
 	 * Enter a parse tree produced by the {@code Number}
 	 * labeled alternative in {@link languageParser#expression}.
@@ -262,8 +164,6 @@ public interface languageListener extends ParseTreeListener {
 	 * labeled alternative in {@link languageParser#expression}.
 	 * @param ctx the parse tree
 	 */
->>>>>>> Stashed changes:src/main/java/grammar/languageListener.java
->>>>>>> Stashed changes
 	void exitNumber(languageParser.NumberContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link languageParser#conditional_statement}.
@@ -336,75 +236,15 @@ public interface languageListener extends ParseTreeListener {
 	 */
 	void exitCondition(languageParser.ConditionContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link languageParser#idORvalue_condition}.
+	 * Enter a parse tree produced by {@link languageParser#boolean_expression}.
 	 * @param ctx the parse tree
 	 */
-	void enterIdORvalue_condition(languageParser.IdORvalue_conditionContext ctx);
+	void enterBoolean_expression(languageParser.Boolean_expressionContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link languageParser#idORvalue_condition}.
+	 * Exit a parse tree produced by {@link languageParser#boolean_expression}.
 	 * @param ctx the parse tree
 	 */
-	void exitIdORvalue_condition(languageParser.IdORvalue_conditionContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link languageParser#greather}.
-	 * @param ctx the parse tree
-	 */
-	void enterGreather(languageParser.GreatherContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link languageParser#greather}.
-	 * @param ctx the parse tree
-	 */
-	void exitGreather(languageParser.GreatherContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link languageParser#lesser}.
-	 * @param ctx the parse tree
-	 */
-	void enterLesser(languageParser.LesserContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link languageParser#lesser}.
-	 * @param ctx the parse tree
-	 */
-	void exitLesser(languageParser.LesserContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link languageParser#equal}.
-	 * @param ctx the parse tree
-	 */
-	void enterEqual(languageParser.EqualContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link languageParser#equal}.
-	 * @param ctx the parse tree
-	 */
-	void exitEqual(languageParser.EqualContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link languageParser#greatherORequal}.
-	 * @param ctx the parse tree
-	 */
-	void enterGreatherORequal(languageParser.GreatherORequalContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link languageParser#greatherORequal}.
-	 * @param ctx the parse tree
-	 */
-	void exitGreatherORequal(languageParser.GreatherORequalContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link languageParser#lesserORequal}.
-	 * @param ctx the parse tree
-	 */
-	void enterLesserORequal(languageParser.LesserORequalContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link languageParser#lesserORequal}.
-	 * @param ctx the parse tree
-	 */
-	void exitLesserORequal(languageParser.LesserORequalContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link languageParser#isNOTequal}.
-	 * @param ctx the parse tree
-	 */
-	void enterIsNOTequal(languageParser.IsNOTequalContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link languageParser#isNOTequal}.
-	 * @param ctx the parse tree
-	 */
-	void exitIsNOTequal(languageParser.IsNOTequalContext ctx);
+	void exitBoolean_expression(languageParser.Boolean_expressionContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link languageParser#type_definition}.
 	 * @param ctx the parse tree
@@ -415,16 +255,6 @@ public interface languageListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitType_definition(languageParser.Type_definitionContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link languageParser#data_type}.
-	 * @param ctx the parse tree
-	 */
-	void enterData_type(languageParser.Data_typeContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link languageParser#data_type}.
-	 * @param ctx the parse tree
-	 */
-	void exitData_type(languageParser.Data_typeContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link languageParser#function_declaration}.
 	 * @param ctx the parse tree
@@ -455,24 +285,4 @@ public interface languageListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitType(languageParser.TypeContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link languageParser#value}.
-	 * @param ctx the parse tree
-	 */
-	void enterValue(languageParser.ValueContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link languageParser#value}.
-	 * @param ctx the parse tree
-	 */
-	void exitValue(languageParser.ValueContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link languageParser#iDorVALUE}.
-	 * @param ctx the parse tree
-	 */
-	void enterIDorVALUE(languageParser.IDorVALUEContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link languageParser#iDorVALUE}.
-	 * @param ctx the parse tree
-	 */
-	void exitIDorVALUE(languageParser.IDorVALUEContext ctx);
 }

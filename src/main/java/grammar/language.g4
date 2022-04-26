@@ -1,9 +1,9 @@
 grammar language;
 language
-    :  (stmts* EOF)
+    :  (stmts | expression)+ EOF
     | declaration* entrypoint;
 entrypoint
-    : (AT_SIGN START stmts+ AT_SIGN STOP);
+    : (AT_SIGN START (stmts | expression | type_definition)+ AT_SIGN STOP);
 
 declaration
     : type_definition
@@ -12,27 +12,28 @@ declaration
 
 stmts
     : stmt
-    | ID
-    | expression;
+    | ID;
 
 stmt
     : conditional_statement
     | iterative_statement;
 
 expression
-    : iDorVALUE PLUS iDorVALUE # Addition
-    | iDorVALUE MINUS iDorVALUE # Substraktion
-    | iDorVALUE MULTIPLIKATION iDorVALUE # Multiplication
-    | iDorVALUE DIVISION iDorVALUE # Division
-    | iDorVALUE POWER_OF iDorVALUE # Power_of
-    | ((PLUS | MINUS | MULTIPLIKATION | DIVISION)* LPAR expression+ RPAR) # Paranthesis_more
-    | (PLUS | MINUS | MULTIPLIKATION | DIVISION)* iDorVALUE #Paranthesis
-    | iDorVALUE # Number;
+    : (ID | INT | DOUBLE) PLUS (ID | INT | DOUBLE) # Addition
+    | (ID | INT | DOUBLE) MINUS (ID | INT | DOUBLE) # Substraktion
+    | (ID | INT | DOUBLE) MULTIPLIKATION (ID | INT | DOUBLE) # Multiplication
+    | (ID | INT | DOUBLE) DIVISION (ID | INT | DOUBLE) # Division
+    | (ID | INT | DOUBLE) POWER_OF (ID | INT | DOUBLE) # Power_of
+    | ((PLUS | MINUS | MULTIPLIKATION | DIVISION)+ LPAR expression+ RPAR) # Paranthesis
+    | (PLUS | MINUS | MULTIPLIKATION | DIVISION)+ (ID | INT | DOUBLE) #Bigger_expression
+    | ID # Variable
+    | (INT | DOUBLE) # Number;
+
 //CONDITINAL STATEMENT
 conditional_statement
     : if_statement;
 if_statement
-    : IF LPAR condition RPAR LCBRAC stmt RCBRAC ?(ELSE LCBRAC stmt RCBRAC);
+    : IF LPAR condition RPAR LCBRAC (stmt | expression)+ RCBRAC (ELSE LCBRAC stmt RCBRAC)?;
 //CONDITINAL STATEMENT
 
 // ITERATIVE STATEMENT
@@ -41,43 +42,41 @@ iterative_statement
     | while_loop
     | forever_loop;
 for_loop
-    : FOR LPAR type COMMA (condition) COMMA stmt LCBRAC stmt RCBRAC
-    | FOR LPAR type COMMA (condition) COMMA expression LCBRAC stmt RCBRAC;
+    : FOR LPAR type COMMA (condition) COMMA expression LCBRAC (stmt | expression)+ RCBRAC;
 while_loop
-    : WHILE LPAR (condition) RPAR LCBRAC stmt RCBRAC
-    | WHILE LPAR (condition) RPAR LCBRAC expression RCBRAC;
+    : WHILE LPAR (condition) RPAR LCBRAC (stmt | expression)+ RCBRAC;
 forever_loop
-    : FOREVER LCBRAC stmt RCBRAC
-    | FOREVER LCBRAC expression RCBRAC;
+    : FOREVER LCBRAC (stmt | expression)+ RCBRAC;
 // ITERATIVE STATEMENT
 
 //CONDITIONS
 condition
-    : idORvalue_condition (OR idORvalue_condition)*;
+    : boolean_expression (OR boolean_expression)*;
 
-idORvalue_condition
-    : iDorVALUE greather iDorVALUE
-    | iDorVALUE lesser iDorVALUE
-    | iDorVALUE equal iDorVALUE
-    | iDorVALUE greatherORequal iDorVALUE
-    | iDorVALUE lesserORequal iDorVALUE
-    | iDorVALUE isNOTequal iDorVALUE;
-greather
+boolean_expression
+    : (ID | INT | DOUBLE) GREATHER (ID | INT | DOUBLE)
+    | (ID | INT | DOUBLE) LESSER (ID | INT | DOUBLE)
+    | (ID | INT | DOUBLE) EQUAL (ID | INT | DOUBLE)
+    | (ID | INT | DOUBLE) GREATHEROREQUAL (ID | INT | DOUBLE)
+    | (ID | INT | DOUBLE) LESSEROREQUAL (ID | INT | DOUBLE)
+    | (ID | INT | DOUBLE) ISNOTEQUAL (ID | INT | DOUBLE);
+
+GREATHER
     : '>'
     | 'Greather';
-lesser
+LESSER
     : '<'
     | 'Lesser';
-equal
+EQUAL
     : '=='
     | 'Equal';
-greatherORequal
+GREATHEROREQUAL
     : '>='
     | 'Greather_or_equal';
-lesserORequal
+LESSEROREQUAL
     : '<='
     | 'Lesser_or_equal';
-isNOTequal
+ISNOTEQUAL
     : '!='
     | 'Is_not_equal';
 //CONDITIONS
@@ -85,17 +84,16 @@ isNOTequal
 
 //TYPES
 type_definition
-    : type ID ASSIGN iDorVALUE;
+    : type ID ASSIGN (ID | INT | DOUBLE | TXT | BOOL);
 
 //TYPES
 
 //Function declaration
 function_declaration
-    : type ID LPAR param RPAR LCBRAC stmt ID* expression RCBRAC
-    | VOID ID LPAR param RPAR LCBRAC stmt ID* expression RCBRAC;
+    : (type | VOID) ID LPAR param+ RPAR LCBRAC (stmt | ID | expression | type_definition)* RCBRAC;
 param
-    : (type ID)?
-    | (type ID COMMA)+;
+    : type ID
+    | (COMMA)* type ID;
 
 //Function Declaration
 
@@ -158,15 +156,6 @@ BOOL_TYPE
 
 ASSIGN
     : '=';
-value
-    : INT
-    | TXT
-    | DOUBLE
-    | BOOL;
-iDorVALUE
-    : value
-    | ID;
-
 
 INT
     : [0-9]+;
@@ -179,7 +168,7 @@ TXT
     : [a-z][A-Z]+;
 
 BOOL
-    : TRUE+ | FALSE+;
+    : TRUE | FALSE;
 
 TRUE
     : '1'

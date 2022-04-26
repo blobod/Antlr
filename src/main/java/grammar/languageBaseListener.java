@@ -1,26 +1,5 @@
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-=======
-<<<<<<< Updated upstream:src/antlr/languageBaseListener.java
->>>>>>> Stashed changes
-<<<<<<< Updated upstream:src/antlr/languageBaseListener.java
-// Generated from /Users/abdallahziadalnaif/Desktop/Antlr-main/src/main/java/antlr/language.g4 by ANTLR 4.9.2
-package antlr;
-=======
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream:src/main/java/gen/languageBaseListener.java
-// Generated from /Users/abdallahziadalnaif/Desktop/Antlr-main/src/antlr/language.g4 by ANTLR 4.9.2
-package gen;
->>>>>>> Stashed changes
-=======
-// Generated from C:/Users/thetr/OneDrive/Dokumenter/GitHub/Antlr/src/main/java/grammar\language.g4 by ANTLR 4.9.2
+// Generated from C:/Users/thetr/Desktop/Antlr/src/main/java/grammar\language.g4 by ANTLR 4.9.2
 package grammar;
->>>>>>> Stashed changes:src/main/java/grammar/languageBaseListener.java
->>>>>>> Stashed changes
-=======
-// Generated from C:/Users/thetr/OneDrive/Dokumenter/GitHub/Antlr/src/main/java/grammar\language.g4 by ANTLR 4.9.2
-package grammar;
->>>>>>> Stashed changes:src/main/java/grammar/languageBaseListener.java
 
 import org.antlr.v4.runtime.ParserRuleContext;
 import org.antlr.v4.runtime.tree.ErrorNode;
@@ -44,6 +23,18 @@ public class languageBaseListener implements languageListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitLanguage(languageParser.LanguageContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterEntrypoint(languageParser.EntrypointContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitEntrypoint(languageParser.EntrypointContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -145,18 +136,6 @@ public class languageBaseListener implements languageListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterParanthesis_more(languageParser.Paranthesis_moreContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitParanthesis_more(languageParser.Paranthesis_moreContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
 	@Override public void enterParanthesis(languageParser.ParanthesisContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -169,97 +148,25 @@ public class languageBaseListener implements languageListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-<<<<<<< Updated upstream
-	@Override public void enterNumber(languageParser.NumberContext ctx) { }
-=======
-<<<<<<< Updated upstream:src/antlr/languageBaseListener.java
-	@Override public void enterNumber(languageParser.NumberContext ctx) { }
-=======
-	@Override public void enterAddition(languageParser.AdditionContext ctx) { }
->>>>>>> Stashed changes:src/main/java/grammar/languageBaseListener.java
+	@Override public void enterBigger_expression(languageParser.Bigger_expressionContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-<<<<<<< Updated upstream:src/antlr/languageBaseListener.java
-=======
-	@Override public void exitAddition(languageParser.AdditionContext ctx) { }
+	@Override public void exitBigger_expression(languageParser.Bigger_expressionContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterSubstraktion(languageParser.SubstraktionContext ctx) { }
+	@Override public void enterVariable(languageParser.VariableContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitSubstraktion(languageParser.SubstraktionContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterMultiplication(languageParser.MultiplicationContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitMultiplication(languageParser.MultiplicationContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterDivision(languageParser.DivisionContext ctx) { }
->>>>>>> Stashed changes
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-<<<<<<< Updated upstream
-=======
-	@Override public void exitDivision(languageParser.DivisionContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterPower_of(languageParser.Power_ofContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitPower_of(languageParser.Power_ofContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterParanthesis_more(languageParser.Paranthesis_moreContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitParanthesis_more(languageParser.Paranthesis_moreContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterParanthesis(languageParser.ParanthesisContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitParanthesis(languageParser.ParanthesisContext ctx) { }
+	@Override public void exitVariable(languageParser.VariableContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -271,8 +178,6 @@ public class languageBaseListener implements languageListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
->>>>>>> Stashed changes:src/main/java/grammar/languageBaseListener.java
->>>>>>> Stashed changes
 	@Override public void exitNumber(languageParser.NumberContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -363,85 +268,13 @@ public class languageBaseListener implements languageListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterIdORvalue_condition(languageParser.IdORvalue_conditionContext ctx) { }
+	@Override public void enterBoolean_expression(languageParser.Boolean_expressionContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitIdORvalue_condition(languageParser.IdORvalue_conditionContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterGreather(languageParser.GreatherContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitGreather(languageParser.GreatherContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterLesser(languageParser.LesserContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitLesser(languageParser.LesserContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterEqual(languageParser.EqualContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitEqual(languageParser.EqualContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterGreatherORequal(languageParser.GreatherORequalContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitGreatherORequal(languageParser.GreatherORequalContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterLesserORequal(languageParser.LesserORequalContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitLesserORequal(languageParser.LesserORequalContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterIsNOTequal(languageParser.IsNOTequalContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitIsNOTequal(languageParser.IsNOTequalContext ctx) { }
+	@Override public void exitBoolean_expression(languageParser.Boolean_expressionContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -454,18 +287,6 @@ public class languageBaseListener implements languageListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitType_definition(languageParser.Type_definitionContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterData_type(languageParser.Data_typeContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitData_type(languageParser.Data_typeContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -502,30 +323,6 @@ public class languageBaseListener implements languageListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitType(languageParser.TypeContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterValue(languageParser.ValueContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitValue(languageParser.ValueContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterIDorVALUE(languageParser.IDorVALUEContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitIDorVALUE(languageParser.IDorVALUEContext ctx) { }
 
 	/**
 	 * {@inheritDoc}

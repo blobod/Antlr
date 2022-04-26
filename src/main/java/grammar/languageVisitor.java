@@ -1,26 +1,5 @@
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-=======
-<<<<<<< Updated upstream:src/antlr/languageVisitor.java
->>>>>>> Stashed changes
-<<<<<<< Updated upstream:src/antlr/languageVisitor.java
-// Generated from /Users/abdallahziadalnaif/Desktop/Antlr-main/src/main/java/antlr/language.g4 by ANTLR 4.9.2
-package antlr;
-=======
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream:src/main/java/gen/languageVisitor.java
-// Generated from /Users/abdallahziadalnaif/Desktop/Antlr-main/src/antlr/language.g4 by ANTLR 4.9.2
-package gen;
->>>>>>> Stashed changes
-=======
-// Generated from C:/Users/thetr/OneDrive/Dokumenter/GitHub/Antlr/src/main/java/grammar\language.g4 by ANTLR 4.9.2
+// Generated from C:/Users/thetr/Desktop/Antlr/src/main/java/grammar\language.g4 by ANTLR 4.9.2
 package grammar;
->>>>>>> Stashed changes:src/main/java/grammar/languageVisitor.java
->>>>>>> Stashed changes
-=======
-// Generated from C:/Users/thetr/OneDrive/Dokumenter/GitHub/Antlr/src/main/java/grammar\language.g4 by ANTLR 4.9.2
-package grammar;
->>>>>>> Stashed changes:src/main/java/grammar/languageVisitor.java
 import org.antlr.v4.runtime.tree.ParseTreeVisitor;
 
 /**
@@ -37,6 +16,12 @@ public interface languageVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitLanguage(languageParser.LanguageContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link languageParser#entrypoint}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitEntrypoint(languageParser.EntrypointContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link languageParser#declaration}.
 	 * @param ctx the parse tree
@@ -58,10 +43,6 @@ public interface languageVisitor<T> extends ParseTreeVisitor<T> {
 	/**
 	 * Visit a parse tree produced by the {@code Addition}
 	 * labeled alternative in {@link languageParser#expression}.
-<<<<<<< Updated upstream
-=======
-<<<<<<< Updated upstream:src/antlr/languageVisitor.java
->>>>>>> Stashed changes
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
@@ -95,13 +76,6 @@ public interface languageVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitPower_of(languageParser.Power_ofContext ctx);
 	/**
-	 * Visit a parse tree produced by the {@code Paranthesis_more}
-	 * labeled alternative in {@link languageParser#expression}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitParanthesis_more(languageParser.Paranthesis_moreContext ctx);
-	/**
 	 * Visit a parse tree produced by the {@code Paranthesis}
 	 * labeled alternative in {@link languageParser#expression}.
 	 * @param ctx the parse tree
@@ -109,68 +83,25 @@ public interface languageVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitParanthesis(languageParser.ParanthesisContext ctx);
 	/**
-	 * Visit a parse tree produced by the {@code Number}
+	 * Visit a parse tree produced by the {@code Bigger_expression}
 	 * labeled alternative in {@link languageParser#expression}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-<<<<<<< Updated upstream
-=======
-=======
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitAddition(languageParser.AdditionContext ctx);
+	T visitBigger_expression(languageParser.Bigger_expressionContext ctx);
 	/**
-	 * Visit a parse tree produced by the {@code Substraktion}
+	 * Visit a parse tree produced by the {@code Variable}
 	 * labeled alternative in {@link languageParser#expression}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitSubstraktion(languageParser.SubstraktionContext ctx);
-	/**
-	 * Visit a parse tree produced by the {@code Multiplication}
-	 * labeled alternative in {@link languageParser#expression}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitMultiplication(languageParser.MultiplicationContext ctx);
-	/**
-	 * Visit a parse tree produced by the {@code Division}
-	 * labeled alternative in {@link languageParser#expression}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitDivision(languageParser.DivisionContext ctx);
-	/**
-	 * Visit a parse tree produced by the {@code Power_of}
-	 * labeled alternative in {@link languageParser#expression}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitPower_of(languageParser.Power_ofContext ctx);
-	/**
-	 * Visit a parse tree produced by the {@code Paranthesis_more}
-	 * labeled alternative in {@link languageParser#expression}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitParanthesis_more(languageParser.Paranthesis_moreContext ctx);
-	/**
-	 * Visit a parse tree produced by the {@code Paranthesis}
-	 * labeled alternative in {@link languageParser#expression}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitParanthesis(languageParser.ParanthesisContext ctx);
+	T visitVariable(languageParser.VariableContext ctx);
 	/**
 	 * Visit a parse tree produced by the {@code Number}
 	 * labeled alternative in {@link languageParser#expression}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
->>>>>>> Stashed changes:src/main/java/grammar/languageVisitor.java
->>>>>>> Stashed changes
 	T visitNumber(languageParser.NumberContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link languageParser#conditional_statement}.
@@ -215,59 +146,17 @@ public interface languageVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitCondition(languageParser.ConditionContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link languageParser#idORvalue_condition}.
+	 * Visit a parse tree produced by {@link languageParser#boolean_expression}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitIdORvalue_condition(languageParser.IdORvalue_conditionContext ctx);
-	/**
-	 * Visit a parse tree produced by {@link languageParser#greather}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitGreather(languageParser.GreatherContext ctx);
-	/**
-	 * Visit a parse tree produced by {@link languageParser#lesser}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitLesser(languageParser.LesserContext ctx);
-	/**
-	 * Visit a parse tree produced by {@link languageParser#equal}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitEqual(languageParser.EqualContext ctx);
-	/**
-	 * Visit a parse tree produced by {@link languageParser#greatherORequal}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitGreatherORequal(languageParser.GreatherORequalContext ctx);
-	/**
-	 * Visit a parse tree produced by {@link languageParser#lesserORequal}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitLesserORequal(languageParser.LesserORequalContext ctx);
-	/**
-	 * Visit a parse tree produced by {@link languageParser#isNOTequal}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitIsNOTequal(languageParser.IsNOTequalContext ctx);
+	T visitBoolean_expression(languageParser.Boolean_expressionContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link languageParser#type_definition}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
 	T visitType_definition(languageParser.Type_definitionContext ctx);
-	/**
-	 * Visit a parse tree produced by {@link languageParser#data_type}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitData_type(languageParser.Data_typeContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link languageParser#function_declaration}.
 	 * @param ctx the parse tree
@@ -286,16 +175,4 @@ public interface languageVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitType(languageParser.TypeContext ctx);
-	/**
-	 * Visit a parse tree produced by {@link languageParser#value}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitValue(languageParser.ValueContext ctx);
-	/**
-	 * Visit a parse tree produced by {@link languageParser#iDorVALUE}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitIDorVALUE(languageParser.IDorVALUEContext ctx);
 }

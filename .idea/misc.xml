@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-<<<<<<< Updated upstream
-=======
   <component name="ANTLRGenerationPreferences">
     <option name="perGrammarGenerationSettings">
       <list>
@@ -18,7 +16,7 @@
         <PerGrammarGenerationSettings>
           <option name="fileName" value="$PROJECT_DIR$/src/main/java/grammar/language.g4" />
           <option name="autoGen" value="true" />
-          <option name="outputDir" value="C:\Users\thetr\OneDrive\Dokumenter\GitHub\Antlr\src\main\java" />
+          <option name="outputDir" value="C:\Users\thetr\Desktop\Antlr\src\main\java" />
           <option name="libDir" value="" />
           <option name="encoding" value="" />
           <option name="pkg" value="" />
@@ -28,7 +26,6 @@
       </list>
     </option>
   </component>
->>>>>>> Stashed changes
   <component name="MavenProjectsManager">
     <option name="originalFiles">
       <list>
@@ -36,11 +33,7 @@
       </list>
     </option>
   </component>
-<<<<<<< Updated upstream
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_17" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
-=======
   <component name="ProjectRootManager" version="2" languageLevel="JDK_16" default="true" project-jdk-name="16" project-jdk-type="JavaSDK">
->>>>>>> Stashed changes
     <output url="file://$PROJECT_DIR$/out" />
   </component>
 </project>

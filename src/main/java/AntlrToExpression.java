@@ -3,15 +3,16 @@ import AST2.Number;
 import AST2.VariableDeclaration;
 import grammar.languageBaseVisitor;
 import grammar.languageParser;
-import grammar.languageVisitor;
 import org.antlr.v4.runtime.Token;
-import org.antlr.v4.runtime.tree.AbstractParseTreeVisitor;
-import grammar.*;
+
+import java.util.ArrayList;
 import java.util.List;
 
 public class AntlrToExpression extends languageBaseVisitor<Expression> {
-    private List<String> vars; //Stores all variables that are declared in the program
-    private List<String> semanticErrors; //Duplicate declaration, Reference to undeclared
+
+    private List<String> vars = new ArrayList<>(); //Stores all variables that are declared in the program
+    private List<String> semanticErrors = new ArrayList<>(); //Duplicate declaration, Reference to undeclared
+
     @Override public Expression visitLanguage(languageParser.LanguageContext ctx) { return visitChildren(ctx); }
 
     @Override public Expression visitEntrypoint(languageParser.EntrypointContext ctx) { return visitChildren(ctx); }
@@ -22,7 +23,9 @@ public class AntlrToExpression extends languageBaseVisitor<Expression> {
 
     @Override public Expression visitStmt(languageParser.StmtContext ctx) { return visitChildren(ctx); }
 
-    @Override public Expression visitAddition(languageParser.AdditionContext ctx) { return visitChildren(ctx); }
+    @Override public Expression visitAddition(languageParser.AdditionContext ctx) {
+        System.out.print("This is addition: " + ctx.getChild(0) + ctx.getChild(1) + ctx.getChild(2));
+        return visitChildren(ctx); }
 
     @Override public Expression visitSubstraktion(languageParser.SubstraktionContext ctx) { return visitChildren(ctx); }
 
@@ -32,9 +35,14 @@ public class AntlrToExpression extends languageBaseVisitor<Expression> {
 
     @Override public Expression visitPower_of(languageParser.Power_ofContext ctx) { return visitChildren(ctx); }
 
-    @Override public Expression visitParanthesis_more(languageParser.Paranthesis_moreContext ctx) { return visitChildren(ctx); }
+    @Override public Expression visitBigger_expression(languageParser.Bigger_expressionContext ctx) {
+        System.out.print(" This is bigger expression: " + ctx.getChild(0) + ctx.getChild(1));
+        return visitChildren(ctx);}
 
-    @Override public Expression visitParanthesis(languageParser.ParanthesisContext ctx) { return visitChildren(ctx); }
+    @Override public Expression visitParanthesis(languageParser.ParanthesisContext ctx) {
+        return visitChildren(ctx); }
+
+    @Override public Expression visitVariable(languageParser.VariableContext ctx) { return visitChildren(ctx); }
 
     @Override public Expression visitNumber(languageParser.NumberContext ctx) {
         String numText = ctx.getChild(0).getText();
@@ -57,25 +65,27 @@ public class AntlrToExpression extends languageBaseVisitor<Expression> {
 
     @Override public Expression visitCondition(languageParser.ConditionContext ctx) { return visitChildren(ctx); }
 
-    @Override public Expression visitIdORvalue_condition(languageParser.IdORvalue_conditionContext ctx) { return visitChildren(ctx); }
+    @Override public Expression visitBoolean_expression(languageParser.Boolean_expressionContext ctx) { return visitChildren(ctx); }
 
-    @Override public Expression visitGreather(languageParser.GreatherContext ctx) { return visitChildren(ctx); }
-
-    @Override public Expression visitLesser(languageParser.LesserContext ctx) { return visitChildren(ctx); }
-
-    @Override public Expression visitEqual(languageParser.EqualContext ctx) { return visitChildren(ctx); }
-
-    @Override public Expression visitGreatherORequal(languageParser.GreatherORequalContext ctx) { return visitChildren(ctx); }
-
-    @Override public Expression visitLesserORequal(languageParser.LesserORequalContext ctx) { return visitChildren(ctx); }
-
-    @Override public Expression visitIsNOTequal(languageParser.IsNOTequalContext ctx) { return visitChildren(ctx); }
 
     @Override public Expression visitType_definition(languageParser.Type_definitionContext ctx) {
-        return visitChildren(ctx);
-    }
 
-    @Override public Expression visitData_type(languageParser.Data_typeContext ctx) { return visitChildren(ctx); }
+
+        String id = ctx.getChild(1).getText();
+
+        if (vars.contains(id)){
+            semanticErrors.add("Error: variable " + id + " already declared ");
+            System.out.print(semanticErrors.get(0) + "\n");
+        }else{
+            vars.add(id);
+        }
+
+
+        String type = ctx.getChild(0).getText();
+        int value = Integer.parseInt(ctx.INT().getText());
+        System.out.print("TYPE DEF " + id + " " + type + " " + value + "\n");
+        return new VariableDeclaration(id, type, value);
+    }
 
     @Override public Expression visitFunction_declaration(languageParser.Function_declarationContext ctx) { return visitChildren(ctx); }
 
@@ -83,21 +93,5 @@ public class AntlrToExpression extends languageBaseVisitor<Expression> {
 
     @Override public Expression visitType(languageParser.TypeContext ctx) { return visitChildren(ctx); }
 
-    @Override public Expression visitValue(languageParser.ValueContext ctx) { return visitChildren(ctx); }
 
-    @Override public Expression visitIDorVALUE(languageParser.IDorVALUEContext ctx) {
-        Token idToken = ctx.ID().getSymbol();
-        int line = idToken.getLine();
-        int column = idToken.getCharPositionInLine() + 1;
-
-        String id = ctx.getChild(0).getText();
-        if(vars.contains(id)){
-            semanticErrors.add("Error: Variable " + id + " already declared in: line: " + line + " and column:" + column);
-        }else{
-            vars.add(id);
-        }
-        String type = ctx.getChild(2).getText();
-        int value = Integer.parseInt(ctx.value().getText());
-        return new VariableDeclaration(id, type, value);
-    }
 }
