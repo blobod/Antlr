@@ -1,4 +1,4 @@
-// Generated from C:/Users/thetr/Desktop/Antlr/src/main/java/grammar\language.g4 by ANTLR 4.9.2
+// Generated from C:/Users/thetr/OneDrive/Dokumenter/GitHub/Antlr/src/main/java/grammar\language.g4 by ANTLR 4.9.2
 package grammar;
 import org.antlr.v4.runtime.tree.ParseTreeVisitor;
 
@@ -28,6 +28,24 @@ public interface languageVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitDeclaration(languageParser.DeclarationContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link languageParser#type_definition}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitType_definition(languageParser.Type_definitionContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link languageParser#function_declaration}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitFunction_declaration(languageParser.Function_declarationContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link languageParser#param}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitParam(languageParser.ParamContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link languageParser#stmts}.
 	 * @param ctx the parse tree
@@ -151,28 +169,4 @@ public interface languageVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitBoolean_expression(languageParser.Boolean_expressionContext ctx);
-	/**
-	 * Visit a parse tree produced by {@link languageParser#type_definition}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitType_definition(languageParser.Type_definitionContext ctx);
-	/**
-	 * Visit a parse tree produced by {@link languageParser#function_declaration}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitFunction_declaration(languageParser.Function_declarationContext ctx);
-	/**
-	 * Visit a parse tree produced by {@link languageParser#param}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitParam(languageParser.ParamContext ctx);
-	/**
-	 * Visit a parse tree produced by {@link languageParser#type}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitType(languageParser.TypeContext ctx);
 }

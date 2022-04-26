@@ -1,7 +1,7 @@
 package AST2;
 
 public class Number extends Expression {
-    int num;
+    public int num;
 
     public Number(int num){
         this.num = num;
@@ -9,7 +9,7 @@ public class Number extends Expression {
 
     @Override
     public String toString(){
-        return new Integer(num).toString();
+        return Integer.toString(num);
     }
 
 

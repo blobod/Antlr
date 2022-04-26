@@ -2,7 +2,7 @@ package AST2;
 
 public class Variable extends Expression{
 
-    String id;
+    public String id;
 
     public Variable(String id){
         this.id = id;

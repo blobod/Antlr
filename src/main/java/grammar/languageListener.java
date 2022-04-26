@@ -1,4 +1,4 @@
-// Generated from C:/Users/thetr/Desktop/Antlr/src/main/java/grammar\language.g4 by ANTLR 4.9.2
+// Generated from C:/Users/thetr/OneDrive/Dokumenter/GitHub/Antlr/src/main/java/grammar\language.g4 by ANTLR 4.9.2
 package grammar;
 import org.antlr.v4.runtime.tree.ParseTreeListener;
 
@@ -37,6 +37,36 @@ public interface languageListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitDeclaration(languageParser.DeclarationContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link languageParser#type_definition}.
+	 * @param ctx the parse tree
+	 */
+	void enterType_definition(languageParser.Type_definitionContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link languageParser#type_definition}.
+	 * @param ctx the parse tree
+	 */
+	void exitType_definition(languageParser.Type_definitionContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link languageParser#function_declaration}.
+	 * @param ctx the parse tree
+	 */
+	void enterFunction_declaration(languageParser.Function_declarationContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link languageParser#function_declaration}.
+	 * @param ctx the parse tree
+	 */
+	void exitFunction_declaration(languageParser.Function_declarationContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link languageParser#param}.
+	 * @param ctx the parse tree
+	 */
+	void enterParam(languageParser.ParamContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link languageParser#param}.
+	 * @param ctx the parse tree
+	 */
+	void exitParam(languageParser.ParamContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link languageParser#stmts}.
 	 * @param ctx the parse tree
@@ -245,44 +275,4 @@ public interface languageListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitBoolean_expression(languageParser.Boolean_expressionContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link languageParser#type_definition}.
-	 * @param ctx the parse tree
-	 */
-	void enterType_definition(languageParser.Type_definitionContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link languageParser#type_definition}.
-	 * @param ctx the parse tree
-	 */
-	void exitType_definition(languageParser.Type_definitionContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link languageParser#function_declaration}.
-	 * @param ctx the parse tree
-	 */
-	void enterFunction_declaration(languageParser.Function_declarationContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link languageParser#function_declaration}.
-	 * @param ctx the parse tree
-	 */
-	void exitFunction_declaration(languageParser.Function_declarationContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link languageParser#param}.
-	 * @param ctx the parse tree
-	 */
-	void enterParam(languageParser.ParamContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link languageParser#param}.
-	 * @param ctx the parse tree
-	 */
-	void exitParam(languageParser.ParamContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link languageParser#type}.
-	 * @param ctx the parse tree
-	 */
-	void enterType(languageParser.TypeContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link languageParser#type}.
-	 * @param ctx the parse tree
-	 */
-	void exitType(languageParser.TypeContext ctx);
 }

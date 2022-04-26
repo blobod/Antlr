@@ -1,6 +1,6 @@
 grammar language;
 language
-    :  (stmts | expression)+ EOF
+    :  (stmts | expression)* EOF
     | declaration* entrypoint;
 entrypoint
     : (AT_SIGN START (stmts | expression | type_definition)+ AT_SIGN STOP);
@@ -9,10 +9,23 @@ declaration
     : type_definition
     | function_declaration;
 
+//TYPES
+type_definition
+    : TYPE ID ASSIGN (ID | INT | DOUBLE | TXT | BOOL);
+
+//TYPES
+
+//Function declaration
+function_declaration
+    : (TYPE | VOID) ID LPAR param+ RPAR LCBRAC (stmt | ID | expression | type_definition)* RCBRAC;
+param
+    : TYPE ID
+    | (COMMA)* TYPE ID;
+
+//Function Declaration
 
 stmts
-    : stmt
-    | ID;
+    : stmt;
 
 stmt
     : conditional_statement
@@ -21,11 +34,11 @@ stmt
 expression
     : (ID | INT | DOUBLE) PLUS (ID | INT | DOUBLE) # Addition
     | (ID | INT | DOUBLE) MINUS (ID | INT | DOUBLE) # Substraktion
-    | (ID | INT | DOUBLE) MULTIPLIKATION (ID | INT | DOUBLE) # Multiplication
+    | (ID | INT | DOUBLE) MULTIPLICATION (ID | INT | DOUBLE) # Multiplication
     | (ID | INT | DOUBLE) DIVISION (ID | INT | DOUBLE) # Division
     | (ID | INT | DOUBLE) POWER_OF (ID | INT | DOUBLE) # Power_of
-    | ((PLUS | MINUS | MULTIPLIKATION | DIVISION)+ LPAR expression+ RPAR) # Paranthesis
-    | (PLUS | MINUS | MULTIPLIKATION | DIVISION)+ (ID | INT | DOUBLE) #Bigger_expression
+    | ((PLUS | MINUS | MULTIPLICATION | DIVISION)+ LPAR expression+ RPAR) # Paranthesis
+    | (PLUS | MINUS | MULTIPLICATION | DIVISION)+ (ID | INT | DOUBLE) #Bigger_expression
     | ID # Variable
     | (INT | DOUBLE) # Number;
 
@@ -42,7 +55,7 @@ iterative_statement
     | while_loop
     | forever_loop;
 for_loop
-    : FOR LPAR type COMMA (condition) COMMA expression LCBRAC (stmt | expression)+ RCBRAC;
+    : FOR LPAR TYPE COMMA (condition) COMMA expression LCBRAC (stmt | expression)+ RCBRAC;
 while_loop
     : WHILE LPAR (condition) RPAR LCBRAC (stmt | expression)+ RCBRAC;
 forever_loop
@@ -82,21 +95,6 @@ ISNOTEQUAL
 //CONDITIONS
 
 
-//TYPES
-type_definition
-    : type ID ASSIGN (ID | INT | DOUBLE | TXT | BOOL);
-
-//TYPES
-
-//Function declaration
-function_declaration
-    : (type | VOID) ID LPAR param+ RPAR LCBRAC (stmt | ID | expression | type_definition)* RCBRAC;
-param
-    : type ID
-    | (COMMA)* type ID;
-
-//Function Declaration
-
 // TOKENS
 IF
     : 'if';
@@ -106,7 +104,7 @@ PLUS
     : '+';
 MINUS
     : '-';
-MULTIPLIKATION
+MULTIPLICATION
     :'*';
 DIVISION
     :'/';
@@ -116,7 +114,6 @@ OR
     : '||';
 STOP
     : 'stop';
-
 FOR
     : 'for';
 WHILE
@@ -139,11 +136,12 @@ LCBRAC
     : '{';
 RCBRAC
     : '}';
-type
+TYPE
     : INT_TYPE
     | DOUBLE_TYPE
     | TXT_TYPE
     | BOOL_TYPE;
+
 INT_TYPE
     : 'int';
 DOUBLE_TYPE
@@ -152,11 +150,8 @@ TXT_TYPE
     : 'txt';
 BOOL_TYPE
     : 'bool';
-
-
 ASSIGN
     : '=';
-
 INT
     : [0-9]+;
 DOT

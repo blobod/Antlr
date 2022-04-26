@@ -1,6 +1,5 @@
-import AST2.Expression;
+import AST2.*;
 import AST2.Number;
-import AST2.VariableDeclaration;
 import grammar.languageBaseVisitor;
 import grammar.languageParser;
 import org.antlr.v4.runtime.Token;
@@ -10,8 +9,13 @@ import java.util.List;
 
 public class AntlrToExpression extends languageBaseVisitor<Expression> {
 
-    private List<String> vars = new ArrayList<>(); //Stores all variables that are declared in the program
-    private List<String> semanticErrors = new ArrayList<>(); //Duplicate declaration, Reference to undeclared
+    private List<String> vars; //Stores all variables that are declared in the program
+    private List<String> semanticErrors; //Duplicate declaration, Reference to undeclared
+
+    public AntlrToExpression(List<String> semanticErrors){
+        vars = new ArrayList<>();
+        this.semanticErrors = semanticErrors;
+    }
 
     @Override public Expression visitLanguage(languageParser.LanguageContext ctx) { return visitChildren(ctx); }
 
@@ -29,11 +33,23 @@ public class AntlrToExpression extends languageBaseVisitor<Expression> {
 
     @Override public Expression visitSubstraktion(languageParser.SubstraktionContext ctx) { return visitChildren(ctx); }
 
-    @Override public Expression visitMultiplication(languageParser.MultiplicationContext ctx) { return visitChildren(ctx); }
+    @Override public Expression visitMultiplication(languageParser.MultiplicationContext ctx) {
+        Expression left = visit(ctx.getChild(0)); // recursively visit the left subtree of the current MUltiplication node
+        Expression right = visit(ctx.getChild(2));
+        return new Multiplication(left, right);
+    }
 
-    @Override public Expression visitDivision(languageParser.DivisionContext ctx) { return visitChildren(ctx); }
+    @Override public Expression visitDivision(languageParser.DivisionContext ctx) {
+        Expression left = visit(ctx.getChild(0)); // recursively visit the left subtree of the current MUltiplication node
+        Expression right = visit(ctx.getChild(2));
+        return new Division(left, right);
+    }
 
-    @Override public Expression visitPower_of(languageParser.Power_ofContext ctx) { return visitChildren(ctx); }
+    @Override public Expression visitPower_of(languageParser.Power_ofContext ctx) {
+        Expression left = visit(ctx.getChild(0)); // recursively visit the left subtree of the current MUltiplication node
+        Expression right = visit(ctx.getChild(2));
+        return new Power_Of(left, right);
+    }
 
     @Override public Expression visitBigger_expression(languageParser.Bigger_expressionContext ctx) {
         System.out.print(" This is bigger expression: " + ctx.getChild(0) + ctx.getChild(1));
@@ -42,7 +58,13 @@ public class AntlrToExpression extends languageBaseVisitor<Expression> {
     @Override public Expression visitParanthesis(languageParser.ParanthesisContext ctx) {
         return visitChildren(ctx); }
 
-    @Override public Expression visitVariable(languageParser.VariableContext ctx) { return visitChildren(ctx); }
+    @Override public Expression visitVariable(languageParser.VariableContext ctx) {
+        String id = ctx.getChild(0).getText();
+        if (!vars.contains(id)){
+            semanticErrors.add("Error: variable" + id + " not declared" );
+        }
+        return new Variable(id);
+    }
 
     @Override public Expression visitNumber(languageParser.NumberContext ctx) {
         String numText = ctx.getChild(0).getText();
@@ -91,7 +113,6 @@ public class AntlrToExpression extends languageBaseVisitor<Expression> {
 
     @Override public Expression visitParam(languageParser.ParamContext ctx) { return visitChildren(ctx); }
 
-    @Override public Expression visitType(languageParser.TypeContext ctx) { return visitChildren(ctx); }
 
 
 }
