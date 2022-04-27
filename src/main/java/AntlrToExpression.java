@@ -1,9 +1,10 @@
-import AST2.*;
-import AST2.Number;
+import Expression.*;
+import Expression.Number;
 import grammar.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class AntlrToExpression extends languageBaseVisitor<Expression> {
 
@@ -14,16 +15,6 @@ public class AntlrToExpression extends languageBaseVisitor<Expression> {
         vars = new ArrayList<>();
         this.semanticErrors = semanticErrors;
     }
-
-    @Override public Expression visitLanguage(languageParser.LanguageContext ctx) { return visitChildren(ctx); }
-
-    @Override public Expression visitEntrypoint(languageParser.EntrypointContext ctx) { return visitChildren(ctx); }
-
-    @Override public Expression visitDeclaration(languageParser.DeclarationContext ctx) { return visitChildren(ctx); }
-
-    @Override public Expression visitStmts(languageParser.StmtsContext ctx) { return visitChildren(ctx); }
-
-    @Override public Expression visitStmt(languageParser.StmtContext ctx) { return visitChildren(ctx); }
 
     @Override public Expression visitAddition(languageParser.AdditionContext ctx) {
         Expression left = visit(ctx.getChild(0)); // recursively visit the left subtree of the current Multiplication node
@@ -62,7 +53,7 @@ public class AntlrToExpression extends languageBaseVisitor<Expression> {
     @Override public Expression visitVariable(languageParser.VariableContext ctx) {
         String id = ctx.getChild(0).getText();
         if (!vars.contains(id)){
-            semanticErrors.add("Error: variable" + id + " not declared" );
+            semanticErrors.add("Error: variable " + id + " not declared" );
         }
         return new Variable(id);
     }
@@ -70,7 +61,6 @@ public class AntlrToExpression extends languageBaseVisitor<Expression> {
     @Override public Expression visitNumber(languageParser.NumberContext ctx) {
         String numText = ctx.getChild(0).getText();
         int num = Integer.parseInt(numText);
-        System.out.println(num);
         return new Number(num);
     }
 
@@ -80,16 +70,32 @@ public class AntlrToExpression extends languageBaseVisitor<Expression> {
 
     @Override public Expression visitIterative_statement(languageParser.Iterative_statementContext ctx) { return visitChildren(ctx); }
 
-    @Override public Expression visitFor_loop(languageParser.For_loopContext ctx) { return visitChildren(ctx); }
+    @Override public Expression visitFor_loop(languageParser.For_loopContext ctx) {
+        System.out.print("hello");
+        return visitChildren(ctx); }
 
-    @Override public Expression visitWhile_loop(languageParser.While_loopContext ctx) { return visitChildren(ctx); }
+    @Override public Expression visitWhile_loop(languageParser.While_loopContext ctx) {
+        System.out.print("hello");
+        return visitChildren(ctx); }
 
-    @Override public Expression visitForever_loop(languageParser.Forever_loopContext ctx) { return visitChildren(ctx); }
+    @Override public Expression visitForever_loop(languageParser.Forever_loopContext ctx) {
+        Expression beginning = visit(ctx.getChild(0));
+        int x = 0;
+        for (int i = 0; i < ctx.getChildCount(); i++) {
+            if (!Objects.equals(ctx.getChild(i).getText(), "}")) {
+                System.out.print(ctx.getChild(i).getText() + "\n");
+                x = i;
+            }
+        }
+        Expression end = visit(ctx.getChild(x + 1));
+        Expression block = visit(ctx.getChild(x));
+        System.out.print(ctx.getChild(3).getText());
+        return new Forever_Loop(beginning, block, end); }
+
 
     @Override public Expression visitCondition(languageParser.ConditionContext ctx) { return visitChildren(ctx); }
 
     @Override public Expression visitBoolean_expression(languageParser.Boolean_expressionContext ctx) { return visitChildren(ctx); }
-
 
     @Override public Expression visitType_definition(languageParser.Type_definitionContext ctx) {
 
@@ -98,7 +104,6 @@ public class AntlrToExpression extends languageBaseVisitor<Expression> {
 
         if (vars.contains(id)){
             semanticErrors.add("Error: variable " + id + " already declared ");
-            System.out.print(semanticErrors.get(0) + "\n");
         }else{
             vars.add(id);
         }

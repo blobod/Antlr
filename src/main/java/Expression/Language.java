@@ -1,10 +1,11 @@
-package AST2;
+package Expression;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class Language {
     public List<Expression> expressions;
+
 
     public Language(){
         this.expressions = new ArrayList<>();

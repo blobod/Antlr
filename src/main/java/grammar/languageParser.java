@@ -17,13 +17,50 @@ public class languageParser extends Parser {
 	protected static final PredictionContextCache _sharedContextCache =
 		new PredictionContextCache();
 	public static final int
-		GREATHER=1, LESSER=2, EQUAL=3, GREATHEROREQUAL=4, LESSEROREQUAL=5, ISNOTEQUAL=6, 
-		IF=7, ELSE=8, PLUS=9, MINUS=10, MULTIPLICATION=11, DIVISION=12, POWER_OF=13, 
-		OR=14, STOP=15, FOR=16, WHILE=17, FOREVER=18, START=19, COMMA=20, AT_SIGN=21, 
-		VOID=22, LPAR=23, RPAR=24, LCBRAC=25, RCBRAC=26, TYPE=27, INT_TYPE=28, 
-		DOUBLE_TYPE=29, TXT_TYPE=30, BOOL_TYPE=31, ASSIGN=32, VALUE=33, INT=34, 
-		DOT=35, DOUBLE=36, TXT=37, BOOL=38, TRUE=39, FALSE=40, ID=41, WS=42, COMMENT=43, 
-		LINE_COMMENT=44;
+		GREATHER=1;
+    public static final int LESSER=2;
+    public static final int EQUAL=3;
+    public static final int GREATHEROREQUAL=4;
+    public static final int LESSEROREQUAL=5;
+    public static final int ISNOTEQUAL=6;
+    public static final int IF=7;
+    public static final int ELSE=8;
+    public static final int PLUS=9;
+    public static final int MINUS=10;
+    public static final int MULTIPLICATION=11;
+    public static final int DIVISION=12;
+    public static final int POWER_OF=13;
+    public static final int OR=14;
+    public static final int STOP=15;
+    public static final int FOR=16;
+    public static final int WHILE=17;
+    public static final int FOREVER=18;
+    public static final int START=19;
+    public static final int COMMA=20;
+    public static final int AT_SIGN=21;
+    public static final int VOID=22;
+    public static final int LPAR=23;
+    public static final int RPAR=24;
+    public static final int LCBRAC=25;
+    public static final int RCBRAC=26;
+    public static final int TYPE=27;
+    public static final int INT_TYPE=28;
+    public static final int DOUBLE_TYPE=29;
+    public static final int TXT_TYPE=30;
+    public static final int BOOL_TYPE=31;
+    public static final int ASSIGN=32;
+    public static final int VALUE=33;
+    public static final int INT=34;
+    public static final int DOT=35;
+    public static final int DOUBLE=36;
+    public static final int TXT=37;
+    public static final int BOOL=38;
+    public static final int TRUE=39;
+    public static final int FALSE=40;
+    public static final int ID=41;
+    public static final int WS=42;
+    public static final int COMMENT=43;
+    public static final int LINE_COMMENT=44;
 	public static final int
 		RULE_language = 0, RULE_entrypoint = 1, RULE_declaration = 2, RULE_type_definition = 3, 
 		RULE_function_declaration = 4, RULE_param = 5, RULE_stmts = 6, RULE_stmt = 7, 

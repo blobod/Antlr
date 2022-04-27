@@ -1,4 +1,4 @@
-import AST2.Language;
+import Expression.Language;
 import grammar.languageBaseVisitor;
 import grammar.languageParser;
 
@@ -16,7 +16,8 @@ public class AntlrToLanguage extends languageBaseVisitor<Language> {
        for (int i = 0; i < ctx.getChildCount(); i++){
             if (i == ctx.getChildCount() - 1){
                 System.out.println("\n EOF");
-            }else{
+            }
+            else{
                 language.addExpression(exprVisitor.visit(ctx.getChild(i)));
             }
 

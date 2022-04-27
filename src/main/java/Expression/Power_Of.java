@@ -1,4 +1,4 @@
-package AST2;
+package Expression;
 
 public class Power_Of extends Expression{
     public Expression left;

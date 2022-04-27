@@ -1,7 +1,7 @@
 package grammar;
 
-import AST2.*;
-import AST2.Number;
+import Expression.*;
+import Expression.Number;
 
 import java.util.ArrayList;
 import java.util.HashMap;

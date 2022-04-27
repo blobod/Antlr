@@ -1,5 +1,4 @@
-import AST2.Expression;
-import AST2.Language;
+import Expression.Language;
 import grammar.ExpressionProcessor;
 import grammar.languageLexer;
 import grammar.languageParser;
@@ -8,8 +7,6 @@ import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.tree.ParseTree;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 import static org.antlr.v4.runtime.CharStreams.fromFileName;
 

@@ -1,4 +1,4 @@
-package AST2;
+package Expression;
 
 public class Addition extends Expression{
     public Expression left;

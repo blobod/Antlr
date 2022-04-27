@@ -1,4 +1,4 @@
-package AST2;
+package Expression;
 
 public class Number extends Expression {
     public int num;
