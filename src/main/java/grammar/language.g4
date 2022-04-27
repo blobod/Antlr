@@ -1,7 +1,7 @@
 grammar language;
 language
-    :  (stmts | expression)* EOF
-    | declaration* entrypoint;
+    :  (stmts | expression | type_definition)* EOF
+    |  declaration* entrypoint EOF;
 entrypoint
     : (AT_SIGN START (stmts | expression | type_definition)+ AT_SIGN STOP);
 
@@ -11,7 +11,7 @@ declaration
 
 //TYPES
 type_definition
-    : TYPE ID ASSIGN (ID | INT | DOUBLE | TXT | BOOL);
+    : TYPE ID ASSIGN (ID | VALUE | TXT | BOOL);
 
 //TYPES
 
@@ -32,15 +32,15 @@ stmt
     | iterative_statement;
 
 expression
-    : (ID | INT | DOUBLE) PLUS (ID | INT | DOUBLE) # Addition
-    | (ID | INT | DOUBLE) MINUS (ID | INT | DOUBLE) # Substraktion
-    | (ID | INT | DOUBLE) MULTIPLICATION (ID | INT | DOUBLE) # Multiplication
-    | (ID | INT | DOUBLE) DIVISION (ID | INT | DOUBLE) # Division
-    | (ID | INT | DOUBLE) POWER_OF (ID | INT | DOUBLE) # Power_of
+    : expression PLUS expression # Addition
+    | expression MINUS expression # Substraktion
+    | expression MULTIPLICATION expression # Multiplication
+    | expression DIVISION expression # Division
+    | expression POWER_OF expression # Power_of
     | ((PLUS | MINUS | MULTIPLICATION | DIVISION)+ LPAR expression+ RPAR) # Paranthesis
-    | (PLUS | MINUS | MULTIPLICATION | DIVISION)+ (ID | INT | DOUBLE) #Bigger_expression
+    | (PLUS | MINUS | MULTIPLICATION | DIVISION)+ expression #Bigger_expression
     | ID # Variable
-    | (INT | DOUBLE) # Number;
+    | VALUE # Number;
 
 //CONDITINAL STATEMENT
 conditional_statement
@@ -67,12 +67,12 @@ condition
     : boolean_expression (OR boolean_expression)*;
 
 boolean_expression
-    : (ID | INT | DOUBLE) GREATHER (ID | INT | DOUBLE)
-    | (ID | INT | DOUBLE) LESSER (ID | INT | DOUBLE)
-    | (ID | INT | DOUBLE) EQUAL (ID | INT | DOUBLE)
-    | (ID | INT | DOUBLE) GREATHEROREQUAL (ID | INT | DOUBLE)
-    | (ID | INT | DOUBLE) LESSEROREQUAL (ID | INT | DOUBLE)
-    | (ID | INT | DOUBLE) ISNOTEQUAL (ID | INT | DOUBLE);
+    : (ID | VALUE) GREATHER (ID | VALUE)
+    | (ID | VALUE) LESSER (ID | VALUE)
+    | (ID | VALUE) EQUAL (ID | VALUE)
+    | (ID | VALUE) GREATHEROREQUAL (ID | VALUE)
+    | (ID | VALUE) LESSEROREQUAL (ID | VALUE)
+    | (ID | VALUE) ISNOTEQUAL (ID | VALUE);
 
 GREATHER
     : '>'
@@ -152,6 +152,9 @@ BOOL_TYPE
     : 'bool';
 ASSIGN
     : '=';
+VALUE
+    : INT
+    | DOUBLE;
 INT
     : [0-9]+;
 DOT

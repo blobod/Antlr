@@ -1,4 +1,4 @@
-// Generated from C:/Users/thetr/OneDrive/Dokumenter/GitHub/Antlr/src/main/java/grammar\language.g4 by ANTLR 4.9.2
+// Generated from C:/Users/thetr/Desktop/Antlr/src/main/java/grammar\language.g4 by ANTLR 4.9.2
 package grammar;
 import org.antlr.v4.runtime.tree.ParseTreeVisitor;
 
@@ -66,47 +66,12 @@ public interface languageVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitAddition(languageParser.AdditionContext ctx);
 	/**
-	 * Visit a parse tree produced by the {@code Substraktion}
-	 * labeled alternative in {@link languageParser#expression}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitSubstraktion(languageParser.SubstraktionContext ctx);
-	/**
 	 * Visit a parse tree produced by the {@code Multiplication}
 	 * labeled alternative in {@link languageParser#expression}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
 	T visitMultiplication(languageParser.MultiplicationContext ctx);
-	/**
-	 * Visit a parse tree produced by the {@code Division}
-	 * labeled alternative in {@link languageParser#expression}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitDivision(languageParser.DivisionContext ctx);
-	/**
-	 * Visit a parse tree produced by the {@code Power_of}
-	 * labeled alternative in {@link languageParser#expression}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitPower_of(languageParser.Power_ofContext ctx);
-	/**
-	 * Visit a parse tree produced by the {@code Paranthesis}
-	 * labeled alternative in {@link languageParser#expression}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitParanthesis(languageParser.ParanthesisContext ctx);
-	/**
-	 * Visit a parse tree produced by the {@code Bigger_expression}
-	 * labeled alternative in {@link languageParser#expression}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitBigger_expression(languageParser.Bigger_expressionContext ctx);
 	/**
 	 * Visit a parse tree produced by the {@code Variable}
 	 * labeled alternative in {@link languageParser#expression}.
@@ -121,6 +86,41 @@ public interface languageVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitNumber(languageParser.NumberContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code Paranthesis}
+	 * labeled alternative in {@link languageParser#expression}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitParanthesis(languageParser.ParanthesisContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code Substraktion}
+	 * labeled alternative in {@link languageParser#expression}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitSubstraktion(languageParser.SubstraktionContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code Power_of}
+	 * labeled alternative in {@link languageParser#expression}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitPower_of(languageParser.Power_ofContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code Bigger_expression}
+	 * labeled alternative in {@link languageParser#expression}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitBigger_expression(languageParser.Bigger_expressionContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code Division}
+	 * labeled alternative in {@link languageParser#expression}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitDivision(languageParser.DivisionContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link languageParser#conditional_statement}.
 	 * @param ctx the parse tree

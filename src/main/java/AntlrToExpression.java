@@ -1,8 +1,6 @@
 import AST2.*;
 import AST2.Number;
-import grammar.languageBaseVisitor;
-import grammar.languageParser;
-import org.antlr.v4.runtime.Token;
+import grammar.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,13 +26,17 @@ public class AntlrToExpression extends languageBaseVisitor<Expression> {
     @Override public Expression visitStmt(languageParser.StmtContext ctx) { return visitChildren(ctx); }
 
     @Override public Expression visitAddition(languageParser.AdditionContext ctx) {
-        System.out.print("This is addition: " + ctx.getChild(0) + ctx.getChild(1) + ctx.getChild(2));
-        return visitChildren(ctx); }
+        Expression left = visit(ctx.getChild(0)); // recursively visit the left subtree of the current Multiplication node
+        Expression right = visit(ctx.getChild(2));
+        return new Addition(left, right); }
 
-    @Override public Expression visitSubstraktion(languageParser.SubstraktionContext ctx) { return visitChildren(ctx); }
+    @Override public Expression visitSubstraktion(languageParser.SubstraktionContext ctx) {
+        Expression left = visit(ctx.getChild(0)); // recursively visit the left subtree of the current Multiplication node
+        Expression right = visit(ctx.getChild(2));
+        return new Substraktion(left, right); }
 
     @Override public Expression visitMultiplication(languageParser.MultiplicationContext ctx) {
-        Expression left = visit(ctx.getChild(0)); // recursively visit the left subtree of the current MUltiplication node
+        Expression left = visit(ctx.getChild(0)); // recursively visit the left subtree of the current Multiplication node
         Expression right = visit(ctx.getChild(2));
         return new Multiplication(left, right);
     }
@@ -52,7 +54,6 @@ public class AntlrToExpression extends languageBaseVisitor<Expression> {
     }
 
     @Override public Expression visitBigger_expression(languageParser.Bigger_expressionContext ctx) {
-        System.out.print(" This is bigger expression: " + ctx.getChild(0) + ctx.getChild(1));
         return visitChildren(ctx);}
 
     @Override public Expression visitParanthesis(languageParser.ParanthesisContext ctx) {
@@ -104,7 +105,7 @@ public class AntlrToExpression extends languageBaseVisitor<Expression> {
 
 
         String type = ctx.getChild(0).getText();
-        int value = Integer.parseInt(ctx.INT().getText());
+        int value = Integer.parseInt(ctx.VALUE().getText());
         System.out.print("TYPE DEF " + id + " " + type + " " + value + "\n");
         return new VariableDeclaration(id, type, value);
     }

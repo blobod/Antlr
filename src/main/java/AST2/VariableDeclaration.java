@@ -13,6 +13,5 @@ public class VariableDeclaration extends Expression {
         this.value = value;
     }
 
-
 }
 
