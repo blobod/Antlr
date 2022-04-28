@@ -2,6 +2,7 @@ import Expression.*;
 import Expression.Number;
 import grammar.*;
 
+import java.security.KeyStore;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -68,6 +69,13 @@ public class AntlrToExpression extends languageBaseVisitor<Expression> {
 
     @Override public Expression visitIf_statement(languageParser.If_statementContext ctx) { return visitChildren(ctx); }
 
+
+    @Override public Expression visitBreak_statement(languageParser.Break_statementContext ctx) {
+     return new Break();
+    }
+
+
+
     @Override public Expression visitIterative_statement(languageParser.Iterative_statementContext ctx) { return visitChildren(ctx); }
 
     @Override public Expression visitFor_loop(languageParser.For_loopContext ctx) {
@@ -79,18 +87,23 @@ public class AntlrToExpression extends languageBaseVisitor<Expression> {
         return visitChildren(ctx); }
 
     @Override public Expression visitForever_loop(languageParser.Forever_loopContext ctx) {
-        Expression beginning = visit(ctx.getChild(0));
-        int x = 0;
-        for (int i = 0; i < ctx.getChildCount(); i++) {
-            if (!Objects.equals(ctx.getChild(i).getText(), "}")) {
-                System.out.print(ctx.getChild(i).getText() + "\n");
-                x = i;
+        Expression beginning = visit(ctx.getChild(1));
+        Expression end = visit(ctx.getChild(ctx.getChildCount()-1));
+        Forever_Loop loop = new Forever_Loop(beginning, end);
+        boolean breaking = false;
+        while (!breaking) {
+            for (int i = 2; i < ctx.getChildCount() - 1; i++) {
+                Expression child = visit(ctx.getChild(i));
+                loop.add(child);
+                if (child instanceof Break) {
+                    breaking = true;
+                    break;
+                }
+                System.out.println(ctx.getChild(i).getText());
             }
         }
-        Expression end = visit(ctx.getChild(x + 1));
-        Expression block = visit(ctx.getChild(x));
-        System.out.print(ctx.getChild(3).getText());
-        return new Forever_Loop(beginning, block, end); }
+        return  loop;
+    }
 
 
     @Override public Expression visitCondition(languageParser.ConditionContext ctx) { return visitChildren(ctx); }

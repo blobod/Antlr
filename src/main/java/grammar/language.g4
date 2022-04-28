@@ -1,17 +1,20 @@
 grammar language;
 language
-    :  (stmts | expression | type_definition)* EOF
+    :  (stmts | expression | declaration)* EOF
     |  declaration* entrypoint EOF;
 entrypoint
     : (AT_SIGN START (stmts | expression | type_definition)+ AT_SIGN STOP);
 
 declaration
     : type_definition
-    | function_declaration;
+    | function_declaration
+    | type_reassign;
 
 //TYPES
 type_definition
     : TYPE ID ASSIGN (ID | VALUE | TXT | BOOL);
+type_reassign
+    : ID ASSIGN (expression | ID | VALUE | TXT | BOOL);
 
 //TYPES
 
@@ -44,9 +47,13 @@ expression
 
 //CONDITINAL STATEMENT
 conditional_statement
-    : if_statement;
+    : if_statement
+    | break_statement;
 if_statement
     : IF LPAR condition RPAR LCBRAC (stmt | expression)+ RCBRAC (ELSE LCBRAC stmt RCBRAC)?;
+break_statement
+    : BREAK;
+
 //CONDITINAL STATEMENT
 
 // ITERATIVE STATEMENT
@@ -96,6 +103,8 @@ ISNOTEQUAL
 
 
 // TOKENS
+BREAK
+    : 'break';
 IF
     : 'if';
 ELSE
