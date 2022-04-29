@@ -83,8 +83,25 @@ public class AntlrToExpression extends languageBaseVisitor<Expression> {
         return visitChildren(ctx); }
 
     @Override public Expression visitWhile_loop(languageParser.While_loopContext ctx) {
-        System.out.print("hello");
-        return visitChildren(ctx); }
+        Expression beginning = visit(ctx.getChild(1));
+        Expression end = visit(ctx.getChild(ctx.getChildCount()-1));
+        While loop = new While (beginning,end);
+        boolean breaking = false;
+        while (!breaking){
+        for (int i = 1; i < ctx.getChildCount()-1; i++){
+            Expression child = visit(ctx.getChild(i));
+            loop.add(child);
+
+            if (child instanceof Condition){
+               breaking= true;
+            break;
+            }
+            System.out.println(ctx.getChild(i).getText());
+        }
+        }
+
+
+        return loop; }
 
     @Override public Expression visitForever_loop(languageParser.Forever_loopContext ctx) {
         Expression beginning = visit(ctx.getChild(1));
@@ -94,11 +111,12 @@ public class AntlrToExpression extends languageBaseVisitor<Expression> {
         while (!breaking) {
             for (int i = 2; i < ctx.getChildCount() - 1; i++) {
                 Expression child = visit(ctx.getChild(i));
-                loop.add(child);
+
                 if (child instanceof Break) {
                     breaking = true;
                     break;
                 }
+                loop.add(child);
                 System.out.println(ctx.getChild(i).getText());
             }
         }
@@ -106,8 +124,13 @@ public class AntlrToExpression extends languageBaseVisitor<Expression> {
     }
 
 
-    @Override public Expression visitCondition(languageParser.ConditionContext ctx) { return visitChildren(ctx); }
+    @Override public Expression visitCondition(languageParser.ConditionContext ctx) {
+        Expression left = visit(ctx.getChild(0)); // recursively visit the left subtree of the current Multiplication node
+        Expression operator = visit(ctx.getChild(1));
+        Expression right = visit(ctx.getChild(2)); // recursively visit the left subtree of the current Multiplication node
 
+    return new Condition(left,operator,right);
+    }
     @Override public Expression visitBoolean_expression(languageParser.Boolean_expressionContext ctx) { return visitChildren(ctx); }
 
     @Override public Expression visitType_definition(languageParser.Type_definitionContext ctx) {
