@@ -1,3 +1,5 @@
 package Expression;
 
-public class Break extends Expression { }
+public class Break extends Expression {
+
+}

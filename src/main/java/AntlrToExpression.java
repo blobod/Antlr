@@ -18,8 +18,10 @@ public class AntlrToExpression extends languageBaseVisitor<Expression> {
     }
 
     @Override public Expression visitAddition(languageParser.AdditionContext ctx) {
+        System.out.println("addition");
         Expression left = visit(ctx.getChild(0)); // recursively visit the left subtree of the current Multiplication node
         Expression right = visit(ctx.getChild(2));
+        System.out.println("left: " + left + " and right: " + right);
         return new Addition(left, right); }
 
     @Override public Expression visitSubstraktion(languageParser.SubstraktionContext ctx) {
@@ -94,11 +96,11 @@ public class AntlrToExpression extends languageBaseVisitor<Expression> {
         while (!breaking) {
             for (int i = 2; i < ctx.getChildCount() - 1; i++) {
                 Expression child = visit(ctx.getChild(i));
-                loop.add(child);
                 if (child instanceof Break) {
                     breaking = true;
                     break;
                 }
+                loop.add(child);
                 System.out.println(ctx.getChild(i).getText());
             }
         }

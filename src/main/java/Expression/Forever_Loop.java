@@ -11,7 +11,7 @@ public class Forever_Loop extends Expression{
     public Forever_Loop(Expression beginning, Expression end){
         this.beginning = beginning;
 
-        this.block = new ArrayList<Expression>();
+        this.block = new ArrayList<>();
         this.end = end;
     }
 
@@ -19,8 +19,10 @@ public class Forever_Loop extends Expression{
         block.add(child);
     }
 
+    public void get(int x){ block.get(x);}
+
     @Override
     public String toString(){
-        return "forever: " + beginning + block + end;
+        return "forever: {"  + block + "}";
     }
 }

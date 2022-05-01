@@ -2,11 +2,15 @@ import Expression.Language;
 import grammar.ExpressionProcessor;
 import grammar.languageLexer;
 import grammar.languageParser;
+import org.antlr.v4.gui.TreeViewer;
 import org.antlr.v4.runtime.CharStream;
 import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.tree.ParseTree;
 
+
+import javax.swing.*;
 import java.io.IOException;
+import java.util.Arrays;
 
 import static org.antlr.v4.runtime.CharStreams.fromFileName;
 
@@ -24,7 +28,20 @@ public class EntryPoint {
 
         AntlrToLanguage visitor = new AntlrToLanguage();
         Language lang = visitor.visit(tree);
+
+        JFrame frame = new JFrame("Antlr AST");
+        JPanel panel = new JPanel();
+        TreeViewer viewer = new TreeViewer(Arrays.asList(
+                parser.getRuleNames()),tree);
+        viewer.setScale(1.5); // Scale a little
+        panel.add(viewer);
+        frame.add(panel);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.pack();
+        frame.setVisible(true);
+
         if (visitor.semanticErrors.isEmpty()){
+            System.out.println("hello \n");
             ExpressionProcessor ep = new ExpressionProcessor(lang.expressions);
             for (String evaluation: ep.getEvaluationResults()){
                 System.out.println(evaluation);

@@ -22,8 +22,15 @@ public class ExpressionProcessor {
         for (Expression e: list){
             if (e instanceof VariableDeclaration decl){
                 values.put(decl.id, decl.value);
-            }else
+            }else if (e instanceof Forever_Loop)
             {
+                int result = 0;
+                String input = e.toString();
+                for (int i = 0; i < ((Forever_Loop) e).block.size(); i++) {
+                    result = getEvalResult(((Forever_Loop) e).block.get(i));
+                    evaluations.add(input + " is " + result);
+                }
+            }else{
                 String input = e.toString();
                 int result = getEvalResult(e);
                 evaluations.add(input + " is " + result);
