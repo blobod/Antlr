@@ -129,16 +129,24 @@ public class AntlrToExpression extends languageBaseVisitor<Expression> {
 
     @Override public Expression visitType_reassign(languageParser.Type_reassignContext ctx) {
         String id = ctx.getChild(0).getText();
-        int value;
+        int value = 0;
         if (!vars.contains(id)){
             semanticErrors.add("Error: variable " + id + " not declared ");
         }
         if (ctx.getChild(2).getChild(1).getText().equals("+")) {
-           // value = Integer.parseInt(ctx.VALUE().getChild(1).getChild(0).getText()) + Integer.parseInt(ctx.VALUE().getChild(2).getChild(2).getText());
-            //System.out.print("this is an plus: with " + value + "\n");
+            value = Integer.parseInt(ctx.getChild(2).getChild(0).getText()) + Integer.parseInt(ctx.getChild(2).getChild(2).getText());
+        }else if(ctx.getChild(2).getChild(1).getText().equals("-")){
+            value = Integer.parseInt(ctx.getChild(2).getChild(0).getText()) - Integer.parseInt(ctx.getChild(2).getChild(2).getText());
+        } else if (ctx.getChild(2).getChild(1).getText().equals("*")){
+            value = Integer.parseInt(ctx.getChild(2).getChild(0).getText()) * Integer.parseInt(ctx.getChild(2).getChild(2).getText());
+        } else if (ctx.getChild(2).getChild(1).getText().equals("/")){
+            value = Integer.parseInt(ctx.getChild(2).getChild(0).getText()) / Integer.parseInt(ctx.getChild(2).getChild(2).getText());
+        } else{
+            value = Integer.parseInt(ctx.getChild(2).getChild(0).getText()) ^ Integer.parseInt(ctx.getChild(2).getChild(2).getText());
         }
 
-        return visitChildren(ctx); }
+        System.out.print("TYPE RE-DEF OF " + id + " TO "  + value + "\n");
+        return new VariableReDeclaration(id, value); }
 
     @Override public Expression visitFunction_declaration(languageParser.Function_declarationContext ctx) {
         return visitChildren(ctx);

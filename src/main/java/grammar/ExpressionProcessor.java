@@ -22,7 +22,10 @@ public class ExpressionProcessor {
         for (Expression e: list){
             if (e instanceof VariableDeclaration decl){
                 values.put(decl.id, decl.value);
-            }else if (e instanceof Forever_Loop)
+            }else if(e instanceof VariableReDeclaration redecl){
+                values.put(redecl.id, redecl.value);
+            }
+            else if (e instanceof Forever_Loop)
             {
                 int result = 0;
                 String input = e.toString();
