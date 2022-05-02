@@ -1,5 +1,5 @@
+int x = 7
 forever{
-5 + 5
-4 + 3
+x = 5 + 5
 break
 }

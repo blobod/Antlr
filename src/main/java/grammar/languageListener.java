@@ -1,4 +1,4 @@
-// Generated from /Users/abdallahziadalnaif/Desktop/Antlr/src/main/java/grammar/language.g4 by ANTLR 4.9.2
+// Generated from C:/Users/thetr/Desktop/Antlr/src/main/java/grammar\language.g4 by ANTLR 4.9.2
 package grammar;
 import org.antlr.v4.runtime.tree.ParseTreeListener;
 
@@ -27,6 +27,26 @@ public interface languageListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitEntrypoint(languageParser.EntrypointContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link languageParser#stmts}.
+	 * @param ctx the parse tree
+	 */
+	void enterStmts(languageParser.StmtsContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link languageParser#stmts}.
+	 * @param ctx the parse tree
+	 */
+	void exitStmts(languageParser.StmtsContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link languageParser#stmt}.
+	 * @param ctx the parse tree
+	 */
+	void enterStmt(languageParser.StmtContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link languageParser#stmt}.
+	 * @param ctx the parse tree
+	 */
+	void exitStmt(languageParser.StmtContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link languageParser#declaration}.
 	 * @param ctx the parse tree
@@ -77,26 +97,6 @@ public interface languageListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitParam(languageParser.ParamContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link languageParser#stmts}.
-	 * @param ctx the parse tree
-	 */
-	void enterStmts(languageParser.StmtsContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link languageParser#stmts}.
-	 * @param ctx the parse tree
-	 */
-	void exitStmts(languageParser.StmtsContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link languageParser#stmt}.
-	 * @param ctx the parse tree
-	 */
-	void enterStmt(languageParser.StmtContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link languageParser#stmt}.
-	 * @param ctx the parse tree
-	 */
-	void exitStmt(languageParser.StmtContext ctx);
 	/**
 	 * Enter a parse tree produced by the {@code Addition}
 	 * labeled alternative in {@link languageParser#expression}.

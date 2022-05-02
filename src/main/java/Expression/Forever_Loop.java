@@ -8,11 +8,8 @@ public class Forever_Loop extends Expression{
     public List<Expression> block;
     public Expression end;
 
-    public Forever_Loop(Expression beginning, Expression end){
-        this.beginning = beginning;
-
+    public Forever_Loop(){
         this.block = new ArrayList<>();
-        this.end = end;
     }
 
     public void add(Expression child) {

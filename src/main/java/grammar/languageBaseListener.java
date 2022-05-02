@@ -1,4 +1,4 @@
-// Generated from /Users/abdallahziadalnaif/Desktop/Antlr/src/main/java/grammar/language.g4 by ANTLR 4.9.2
+// Generated from C:/Users/thetr/Desktop/Antlr/src/main/java/grammar\language.g4 by ANTLR 4.9.2
 package grammar;
 
 import org.antlr.v4.runtime.ParserRuleContext;
@@ -35,6 +35,30 @@ public class languageBaseListener implements languageListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitEntrypoint(languageParser.EntrypointContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterStmts(languageParser.StmtsContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitStmts(languageParser.StmtsContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterStmt(languageParser.StmtContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitStmt(languageParser.StmtContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -95,30 +119,6 @@ public class languageBaseListener implements languageListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitParam(languageParser.ParamContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterStmts(languageParser.StmtsContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitStmts(languageParser.StmtsContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterStmt(languageParser.StmtContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitStmt(languageParser.StmtContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *

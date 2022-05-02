@@ -89,9 +89,7 @@ public class AntlrToExpression extends languageBaseVisitor<Expression> {
         return visitChildren(ctx); }
 
     @Override public Expression visitForever_loop(languageParser.Forever_loopContext ctx) {
-        Expression beginning = visit(ctx.getChild(1));
-        Expression end = visit(ctx.getChild(ctx.getChildCount()-1));
-        Forever_Loop loop = new Forever_Loop(beginning, end);
+        Forever_Loop loop = new Forever_Loop();
         boolean breaking = false;
         while (!breaking) {
             for (int i = 2; i < ctx.getChildCount() - 1; i++) {
@@ -104,7 +102,7 @@ public class AntlrToExpression extends languageBaseVisitor<Expression> {
                 System.out.println(ctx.getChild(i).getText());
             }
         }
-        return  loop;
+        return loop;
     }
 
 
@@ -129,6 +127,19 @@ public class AntlrToExpression extends languageBaseVisitor<Expression> {
         System.out.print("TYPE DEF " + id + " " + type + " " + value + "\n");
         return new VariableDeclaration(id, type, value);
     }
+
+    @Override public Expression visitType_reassign(languageParser.Type_reassignContext ctx) {
+        String id = ctx.getChild(0).getText();
+        int value;
+        if (!vars.contains(id)){
+            semanticErrors.add("Error: variable " + id + " not declared ");
+        }
+        if (ctx.getChild(2).getChild(1).getText().equals("+")) {
+            value = Integer.parseInt(ctx.VALUE().getChild(1).getChild(0).getText()) + Integer.parseInt(ctx.VALUE().getChild(2).getChild(2).getText());
+            System.out.print("this is an plus: with " + value + "\n");
+        }
+
+        return visitChildren(ctx); }
 
     @Override public Expression visitFunction_declaration(languageParser.Function_declarationContext ctx) { return visitChildren(ctx); }
 

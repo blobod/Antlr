@@ -1,4 +1,4 @@
-// Generated from /Users/abdallahziadalnaif/Desktop/Antlr/src/main/java/grammar/language.g4 by ANTLR 4.9.2
+// Generated from C:/Users/thetr/Desktop/Antlr/src/main/java/grammar\language.g4 by ANTLR 4.9.2
 package grammar;
 import org.antlr.v4.runtime.tree.ParseTreeVisitor;
 
@@ -22,6 +22,18 @@ public interface languageVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitEntrypoint(languageParser.EntrypointContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link languageParser#stmts}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitStmts(languageParser.StmtsContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link languageParser#stmt}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitStmt(languageParser.StmtContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link languageParser#declaration}.
 	 * @param ctx the parse tree
@@ -52,18 +64,6 @@ public interface languageVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitParam(languageParser.ParamContext ctx);
-	/**
-	 * Visit a parse tree produced by {@link languageParser#stmts}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitStmts(languageParser.StmtsContext ctx);
-	/**
-	 * Visit a parse tree produced by {@link languageParser#stmt}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitStmt(languageParser.StmtContext ctx);
 	/**
 	 * Visit a parse tree produced by the {@code Addition}
 	 * labeled alternative in {@link languageParser#expression}.
