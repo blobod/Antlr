@@ -108,7 +108,6 @@ public class AntlrToExpression extends languageBaseVisitor<Expression> {
 
     @Override public Expression visitCondition(languageParser.ConditionContext ctx) { return visitChildren(ctx); }
 
-    @Override public Expression visitBoolean_expression(languageParser.Boolean_expressionContext ctx) { return visitChildren(ctx); }
 
     @Override public Expression visitType_definition(languageParser.Type_definitionContext ctx) {
 
@@ -135,16 +134,35 @@ public class AntlrToExpression extends languageBaseVisitor<Expression> {
             semanticErrors.add("Error: variable " + id + " not declared ");
         }
         if (ctx.getChild(2).getChild(1).getText().equals("+")) {
-            value = Integer.parseInt(ctx.VALUE().getChild(1).getChild(0).getText()) + Integer.parseInt(ctx.VALUE().getChild(2).getChild(2).getText());
-            System.out.print("this is an plus: with " + value + "\n");
+           // value = Integer.parseInt(ctx.VALUE().getChild(1).getChild(0).getText()) + Integer.parseInt(ctx.VALUE().getChild(2).getChild(2).getText());
+            //System.out.print("this is an plus: with " + value + "\n");
         }
 
         return visitChildren(ctx); }
 
-    @Override public Expression visitFunction_declaration(languageParser.Function_declarationContext ctx) { return visitChildren(ctx); }
+    @Override public Expression visitFunction_declaration(languageParser.Function_declarationContext ctx) {
+        return visitChildren(ctx);
+    }
 
     @Override public Expression visitParam(languageParser.ParamContext ctx) { return visitChildren(ctx); }
 
+    @Override public Expression visitGreatherThan(languageParser.GreatherThanContext ctx) {
+        Expression left = visit(ctx.getChild(0)); // recursively visit the left subtree of the current Multiplication node
+        Expression right = visit(ctx.getChild(2));
+
+        return new GreaterThan(left, right);
+    }
 
 
+    @Override public Expression visitLesserThan(languageParser.LesserThanContext ctx) { return visitChildren(ctx); }
+
+    @Override public Expression visitEqualWith(languageParser.EqualWithContext ctx) { return visitChildren(ctx); }
+
+    @Override public Expression visitGreatherorEqualThan(languageParser.GreatherorEqualThanContext ctx) { return visitChildren(ctx); }
+
+
+    @Override public Expression visitLesserorEqualThan(languageParser.LesserorEqualThanContext ctx) { return visitChildren(ctx); }
+
+    @Override public Expression visitIsNotEqualWith(languageParser.IsNotEqualWithContext ctx) { return visitChildren(ctx); }
 }
+

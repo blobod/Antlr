@@ -1,5 +1,4 @@
-int x = 7
-forever{
-x = 5 + 5
-break
+int x = 5
+if(x > 3){
+ int x = 2+2
 }

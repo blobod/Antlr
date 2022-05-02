@@ -69,13 +69,23 @@ public class ExpressionProcessor {
 
             result = left - right;
         }
-        else{
-            Power_Of pow = (Power_Of) e;
+        else if (e instanceof Power_Of pow ){
             int left = getEvalResult(pow.left);
             int right = getEvalResult(pow.right);
 
             result = (int) Math.pow(left, right);
         }
+        else if (e instanceof  GreaterThan great) {
+            int left = getEvalResult(great.left);
+            int right = getEvalResult(great.right);
+
+            if (left > right) {
+                result = 1;
+            } else result = 0;
+        }
+
+
+
         return result;
     }
 }
