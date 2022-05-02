@@ -73,12 +73,12 @@ condition
     : boolean_expression (OR boolean_expression)*;
 
 boolean_expression
-    : (ID | VALUE) GREATHER (ID | VALUE)
-    | (ID | VALUE) LESSER (ID | VALUE)
-    | (ID | VALUE) EQUAL (ID | VALUE)
-    | (ID | VALUE) GREATHEROREQUAL (ID | VALUE)
-    | (ID | VALUE) LESSEROREQUAL (ID | VALUE)
-    | (ID | VALUE) ISNOTEQUAL (ID | VALUE);
+    : (ID | VALUE) GREATHER (ID | VALUE) # GreatherThan
+    | (ID | VALUE) LESSER (ID | VALUE) # LesserThan
+    | (ID | VALUE) EQUAL (ID | VALUE) # EqualWith
+    | (ID | VALUE) GREATHEROREQUAL (ID | VALUE) # GreatherorEqualThan
+    | (ID | VALUE) LESSEROREQUAL (ID | VALUE) # LesserorEqualThan
+    | (ID | VALUE) ISNOTEQUAL (ID | VALUE) # IsNotEqualWith;
 
 GREATHER
     : '>'

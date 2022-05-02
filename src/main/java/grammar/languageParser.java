@@ -1901,6 +1901,17 @@ public class languageParser extends Parser {
 	}
 
 	public static class Boolean_expressionContext extends ParserRuleContext {
+		public Boolean_expressionContext(ParserRuleContext parent, int invokingState) {
+			super(parent, invokingState);
+		}
+		@Override public int getRuleIndex() { return RULE_boolean_expression; }
+	 
+		public Boolean_expressionContext() { }
+		public void copyFrom(Boolean_expressionContext ctx) {
+			super.copyFrom(ctx);
+		}
+	}
+	public static class GreatherThanContext extends Boolean_expressionContext {
 		public TerminalNode GREATHER() { return getToken(languageParser.GREATHER, 0); }
 		public List<TerminalNode> ID() { return getTokens(languageParser.ID); }
 		public TerminalNode ID(int i) {
@@ -1910,26 +1921,143 @@ public class languageParser extends Parser {
 		public TerminalNode VALUE(int i) {
 			return getToken(languageParser.VALUE, i);
 		}
-		public TerminalNode LESSER() { return getToken(languageParser.LESSER, 0); }
-		public TerminalNode EQUAL() { return getToken(languageParser.EQUAL, 0); }
-		public TerminalNode GREATHEROREQUAL() { return getToken(languageParser.GREATHEROREQUAL, 0); }
-		public TerminalNode LESSEROREQUAL() { return getToken(languageParser.LESSEROREQUAL, 0); }
-		public TerminalNode ISNOTEQUAL() { return getToken(languageParser.ISNOTEQUAL, 0); }
-		public Boolean_expressionContext(ParserRuleContext parent, int invokingState) {
-			super(parent, invokingState);
-		}
-		@Override public int getRuleIndex() { return RULE_boolean_expression; }
+		public GreatherThanContext(Boolean_expressionContext ctx) { copyFrom(ctx); }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof languageListener ) ((languageListener)listener).enterBoolean_expression(this);
+			if ( listener instanceof languageListener ) ((languageListener)listener).enterGreatherThan(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof languageListener ) ((languageListener)listener).exitBoolean_expression(this);
+			if ( listener instanceof languageListener ) ((languageListener)listener).exitGreatherThan(this);
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof languageVisitor ) return ((languageVisitor<? extends T>)visitor).visitBoolean_expression(this);
+			if ( visitor instanceof languageVisitor ) return ((languageVisitor<? extends T>)visitor).visitGreatherThan(this);
+			else return visitor.visitChildren(this);
+		}
+	}
+	public static class GreatherorEqualThanContext extends Boolean_expressionContext {
+		public TerminalNode GREATHEROREQUAL() { return getToken(languageParser.GREATHEROREQUAL, 0); }
+		public List<TerminalNode> ID() { return getTokens(languageParser.ID); }
+		public TerminalNode ID(int i) {
+			return getToken(languageParser.ID, i);
+		}
+		public List<TerminalNode> VALUE() { return getTokens(languageParser.VALUE); }
+		public TerminalNode VALUE(int i) {
+			return getToken(languageParser.VALUE, i);
+		}
+		public GreatherorEqualThanContext(Boolean_expressionContext ctx) { copyFrom(ctx); }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof languageListener ) ((languageListener)listener).enterGreatherorEqualThan(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof languageListener ) ((languageListener)listener).exitGreatherorEqualThan(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof languageVisitor ) return ((languageVisitor<? extends T>)visitor).visitGreatherorEqualThan(this);
+			else return visitor.visitChildren(this);
+		}
+	}
+	public static class EqualWithContext extends Boolean_expressionContext {
+		public TerminalNode EQUAL() { return getToken(languageParser.EQUAL, 0); }
+		public List<TerminalNode> ID() { return getTokens(languageParser.ID); }
+		public TerminalNode ID(int i) {
+			return getToken(languageParser.ID, i);
+		}
+		public List<TerminalNode> VALUE() { return getTokens(languageParser.VALUE); }
+		public TerminalNode VALUE(int i) {
+			return getToken(languageParser.VALUE, i);
+		}
+		public EqualWithContext(Boolean_expressionContext ctx) { copyFrom(ctx); }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof languageListener ) ((languageListener)listener).enterEqualWith(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof languageListener ) ((languageListener)listener).exitEqualWith(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof languageVisitor ) return ((languageVisitor<? extends T>)visitor).visitEqualWith(this);
+			else return visitor.visitChildren(this);
+		}
+	}
+	public static class LesserorEqualThanContext extends Boolean_expressionContext {
+		public TerminalNode LESSEROREQUAL() { return getToken(languageParser.LESSEROREQUAL, 0); }
+		public List<TerminalNode> ID() { return getTokens(languageParser.ID); }
+		public TerminalNode ID(int i) {
+			return getToken(languageParser.ID, i);
+		}
+		public List<TerminalNode> VALUE() { return getTokens(languageParser.VALUE); }
+		public TerminalNode VALUE(int i) {
+			return getToken(languageParser.VALUE, i);
+		}
+		public LesserorEqualThanContext(Boolean_expressionContext ctx) { copyFrom(ctx); }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof languageListener ) ((languageListener)listener).enterLesserorEqualThan(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof languageListener ) ((languageListener)listener).exitLesserorEqualThan(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof languageVisitor ) return ((languageVisitor<? extends T>)visitor).visitLesserorEqualThan(this);
+			else return visitor.visitChildren(this);
+		}
+	}
+	public static class IsNotEqualWithContext extends Boolean_expressionContext {
+		public TerminalNode ISNOTEQUAL() { return getToken(languageParser.ISNOTEQUAL, 0); }
+		public List<TerminalNode> ID() { return getTokens(languageParser.ID); }
+		public TerminalNode ID(int i) {
+			return getToken(languageParser.ID, i);
+		}
+		public List<TerminalNode> VALUE() { return getTokens(languageParser.VALUE); }
+		public TerminalNode VALUE(int i) {
+			return getToken(languageParser.VALUE, i);
+		}
+		public IsNotEqualWithContext(Boolean_expressionContext ctx) { copyFrom(ctx); }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof languageListener ) ((languageListener)listener).enterIsNotEqualWith(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof languageListener ) ((languageListener)listener).exitIsNotEqualWith(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof languageVisitor ) return ((languageVisitor<? extends T>)visitor).visitIsNotEqualWith(this);
+			else return visitor.visitChildren(this);
+		}
+	}
+	public static class LesserThanContext extends Boolean_expressionContext {
+		public TerminalNode LESSER() { return getToken(languageParser.LESSER, 0); }
+		public List<TerminalNode> ID() { return getTokens(languageParser.ID); }
+		public TerminalNode ID(int i) {
+			return getToken(languageParser.ID, i);
+		}
+		public List<TerminalNode> VALUE() { return getTokens(languageParser.VALUE); }
+		public TerminalNode VALUE(int i) {
+			return getToken(languageParser.VALUE, i);
+		}
+		public LesserThanContext(Boolean_expressionContext ctx) { copyFrom(ctx); }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof languageListener ) ((languageListener)listener).enterLesserThan(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof languageListener ) ((languageListener)listener).exitLesserThan(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof languageVisitor ) return ((languageVisitor<? extends T>)visitor).visitLesserThan(this);
 			else return visitor.visitChildren(this);
 		}
 	}
@@ -1943,6 +2071,7 @@ public class languageParser extends Parser {
 			_errHandler.sync(this);
 			switch ( getInterpreter().adaptivePredict(_input,26,_ctx) ) {
 			case 1:
+				_localctx = new GreatherThanContext(_localctx);
 				enterOuterAlt(_localctx, 1);
 				{
 				setState(242);
@@ -1970,6 +2099,7 @@ public class languageParser extends Parser {
 				}
 				break;
 			case 2:
+				_localctx = new LesserThanContext(_localctx);
 				enterOuterAlt(_localctx, 2);
 				{
 				setState(245);
@@ -1997,6 +2127,7 @@ public class languageParser extends Parser {
 				}
 				break;
 			case 3:
+				_localctx = new EqualWithContext(_localctx);
 				enterOuterAlt(_localctx, 3);
 				{
 				setState(248);
@@ -2024,6 +2155,7 @@ public class languageParser extends Parser {
 				}
 				break;
 			case 4:
+				_localctx = new GreatherorEqualThanContext(_localctx);
 				enterOuterAlt(_localctx, 4);
 				{
 				setState(251);
@@ -2051,6 +2183,7 @@ public class languageParser extends Parser {
 				}
 				break;
 			case 5:
+				_localctx = new LesserorEqualThanContext(_localctx);
 				enterOuterAlt(_localctx, 5);
 				{
 				setState(254);
@@ -2078,6 +2211,7 @@ public class languageParser extends Parser {
 				}
 				break;
 			case 6:
+				_localctx = new IsNotEqualWithContext(_localctx);
 				enterOuterAlt(_localctx, 6);
 				{
 				setState(257);

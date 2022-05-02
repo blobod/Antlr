@@ -176,9 +176,45 @@ public interface languageVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitCondition(languageParser.ConditionContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link languageParser#boolean_expression}.
+	 * Visit a parse tree produced by the {@code GreatherThan}
+	 * labeled alternative in {@link languageParser#boolean_expression}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitBoolean_expression(languageParser.Boolean_expressionContext ctx);
+	T visitGreatherThan(languageParser.GreatherThanContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code LesserThan}
+	 * labeled alternative in {@link languageParser#boolean_expression}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitLesserThan(languageParser.LesserThanContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code EqualWith}
+	 * labeled alternative in {@link languageParser#boolean_expression}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitEqualWith(languageParser.EqualWithContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code GreatherorEqualThan}
+	 * labeled alternative in {@link languageParser#boolean_expression}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitGreatherorEqualThan(languageParser.GreatherorEqualThanContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code LesserorEqualThan}
+	 * labeled alternative in {@link languageParser#boolean_expression}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitLesserorEqualThan(languageParser.LesserorEqualThanContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code IsNotEqualWith}
+	 * labeled alternative in {@link languageParser#boolean_expression}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitIsNotEqualWith(languageParser.IsNotEqualWithContext ctx);
 }
