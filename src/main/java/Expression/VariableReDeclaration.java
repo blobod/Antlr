@@ -9,4 +9,9 @@ public class VariableReDeclaration extends Expression{
         this.value = value;
     }
 
+    @Override
+    public String toString(){
+        return Integer.toString(value);
+    }
+
 }

@@ -41,6 +41,12 @@ public interface languageVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitDeclaration(languageParser.DeclarationContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link languageParser#print}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitPrint(languageParser.PrintContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link languageParser#type_definition}.
 	 * @param ctx the parse tree
 	 * @return the visitor result

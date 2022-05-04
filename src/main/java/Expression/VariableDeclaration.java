@@ -13,5 +13,9 @@ public class VariableDeclaration extends Expression {
         this.value = value;
     }
 
+    @Override
+    public String toString(){
+        return Integer.toString(value);
+    }
 }
 

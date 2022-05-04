@@ -3,25 +3,22 @@ import Expression.Number;
 import grammar.*;
 
 import java.security.KeyStore;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 public class AntlrToExpression extends languageBaseVisitor<Expression> {
 
     private List<String> vars; //Stores all variables that are declared in the program
     private List<String> semanticErrors; //Duplicate declaration, Reference to undeclared
-
+    private Map<String, Integer> values;
     public AntlrToExpression(List<String> semanticErrors){
         vars = new ArrayList<>();
+        values = new HashMap<>();
         this.semanticErrors = semanticErrors;
     }
 
     @Override public Expression visitAddition(languageParser.AdditionContext ctx) {
-        System.out.println("addition");
         Expression left = visit(ctx.getChild(0)); // recursively visit the left subtree of the current Multiplication node
         Expression right = visit(ctx.getChild(2));
-        System.out.println("left: " + left + " and right: " + right);
         return new Addition(left, right); }
 
     @Override public Expression visitSubstraktion(languageParser.SubstraktionContext ctx) {
@@ -69,7 +66,26 @@ public class AntlrToExpression extends languageBaseVisitor<Expression> {
 
     @Override public Expression visitConditional_statement(languageParser.Conditional_statementContext ctx) { return visitChildren(ctx); }
 
-    @Override public Expression visitIf_statement(languageParser.If_statementContext ctx) { return visitChildren(ctx); }
+    @Override public Expression visitIf_statement(languageParser.If_statementContext ctx) {
+        List<languageParser.ConditionContext> conditions = ctx.condition();
+
+        boolean evalutedBlock = false;
+
+        //iterating through each one and evaluates its getchild value (true of false)
+        for (grammar.languageParser.ConditionContext condition : conditions){
+            Expression evaluated = this.visit(ctx.condition());
+
+            //try to check if evaluated is a boolean or not!!
+            if (Boolean.valueOf(evaluated) = true){
+                evalutedBlock = true;
+                this.visit(ctx.stmt());
+                break;
+            }
+        }
+        if (!evalutedBlock && ctx.children != null){
+            this.visit(ctx.stmt());
+        }
+        return visitChildren(ctx); }
 
 
     @Override public Expression visitBreak_statement(languageParser.Break_statementContext ctx) {
@@ -108,21 +124,38 @@ public class AntlrToExpression extends languageBaseVisitor<Expression> {
 
     @Override public Expression visitCondition(languageParser.ConditionContext ctx) { return visitChildren(ctx); }
 
+    @Override public Expression visitPrint(languageParser.PrintContext ctx) {
+        String id = ctx.getChild(2).getText();
+        int left = Integer.parseInt(ctx.getChild(2).getChild(0).getText());
+        int right = Integer.parseInt(ctx.getChild(2).getChild(2).getText());
+        int result = 0;
+        if(vars.contains(id)){
+
+            int value = values.get(id);
+            System.out.println(value + "\n");
+        }else if(ctx.getChild(2).getChild(1).getText().equals("+")){
+            result = left + right;
+            System.out.print(result);
+        }
+
+
+
+
+        return visitChildren(ctx); }
 
     @Override public Expression visitType_definition(languageParser.Type_definitionContext ctx) {
 
 
         String id = ctx.getChild(1).getText();
-
+        int value = Integer.parseInt(ctx.VALUE().getText());
         if (vars.contains(id)){
             semanticErrors.add("Error: variable " + id + " already declared ");
         }else{
             vars.add(id);
+            values.put(id, value);
         }
 
-
         String type = ctx.getChild(0).getText();
-        int value = Integer.parseInt(ctx.VALUE().getText());
         System.out.print("TYPE DEF " + id + " " + type + " " + value + "\n");
         return new VariableDeclaration(id, type, value);
     }
@@ -144,7 +177,9 @@ public class AntlrToExpression extends languageBaseVisitor<Expression> {
         } else{
             value = Integer.parseInt(ctx.getChild(2).getChild(0).getText()) ^ Integer.parseInt(ctx.getChild(2).getChild(2).getText());
         }
-
+        System.out.print("Before : " + values.toString() + " \n");
+        values.put(id, value);
+        System.out.print("After : " + values.toString() + " \n");
         System.out.print("TYPE RE-DEF OF " + id + " TO "  + value + "\n");
         return new VariableReDeclaration(id, value); }
 

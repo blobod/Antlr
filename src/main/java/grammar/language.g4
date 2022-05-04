@@ -2,6 +2,7 @@ grammar language;
 language
     :  (stmts)* EOF
     |  stmts* entrypoint EOF;
+
 entrypoint
     : (AT_SIGN START (stmts)+ AT_SIGN STOP);
 
@@ -11,12 +12,16 @@ stmts
 stmt
     : conditional_statement
     | iterative_statement
-    | declaration;
+    | declaration
+    | print;
 
 declaration
     : type_definition
     | function_declaration
     | type_reassign;
+
+print
+    : PRINT LPAR (expression | stmt)+ RPAR;
 
 //TYPES
 type_definition
@@ -102,6 +107,9 @@ ISNOTEQUAL
 
 
 // TOKENS
+PRINT
+    : 'print';
+
 BREAK
     : 'break';
 IF

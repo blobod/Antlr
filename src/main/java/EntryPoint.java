@@ -41,7 +41,6 @@ public class EntryPoint {
         frame.setVisible(true);
 
         if (visitor.semanticErrors.isEmpty()){
-            System.out.println("hello \n");
             ExpressionProcessor ep = new ExpressionProcessor(lang.expressions);
             for (String evaluation: ep.getEvaluationResults()){
                 System.out.println(evaluation);
