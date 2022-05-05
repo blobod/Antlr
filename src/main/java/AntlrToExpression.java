@@ -101,8 +101,21 @@ public class AntlrToExpression extends languageBaseVisitor<Expression> {
         return visitChildren(ctx); }
 
     @Override public Expression visitWhile_loop(languageParser.While_loopContext ctx) {
-        System.out.print("hello");
-        return visitChildren(ctx); }
+        While loop = new While();
+        boolean breaking = false;
+        while (!breaking) {
+            for (int i = 2; i < ctx.getChildCount() - 1; i++) {
+                Expression child = visit(ctx.getChild(i));
+                if (child == 1 )  {
+                    breaking = true;
+                    break;
+                }else{
+                loop.add(child);
+                System.out.println(ctx.getChild(i).getText());
+            }
+        }
+        return loop;
+    }
 
     @Override public Expression visitForever_loop(languageParser.Forever_loopContext ctx) {
         Forever_Loop loop = new Forever_Loop();
