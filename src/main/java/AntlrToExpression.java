@@ -2,6 +2,7 @@ import Expression.*;
 import Expression.Number;
 import grammar.*;
 
+import java.lang.reflect.Array;
 import java.security.KeyStore;
 import java.util.*;
 
@@ -64,57 +65,42 @@ public class AntlrToExpression extends languageBaseVisitor<Expression> {
         return new Number(num);
     }
 
-    @Override public Expression visitConditional_statement(languageParser.Conditional_statementContext ctx) { return visitChildren(ctx); }
 
     @Override public Expression visitIf_statement(languageParser.If_statementContext ctx) {
-        List<languageParser.ConditionContext> conditions = ctx.condition();
+        Expression condition = visit(ctx.getChild(0));
+        Expression body = visit(ctx.getChild(1));
+        Expression elseStmt= visit(ctx.getChild(2));
 
-        boolean evalutedBlock = false;
+        List<Expression> bodyList = new ArrayList<Expression>();
+        bodyList.add(body);
 
-        //iterating through each one and evaluates its getchild value (true of false)
-        for (grammar.languageParser.ConditionContext condition : conditions){
-            Expression evaluated = this.visit(ctx.condition());
+        List<Expression> elseStmtList = new ArrayList<Expression>();
+        elseStmtList.add(elseStmt);
 
-            //try to check if evaluated is a boolean or not!!
-            if (Boolean.valueOf(evaluated) = true){
-                evalutedBlock = true;
-                this.visit(ctx.stmt());
-                break;
-            }
-        }
-        if (!evalutedBlock && ctx.children != null){
-            this.visit(ctx.stmt());
-        }
-        return visitChildren(ctx); }
+        return new If(condition,bodyList,elseStmtList);
 
-
-    @Override public Expression visitBreak_statement(languageParser.Break_statementContext ctx) {
-     return new Break();
     }
 
+    @Override public Expression visitBreak_statement(languageParser.Break_statementContext ctx) {
+        return new Break();
+    }
 
-
-    @Override public Expression visitIterative_statement(languageParser.Iterative_statementContext ctx) { return visitChildren(ctx); }
 
     @Override public Expression visitFor_loop(languageParser.For_loopContext ctx) {
         System.out.print("hello");
         return visitChildren(ctx); }
 
     @Override public Expression visitWhile_loop(languageParser.While_loopContext ctx) {
-        While loop = new While();
-        boolean breaking = false;
-        while (!breaking) {
-            for (int i = 2; i < ctx.getChildCount() - 1; i++) {
-                Expression child = visit(ctx.getChild(i));
-                if (child == 1 )  {
-                    breaking = true;
-                    break;
-                }else{
-                loop.add(child);
-                System.out.println(ctx.getChild(i).getText());
-            }
-        }
-        return loop;
+        Expression condition = visit(ctx.getChild(2));
+         Expression body = visit(ctx.getChild(5));
+
+        List<Expression> bodyList = new ArrayList<Expression>();
+        bodyList.add(body);
+        System.out.println(condition);
+
+        return new While(condition,bodyList);
+
+
     }
 
     @Override public Expression visitForever_loop(languageParser.Forever_loopContext ctx) {
@@ -135,7 +121,10 @@ public class AntlrToExpression extends languageBaseVisitor<Expression> {
     }
 
 
-    @Override public Expression visitCondition(languageParser.ConditionContext ctx) { return visitChildren(ctx); }
+    @Override public Expression visitCondition(languageParser.ConditionContext ctx) {
+
+        return  visitChildren(ctx);
+    }
 
     @Override public Expression visitPrint(languageParser.PrintContext ctx) {
         String id = ctx.getChild(2).getText();
@@ -173,28 +162,28 @@ public class AntlrToExpression extends languageBaseVisitor<Expression> {
         return new VariableDeclaration(id, type, value);
     }
 
-    @Override public Expression visitType_reassign(languageParser.Type_reassignContext ctx) {
-        String id = ctx.getChild(0).getText();
-        int value = 0;
-        if (!vars.contains(id)){
-            semanticErrors.add("Error: variable " + id + " not declared ");
-        }
-        if (ctx.getChild(2).getChild(1).getText().equals("+")) {
-            value = Integer.parseInt(ctx.getChild(2).getChild(0).getText()) + Integer.parseInt(ctx.getChild(2).getChild(2).getText());
-        }else if(ctx.getChild(2).getChild(1).getText().equals("-")){
-            value = Integer.parseInt(ctx.getChild(2).getChild(0).getText()) - Integer.parseInt(ctx.getChild(2).getChild(2).getText());
-        } else if (ctx.getChild(2).getChild(1).getText().equals("*")){
-            value = Integer.parseInt(ctx.getChild(2).getChild(0).getText()) * Integer.parseInt(ctx.getChild(2).getChild(2).getText());
-        } else if (ctx.getChild(2).getChild(1).getText().equals("/")){
-            value = Integer.parseInt(ctx.getChild(2).getChild(0).getText()) / Integer.parseInt(ctx.getChild(2).getChild(2).getText());
-        } else{
-            value = Integer.parseInt(ctx.getChild(2).getChild(0).getText()) ^ Integer.parseInt(ctx.getChild(2).getChild(2).getText());
-        }
-        System.out.print("Before : " + values.toString() + " \n");
-        values.put(id, value);
-        System.out.print("After : " + values.toString() + " \n");
-        System.out.print("TYPE RE-DEF OF " + id + " TO "  + value + "\n");
-        return new VariableReDeclaration(id, value); }
+//    @Override public Expression visitType_reassign(languageParser.Type_reassignContext ctx) {
+//        String id = ctx.getChild(0).getText();
+//        int value = 0;
+//        if (!vars.contains(id)){
+//            semanticErrors.add("Error: variable " + id + " not declared ");
+//        }
+//        if (ctx.getChild(2).getChild(1).getText().equals("+")) {
+//            value = Integer.parseInt(ctx.getChild(2).getChild(0).getText()) + Integer.parseInt(ctx.getChild(2).getChild(2).getText());
+//        }else if(ctx.getChild(2).getChild(1).getText().equals("-")){
+//            value = Integer.parseInt(ctx.getChild(2).getChild(0).getText()) - Integer.parseInt(ctx.getChild(2).getChild(2).getText());
+//        } else if (ctx.getChild(2).getChild(1).getText().equals("*")){
+//            value = Integer.parseInt(ctx.getChild(2).getChild(0).getText()) * Integer.parseInt(ctx.getChild(2).getChild(2).getText());
+//        } else if (ctx.getChild(2).getChild(1).getText().equals("/")){
+//            value = Integer.parseInt(ctx.getChild(2).getChild(0).getText()) / Integer.parseInt(ctx.getChild(2).getChild(2).getText());
+//        } else{
+//            value = Integer.parseInt(ctx.getChild(2).getChild(0).getText()) ^ Integer.parseInt(ctx.getChild(2).getChild(2).getText());
+//        }
+//        System.out.print("Before : " + values.toString() + " \n");
+//        values.put(id, value);
+//        System.out.print("After : " + values.toString() + " \n");
+//        System.out.print("TYPE RE-DEF OF " + id + " TO "  + value + "\n");
+//        return new VariableReDeclaration(id, value); }
 
     @Override public Expression visitFunction_declaration(languageParser.Function_declarationContext ctx) {
         return visitChildren(ctx);

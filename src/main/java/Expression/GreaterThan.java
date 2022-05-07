@@ -10,8 +10,6 @@ public class GreaterThan extends Expression{
         this.right = right;
     }
 
-
-
     public String toString(){
         return left.toString() + " > " + right.toString();
     }
