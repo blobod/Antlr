@@ -74,6 +74,7 @@ public class AntlrToExpression extends languageBaseVisitor<Expression> {
         List<Expression> bodyList = new ArrayList<Expression>();
         bodyList.add(body);
 
+        System.out.println(ctx.getChild(5).getText());
         List<Expression> elseStmtList = new ArrayList<Expression>();
         elseStmtList.add(elseStmt);
 
@@ -91,15 +92,27 @@ public class AntlrToExpression extends languageBaseVisitor<Expression> {
         return visitChildren(ctx); }
 
     @Override public Expression visitWhile_loop(languageParser.While_loopContext ctx) {
-        Expression condition = visit(ctx.getChild(2));
-         Expression body = visit(ctx.getChild(5));
 
-        List<Expression> bodyList = new ArrayList<Expression>();
-        bodyList.add(body);
-        System.out.println(condition);
+        Expression condition = visit(ctx.getChild(2).getChild(0));
+        Expression body = visit(ctx.getChild(5));
+        int left = Integer.parseInt(ctx.getChild(2).getChild(0).getChild(0).getText());
+        int right = Integer.parseInt(ctx.getChild(2).getChild(0).getChild(2).getText());
+         List<Expression> bodyList = new ArrayList<>();
+        int i = 5;
+        boolean check = left > right;
+        while (check){
+            bodyList.add(body);
+            i++;
+            Expression child = visit(ctx.getChild(i));
+            System.out.println("while loop " + i + "\n");
+            if (child instanceof Break){
+                check = false;
+                break;
+            }
 
-        return new While(condition,bodyList);
+        }
 
+        return new While(bodyList, condition);
 
     }
 
@@ -127,20 +140,19 @@ public class AntlrToExpression extends languageBaseVisitor<Expression> {
     }
 
     @Override public Expression visitPrint(languageParser.PrintContext ctx) {
-        String id = ctx.getChild(2).getText();
-        int left = Integer.parseInt(ctx.getChild(2).getChild(0).getText());
-        int right = Integer.parseInt(ctx.getChild(2).getChild(2).getText());
+        String leftID = ctx.getChild(2).getChild(0).getText();
+        String rightID = ctx.getChild(2).getChild(2).getText();
         int result = 0;
-        if(vars.contains(id)){
-
-            int value = values.get(id);
+        if(vars.contains(leftID)){
+            int value = values.get(leftID);
+            System.out.println(leftID);
             System.out.println(value + "\n");
         }else if(ctx.getChild(2).getChild(1).getText().equals("+")){
+            int left = Integer.parseInt(ctx.getChild(2).getChild(0).getText());
+            int right = Integer.parseInt(ctx.getChild(2).getChild(2).getText());
             result = left + right;
-            System.out.print(result);
+            System.out.println(result);
         }
-
-
 
 
         return visitChildren(ctx); }
@@ -162,28 +174,26 @@ public class AntlrToExpression extends languageBaseVisitor<Expression> {
         return new VariableDeclaration(id, type, value);
     }
 
-//    @Override public Expression visitType_reassign(languageParser.Type_reassignContext ctx) {
-//        String id = ctx.getChild(0).getText();
-//        int value = 0;
-//        if (!vars.contains(id)){
-//            semanticErrors.add("Error: variable " + id + " not declared ");
-//        }
-//        if (ctx.getChild(2).getChild(1).getText().equals("+")) {
-//            value = Integer.parseInt(ctx.getChild(2).getChild(0).getText()) + Integer.parseInt(ctx.getChild(2).getChild(2).getText());
-//        }else if(ctx.getChild(2).getChild(1).getText().equals("-")){
-//            value = Integer.parseInt(ctx.getChild(2).getChild(0).getText()) - Integer.parseInt(ctx.getChild(2).getChild(2).getText());
-//        } else if (ctx.getChild(2).getChild(1).getText().equals("*")){
-//            value = Integer.parseInt(ctx.getChild(2).getChild(0).getText()) * Integer.parseInt(ctx.getChild(2).getChild(2).getText());
-//        } else if (ctx.getChild(2).getChild(1).getText().equals("/")){
-//            value = Integer.parseInt(ctx.getChild(2).getChild(0).getText()) / Integer.parseInt(ctx.getChild(2).getChild(2).getText());
-//        } else{
-//            value = Integer.parseInt(ctx.getChild(2).getChild(0).getText()) ^ Integer.parseInt(ctx.getChild(2).getChild(2).getText());
-//        }
-//        System.out.print("Before : " + values.toString() + " \n");
-//        values.put(id, value);
-//        System.out.print("After : " + values.toString() + " \n");
-//        System.out.print("TYPE RE-DEF OF " + id + " TO "  + value + "\n");
-//        return new VariableReDeclaration(id, value); }
+ @Override public Expression visitType_reassign(languageParser.Type_reassignContext ctx) {
+        String id = ctx.getChild(0).getText();
+        int value = 0;
+        if (!vars.contains(id)){
+            semanticErrors.add("Error: variable " + id + " not declared ");
+        }
+        if (ctx.getChild(2).getChild(1).getText().equals("+")) {
+            value = Integer.parseInt(ctx.getChild(2).getChild(0).getText()) + Integer.parseInt(ctx.getChild(2).getChild(2).getText());
+        }else if(ctx.getChild(2).getChild(1).getText().equals("-")){
+            value = Integer.parseInt(ctx.getChild(2).getChild(0).getText()) - Integer.parseInt(ctx.getChild(2).getChild(2).getText());
+       } else if (ctx.getChild(2).getChild(1).getText().equals("*")){
+            value = Integer.parseInt(ctx.getChild(2).getChild(0).getText()) * Integer.parseInt(ctx.getChild(2).getChild(2).getText());
+        } else if (ctx.getChild(2).getChild(1).getText().equals("/")){
+            value = Integer.parseInt(ctx.getChild(2).getChild(0).getText()) / Integer.parseInt(ctx.getChild(2).getChild(2).getText());
+        } else{
+            value = Integer.parseInt(ctx.getChild(2).getChild(0).getText()) ^ Integer.parseInt(ctx.getChild(2).getChild(2).getText());
+        }
+        values.put(id, value);
+        System.out.print("TYPE RE-DEF OF " + id + " TO "  + value + "\n");
+        return new VariableReDeclaration(id, value); }
 
     @Override public Expression visitFunction_declaration(languageParser.Function_declarationContext ctx) {
         return visitChildren(ctx);
@@ -195,7 +205,7 @@ public class AntlrToExpression extends languageBaseVisitor<Expression> {
         Expression left = visit(ctx.getChild(0)); // recursively visit the left subtree of the current Multiplication node
         Expression right = visit(ctx.getChild(2));
 
-        return new GreaterThan(left, right);
+        return visitChildren(ctx);
     }
 
 
