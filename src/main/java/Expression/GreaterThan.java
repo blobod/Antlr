@@ -6,12 +6,12 @@ public class GreaterThan extends Expression{
     public Expression right;
 
     public GreaterThan(Expression left, Expression right) {
-        this.left = left;
+      this.left = left;
         this.right = right;
     }
 
     public String toString(){
-        return left.toString() + " > " + right.toString();
+      return left.toString() + " > " + right.toString();
     }
 }
 

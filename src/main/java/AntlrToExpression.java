@@ -46,10 +46,12 @@ public class AntlrToExpression extends languageBaseVisitor<Expression> {
     }
 
     @Override public Expression visitBigger_expression(languageParser.Bigger_expressionContext ctx) {
-        return visitChildren(ctx);}
+        return visitChildren(ctx);
+    }
 
     @Override public Expression visitParanthesis(languageParser.ParanthesisContext ctx) {
-        return visitChildren(ctx); }
+        return visitChildren(ctx);
+    }
 
     @Override public Expression visitVariable(languageParser.VariableContext ctx) {
         String id = ctx.getChild(0).getText();
@@ -62,7 +64,8 @@ public class AntlrToExpression extends languageBaseVisitor<Expression> {
     @Override public Expression visitNumber(languageParser.NumberContext ctx) {
         String numText = ctx.getChild(0).getText();
         int num = Integer.parseInt(numText);
-        return new Number(num);
+	System.out.println (num);
+	return new Number(num);
     }
 
 
@@ -92,12 +95,12 @@ public class AntlrToExpression extends languageBaseVisitor<Expression> {
 
     @Override public Expression visitWhile_loop(languageParser.While_loopContext ctx) {
         Expression condition = visit(ctx.getChild(2));
-         Expression body = visit(ctx.getChild(5));
+        Expression body = visit(ctx.getChild(5));
 
         List<Expression> bodyList = new ArrayList<Expression>();
         bodyList.add(body);
         System.out.println(condition);
-
+	
         return new While(condition,bodyList);
 
 
@@ -122,7 +125,6 @@ public class AntlrToExpression extends languageBaseVisitor<Expression> {
 
 
     @Override public Expression visitCondition(languageParser.ConditionContext ctx) {
-
         return  visitChildren(ctx);
     }
 
@@ -193,8 +195,7 @@ public class AntlrToExpression extends languageBaseVisitor<Expression> {
 
     @Override public Expression visitGreatherThan(languageParser.GreatherThanContext ctx) {
         Expression left = visit(ctx.getChild(0)); // recursively visit the left subtree of the current Multiplication node
-        Expression right = visit(ctx.getChild(2));
-
+	Expression right = visit(ctx.getChild(2));
         return new GreaterThan(left, right);
     }
 
