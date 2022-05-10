@@ -1,75 +1,92 @@
-import Expression.*;
 import Expression.Number;
-import grammar.*;
+import Expression.*;
+import grammar.languageBaseVisitor;
+import grammar.languageParser;
 
-import java.lang.reflect.Array;
-import java.security.KeyStore;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class AntlrToExpression extends languageBaseVisitor<Expression> {
 
     private List<String> vars; //Stores all variables that are declared in the program
     private List<String> semanticErrors; //Duplicate declaration, Reference to undeclared
     private Map<String, Integer> values;
-    public AntlrToExpression(List<String> semanticErrors){
+
+    public AntlrToExpression(List<String> semanticErrors) {
         vars = new ArrayList<>();
         values = new HashMap<>();
         this.semanticErrors = semanticErrors;
     }
 
-    @Override public Expression visitAddition(languageParser.AdditionContext ctx) {
+    @Override
+    public Expression visitAddition(languageParser.AdditionContext ctx) {
         Expression left = visit(ctx.getChild(0)); // recursively visit the left subtree of the current Multiplication node
         Expression right = visit(ctx.getChild(2));
-        return new Addition(left, right); }
+        return new Addition(left, right);
+    }
 
-    @Override public Expression visitSubstraktion(languageParser.SubstraktionContext ctx) {
+    @Override
+    public Expression visitSubstraktion(languageParser.SubstraktionContext ctx) {
         Expression left = visit(ctx.getChild(0)); // recursively visit the left subtree of the current Multiplication node
         Expression right = visit(ctx.getChild(2));
-        return new Substraktion(left, right); }
+        return new Substraktion(left, right);
+    }
 
-    @Override public Expression visitMultiplication(languageParser.MultiplicationContext ctx) {
+    @Override
+    public Expression visitMultiplication(languageParser.MultiplicationContext ctx) {
         Expression left = visit(ctx.getChild(0)); // recursively visit the left subtree of the current Multiplication node
         Expression right = visit(ctx.getChild(2));
         return new Multiplication(left, right);
     }
 
-    @Override public Expression visitDivision(languageParser.DivisionContext ctx) {
+    @Override
+    public Expression visitDivision(languageParser.DivisionContext ctx) {
         Expression left = visit(ctx.getChild(0)); // recursively visit the left subtree of the current MUltiplication node
         Expression right = visit(ctx.getChild(2));
         return new Division(left, right);
     }
 
-    @Override public Expression visitPower_of(languageParser.Power_ofContext ctx) {
+    @Override
+    public Expression visitPower_of(languageParser.Power_ofContext ctx) {
         Expression left = visit(ctx.getChild(0)); // recursively visit the left subtree of the current MUltiplication node
         Expression right = visit(ctx.getChild(2));
         return new Power_Of(left, right);
     }
 
-    @Override public Expression visitBigger_expression(languageParser.Bigger_expressionContext ctx) {
-        return visitChildren(ctx);}
+    @Override
+    public Expression visitBigger_expression(languageParser.Bigger_expressionContext ctx) {
+        return visitChildren(ctx);
+    }
 
-    @Override public Expression visitParanthesis(languageParser.ParanthesisContext ctx) {
-        return visitChildren(ctx); }
+    @Override
+    public Expression visitParanthesis(languageParser.ParanthesisContext ctx) {
+        return visitChildren(ctx);
+    }
 
-    @Override public Expression visitVariable(languageParser.VariableContext ctx) {
+    @Override
+    public Expression visitVariable(languageParser.VariableContext ctx) {
         String id = ctx.getChild(0).getText();
-        if (!vars.contains(id)){
-            semanticErrors.add("Error: variable " + id + " not declared" );
+        if (!vars.contains(id)) {
+            semanticErrors.add("Error: variable " + id + " not declared");
         }
         return new Variable(id);
     }
 
-    @Override public Expression visitNumber(languageParser.NumberContext ctx) {
+    @Override
+    public Expression visitNumber(languageParser.NumberContext ctx) {
         String numText = ctx.getChild(0).getText();
         int num = Integer.parseInt(numText);
         return new Number(num);
     }
 
 
-    @Override public Expression visitIf_statement(languageParser.If_statementContext ctx) {
+    @Override
+    public Expression visitIf_statement(languageParser.If_statementContext ctx) {
         Expression condition = visit(ctx.getChild(0));
         Expression body = visit(ctx.getChild(1));
-        Expression elseStmt= visit(ctx.getChild(2));
+        Expression elseStmt = visit(ctx.getChild(2));
 
         List<Expression> bodyList = new ArrayList<Expression>();
         bodyList.add(body);
@@ -78,34 +95,38 @@ public class AntlrToExpression extends languageBaseVisitor<Expression> {
         List<Expression> elseStmtList = new ArrayList<Expression>();
         elseStmtList.add(elseStmt);
 
-        return new If(condition,bodyList,elseStmtList);
+        return new If(condition, bodyList, elseStmtList);
 
     }
 
-    @Override public Expression visitBreak_statement(languageParser.Break_statementContext ctx) {
+    @Override
+    public Expression visitBreak_statement(languageParser.Break_statementContext ctx) {
         return new Break();
     }
 
 
-    @Override public Expression visitFor_loop(languageParser.For_loopContext ctx) {
+    @Override
+    public Expression visitFor_loop(languageParser.For_loopContext ctx) {
         System.out.print("hello");
-        return visitChildren(ctx); }
+        return visitChildren(ctx);
+    }
 
-    @Override public Expression visitWhile_loop(languageParser.While_loopContext ctx) {
+    @Override
+    public Expression visitWhile_loop(languageParser.While_loopContext ctx) {
 
         Expression condition = visit(ctx.getChild(2).getChild(0));
         Expression body = visit(ctx.getChild(5));
         int left = Integer.parseInt(ctx.getChild(2).getChild(0).getChild(0).getText());
         int right = Integer.parseInt(ctx.getChild(2).getChild(0).getChild(2).getText());
-         List<Expression> bodyList = new ArrayList<>();
+        List<Expression> bodyList = new ArrayList<>();
         int i = 5;
         boolean check = left > right;
-        while (check){
+        while (check) {
             bodyList.add(body);
             i++;
             Expression child = visit(ctx.getChild(i));
             System.out.println("while loop " + i + "\n");
-            if (child instanceof Break){
+            if (child instanceof Break) {
                 check = false;
                 break;
             }
@@ -116,7 +137,8 @@ public class AntlrToExpression extends languageBaseVisitor<Expression> {
 
     }
 
-    @Override public Expression visitForever_loop(languageParser.Forever_loopContext ctx) {
+    @Override
+    public Expression visitForever_loop(languageParser.Forever_loopContext ctx) {
         Forever_Loop loop = new Forever_Loop();
         boolean breaking = false;
         while (!breaking) {
@@ -134,37 +156,125 @@ public class AntlrToExpression extends languageBaseVisitor<Expression> {
     }
 
 
-    @Override public Expression visitCondition(languageParser.ConditionContext ctx) {
+    @Override
+    public Expression visitCondition(languageParser.ConditionContext ctx) {
 
-        return  visitChildren(ctx);
+        return visitChildren(ctx);
     }
 
-    @Override public Expression visitPrint(languageParser.PrintContext ctx) {
+    @Override
+    public Expression visitPrint(languageParser.PrintContext ctx) {
         String leftID = ctx.getChild(2).getChild(0).getText();
-        String rightID = ctx.getChild(2).getChild(2).getText();
+
+        String rightID = " ";
+        int left = 0;
+        int right = 0;
         int result = 0;
-        if(vars.contains(leftID)){
-            int value = values.get(leftID);
-            System.out.println(leftID);
-            System.out.println(value + "\n");
-        }else if(ctx.getChild(2).getChild(1).getText().equals("+")){
-            int left = Integer.parseInt(ctx.getChild(2).getChild(0).getText());
-            int right = Integer.parseInt(ctx.getChild(2).getChild(2).getText());
-            result = left + right;
-            System.out.println(result);
+        try {
+            rightID = ctx.getChild(2).getChild(2).getText();
+            if (ctx.getChild(2).getChild(1).getText().equals("-")) {
+                if (Check(leftID)) {
+                    left = Integer.parseInt(ctx.getChild(2).getChild(0).getText());
+
+                } else {
+                    left = values.get(leftID);
+                }
+                if (Check(rightID)) {
+                    right = Integer.parseInt(ctx.getChild(2).getChild(2).getText());
+                } else {
+                    right = values.get(rightID);
+                }
+                result = left - right;
+                System.out.println(result);
+            } else if (ctx.getChild(2).getChild(1).getText().equals("+")) {
+                if (Check(leftID)) {
+                    left = Integer.parseInt(ctx.getChild(2).getChild(0).getText());
+
+                } else {
+                    left = values.get(leftID);
+                }
+                if (Check(rightID)) {
+                    right = Integer.parseInt(ctx.getChild(2).getChild(2).getText());
+                } else {
+                    right = values.get(rightID);
+                }
+                result = left + right;
+                System.out.println(result);
+            } else if (ctx.getChild(2).getChild(1).getText().equals("*")) {
+                if (Check(leftID)) {
+                    left = Integer.parseInt(ctx.getChild(2).getChild(0).getText());
+
+                } else {
+                    left = values.get(leftID);
+                }
+                if (Check(rightID)) {
+                    right = Integer.parseInt(ctx.getChild(2).getChild(2).getText());
+                } else {
+                    right = values.get(rightID);
+                }
+                result = left * right;
+                System.out.println(result);
+            } else if (ctx.getChild(2).getChild(1).getText().equals("/")) {
+                if (Check(leftID)) {
+                    left = Integer.parseInt(ctx.getChild(2).getChild(0).getText());
+
+                } else {
+                    left = values.get(leftID);
+                }
+                if (Check(rightID)) {
+                    right = Integer.parseInt(ctx.getChild(2).getChild(2).getText());
+                } else {
+                    right = values.get(rightID);
+                }
+                result = left / right;
+                System.out.println(result);
+            } else if (ctx.getChild(2).getChild(1).getText().equals("^")) {
+                if (Check(leftID)) {
+                    left = Integer.parseInt(ctx.getChild(2).getChild(0).getText());
+
+                } else {
+                    left = values.get(leftID);
+                }
+                if (Check(rightID)) {
+                    right = Integer.parseInt(ctx.getChild(2).getChild(2).getText());
+                } else {
+                    right = values.get(rightID);
+                }
+                double resultDouble = Math.pow(left, right);
+                System.out.println(resultDouble);
+            }
+        }catch (NullPointerException e){
+            if (vars.contains(leftID)) {
+                System.out.println("hello");
+                left = values.get(leftID);
+                System.out.println(leftID);
+                System.out.println(left + "\n");
+            } else {
+                System.out.println("Print statement is empty. ");
+            }
         }
 
+        return visitChildren(ctx);
+    }
 
-        return visitChildren(ctx); }
+    public boolean Check(String id) {
+        try {
+            Integer.parseInt(id);
+            return true;
+        } catch (NumberFormatException e) {
+            return false;
+        }
+    }
 
-    @Override public Expression visitType_definition(languageParser.Type_definitionContext ctx) {
+    @Override
+    public Expression visitType_definition(languageParser.Type_definitionContext ctx) {
 
 
         String id = ctx.getChild(1).getText();
         int value = Integer.parseInt(ctx.VALUE().getText());
-        if (vars.contains(id)){
+        if (vars.contains(id)) {
             semanticErrors.add("Error: variable " + id + " already declared ");
-        }else{
+        } else {
             vars.add(id);
             values.put(id, value);
         }
@@ -174,34 +284,41 @@ public class AntlrToExpression extends languageBaseVisitor<Expression> {
         return new VariableDeclaration(id, type, value);
     }
 
- @Override public Expression visitType_reassign(languageParser.Type_reassignContext ctx) {
+    @Override
+    public Expression visitType_reassign(languageParser.Type_reassignContext ctx) {
         String id = ctx.getChild(0).getText();
         int value = 0;
-        if (!vars.contains(id)){
+        if (!vars.contains(id)) {
             semanticErrors.add("Error: variable " + id + " not declared ");
         }
         if (ctx.getChild(2).getChild(1).getText().equals("+")) {
             value = Integer.parseInt(ctx.getChild(2).getChild(0).getText()) + Integer.parseInt(ctx.getChild(2).getChild(2).getText());
-        }else if(ctx.getChild(2).getChild(1).getText().equals("-")){
+        } else if (ctx.getChild(2).getChild(1).getText().equals("-")) {
             value = Integer.parseInt(ctx.getChild(2).getChild(0).getText()) - Integer.parseInt(ctx.getChild(2).getChild(2).getText());
-       } else if (ctx.getChild(2).getChild(1).getText().equals("*")){
+        } else if (ctx.getChild(2).getChild(1).getText().equals("*")) {
             value = Integer.parseInt(ctx.getChild(2).getChild(0).getText()) * Integer.parseInt(ctx.getChild(2).getChild(2).getText());
-        } else if (ctx.getChild(2).getChild(1).getText().equals("/")){
+        } else if (ctx.getChild(2).getChild(1).getText().equals("/")) {
             value = Integer.parseInt(ctx.getChild(2).getChild(0).getText()) / Integer.parseInt(ctx.getChild(2).getChild(2).getText());
-        } else{
+        } else {
             value = Integer.parseInt(ctx.getChild(2).getChild(0).getText()) ^ Integer.parseInt(ctx.getChild(2).getChild(2).getText());
         }
         values.put(id, value);
-        System.out.print("TYPE RE-DEF OF " + id + " TO "  + value + "\n");
-        return new VariableReDeclaration(id, value); }
+        System.out.print("TYPE RE-DEF OF " + id + " TO " + value + "\n");
+        return new VariableReDeclaration(id, value);
+    }
 
-    @Override public Expression visitFunction_declaration(languageParser.Function_declarationContext ctx) {
+    @Override
+    public Expression visitFunction_declaration(languageParser.Function_declarationContext ctx) {
         return visitChildren(ctx);
     }
 
-    @Override public Expression visitParam(languageParser.ParamContext ctx) { return visitChildren(ctx); }
+    @Override
+    public Expression visitParam(languageParser.ParamContext ctx) {
+        return visitChildren(ctx);
+    }
 
-    @Override public Expression visitGreatherThan(languageParser.GreatherThanContext ctx) {
+    @Override
+    public Expression visitGreatherThan(languageParser.GreatherThanContext ctx) {
         Expression left = visit(ctx.getChild(0)); // recursively visit the left subtree of the current Multiplication node
         Expression right = visit(ctx.getChild(2));
 
@@ -209,15 +326,30 @@ public class AntlrToExpression extends languageBaseVisitor<Expression> {
     }
 
 
-    @Override public Expression visitLesserThan(languageParser.LesserThanContext ctx) { return visitChildren(ctx); }
+    @Override
+    public Expression visitLesserThan(languageParser.LesserThanContext ctx) {
+        return visitChildren(ctx);
+    }
 
-    @Override public Expression visitEqualWith(languageParser.EqualWithContext ctx) { return visitChildren(ctx); }
+    @Override
+    public Expression visitEqualWith(languageParser.EqualWithContext ctx) {
+        return visitChildren(ctx);
+    }
 
-    @Override public Expression visitGreatherorEqualThan(languageParser.GreatherorEqualThanContext ctx) { return visitChildren(ctx); }
+    @Override
+    public Expression visitGreatherorEqualThan(languageParser.GreatherorEqualThanContext ctx) {
+        return visitChildren(ctx);
+    }
 
 
-    @Override public Expression visitLesserorEqualThan(languageParser.LesserorEqualThanContext ctx) { return visitChildren(ctx); }
+    @Override
+    public Expression visitLesserorEqualThan(languageParser.LesserorEqualThanContext ctx) {
+        return visitChildren(ctx);
+    }
 
-    @Override public Expression visitIsNotEqualWith(languageParser.IsNotEqualWithContext ctx) { return visitChildren(ctx); }
+    @Override
+    public Expression visitIsNotEqualWith(languageParser.IsNotEqualWithContext ctx) {
+        return visitChildren(ctx);
+    }
 }
 
