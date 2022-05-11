@@ -7,7 +7,7 @@ entrypoint
     : (AT_SIGN START (stmts)+ AT_SIGN STOP);
 
 stmts
-    : stmt;
+    : stmt+;
 
 stmt
     : conditional_statement
@@ -54,7 +54,8 @@ conditional_statement
     : if_statement
     | break_statement;
 if_statement
-    : IF LPAR condition RPAR LCBRAC (stmts)+ RCBRAC (ELSE LCBRAC (stmts)+ RCBRAC)?;
+    : IF LPAR condition RPAR LCBRAC (stmts) RCBRAC # If
+    | IF LPAR condition RPAR LCBRAC (stmts) RCBRAC (ELSE LCBRAC (stmts) RCBRAC) # Else;
 break_statement
     : BREAK;
 
