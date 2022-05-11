@@ -86,13 +86,25 @@ public class AntlrToExpression extends languageBaseVisitor<Expression> {
     @Override
     public Expression visitIf(languageParser.IfContext ctx) {
         Expression condition = visit(ctx.getChild(2).getChild(0));
-        int left = Integer.parseInt(ctx.getChild(2).getChild(0).getChild(0).getText());
-        int right = Integer.parseInt(ctx.getChild(2).getChild(0).getChild(2).getText());
         String symbol = ctx.getChild(2).getChild(0).getChild(1).getText();
         Expression body;
-        List<Expression> bodyList = new ArrayList<Expression>();
+        int left = 0;
+        int right = 0;
+        boolean check = false;
+        try {
+            left = Integer.parseInt(ctx.getChild(2).getChild(0).getChild(0).getText());
+        }catch (NumberFormatException e){
+            left = values.get(ctx.getChild(2).getChild(0).getChild(0).getText());
+        }
+        try {
+            right = Integer.parseInt(ctx.getChild(2).getChild(0).getChild(2).getText());
+        }catch (NumberFormatException e){
+            right = values.get(ctx.getChild(2).getChild(0).getChild(2).getText());
+        }
 
-        boolean check = ConditionCheck(left, symbol, right);
+       check = ConditionCheck(left,symbol,right);
+        List<Expression> bodyList = new ArrayList<Expression>();
+        
         int i = 5;
         if (check){
             while (i != ctx.getChildCount() - 1){
