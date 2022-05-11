@@ -104,22 +104,48 @@ public class AntlrToExpression extends languageBaseVisitor<Expression> {
 
        check = ConditionCheck(left,symbol,right);
         List<Expression> bodyList = new ArrayList<Expression>();
-        
-        int i = 5;
+
         if (check){
-            while (i != ctx.getChildCount() - 1){
-                body = visit(ctx.getChild(i));
-                bodyList.add(body);
-                i++;
-            }
+            body = visit(ctx.getChild(5));
+            bodyList.add(body);
         }
+
         return new If(condition, bodyList);
     }
 
     @Override
     public Expression visitElse(languageParser.ElseContext ctx) {
+        Expression condition = visit(ctx.getChild(2).getChild(0));
+        String symbol = ctx.getChild(2).getChild(0).getChild(1).getText();
+        Expression body;
+        Expression Else;
+        int left = 0;
+        int right = 0;
+        boolean check = false;
+        try {
+            left = Integer.parseInt(ctx.getChild(2).getChild(0).getChild(0).getText());
+        }catch (NumberFormatException e){
+            left = values.get(ctx.getChild(2).getChild(0).getChild(0).getText());
+        }
+        try {
+            right = Integer.parseInt(ctx.getChild(2).getChild(0).getChild(2).getText());
+        }catch (NumberFormatException e){
+            right = values.get(ctx.getChild(2).getChild(0).getChild(2).getText());
+        }
 
-        return visitChildren(ctx); }
+        check = ConditionCheck(left,symbol,right);
+        List<Expression> bodyList = new ArrayList<Expression>();
+        List<Expression> elseList = new ArrayList<>();
+        if (check){
+            body = visit(ctx.getChild(5));
+            bodyList.add(body);
+        }else {
+            Else = visit(ctx.getChild(9));
+            elseList.add(Else);
+        }
+
+        return new If_else(condition, bodyList, elseList);
+    }
 
     @Override
     public Expression visitBreak_statement(languageParser.Break_statementContext ctx) {
@@ -153,7 +179,6 @@ public class AntlrToExpression extends languageBaseVisitor<Expression> {
         String symbol = ctx.getChild(2).getChild(0).getChild(1).getText();
         check = ConditionCheck(left, symbol, right);
         List<Expression> bodyList = new ArrayList<>();
-        int i = 5;
         int y = 0;
         while (check) {
             try {
@@ -166,16 +191,12 @@ public class AntlrToExpression extends languageBaseVisitor<Expression> {
             }catch (NumberFormatException e){
                 right = values.get(ctx.getChild(2).getChild(0).getChild(2).getText());
             }
-            while (i != ctx.getChildCount() - 1){
-                Expression body = visit(ctx.getChild(i));
+                Expression body = visit(ctx.getChild(5));
                 bodyList.add(body);
-                System.out.println(ctx.getChild(i).getText());
-                i++;
+
                 if (body instanceof Break) {
                     break;
                 }
-            }
-            i = 5;
             y++;
 
             System.out.println("while loop " + y + "\n");

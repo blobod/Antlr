@@ -21,7 +21,7 @@ declaration
     | type_reassign;
 
 print
-    : PRINT LPAR (expression | stmt)+ RPAR;
+    : PRINT LPAR (expression | stmts)+ RPAR;
 
 //TYPES
 type_definition
@@ -32,7 +32,7 @@ type_reassign
 
 //Function declaration
 function_declaration
-    : (TYPE | VOID) ID LPAR param+ RPAR LCBRAC (stmt | ID | expression | type_definition)* RCBRAC;
+    : (TYPE | VOID) ID LPAR param+ RPAR LCBRAC (stmts | ID | expression | type_definition)* RCBRAC;
 param
     : TYPE ID
     | (COMMA)* TYPE ID;
@@ -67,11 +67,11 @@ iterative_statement
     | while_loop
     | forever_loop;
 for_loop
-    : FOR LPAR (stmt) COMMA (condition) COMMA expression LCBRAC (stmt)+ RCBRAC;
+    : FOR LPAR (stmt) COMMA (condition) COMMA expression LCBRAC (stmts) RCBRAC;
 while_loop
-    : WHILE LPAR (condition) RPAR LCBRAC (stmt)+ RCBRAC;
+    : WHILE LPAR (condition) RPAR LCBRAC (stmts) RCBRAC;
 forever_loop
-    : FOREVER LCBRAC (stmt)+ RCBRAC;
+    : FOREVER LCBRAC (stmts) RCBRAC;
 // ITERATIVE STATEMENT
 
 //CONDITIONS
