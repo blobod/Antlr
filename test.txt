@@ -1,6 +1,6 @@
 int x = 1
 int y = 12
-if(x > 2){
-print(x)
+while(x < 12){
+x = x + 1
 }
 

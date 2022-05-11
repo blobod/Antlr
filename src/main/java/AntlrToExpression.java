@@ -118,6 +118,7 @@ public class AntlrToExpression extends languageBaseVisitor<Expression> {
         System.out.println(ctx.getChild(2).getChild(0).getText());
         int left = 0;
         int right = 0;
+        boolean check = false;
         try {
             left = Integer.parseInt(ctx.getChild(2).getChild(0).getChild(0).getText());
         }catch (NumberFormatException e){
@@ -128,11 +129,11 @@ public class AntlrToExpression extends languageBaseVisitor<Expression> {
         }catch (NumberFormatException e){
             right = values.get(ctx.getChild(2).getChild(0).getChild(2).getText());
         }
-
+        String symbol = ctx.getChild(2).getChild(0).getChild(1).getText();
+        check = ConditionCheck(left, symbol, right);
         List<Expression> bodyList = new ArrayList<>();
         int i = 5;
         int y = 0;
-        boolean check = left > right;
         while (check) {
             try {
                 left = Integer.parseInt(ctx.getChild(2).getChild(0).getChild(0).getText());
@@ -158,11 +159,25 @@ public class AntlrToExpression extends languageBaseVisitor<Expression> {
 
             System.out.println("while loop " + y + "\n");
 
-            check = left > right;
+            check = ConditionCheck(left, symbol, right);
         }
 
         return new While(condition, bodyList);
 
+    }
+
+    public boolean ConditionCheck(int left, String symbol, int right){
+        boolean check = false;
+        switch (symbol) {
+            case "<" -> check = left < right;
+            case ">" -> check = left > right;
+            case "==" -> check = left == right;
+            case "<=" -> check = left <= right;
+            case ">=" -> check = left >= right;
+            case "!=" -> check = left != right;
+            default -> System.out.println("This symbol does not exist");
+        }
+        return check;
     }
 
     @Override

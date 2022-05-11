@@ -54,7 +54,7 @@ conditional_statement
     : if_statement
     | break_statement;
 if_statement
-    : IF LPAR condition RPAR LCBRAC (stmt)+ RCBRAC (ELSE LCBRAC stmt RCBRAC)?;
+    : IF LPAR condition RPAR LCBRAC (stmts)+ RCBRAC (ELSE LCBRAC (stmts)+ RCBRAC)?;
 break_statement
     : BREAK;
 
@@ -78,12 +78,12 @@ condition
     : boolean_expression (OR boolean_expression)*;
 
 boolean_expression
-    : (ID | VALUE) GREATHER (ID | VALUE) # GreatherThan
-    | (ID | VALUE) LESSER (ID | VALUE) # LesserThan
-    | (ID | VALUE) EQUAL (ID | VALUE) # EqualWith
-    | (ID | VALUE) GREATHEROREQUAL (ID | VALUE) # GreatherorEqualThan
-    | (ID | VALUE) LESSEROREQUAL (ID | VALUE) # LesserorEqualThan
-    | (ID | VALUE) ISNOTEQUAL (ID | VALUE) # IsNotEqualWith;
+    : expression GREATHER expression # GreatherThan
+    | expression LESSER expression # LesserThan
+    | expression EQUAL expression # EqualWith
+    | expression GREATHEROREQUAL expression # GreatherorEqualThan
+    | expression LESSEROREQUAL expression # LesserorEqualThan
+    | expression ISNOTEQUAL expression # IsNotEqualWith;
 
 GREATHER
     : '>'
