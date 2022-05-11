@@ -89,6 +89,25 @@ public class AntlrToExpression extends languageBaseVisitor<Expression> {
         Expression body = visit(ctx.getChild(5));
         Expression elseStmt = visit(ctx.getChild(2));
 
+
+        int left = 0;
+        int right = 0;
+        String symbol = ctx.getChild(2).getChild(0).getChild(1).getText();
+        boolean check = false;
+        try {
+            left = Integer.parseInt(ctx.getChild(2).getChild(0).getChild(0).getText());
+        }catch (NumberFormatException e){
+            left = values.get(ctx.getChild(2).getChild(0).getChild(0).getText());
+        }
+        try {
+            right = Integer.parseInt(ctx.getChild(2).getChild(0).getChild(2).getText());
+        }catch (NumberFormatException e){
+            right = values.get(ctx.getChild(2).getChild(0).getChild(2).getText());
+        }
+
+       check = ConditionCheck(left,symbol,right);
+
+
         List<Expression> bodyList = new ArrayList<Expression>();
         bodyList.add(body);
 
