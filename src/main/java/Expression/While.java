@@ -7,9 +7,9 @@ public class While extends Expression{
     public Expression condition;
     public List<Expression> body;
 
-    public While(List<Expression> body, Expression condition){
-        this.body = new ArrayList<>(body);
+    public While(Expression condition, List<Expression> body){
         this.condition = condition;
+        this.body = new ArrayList<>(body);
     }
 
     public void add(Expression child) {
@@ -18,8 +18,4 @@ public class While extends Expression{
 
     public void get(int x){ body.get(x);}
 
-    @Override
-    public String toString(){
-        return "while (" + condition + ") {"  + body + "}";
-    }
 }

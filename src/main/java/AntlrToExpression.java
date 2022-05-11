@@ -3,6 +3,7 @@ import Expression.*;
 import grammar.languageBaseVisitor;
 import grammar.languageParser;
 
+import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -84,8 +85,8 @@ public class AntlrToExpression extends languageBaseVisitor<Expression> {
 
     @Override
     public Expression visitIf_statement(languageParser.If_statementContext ctx) {
-        Expression condition = visit(ctx.getChild(0));
-        Expression body = visit(ctx.getChild(1));
+        Expression condition = visit(ctx.getChild(2));
+        Expression body = visit(ctx.getChild(5));
         Expression elseStmt = visit(ctx.getChild(2));
 
         List<Expression> bodyList = new ArrayList<Expression>();
@@ -107,33 +108,60 @@ public class AntlrToExpression extends languageBaseVisitor<Expression> {
 
     @Override
     public Expression visitFor_loop(languageParser.For_loopContext ctx) {
-        System.out.print("hello");
         return visitChildren(ctx);
     }
 
     @Override
     public Expression visitWhile_loop(languageParser.While_loopContext ctx) {
 
-        Expression condition = visit(ctx.getChild(2).getChild(0));
-        Expression body = visit(ctx.getChild(5));
-        int left = Integer.parseInt(ctx.getChild(2).getChild(0).getChild(0).getText());
-        int right = Integer.parseInt(ctx.getChild(2).getChild(0).getChild(2).getText());
-        List<Expression> bodyList = new ArrayList<>();
-        int i = 5;
-        boolean check = left > right;
-        while (check) {
-            bodyList.add(body);
-            i++;
-            Expression child = visit(ctx.getChild(i));
-            System.out.println("while loop " + i + "\n");
-            if (child instanceof Break) {
-                check = false;
-                break;
-            }
-
+        Expression condition = visit(ctx.getChild(2));
+        System.out.println(ctx.getChild(2).getChild(0).getText());
+        int left = 0;
+        int right = 0;
+        try {
+            left = Integer.parseInt(ctx.getChild(2).getChild(0).getChild(0).getText());
+        }catch (NumberFormatException e){
+            left = values.get(ctx.getChild(2).getChild(0).getChild(0).getText());
+        }
+        try {
+            right = Integer.parseInt(ctx.getChild(2).getChild(0).getChild(2).getText());
+        }catch (NumberFormatException e){
+            right = values.get(ctx.getChild(2).getChild(0).getChild(2).getText());
         }
 
-        return new While(bodyList, condition);
+        List<Expression> bodyList = new ArrayList<>();
+        int i = 5;
+        int y = 0;
+        boolean check = left > right;
+        while (check) {
+            try {
+                left = Integer.parseInt(ctx.getChild(2).getChild(0).getChild(0).getText());
+            }catch (NumberFormatException e){
+                left = values.get(ctx.getChild(2).getChild(0).getChild(0).getText());
+            }
+            try {
+                right = Integer.parseInt(ctx.getChild(2).getChild(0).getChild(2).getText());
+            }catch (NumberFormatException e){
+                right = values.get(ctx.getChild(2).getChild(0).getChild(2).getText());
+            }
+            while (i != ctx.getChildCount() - 1){
+                Expression body = visit(ctx.getChild(i));
+                bodyList.add(body);
+                System.out.println(ctx.getChild(i).getText());
+                i++;
+                if (body instanceof Break) {
+                    break;
+                }
+            }
+            i = 5;
+            y++;
+
+            System.out.println("while loop " + y + "\n");
+
+            check = left > right;
+        }
+
+        return new While(condition, bodyList);
 
     }
 
@@ -245,16 +273,14 @@ public class AntlrToExpression extends languageBaseVisitor<Expression> {
             }
         }catch (NullPointerException e){
             if (vars.contains(leftID)) {
-                System.out.println("hello");
-                left = values.get(leftID);
-                System.out.println(leftID);
-                System.out.println(left + "\n");
+                result = values.get(leftID);
+                System.out.println(result + "\n");
             } else {
                 System.out.println("Print statement is empty. ");
             }
         }
 
-        return visitChildren(ctx);
+       return visitChildren(ctx);
     }
 
     public boolean Check(String id) {
@@ -287,22 +313,35 @@ public class AntlrToExpression extends languageBaseVisitor<Expression> {
     @Override
     public Expression visitType_reassign(languageParser.Type_reassignContext ctx) {
         String id = ctx.getChild(0).getText();
+        int left = 0, right = 0;
+        try {
+            left = Integer.parseInt(ctx.getChild(2).getChild(0).getText());
+        }catch (NumberFormatException e){
+            left = values.get(ctx.getChild(2).getChild(0).getText());
+        }
+        try {
+            right = Integer.parseInt(ctx.getChild(2).getChild(2).getText());
+        }catch (NumberFormatException e){
+            right = values.get(ctx.getChild(2).getChild(2).getText());
+        }
         int value = 0;
+        double doubleValue;
         if (!vars.contains(id)) {
             semanticErrors.add("Error: variable " + id + " not declared ");
         }
         if (ctx.getChild(2).getChild(1).getText().equals("+")) {
-            value = Integer.parseInt(ctx.getChild(2).getChild(0).getText()) + Integer.parseInt(ctx.getChild(2).getChild(2).getText());
+
+            value =  left + right;
         } else if (ctx.getChild(2).getChild(1).getText().equals("-")) {
-            value = Integer.parseInt(ctx.getChild(2).getChild(0).getText()) - Integer.parseInt(ctx.getChild(2).getChild(2).getText());
+            value = left - right;
         } else if (ctx.getChild(2).getChild(1).getText().equals("*")) {
-            value = Integer.parseInt(ctx.getChild(2).getChild(0).getText()) * Integer.parseInt(ctx.getChild(2).getChild(2).getText());
+            value = left * right;
         } else if (ctx.getChild(2).getChild(1).getText().equals("/")) {
-            value = Integer.parseInt(ctx.getChild(2).getChild(0).getText()) / Integer.parseInt(ctx.getChild(2).getChild(2).getText());
+            value = left / right;
         } else {
-            value = Integer.parseInt(ctx.getChild(2).getChild(0).getText()) ^ Integer.parseInt(ctx.getChild(2).getChild(2).getText());
+            doubleValue = Math.pow(left, right);
         }
-        values.put(id, value);
+        values.put(id, value); // Does not work with power, because hashmap can only contain string and integer.
         System.out.print("TYPE RE-DEF OF " + id + " TO " + value + "\n");
         return new VariableReDeclaration(id, value);
     }

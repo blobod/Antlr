@@ -33,10 +33,6 @@ public class ExpressionProcessor {
                     result = getEvalResult(((Forever_Loop) e).block.get(i));
                     evaluations.add(input + " is " + result);
                 }
-            }else{
-                String input = e.toString();
-                int result = getEvalResult(e);
-                evaluations.add(input + " is " + result);
             }
         }
 
