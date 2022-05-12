@@ -196,18 +196,6 @@ public class languageBaseListener implements languageListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterGreatherorEqualThan(languageParser.GreatherorEqualThanContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitGreatherorEqualThan(languageParser.GreatherorEqualThanContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
 	@Override public void enterBigger_expression(languageParser.Bigger_expressionContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -311,6 +299,18 @@ public class languageBaseListener implements languageListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitDivision(languageParser.DivisionContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterGreaterorEqualThan(languageParser.GreaterorEqualThanContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitGreaterorEqualThan(languageParser.GreaterorEqualThanContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *

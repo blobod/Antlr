@@ -79,15 +79,13 @@ public class AntlrToExpression extends languageBaseVisitor<Expression> {
     public Expression visitNumber(languageParser.NumberContext ctx) {
         String numText = ctx.getChild(0).getText();
         int num = Integer.parseInt(numText);
-        System.out.println(numText);
         return new Number(num);
     }
 
 
     @Override
     public Expression visitIf(languageParser.IfContext ctx) {
-        Expression condition = visit(ctx.getChild(2).getChild(0));
-        System.out.println("if statement");
+        Expression condition = visit(ctx.getChild(2));
         Expression body = visit(ctx.getChild(5));
 
         return new If(condition, body);
@@ -140,52 +138,9 @@ public class AntlrToExpression extends languageBaseVisitor<Expression> {
 
     @Override
     public Expression visitWhile_loop(languageParser.While_loopContext ctx) {
-
         Expression condition = visit(ctx.getChild(2));
-        System.out.println(ctx.getChild(2).getChild(0).getText());
-        int left = 0;
-        int right = 0;
-        boolean check = false;
-        try {
-            left = Integer.parseInt(ctx.getChild(2).getChild(0).getChild(0).getText());
-        }catch (NumberFormatException e){
-            left = values.get(ctx.getChild(2).getChild(0).getChild(0).getText());
-        }
-        try {
-            right = Integer.parseInt(ctx.getChild(2).getChild(0).getChild(2).getText());
-        }catch (NumberFormatException e){
-            right = values.get(ctx.getChild(2).getChild(0).getChild(2).getText());
-        }
-        String symbol = ctx.getChild(2).getChild(0).getChild(1).getText();
-        check = ConditionCheck(left, symbol, right);
-        List<Expression> bodyList = new ArrayList<>();
-        int y = 0;
-        while (check) {
-            try {
-                left = Integer.parseInt(ctx.getChild(2).getChild(0).getChild(0).getText());
-            }catch (NumberFormatException e){
-                left = values.get(ctx.getChild(2).getChild(0).getChild(0).getText());
-            }
-            try {
-                right = Integer.parseInt(ctx.getChild(2).getChild(0).getChild(2).getText());
-            }catch (NumberFormatException e){
-                right = values.get(ctx.getChild(2).getChild(0).getChild(2).getText());
-            }
-                Expression body = visit(ctx.getChild(5));
-                bodyList.add(body);
-
-                if (body instanceof Break) {
-                    break;
-                }
-            y++;
-
-            System.out.println("while loop " + y + "\n");
-
-            check = ConditionCheck(left, symbol, right);
-        }
-
-        return new While(condition, bodyList);
-
+        Expression body = visit(ctx.getChild(5));
+        return new While(condition, body);
     }
 
     public boolean ConditionCheck(int left, String symbol, int right){
@@ -223,7 +178,6 @@ public class AntlrToExpression extends languageBaseVisitor<Expression> {
     @Override
     public Expression visitPrint(languageParser.PrintContext ctx) {
         Expression body = visit(ctx.getChild(2));
-
         return new Print(body);
     }
 
@@ -238,17 +192,15 @@ public class AntlrToExpression extends languageBaseVisitor<Expression> {
 
     @Override
     public Expression visitType_definition(languageParser.Type_definitionContext ctx) {
-
-
+        System.out.println();
         String id = ctx.getChild(1).getText();
-        int value = Integer.parseInt(ctx.VALUE().getText());
+        int value = Integer.parseInt(ctx.getChild(3).getText());
         if (vars.contains(id)) {
             semanticErrors.add("Error: variable " + id + " already declared ");
         } else {
             vars.add(id);
             values.put(id, value);
         }
-
         String type = ctx.getChild(0).getText();
         System.out.print("TYPE DEF " + id + " " + type + " " + value + "\n");
         return new VariableDeclaration(id, type, value);
@@ -257,37 +209,13 @@ public class AntlrToExpression extends languageBaseVisitor<Expression> {
     @Override
     public Expression visitType_reassign(languageParser.Type_reassignContext ctx) {
         String id = ctx.getChild(0).getText();
-        int left = 0, right = 0;
-        try {
-            left = Integer.parseInt(ctx.getChild(2).getChild(0).getText());
-        }catch (NumberFormatException e){
-            left = values.get(ctx.getChild(2).getChild(0).getText());
-        }
-        try {
-            right = Integer.parseInt(ctx.getChild(2).getChild(2).getText());
-        }catch (NumberFormatException e){
-            right = values.get(ctx.getChild(2).getChild(2).getText());
-        }
-        int value = 0;
-        double doubleValue;
+        Expression expression = visit(ctx.getChild(2));
         if (!vars.contains(id)) {
             semanticErrors.add("Error: variable " + id + " not declared ");
         }
-        if (ctx.getChild(2).getChild(1).getText().equals("+")) {
-
-            value =  left + right;
-        } else if (ctx.getChild(2).getChild(1).getText().equals("-")) {
-            value = left - right;
-        } else if (ctx.getChild(2).getChild(1).getText().equals("*")) {
-            value = left * right;
-        } else if (ctx.getChild(2).getChild(1).getText().equals("/")) {
-            value = left / right;
-        } else {
-            doubleValue = Math.pow(left, right);
-        }
-        values.put(id, value); // Does not work with power, because hashmap can only contain string and integer.
-        System.out.print("TYPE RE-DEF OF " + id + " TO " + value + "\n");
-        return new VariableReDeclaration(id, value);
+        System.out.println(expression);
+        System.out.print("TYPE RE-DEF OF " + id + " TO " + expression + "\n");
+        return new VariableReDeclaration(id, expression);
     }
 
     @Override
@@ -304,14 +232,12 @@ public class AntlrToExpression extends languageBaseVisitor<Expression> {
     public Expression visitGreaterThan(languageParser.GreaterThanContext ctx) {
         Expression left = visit(ctx.getChild(0)); // recursively visit the left subtree of the current Multiplication node
         Expression right = visit(ctx.getChild(2));
-        System.out.println("greater than");
         return new GreaterThan(left, right);
     }
 
 
     @Override
     public Expression visitLesserThan(languageParser.LesserThanContext ctx) {
-        System.out.println("lesser than");
         return visitChildren(ctx);
     }
 
@@ -321,7 +247,7 @@ public class AntlrToExpression extends languageBaseVisitor<Expression> {
     }
 
     @Override
-    public Expression visitGreatherorEqualThan(languageParser.GreatherorEqualThanContext ctx) {
+    public Expression visitGreaterorEqualThan(languageParser.GreaterorEqualThanContext ctx) {
         return visitChildren(ctx);
     }
 

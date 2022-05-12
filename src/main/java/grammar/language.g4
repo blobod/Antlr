@@ -47,7 +47,7 @@ expression
     | expression GREATER expression # GreaterThan
     | expression LESSER expression # LesserThan
     | expression EQUAL expression # EqualWith
-    | expression GREATHEROREQUAL expression # GreatherorEqualThan
+    | expression GREATEROREQUAL expression # GreaterorEqualThan
     | expression LESSEROREQUAL expression # LesserorEqualThan
     | expression ISNOTEQUAL expression # IsNotEqualWith
     | ((PLUS | MINUS | MULTIPLICATION | DIVISION)+ LPAR expression+ RPAR) # Paranthesis
@@ -80,15 +80,14 @@ forever_loop
     : FOREVER LCBRAC (stmts) RCBRAC;
 // ITERATIVE STATEMENT
 GREATER
-    : '>'
-    | 'Greater';
+    : '>';
 LESSER
     : '<'
     | 'Lesser';
 EQUAL
     : '=='
     | 'Equal';
-GREATHEROREQUAL
+GREATEROREQUAL
     : '>='
     | 'Greater_or_equal';
 LESSEROREQUAL

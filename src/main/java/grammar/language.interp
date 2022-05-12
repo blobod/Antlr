@@ -1,6 +1,6 @@
 token literal names:
 null
-null
+'>'
 null
 null
 null
@@ -52,7 +52,7 @@ null
 GREATER
 LESSER
 EQUAL
-GREATHEROREQUAL
+GREATEROREQUAL
 LESSEROREQUAL
 ISNOTEQUAL
 PRINT

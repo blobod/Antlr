@@ -168,18 +168,6 @@ public interface languageListener extends ParseTreeListener {
 	 */
 	void exitSubstraktion(languageParser.SubstraktionContext ctx);
 	/**
-	 * Enter a parse tree produced by the {@code GreatherorEqualThan}
-	 * labeled alternative in {@link languageParser#expression}.
-	 * @param ctx the parse tree
-	 */
-	void enterGreatherorEqualThan(languageParser.GreatherorEqualThanContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code GreatherorEqualThan}
-	 * labeled alternative in {@link languageParser#expression}.
-	 * @param ctx the parse tree
-	 */
-	void exitGreatherorEqualThan(languageParser.GreatherorEqualThanContext ctx);
-	/**
 	 * Enter a parse tree produced by the {@code Bigger_expression}
 	 * labeled alternative in {@link languageParser#expression}.
 	 * @param ctx the parse tree
@@ -287,6 +275,18 @@ public interface languageListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitDivision(languageParser.DivisionContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code GreaterorEqualThan}
+	 * labeled alternative in {@link languageParser#expression}.
+	 * @param ctx the parse tree
+	 */
+	void enterGreaterorEqualThan(languageParser.GreaterorEqualThanContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code GreaterorEqualThan}
+	 * labeled alternative in {@link languageParser#expression}.
+	 * @param ctx the parse tree
+	 */
+	void exitGreaterorEqualThan(languageParser.GreaterorEqualThanContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link languageParser#conditional_statement}.
 	 * @param ctx the parse tree

@@ -17,7 +17,7 @@ public class languageParser extends Parser {
 	protected static final PredictionContextCache _sharedContextCache =
 		new PredictionContextCache();
 	public static final int
-		GREATER=1, LESSER=2, EQUAL=3, GREATHEROREQUAL=4, LESSEROREQUAL=5, ISNOTEQUAL=6, 
+		GREATER=1, LESSER=2, EQUAL=3, GREATEROREQUAL=4, LESSEROREQUAL=5, ISNOTEQUAL=6, 
 		PRINT=7, BREAK=8, IF=9, ELSE=10, PLUS=11, MINUS=12, MULTIPLICATION=13, 
 		DIVISION=14, POWER_OF=15, OR=16, STOP=17, FOR=18, WHILE=19, FOREVER=20, 
 		START=21, COMMA=22, AT_SIGN=23, VOID=24, LPAR=25, RPAR=26, LCBRAC=27, 
@@ -42,7 +42,7 @@ public class languageParser extends Parser {
 
 	private static String[] makeLiteralNames() {
 		return new String[] {
-			null, null, null, null, null, null, null, "'print'", "'break'", "'if'", 
+			null, "'>'", null, null, null, null, null, "'print'", "'break'", "'if'", 
 			"'else'", "'+'", "'-'", "'*'", "'/'", "'^'", "'||'", "'stop'", "'for'", 
 			"'while'", "'forever'", "'start'", "','", "'@'", "'void'", "'('", "')'", 
 			"'{'", "'}'", null, "'int'", "'double'", "'txt'", "'bool'", "'='", null, 
@@ -52,7 +52,7 @@ public class languageParser extends Parser {
 	private static final String[] _LITERAL_NAMES = makeLiteralNames();
 	private static String[] makeSymbolicNames() {
 		return new String[] {
-			null, "GREATER", "LESSER", "EQUAL", "GREATHEROREQUAL", "LESSEROREQUAL", 
+			null, "GREATER", "LESSER", "EQUAL", "GREATEROREQUAL", "LESSEROREQUAL", 
 			"ISNOTEQUAL", "PRINT", "BREAK", "IF", "ELSE", "PLUS", "MINUS", "MULTIPLICATION", 
 			"DIVISION", "POWER_OF", "OR", "STOP", "FOR", "WHILE", "FOREVER", "START", 
 			"COMMA", "AT_SIGN", "VOID", "LPAR", "RPAR", "LCBRAC", "RCBRAC", "TYPE", 
@@ -1108,29 +1108,6 @@ public class languageParser extends Parser {
 			else return visitor.visitChildren(this);
 		}
 	}
-	public static class GreatherorEqualThanContext extends ExpressionContext {
-		public List<ExpressionContext> expression() {
-			return getRuleContexts(ExpressionContext.class);
-		}
-		public ExpressionContext expression(int i) {
-			return getRuleContext(ExpressionContext.class,i);
-		}
-		public TerminalNode GREATHEROREQUAL() { return getToken(languageParser.GREATHEROREQUAL, 0); }
-		public GreatherorEqualThanContext(ExpressionContext ctx) { copyFrom(ctx); }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof languageListener ) ((languageListener)listener).enterGreatherorEqualThan(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof languageListener ) ((languageListener)listener).exitGreatherorEqualThan(this);
-		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof languageVisitor ) return ((languageVisitor<? extends T>)visitor).visitGreatherorEqualThan(this);
-			else return visitor.visitChildren(this);
-		}
-	}
 	public static class Bigger_expressionContext extends ExpressionContext {
 		public ExpressionContext expression() {
 			return getRuleContext(ExpressionContext.class,0);
@@ -1341,6 +1318,29 @@ public class languageParser extends Parser {
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
 			if ( visitor instanceof languageVisitor ) return ((languageVisitor<? extends T>)visitor).visitDivision(this);
+			else return visitor.visitChildren(this);
+		}
+	}
+	public static class GreaterorEqualThanContext extends ExpressionContext {
+		public List<ExpressionContext> expression() {
+			return getRuleContexts(ExpressionContext.class);
+		}
+		public ExpressionContext expression(int i) {
+			return getRuleContext(ExpressionContext.class,i);
+		}
+		public TerminalNode GREATEROREQUAL() { return getToken(languageParser.GREATEROREQUAL, 0); }
+		public GreaterorEqualThanContext(ExpressionContext ctx) { copyFrom(ctx); }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof languageListener ) ((languageListener)listener).enterGreaterorEqualThan(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof languageListener ) ((languageListener)listener).exitGreaterorEqualThan(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof languageVisitor ) return ((languageVisitor<? extends T>)visitor).visitGreaterorEqualThan(this);
 			else return visitor.visitChildren(this);
 		}
 	}
@@ -1580,12 +1580,12 @@ public class languageParser extends Parser {
 						break;
 					case 9:
 						{
-						_localctx = new GreatherorEqualThanContext(new ExpressionContext(_parentctx, _parentState));
+						_localctx = new GreaterorEqualThanContext(new ExpressionContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expression);
 						setState(185);
 						if (!(precpred(_ctx, 7))) throw new FailedPredicateException(this, "precpred(_ctx, 7)");
 						setState(186);
-						match(GREATHEROREQUAL);
+						match(GREATEROREQUAL);
 						setState(187);
 						expression(8);
 						}

@@ -2,16 +2,16 @@ package Expression;
 
 public class VariableReDeclaration extends Expression{
     public String id;
-    public int value;
+    public Expression expression;
 
-    public VariableReDeclaration(String id, int value){
+    public VariableReDeclaration(String id, Expression expression){
         this.id = id;
-        this.value = value;
+        this.expression = expression;
     }
 
     @Override
     public String toString(){
-        return Integer.toString(value);
+        return expression.toString();
     }
 
 }

@@ -5,17 +5,16 @@ import java.util.List;
 
 public class While extends Expression{
     public Expression condition;
-    public List<Expression> body;
+    public Expression body;
 
-    public While(Expression condition, List<Expression> body){
+    public While(Expression condition, Expression body){
         this.condition = condition;
-        this.body = new ArrayList<>(body);
+        this.body = body;
     }
 
-    public void add(Expression child) {
-        body.add(child);
+    @Override
+    public String toString(){
+        return "while " + condition + " do " + body;
     }
-
-    public void get(int x){ body.get(x);}
 
 }

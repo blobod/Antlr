@@ -10,6 +10,6 @@ public class Print extends Expression {
     @Override
     public String toString(){
 
-        return "print-statement " + body;
+        return "print " + body;
     }
 }

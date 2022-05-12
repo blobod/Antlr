@@ -10,6 +10,11 @@ public class If extends Expression{
         this.condition = condition;
         this.body = body;
     }
+
+    @Override
+    public String toString(){
+        return "if " + condition + " then " + body;
+    }
 }
 
 

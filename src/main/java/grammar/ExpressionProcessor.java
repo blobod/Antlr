@@ -20,10 +20,17 @@ public class ExpressionProcessor {
     public List<String> getEvaluationResults(){
         List<String> evaluations = new ArrayList<>();
         for (Expression e: list){
-            if (e instanceof VariableDeclaration decl){
-                values.put(decl.id, decl.value);
+            System.out.println(e);
+            if (e instanceof VariableDeclaration){
+                System.out.println("hello");
+                String id = ((VariableDeclaration) e ).id;
+                int value = ((VariableDeclaration) e).value;
+                values.put(id, value);
+
             }else if(e instanceof VariableReDeclaration redecl){
-                values.put(redecl.id, redecl.value);
+                Expression expression = ( (VariableReDeclaration) e).expression;
+                int value = getEvalResult(expression);
+                values.put(redecl.id, value);
             }
             else if (e instanceof Forever_Loop)
             {
@@ -40,14 +47,22 @@ public class ExpressionProcessor {
                     Expression body = ((If) e).body;
                     getEvalResult(body);
                 }
-
-                System.out.println(((If) e).condition.toString());
             }
             else if(e instanceof Print){
                 Expression body = ((Print) e).body;
+                getEvalResult(body);
+            }else if(e instanceof While){
+                Expression condition = ((While) e).condition;
+                int check = getEvalResult(condition);
 
-                System.out.println("we are in print processor");
-                System.out.println(getEvalResult(body));
+                while (check == 1){
+                    Expression body = ((While) e).body;
+                    getEvalResult(body);
+                    check = getEvalResult(condition);
+                }
+            }
+            else{
+                System.out.println(e.toString());
             }
         }
 
@@ -61,6 +76,8 @@ public class ExpressionProcessor {
         if (e instanceof Number num){
             result = num.num;
         }else if(e instanceof Variable var){
+            String id = var.id;
+            System.out.println(id + " " + values.get(var.id));
             result = values.get(var.id);
         } else if(e instanceof Multiplication multi){
             int left = getEvalResult(multi.left);
@@ -75,12 +92,10 @@ public class ExpressionProcessor {
         } else if (e instanceof Addition add){
             int left = getEvalResult(add.left);
             int right = getEvalResult(add.right);
-
             result = left + right;
         } else if (e instanceof Substraktion sub){
             int left = getEvalResult(sub.left);
             int right = getEvalResult(sub.right);
-            System.out.println("addition processor");
 
             result = left - right;
         }
@@ -93,10 +108,11 @@ public class ExpressionProcessor {
         else if (e instanceof  GreaterThan great) {
             int left = getEvalResult(great.left);
             int right = getEvalResult(great.right);
-            System.out.println("greater processor");
             if (left > right) {
                 result = 1;
             } else result = 0;
+        }else if(e instanceof Print print){
+            System.out.println(getEvalResult(print.body));
         }
 
 

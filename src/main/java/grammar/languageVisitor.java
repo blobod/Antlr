@@ -106,13 +106,6 @@ public interface languageVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitSubstraktion(languageParser.SubstraktionContext ctx);
 	/**
-	 * Visit a parse tree produced by the {@code GreatherorEqualThan}
-	 * labeled alternative in {@link languageParser#expression}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitGreatherorEqualThan(languageParser.GreatherorEqualThanContext ctx);
-	/**
 	 * Visit a parse tree produced by the {@code Bigger_expression}
 	 * labeled alternative in {@link languageParser#expression}.
 	 * @param ctx the parse tree
@@ -175,6 +168,13 @@ public interface languageVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitDivision(languageParser.DivisionContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code GreaterorEqualThan}
+	 * labeled alternative in {@link languageParser#expression}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitGreaterorEqualThan(languageParser.GreaterorEqualThanContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link languageParser#conditional_statement}.
 	 * @param ctx the parse tree
