@@ -79,6 +79,7 @@ public class AntlrToExpression extends languageBaseVisitor<Expression> {
     public Expression visitNumber(languageParser.NumberContext ctx) {
         String numText = ctx.getChild(0).getText();
         int num = Integer.parseInt(numText);
+        System.out.println(numText);
         return new Number(num);
     }
 
@@ -86,31 +87,10 @@ public class AntlrToExpression extends languageBaseVisitor<Expression> {
     @Override
     public Expression visitIf(languageParser.IfContext ctx) {
         Expression condition = visit(ctx.getChild(2).getChild(0));
-        String symbol = ctx.getChild(2).getChild(0).getChild(1).getText();
-        Expression body;
-        int left = 0;
-        int right = 0;
-        boolean check = false;
-        try {
-            left = Integer.parseInt(ctx.getChild(2).getChild(0).getChild(0).getText());
-        }catch (NumberFormatException e){
-            left = values.get(ctx.getChild(2).getChild(0).getChild(0).getText());
-        }
-        try {
-            right = Integer.parseInt(ctx.getChild(2).getChild(0).getChild(2).getText());
-        }catch (NumberFormatException e){
-            right = values.get(ctx.getChild(2).getChild(0).getChild(2).getText());
-        }
+        System.out.println("if statement");
+        Expression body = visit(ctx.getChild(5));
 
-       check = ConditionCheck(left,symbol,right);
-        List<Expression> bodyList = new ArrayList<Expression>();
-
-        if (check){
-            body = visit(ctx.getChild(5));
-            bodyList.add(body);
-        }
-
-        return new If(condition, bodyList);
+        return new If(condition, body);
     }
 
     @Override
@@ -240,104 +220,11 @@ public class AntlrToExpression extends languageBaseVisitor<Expression> {
         return loop;
     }
 
-
-    @Override
-    public Expression visitCondition(languageParser.ConditionContext ctx) {
-
-        return visitChildren(ctx);
-    }
-
     @Override
     public Expression visitPrint(languageParser.PrintContext ctx) {
-        String leftID = ctx.getChild(2).getChild(0).getText();
+        Expression body = visit(ctx.getChild(2));
 
-        String rightID = " ";
-        int left = 0;
-        int right = 0;
-        int result = 0;
-        try {
-            rightID = ctx.getChild(2).getChild(2).getText();
-            if (ctx.getChild(2).getChild(1).getText().equals("-")) {
-                if (Check(leftID)) {
-                    left = Integer.parseInt(ctx.getChild(2).getChild(0).getText());
-
-                } else {
-                    left = values.get(leftID);
-                }
-                if (Check(rightID)) {
-                    right = Integer.parseInt(ctx.getChild(2).getChild(2).getText());
-                } else {
-                    right = values.get(rightID);
-                }
-                result = left - right;
-                System.out.println(result);
-            } else if (ctx.getChild(2).getChild(1).getText().equals("+")) {
-                if (Check(leftID)) {
-                    left = Integer.parseInt(ctx.getChild(2).getChild(0).getText());
-
-                } else {
-                    left = values.get(leftID);
-                }
-                if (Check(rightID)) {
-                    right = Integer.parseInt(ctx.getChild(2).getChild(2).getText());
-                } else {
-                    right = values.get(rightID);
-                }
-                result = left + right;
-                System.out.println(result);
-            } else if (ctx.getChild(2).getChild(1).getText().equals("*")) {
-                if (Check(leftID)) {
-                    left = Integer.parseInt(ctx.getChild(2).getChild(0).getText());
-
-                } else {
-                    left = values.get(leftID);
-                }
-                if (Check(rightID)) {
-                    right = Integer.parseInt(ctx.getChild(2).getChild(2).getText());
-                } else {
-                    right = values.get(rightID);
-                }
-                result = left * right;
-                System.out.println(result);
-            } else if (ctx.getChild(2).getChild(1).getText().equals("/")) {
-                if (Check(leftID)) {
-                    left = Integer.parseInt(ctx.getChild(2).getChild(0).getText());
-
-                } else {
-                    left = values.get(leftID);
-                }
-                if (Check(rightID)) {
-                    right = Integer.parseInt(ctx.getChild(2).getChild(2).getText());
-                } else {
-                    right = values.get(rightID);
-                }
-                result = left / right;
-                System.out.println(result);
-            } else if (ctx.getChild(2).getChild(1).getText().equals("^")) {
-                if (Check(leftID)) {
-                    left = Integer.parseInt(ctx.getChild(2).getChild(0).getText());
-
-                } else {
-                    left = values.get(leftID);
-                }
-                if (Check(rightID)) {
-                    right = Integer.parseInt(ctx.getChild(2).getChild(2).getText());
-                } else {
-                    right = values.get(rightID);
-                }
-                double resultDouble = Math.pow(left, right);
-                System.out.println(resultDouble);
-            }
-        }catch (NullPointerException e){
-            if (vars.contains(leftID)) {
-                result = values.get(leftID);
-                System.out.println(result + "\n");
-            } else {
-                System.out.println("Print statement is empty. ");
-            }
-        }
-
-       return visitChildren(ctx);
+        return new Print(body);
     }
 
     public boolean Check(String id) {
@@ -414,16 +301,17 @@ public class AntlrToExpression extends languageBaseVisitor<Expression> {
     }
 
     @Override
-    public Expression visitGreatherThan(languageParser.GreatherThanContext ctx) {
+    public Expression visitGreaterThan(languageParser.GreaterThanContext ctx) {
         Expression left = visit(ctx.getChild(0)); // recursively visit the left subtree of the current Multiplication node
         Expression right = visit(ctx.getChild(2));
-
-        return visitChildren(ctx);
+        System.out.println("greater than");
+        return new GreaterThan(left, right);
     }
 
 
     @Override
     public Expression visitLesserThan(languageParser.LesserThanContext ctx) {
+        System.out.println("lesser than");
         return visitChildren(ctx);
     }
 

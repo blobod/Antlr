@@ -44,6 +44,12 @@ expression
     | expression MULTIPLICATION expression # Multiplication
     | expression DIVISION expression # Division
     | expression POWER_OF expression # Power_of
+    | expression GREATER expression # GreaterThan
+    | expression LESSER expression # LesserThan
+    | expression EQUAL expression # EqualWith
+    | expression GREATHEROREQUAL expression # GreatherorEqualThan
+    | expression LESSEROREQUAL expression # LesserorEqualThan
+    | expression ISNOTEQUAL expression # IsNotEqualWith
     | ((PLUS | MINUS | MULTIPLICATION | DIVISION)+ LPAR expression+ RPAR) # Paranthesis
     | (PLUS | MINUS | MULTIPLICATION | DIVISION)+ expression #Bigger_expression
     | ID # Variable
@@ -54,8 +60,8 @@ conditional_statement
     : if_statement
     | break_statement;
 if_statement
-    : IF LPAR condition RPAR LCBRAC (stmts) RCBRAC # If
-    | IF LPAR condition RPAR LCBRAC (stmts) RCBRAC (ELSE LCBRAC (stmts) RCBRAC) # Else;
+    : IF LPAR expression (OR expression)* RPAR LCBRAC (stmts) RCBRAC # If
+    | IF LPAR expression  (OR expression)* RPAR LCBRAC (stmts) RCBRAC (ELSE LCBRAC (stmts) RCBRAC) # Else;
 break_statement
     : BREAK;
 
@@ -67,28 +73,15 @@ iterative_statement
     | while_loop
     | forever_loop;
 for_loop
-    : FOR LPAR (stmt) COMMA (condition) COMMA expression LCBRAC (stmts) RCBRAC;
+    : FOR LPAR (stmt) COMMA (expression) COMMA expression LCBRAC (stmts) RCBRAC;
 while_loop
-    : WHILE LPAR (condition) RPAR LCBRAC (stmts) RCBRAC;
+    : WHILE LPAR (expression) RPAR LCBRAC (stmts) RCBRAC;
 forever_loop
     : FOREVER LCBRAC (stmts) RCBRAC;
 // ITERATIVE STATEMENT
-
-//CONDITIONS
-condition
-    : boolean_expression (OR boolean_expression)*;
-
-boolean_expression
-    : expression GREATHER expression # GreatherThan
-    | expression LESSER expression # LesserThan
-    | expression EQUAL expression # EqualWith
-    | expression GREATHEROREQUAL expression # GreatherorEqualThan
-    | expression LESSEROREQUAL expression # LesserorEqualThan
-    | expression ISNOTEQUAL expression # IsNotEqualWith;
-
-GREATHER
+GREATER
     : '>'
-    | 'Greather';
+    | 'Greater';
 LESSER
     : '<'
     | 'Lesser';
@@ -97,7 +90,7 @@ EQUAL
     | 'Equal';
 GREATHEROREQUAL
     : '>='
-    | 'Greather_or_equal';
+    | 'Greater_or_equal';
 LESSEROREQUAL
     : '<='
     | 'Lesser_or_equal';

@@ -33,6 +33,21 @@ public class ExpressionProcessor {
                     result = getEvalResult(((Forever_Loop) e).block.get(i));
                     evaluations.add(input + " is " + result);
                 }
+            }else if(e instanceof If){
+                Expression condition = ((If) e).condition;
+                int check = getEvalResult(condition);
+                if (check == 1){
+                    Expression body = ((If) e).body;
+                    getEvalResult(body);
+                }
+
+                System.out.println(((If) e).condition.toString());
+            }
+            else if(e instanceof Print){
+                Expression body = ((Print) e).body;
+
+                System.out.println("we are in print processor");
+                System.out.println(getEvalResult(body));
             }
         }
 
@@ -65,6 +80,7 @@ public class ExpressionProcessor {
         } else if (e instanceof Substraktion sub){
             int left = getEvalResult(sub.left);
             int right = getEvalResult(sub.right);
+            System.out.println("addition processor");
 
             result = left - right;
         }
@@ -77,7 +93,7 @@ public class ExpressionProcessor {
         else if (e instanceof  GreaterThan great) {
             int left = getEvalResult(great.left);
             int right = getEvalResult(great.right);
-
+            System.out.println("greater processor");
             if (left > right) {
                 result = 1;
             } else result = 0;

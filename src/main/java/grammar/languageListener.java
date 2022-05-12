@@ -1,4 +1,4 @@
-// Generated from C:/Users/thetr/Desktop/Antlr/src/main/java/grammar\language.g4 by ANTLR 4.9.2
+// Generated from C:/Users/thetr/OneDrive/Dokumenter/GitHub/Antlr/src/main/java/grammar\language.g4 by ANTLR 4.9.2
 package grammar;
 import org.antlr.v4.runtime.tree.ParseTreeListener;
 
@@ -144,18 +144,6 @@ public interface languageListener extends ParseTreeListener {
 	 */
 	void exitVariable(languageParser.VariableContext ctx);
 	/**
-	 * Enter a parse tree produced by the {@code Number}
-	 * labeled alternative in {@link languageParser#expression}.
-	 * @param ctx the parse tree
-	 */
-	void enterNumber(languageParser.NumberContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code Number}
-	 * labeled alternative in {@link languageParser#expression}.
-	 * @param ctx the parse tree
-	 */
-	void exitNumber(languageParser.NumberContext ctx);
-	/**
 	 * Enter a parse tree produced by the {@code Paranthesis}
 	 * labeled alternative in {@link languageParser#expression}.
 	 * @param ctx the parse tree
@@ -180,17 +168,17 @@ public interface languageListener extends ParseTreeListener {
 	 */
 	void exitSubstraktion(languageParser.SubstraktionContext ctx);
 	/**
-	 * Enter a parse tree produced by the {@code Power_of}
+	 * Enter a parse tree produced by the {@code GreatherorEqualThan}
 	 * labeled alternative in {@link languageParser#expression}.
 	 * @param ctx the parse tree
 	 */
-	void enterPower_of(languageParser.Power_ofContext ctx);
+	void enterGreatherorEqualThan(languageParser.GreatherorEqualThanContext ctx);
 	/**
-	 * Exit a parse tree produced by the {@code Power_of}
+	 * Exit a parse tree produced by the {@code GreatherorEqualThan}
 	 * labeled alternative in {@link languageParser#expression}.
 	 * @param ctx the parse tree
 	 */
-	void exitPower_of(languageParser.Power_ofContext ctx);
+	void exitGreatherorEqualThan(languageParser.GreatherorEqualThanContext ctx);
 	/**
 	 * Enter a parse tree produced by the {@code Bigger_expression}
 	 * labeled alternative in {@link languageParser#expression}.
@@ -203,6 +191,90 @@ public interface languageListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitBigger_expression(languageParser.Bigger_expressionContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code EqualWith}
+	 * labeled alternative in {@link languageParser#expression}.
+	 * @param ctx the parse tree
+	 */
+	void enterEqualWith(languageParser.EqualWithContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code EqualWith}
+	 * labeled alternative in {@link languageParser#expression}.
+	 * @param ctx the parse tree
+	 */
+	void exitEqualWith(languageParser.EqualWithContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code LesserorEqualThan}
+	 * labeled alternative in {@link languageParser#expression}.
+	 * @param ctx the parse tree
+	 */
+	void enterLesserorEqualThan(languageParser.LesserorEqualThanContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code LesserorEqualThan}
+	 * labeled alternative in {@link languageParser#expression}.
+	 * @param ctx the parse tree
+	 */
+	void exitLesserorEqualThan(languageParser.LesserorEqualThanContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code IsNotEqualWith}
+	 * labeled alternative in {@link languageParser#expression}.
+	 * @param ctx the parse tree
+	 */
+	void enterIsNotEqualWith(languageParser.IsNotEqualWithContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code IsNotEqualWith}
+	 * labeled alternative in {@link languageParser#expression}.
+	 * @param ctx the parse tree
+	 */
+	void exitIsNotEqualWith(languageParser.IsNotEqualWithContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code LesserThan}
+	 * labeled alternative in {@link languageParser#expression}.
+	 * @param ctx the parse tree
+	 */
+	void enterLesserThan(languageParser.LesserThanContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code LesserThan}
+	 * labeled alternative in {@link languageParser#expression}.
+	 * @param ctx the parse tree
+	 */
+	void exitLesserThan(languageParser.LesserThanContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code Number}
+	 * labeled alternative in {@link languageParser#expression}.
+	 * @param ctx the parse tree
+	 */
+	void enterNumber(languageParser.NumberContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code Number}
+	 * labeled alternative in {@link languageParser#expression}.
+	 * @param ctx the parse tree
+	 */
+	void exitNumber(languageParser.NumberContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code GreaterThan}
+	 * labeled alternative in {@link languageParser#expression}.
+	 * @param ctx the parse tree
+	 */
+	void enterGreaterThan(languageParser.GreaterThanContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code GreaterThan}
+	 * labeled alternative in {@link languageParser#expression}.
+	 * @param ctx the parse tree
+	 */
+	void exitGreaterThan(languageParser.GreaterThanContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code Power_of}
+	 * labeled alternative in {@link languageParser#expression}.
+	 * @param ctx the parse tree
+	 */
+	void enterPower_of(languageParser.Power_ofContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code Power_of}
+	 * labeled alternative in {@link languageParser#expression}.
+	 * @param ctx the parse tree
+	 */
+	void exitPower_of(languageParser.Power_ofContext ctx);
 	/**
 	 * Enter a parse tree produced by the {@code Division}
 	 * labeled alternative in {@link languageParser#expression}.
@@ -299,86 +371,4 @@ public interface languageListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitForever_loop(languageParser.Forever_loopContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link languageParser#condition}.
-	 * @param ctx the parse tree
-	 */
-	void enterCondition(languageParser.ConditionContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link languageParser#condition}.
-	 * @param ctx the parse tree
-	 */
-	void exitCondition(languageParser.ConditionContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code GreatherThan}
-	 * labeled alternative in {@link languageParser#boolean_expression}.
-	 * @param ctx the parse tree
-	 */
-	void enterGreatherThan(languageParser.GreatherThanContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code GreatherThan}
-	 * labeled alternative in {@link languageParser#boolean_expression}.
-	 * @param ctx the parse tree
-	 */
-	void exitGreatherThan(languageParser.GreatherThanContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code LesserThan}
-	 * labeled alternative in {@link languageParser#boolean_expression}.
-	 * @param ctx the parse tree
-	 */
-	void enterLesserThan(languageParser.LesserThanContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code LesserThan}
-	 * labeled alternative in {@link languageParser#boolean_expression}.
-	 * @param ctx the parse tree
-	 */
-	void exitLesserThan(languageParser.LesserThanContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code EqualWith}
-	 * labeled alternative in {@link languageParser#boolean_expression}.
-	 * @param ctx the parse tree
-	 */
-	void enterEqualWith(languageParser.EqualWithContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code EqualWith}
-	 * labeled alternative in {@link languageParser#boolean_expression}.
-	 * @param ctx the parse tree
-	 */
-	void exitEqualWith(languageParser.EqualWithContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code GreatherorEqualThan}
-	 * labeled alternative in {@link languageParser#boolean_expression}.
-	 * @param ctx the parse tree
-	 */
-	void enterGreatherorEqualThan(languageParser.GreatherorEqualThanContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code GreatherorEqualThan}
-	 * labeled alternative in {@link languageParser#boolean_expression}.
-	 * @param ctx the parse tree
-	 */
-	void exitGreatherorEqualThan(languageParser.GreatherorEqualThanContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code LesserorEqualThan}
-	 * labeled alternative in {@link languageParser#boolean_expression}.
-	 * @param ctx the parse tree
-	 */
-	void enterLesserorEqualThan(languageParser.LesserorEqualThanContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code LesserorEqualThan}
-	 * labeled alternative in {@link languageParser#boolean_expression}.
-	 * @param ctx the parse tree
-	 */
-	void exitLesserorEqualThan(languageParser.LesserorEqualThanContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code IsNotEqualWith}
-	 * labeled alternative in {@link languageParser#boolean_expression}.
-	 * @param ctx the parse tree
-	 */
-	void enterIsNotEqualWith(languageParser.IsNotEqualWithContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code IsNotEqualWith}
-	 * labeled alternative in {@link languageParser#boolean_expression}.
-	 * @param ctx the parse tree
-	 */
-	void exitIsNotEqualWith(languageParser.IsNotEqualWithContext ctx);
 }

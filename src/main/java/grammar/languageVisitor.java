@@ -1,4 +1,4 @@
-// Generated from C:/Users/thetr/Desktop/Antlr/src/main/java/grammar\language.g4 by ANTLR 4.9.2
+// Generated from C:/Users/thetr/OneDrive/Dokumenter/GitHub/Antlr/src/main/java/grammar\language.g4 by ANTLR 4.9.2
 package grammar;
 import org.antlr.v4.runtime.tree.ParseTreeVisitor;
 
@@ -92,13 +92,6 @@ public interface languageVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitVariable(languageParser.VariableContext ctx);
 	/**
-	 * Visit a parse tree produced by the {@code Number}
-	 * labeled alternative in {@link languageParser#expression}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitNumber(languageParser.NumberContext ctx);
-	/**
 	 * Visit a parse tree produced by the {@code Paranthesis}
 	 * labeled alternative in {@link languageParser#expression}.
 	 * @param ctx the parse tree
@@ -113,12 +106,12 @@ public interface languageVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitSubstraktion(languageParser.SubstraktionContext ctx);
 	/**
-	 * Visit a parse tree produced by the {@code Power_of}
+	 * Visit a parse tree produced by the {@code GreatherorEqualThan}
 	 * labeled alternative in {@link languageParser#expression}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitPower_of(languageParser.Power_ofContext ctx);
+	T visitGreatherorEqualThan(languageParser.GreatherorEqualThanContext ctx);
 	/**
 	 * Visit a parse tree produced by the {@code Bigger_expression}
 	 * labeled alternative in {@link languageParser#expression}.
@@ -126,6 +119,55 @@ public interface languageVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitBigger_expression(languageParser.Bigger_expressionContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code EqualWith}
+	 * labeled alternative in {@link languageParser#expression}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitEqualWith(languageParser.EqualWithContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code LesserorEqualThan}
+	 * labeled alternative in {@link languageParser#expression}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitLesserorEqualThan(languageParser.LesserorEqualThanContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code IsNotEqualWith}
+	 * labeled alternative in {@link languageParser#expression}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitIsNotEqualWith(languageParser.IsNotEqualWithContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code LesserThan}
+	 * labeled alternative in {@link languageParser#expression}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitLesserThan(languageParser.LesserThanContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code Number}
+	 * labeled alternative in {@link languageParser#expression}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitNumber(languageParser.NumberContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code GreaterThan}
+	 * labeled alternative in {@link languageParser#expression}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitGreaterThan(languageParser.GreaterThanContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code Power_of}
+	 * labeled alternative in {@link languageParser#expression}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitPower_of(languageParser.Power_ofContext ctx);
 	/**
 	 * Visit a parse tree produced by the {@code Division}
 	 * labeled alternative in {@link languageParser#expression}.
@@ -183,52 +225,4 @@ public interface languageVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitForever_loop(languageParser.Forever_loopContext ctx);
-	/**
-	 * Visit a parse tree produced by {@link languageParser#condition}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitCondition(languageParser.ConditionContext ctx);
-	/**
-	 * Visit a parse tree produced by the {@code GreatherThan}
-	 * labeled alternative in {@link languageParser#boolean_expression}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitGreatherThan(languageParser.GreatherThanContext ctx);
-	/**
-	 * Visit a parse tree produced by the {@code LesserThan}
-	 * labeled alternative in {@link languageParser#boolean_expression}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitLesserThan(languageParser.LesserThanContext ctx);
-	/**
-	 * Visit a parse tree produced by the {@code EqualWith}
-	 * labeled alternative in {@link languageParser#boolean_expression}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitEqualWith(languageParser.EqualWithContext ctx);
-	/**
-	 * Visit a parse tree produced by the {@code GreatherorEqualThan}
-	 * labeled alternative in {@link languageParser#boolean_expression}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitGreatherorEqualThan(languageParser.GreatherorEqualThanContext ctx);
-	/**
-	 * Visit a parse tree produced by the {@code LesserorEqualThan}
-	 * labeled alternative in {@link languageParser#boolean_expression}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitLesserorEqualThan(languageParser.LesserorEqualThanContext ctx);
-	/**
-	 * Visit a parse tree produced by the {@code IsNotEqualWith}
-	 * labeled alternative in {@link languageParser#boolean_expression}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitIsNotEqualWith(languageParser.IsNotEqualWithContext ctx);
 }

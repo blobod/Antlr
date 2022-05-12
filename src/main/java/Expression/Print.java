@@ -1,15 +1,15 @@
 package Expression;
 
-public class Print {
-    public Expression print;
+public class Print extends Expression {
+    public Expression body;
 
-    public Print(Expression print){
-        this.print = print;
+    public Print(Expression body){
+        this.body = body;
     }
 
     @Override
     public String toString(){
 
-        return "print-statement " + print;
+        return "print-statement " + body;
     }
 }

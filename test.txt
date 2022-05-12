@@ -1,12 +1,5 @@
-int x = 1
-int y = 12
-if(13 < 10){
-print(x)
-while(x < 12){
-x = x + 1
-print(x)
-}
-}else{
-print(20 + 30)
+print(12)
+if(6 < 9){
+print(30 + 5)
 }
 
