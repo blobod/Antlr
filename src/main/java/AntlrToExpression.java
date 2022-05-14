@@ -85,9 +85,11 @@ public class AntlrToExpression extends languageBaseVisitor<Expression> {
     @Override
     public Expression visitIf(languageParser.IfContext ctx) {
         Expression condition = visit(ctx.getChild(2));
-        Expression body = visit(ctx.getChild(5));
-
-        return new If(condition, body);
+        ArrayList<Expression> bodyList = new ArrayList<>();
+        for (int i = 0; i < ctx.getChild(5).getChildCount(); i++){
+            bodyList.add(visit(ctx.getChild(5).getChild(i)));
+        }
+        return new If(condition, bodyList);
     }
 
     @Override

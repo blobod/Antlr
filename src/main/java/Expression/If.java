@@ -4,9 +4,9 @@ import java.util.List;
 
 public class If extends Expression{
     public Expression condition;
-    public Expression body;
+    public List <Expression> body;
 
-    public If(Expression condition, Expression body) {
+    public If(Expression condition, List<Expression> body) {
         this.condition = condition;
         this.body = body;
     }

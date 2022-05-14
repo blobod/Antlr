@@ -43,12 +43,15 @@ public class ExpressionProcessor {
                 Expression condition = ((If) e).condition;
                 int check = getEvalResult(condition);
                 if (check == 1){
-                    Expression body = ((If) e).body;
-                    getEvalResult(body);
+                    List<Expression> body = ((If) e).body;
+                    for (Expression expression : body) {
+                        getEvalResult(expression);
+                    }
                 }
             }
             else if(e instanceof Print){
                 Expression body = ((Print) e).body;
+                getEvalResult(body);
             }else if(e instanceof While){
                 Expression condition = ((While) e).condition;
                 int check = getEvalResult(condition);
@@ -121,8 +124,10 @@ public class ExpressionProcessor {
             Expression condition = ((If) e).condition;
             int check = getEvalResult(condition);
             if (check == 1){
-                Expression body = ((If) e).body;
-                getEvalResult(body);
+                List<Expression> body = ((If) e).body;
+                for (Expression expression : body) {
+                    getEvalResult(expression);
+                }
             }
         }
 
