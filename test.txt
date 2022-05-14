@@ -1,3 +1,7 @@
-if(2 > 3){
-print(4)
-}
+int x = 1
+while(4 > x){
+x = x + 1
+print(x)
+if(x > 2){
+print(5)
+}}

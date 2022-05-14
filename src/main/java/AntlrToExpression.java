@@ -3,7 +3,6 @@ import Expression.*;
 import grammar.languageBaseVisitor;
 import grammar.languageParser;
 
-import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -139,8 +138,11 @@ public class AntlrToExpression extends languageBaseVisitor<Expression> {
     @Override
     public Expression visitWhile_loop(languageParser.While_loopContext ctx) {
         Expression condition = visit(ctx.getChild(2));
-        Expression body = visit(ctx.getChild(5));
-        return new While(condition, body);
+        ArrayList<Expression> bodyList = new ArrayList<>();
+        for (int i = 0; i < ctx.getChild(5).getChildCount(); i++){
+            bodyList.add(visit(ctx.getChild(5).getChild(i)));
+        }
+        return new While(condition, bodyList);
     }
 
     public boolean ConditionCheck(int left, String symbol, int right){

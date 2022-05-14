@@ -20,17 +20,16 @@ public class ExpressionProcessor {
     public List<String> getEvaluationResults(){
         List<String> evaluations = new ArrayList<>();
         for (Expression e: list){
-            System.out.println(e);
             if (e instanceof VariableDeclaration){
-                System.out.println("hello");
                 String id = ((VariableDeclaration) e ).id;
                 int value = ((VariableDeclaration) e).value;
                 values.put(id, value);
 
-            }else if(e instanceof VariableReDeclaration redecl){
+            }else if(e instanceof VariableReDeclaration){
+                String id = ((VariableReDeclaration) e).id;
                 Expression expression = ( (VariableReDeclaration) e).expression;
                 int value = getEvalResult(expression);
-                values.put(redecl.id, value);
+                values.put(id, value);
             }
             else if (e instanceof Forever_Loop)
             {
@@ -50,19 +49,21 @@ public class ExpressionProcessor {
             }
             else if(e instanceof Print){
                 Expression body = ((Print) e).body;
-                getEvalResult(body);
             }else if(e instanceof While){
                 Expression condition = ((While) e).condition;
                 int check = getEvalResult(condition);
-
                 while (check == 1){
-                    Expression body = ((While) e).body;
-                    getEvalResult(body);
+                    List<Expression> body = ((While) e).body;
+                    for (Expression expression : body) {
+                        getEvalResult(expression);
+                    }
                     check = getEvalResult(condition);
                 }
             }
             else{
-                System.out.println(e.toString());
+                String input = e.toString();
+                int result = getEvalResult(e);
+                evaluations.add(input + " is " + result);
             }
         }
 
@@ -76,8 +77,6 @@ public class ExpressionProcessor {
         if (e instanceof Number num){
             result = num.num;
         }else if(e instanceof Variable var){
-            String id = var.id;
-            System.out.println(id + " " + values.get(var.id));
             result = values.get(var.id);
         } else if(e instanceof Multiplication multi){
             int left = getEvalResult(multi.left);
@@ -113,6 +112,18 @@ public class ExpressionProcessor {
             } else result = 0;
         }else if(e instanceof Print print){
             System.out.println(getEvalResult(print.body));
+        }else if(e instanceof VariableReDeclaration){
+            String id = ((VariableReDeclaration) e).id;
+            Expression expression = ( (VariableReDeclaration) e).expression;
+            int value = getEvalResult(expression);
+            values.put(id, value);
+        }else if(e instanceof If){
+            Expression condition = ((If) e).condition;
+            int check = getEvalResult(condition);
+            if (check == 1){
+                Expression body = ((If) e).body;
+                getEvalResult(body);
+            }
         }
 
 

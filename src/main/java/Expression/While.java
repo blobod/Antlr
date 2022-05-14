@@ -5,9 +5,9 @@ import java.util.List;
 
 public class While extends Expression{
     public Expression condition;
-    public Expression body;
+    public List <Expression> body;
 
-    public While(Expression condition, Expression body){
+    public While(Expression condition, List<Expression> body){
         this.condition = condition;
         this.body = body;
     }

@@ -42,8 +42,8 @@ public class EntryPoint {
 
         if (visitor.semanticErrors.isEmpty()){
             ExpressionProcessor ep = new ExpressionProcessor(lang.expressions);
-            for (String evaluation: ep.getEvaluationResults()){
-                System.out.println(evaluation);
+    for (String evaluation: ep.getEvaluationResults()){
+    System.out.println(evaluation);
             }
         }else{
             for(String err: visitor.semanticErrors){

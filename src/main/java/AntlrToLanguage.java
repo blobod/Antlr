@@ -13,12 +13,12 @@ public class AntlrToLanguage extends languageBaseVisitor<Language> {
        semanticErrors = new ArrayList<>();
 
        AntlrToExpression exprVisitor = new AntlrToExpression(semanticErrors);
-       for (int i = 0; i < ctx.getChildCount(); i++){
-            if (i == ctx.getChildCount() - 1){
+       for (int i = 0; i < ctx.getChild(0).getChildCount(); i++){
+            if (i == ctx.getChild(0).getChildCount()){
                 System.out.println("\n EOF");
             }
             else{
-                language.addExpression(exprVisitor.visit(ctx.getChild(i)));
+                language.addExpression(exprVisitor.visit(ctx.getChild(0).getChild(i)));
             }
 
         }
