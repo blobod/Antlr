@@ -15,7 +15,7 @@ public class VariableDeclaration extends Expression {
 
     @Override
     public String toString(){
-        return "type def of " + type + " id " + id + " value " + Integer.toString(value);
+        return "type def of " + type + " id " + id + " value " + value;
     }
 }
 

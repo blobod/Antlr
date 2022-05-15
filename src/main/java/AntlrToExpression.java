@@ -3,20 +3,19 @@ import Expression.*;
 import grammar.languageBaseVisitor;
 import grammar.languageParser;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class AntlrToExpression extends languageBaseVisitor<Expression> {
 
     private List<String> vars; //Stores all variables that are declared in the program
     private List<String> semanticErrors; //Duplicate declaration, Reference to undeclared
-    private Map<String, Integer> values;
+    private Map<String, Integer> intValues;
+    private Map<String, String> txtValues;
+    private Map<String, Boolean> boolValues;
 
     public AntlrToExpression(List<String> semanticErrors) {
         vars = new ArrayList<>();
-        values = new HashMap<>();
+        intValues = new HashMap<>();
         this.semanticErrors = semanticErrors;
     }
 
@@ -94,33 +93,14 @@ public class AntlrToExpression extends languageBaseVisitor<Expression> {
 
     @Override
     public Expression visitElse(languageParser.ElseContext ctx) {
-        Expression condition = visit(ctx.getChild(2).getChild(0));
-        String symbol = ctx.getChild(2).getChild(0).getChild(1).getText();
-        Expression body;
-        Expression Else;
-        int left = 0;
-        int right = 0;
-        boolean check = false;
-        try {
-            left = Integer.parseInt(ctx.getChild(2).getChild(0).getChild(0).getText());
-        }catch (NumberFormatException e){
-            left = values.get(ctx.getChild(2).getChild(0).getChild(0).getText());
-        }
-        try {
-            right = Integer.parseInt(ctx.getChild(2).getChild(0).getChild(2).getText());
-        }catch (NumberFormatException e){
-            right = values.get(ctx.getChild(2).getChild(0).getChild(2).getText());
-        }
-
-        check = ConditionCheck(left,symbol,right);
-        List<Expression> bodyList = new ArrayList<Expression>();
+        Expression condition = visit(ctx.getChild(2));
+        List<Expression> bodyList = new ArrayList<>();
         List<Expression> elseList = new ArrayList<>();
-        if (check){
-            body = visit(ctx.getChild(5));
-            bodyList.add(body);
-        }else {
-            Else = visit(ctx.getChild(9));
-            elseList.add(Else);
+        for (int i = 0; i < ctx.getChild(5).getChildCount(); i++){
+            bodyList.add(visit(ctx.getChild(5).getChild(i)));
+        }
+        for (int i = 0; i < ctx.getChild(9).getChildCount(); i++){
+            elseList.add(visit(ctx.getChild(9).getChild(i)));
         }
 
         return new If_else(condition, bodyList, elseList);
@@ -147,51 +127,20 @@ public class AntlrToExpression extends languageBaseVisitor<Expression> {
         return new While(condition, bodyList);
     }
 
-    public boolean ConditionCheck(int left, String symbol, int right){
-        boolean check = false;
-        switch (symbol) {
-            case "<" -> check = left < right;
-            case ">" -> check = left > right;
-            case "==" -> check = left == right;
-            case "<=" -> check = left <= right;
-            case ">=" -> check = left >= right;
-            case "!=" -> check = left != right;
-            default -> System.out.println("This symbol does not exist");
-        }
-        return check;
-    }
-
     @Override
     public Expression visitForever_loop(languageParser.Forever_loopContext ctx) {
-        Forever_Loop loop = new Forever_Loop();
-        boolean breaking = false;
-        while (!breaking) {
-            for (int i = 2; i < ctx.getChildCount() - 1; i++) {
-                Expression child = visit(ctx.getChild(i));
-                if (child instanceof Break) {
-                    breaking = true;
-                    break;
-                }
-                loop.add(child);
-                System.out.println(ctx.getChild(i).getText());
+        ArrayList<Expression> bodyList = new ArrayList<>();
+            for (int i = 0; i < ctx.getChild(2).getChildCount(); i++) {
+                bodyList.add(visit(ctx.getChild(2).getChild(i)));
             }
+        return new Forever_Loop(bodyList);
         }
-        return loop;
-    }
+
 
     @Override
     public Expression visitPrint(languageParser.PrintContext ctx) {
         Expression body = visit(ctx.getChild(2));
         return new Print(body);
-    }
-
-    public boolean Check(String id) {
-        try {
-            Integer.parseInt(id);
-            return true;
-        } catch (NumberFormatException e) {
-            return false;
-        }
     }
 
     @Override
@@ -203,7 +152,7 @@ public class AntlrToExpression extends languageBaseVisitor<Expression> {
             semanticErrors.add("Error: variable " + id + " already declared ");
         } else {
             vars.add(id);
-            values.put(id, value);
+            intValues.put(id, value);
         }
         String type = ctx.getChild(0).getText();
         System.out.print("TYPE DEF " + id + " " + type + " " + value + "\n");
@@ -217,7 +166,6 @@ public class AntlrToExpression extends languageBaseVisitor<Expression> {
         if (!vars.contains(id)) {
             semanticErrors.add("Error: variable " + id + " not declared ");
         }
-        System.out.println(expression);
         System.out.print("TYPE RE-DEF OF " + id + " TO " + expression + "\n");
         return new VariableReDeclaration(id, expression);
     }
@@ -242,28 +190,38 @@ public class AntlrToExpression extends languageBaseVisitor<Expression> {
 
     @Override
     public Expression visitLesserThan(languageParser.LesserThanContext ctx) {
-        return visitChildren(ctx);
+        Expression left = visit(ctx.getChild(0)); // recursively visit the left subtree of the current Multiplication node
+        Expression right = visit(ctx.getChild(2));
+        return new LesserThan(left, right);
     }
 
     @Override
     public Expression visitEqualWith(languageParser.EqualWithContext ctx) {
-        return visitChildren(ctx);
+        Expression left = visit(ctx.getChild(0)); // recursively visit the left subtree of the current Multiplication node
+        Expression right = visit(ctx.getChild(2));
+        return new EqualWith(left, right);
     }
 
     @Override
     public Expression visitGreaterorEqualThan(languageParser.GreaterorEqualThanContext ctx) {
-        return visitChildren(ctx);
+        Expression left = visit(ctx.getChild(0)); // recursively visit the left subtree of the current Multiplication node
+        Expression right = visit(ctx.getChild(2));
+        return new GreaterorEqualThan(left, right);
     }
 
 
     @Override
     public Expression visitLesserorEqualThan(languageParser.LesserorEqualThanContext ctx) {
-        return visitChildren(ctx);
+        Expression left = visit(ctx.getChild(0)); // recursively visit the left subtree of the current Multiplication node
+        Expression right = visit(ctx.getChild(2));
+        return new LesserorEqualThan(left, right);
     }
 
     @Override
     public Expression visitIsNotEqualWith(languageParser.IsNotEqualWithContext ctx) {
-        return visitChildren(ctx);
+        Expression left = visit(ctx.getChild(0)); // recursively visit the left subtree of the current Multiplication node
+        Expression right = visit(ctx.getChild(2));
+        return new isNotEqualWith(left, right);
     }
 }
 

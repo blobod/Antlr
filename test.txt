@@ -1,8 +1,8 @@
-int x = 1
-int y = 5
-while(4 > x){
-x = x + 1
-if(y > x){
+int x = 0
+forever{
 print(x)
-print(y)}
+x = x + 1
+if(x == 5){
+break
+}
 }

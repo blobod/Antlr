@@ -11,7 +11,7 @@ import java.util.Map;
 public class ExpressionProcessor {
     List<Expression> list;
     public Map<String, Integer> values;
-
+    int ForeverCheck = 0;
     public ExpressionProcessor(List<Expression> list){
         this.list = list;
         values = new HashMap<>();
@@ -33,11 +33,12 @@ public class ExpressionProcessor {
             }
             else if (e instanceof Forever_Loop)
             {
-                int result = 0;
-                String input = e.toString();
-                for (int i = 0; i < ((Forever_Loop) e).block.size(); i++) {
-                    result = getEvalResult(((Forever_Loop) e).block.get(i));
-                    evaluations.add(input + " is " + result);
+                ForeverCheck = 1;
+                while (ForeverCheck == 1){
+                    List<Expression> body = ((Forever_Loop) e).body;
+                    for (Expression expression : body){
+                        getEvalResult(expression);
+                    }
                 }
             }else if(e instanceof If){
                 Expression condition = ((If) e).condition;
@@ -61,6 +62,20 @@ public class ExpressionProcessor {
                         getEvalResult(expression);
                     }
                     check = getEvalResult(condition);
+                }
+            }else if(e instanceof If_else){
+                Expression condition = ((If_else) e).condition;
+                int check = getEvalResult(condition);
+                if (check == 1) {
+                    List<Expression> body = ((If_else) e).body;
+                    for (Expression expression : body) {
+                        getEvalResult(expression);
+                    }
+                } else {
+                    List<Expression> elseBody = ((If_else) e).Else;
+                    for (Expression expression : elseBody) {
+                        getEvalResult(expression);
+                    }
                 }
             }
             else{
@@ -112,8 +127,40 @@ public class ExpressionProcessor {
             int right = getEvalResult(great.right);
             if (left > right) {
                 result = 1;
-            } else result = 0;
-        }else if(e instanceof Print print){
+            }
+        }else if(e instanceof LesserThan lesser){
+            int left = getEvalResult(lesser.left);
+            int right = getEvalResult(lesser.right);
+            if (left < right){
+                result = 1;
+            }
+        }else if (e instanceof EqualWith equalWith){
+            int left = getEvalResult(equalWith.left);
+            int right = getEvalResult(equalWith.right);
+            if(left == right){
+                result = 1;
+            }
+        }
+                else if(e instanceof GreaterorEqualThan greaterorequal){
+            int left = getEvalResult(greaterorequal.left);
+            int right = getEvalResult(greaterorequal.right);
+            if (left >= right){
+                result = 1;
+            }
+        }else if(e instanceof LesserorEqualThan lesserorequal){
+            int left = getEvalResult(lesserorequal.left);
+            int right = getEvalResult(lesserorequal.right);
+            if (left <= right){
+                result = 1;
+            }
+        }else if(e instanceof isNotEqualWith notequal){
+            int left = getEvalResult(notequal.left);
+            int right = getEvalResult(notequal.right);
+            if (left != right){
+                result = 1;
+            }
+        }
+        else if(e instanceof Print print){
             System.out.println(getEvalResult(print.body));
         }else if(e instanceof VariableReDeclaration){
             String id = ((VariableReDeclaration) e).id;
@@ -129,6 +176,22 @@ public class ExpressionProcessor {
                     getEvalResult(expression);
                 }
             }
+        }else if(e instanceof If_else) {
+            Expression condition = ((If_else) e).condition;
+            int check = getEvalResult(condition);
+            if (check == 1) {
+                List<Expression> body = ((If_else) e).body;
+                for (Expression expression : body) {
+                    getEvalResult(expression);
+                }
+            } else {
+                List<Expression> elseBody = ((If_else) e).Else;
+                for (Expression expression : elseBody) {
+                    getEvalResult(expression);
+                }
+            }
+        }else if(e instanceof Break){
+           ForeverCheck = 0;
         }
 
 

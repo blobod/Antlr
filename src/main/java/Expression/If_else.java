@@ -13,5 +13,7 @@ public class If_else extends Expression {
         this.body = body;
         this.Else = Else;
     }
-
+    public String toString(){
+        return "if " + condition + " then " + body + " else " + Else;
+    }
 }
