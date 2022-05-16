@@ -8,7 +8,7 @@ import java.util.*;
 
 public class ExpressionProcessor {
     List<Expression> list;
-    public Map<String, Integer> values;
+    public Map<String, Type> values;
     int ForeverCheck = 0;
     public ExpressionProcessor(List<Expression> list){
         this.list = list;
@@ -20,13 +20,13 @@ public class ExpressionProcessor {
         for (Expression e: list){
             if (e instanceof VariableDeclaration){
                 String id = ((VariableDeclaration) e ).id;
-                int value = ((VariableDeclaration) e).value;
+                Type value = new Type (((VariableDeclaration) e).value);
                 values.put(id, value);
 
             }else if(e instanceof VariableReDeclaration){
                 String id = ((VariableReDeclaration) e).id;
                 Expression expression = ( (VariableReDeclaration) e).expression;
-                int value = getEvalResult(expression);
+                Type value = getEvalResult(expression);
                 values.put(id, value);
             }
             else if (e instanceof Forever_Loop)
@@ -40,8 +40,8 @@ public class ExpressionProcessor {
                 }
             }else if(e instanceof If){
                 Expression condition = ((If) e).condition;
-                int check = getEvalResult(condition);
-                if (check == 1){
+                Type check = getEvalResult(condition);
+                if (Integer.parseInt(check.toString()) == 1){
                     List<Expression> body = ((If) e).body;
                     for (Expression expression : body) {
                         getEvalResult(expression);
@@ -53,8 +53,8 @@ public class ExpressionProcessor {
                 System.out.println(getEvalResult(body));
             }else if(e instanceof While){
                 Expression condition = ((While) e).condition;
-                int check = getEvalResult(condition);
-                while (check == 1){
+                Type check = getEvalResult(condition);
+                while (Integer.parseInt(check.toString()) == 1){
                     List<Expression> body = ((While) e).body;
                     for (Expression expression : body) {
                         getEvalResult(expression);
@@ -63,8 +63,8 @@ public class ExpressionProcessor {
                 }
             }else if(e instanceof If_else){
                 Expression condition = ((If_else) e).condition;
-                int check = getEvalResult(condition);
-                if (check == 1) {
+                Type check = getEvalResult(condition);
+                if (Integer.parseInt(check.toString()) == 1) {
                     List<Expression> body = ((If_else) e).body;
                     for (Expression expression : body) {
                         getEvalResult(expression);
@@ -79,25 +79,38 @@ public class ExpressionProcessor {
                 Scanner myObj = new Scanner(System.in);
                 System.out.println("Enter value: ");
                 String value = myObj.nextLine();
+                String type;
+                Type typeValue;
                 try {
                     int x = Integer.parseInt(value);
-                    VariableDeclaration scannerTest = new VariableDeclaration(input.toString(), "int", x);
-                    values.put(input.toString(), x);
+                    typeValue = new Type(x);
+                    type = "int";
+                    VariableDeclaration scannerTest = new VariableDeclaration(input.toString(), type, typeValue);
+                    values.put(input.toString(), typeValue);
                     getEvalResult(scannerTest);
                 }catch (NumberFormatException c){
                     try {
                         double y = Float.parseFloat(value);
                         y = Precision.round(y, 2);
-                        System.out.println(y);
+                        typeValue = new Type(y);
+                        type = "double";
+                        VariableDeclaration scannerTest = new VariableDeclaration(input.toString(), type, typeValue);
+                        values.put(input.toString(), typeValue);
+                        getEvalResult(scannerTest);
                     }catch (NumberFormatException g){
-                        System.out.println(value);
+                        typeValue = new Type(value);
+                        type = "txt";
+                        VariableDeclaration scannerTest = new VariableDeclaration(input.toString(), type, typeValue);
+                        values.put(input.toString(), typeValue);
+                        getEvalResult(scannerTest);
                     }
                 }
 
+                System.out.print("TYPE DEF " + input.toString() + " " + type + " " + typeValue + "\n");
             }
             else{
                 String input = e.toString();
-                int result = getEvalResult(e);
+                Type result = getEvalResult(e);
                 evaluations.add(input + " is " + result);
             }
         }
@@ -106,73 +119,73 @@ public class ExpressionProcessor {
 
     }
 
-    private int getEvalResult(Expression e){
+    private Type getEvalResult(Expression e){
         int result = 0;
 
         if (e instanceof Number num){
             result = num.num;
         }else if(e instanceof Variable var){
-            result = values.get(var.id);
+            result = Integer.parseInt(values.get(var.id).toString());
         } else if(e instanceof Multiplication multi){
-            int left = getEvalResult(multi.left);
-            int right = getEvalResult(multi.right);
+            int left = Integer.parseInt(getEvalResult(multi.left).toString());
+            int right = Integer.parseInt(getEvalResult(multi.right).toString());
 
             result = left * right;
         }else if (e instanceof Division div){
-            int left = getEvalResult(div.left);
-            int right = getEvalResult(div.right);
+            int left = Integer.parseInt(getEvalResult(div.left).toString());
+            int right = Integer.parseInt(getEvalResult(div.left).toString());
 
             result = left / right;
         } else if (e instanceof Addition add){
-            int left = getEvalResult(add.left);
-            int right = getEvalResult(add.right);
+            int left = Integer.parseInt(getEvalResult(add.left).toString());
+            int right = Integer.parseInt(getEvalResult(add.left).toString());
             result = left + right;
         } else if (e instanceof Substraktion sub){
-            int left = getEvalResult(sub.left);
-            int right = getEvalResult(sub.right);
+            int left = Integer.parseInt(getEvalResult(sub.left).toString());
+            int right = Integer.parseInt(getEvalResult(sub.left).toString());
 
             result = left - right;
         }
         else if (e instanceof Power_Of pow ){
-            int left = getEvalResult(pow.left);
-            int right = getEvalResult(pow.right);
+            int left = Integer.parseInt(getEvalResult(pow.left).toString());
+            int right = Integer.parseInt(getEvalResult(pow.left).toString());
 
             result = (int) Math.pow(left, right);
         }
         else if (e instanceof  GreaterThan great) {
-            int left = getEvalResult(great.left);
-            int right = getEvalResult(great.right);
+            int left = Integer.parseInt(getEvalResult(great.left).toString());
+            int right = Integer.parseInt(getEvalResult(great.left).toString());
             if (left > right) {
                 result = 1;
             }
         }else if(e instanceof LesserThan lesser){
-            int left = getEvalResult(lesser.left);
-            int right = getEvalResult(lesser.right);
+            int left = Integer.parseInt(getEvalResult(lesser.left).toString());
+            int right = Integer.parseInt(getEvalResult(lesser.left).toString());
             if (left < right){
                 result = 1;
             }
         }else if (e instanceof EqualWith equalWith){
-            int left = getEvalResult(equalWith.left);
-            int right = getEvalResult(equalWith.right);
+            int left = Integer.parseInt(getEvalResult(equalWith.left).toString());
+            int right = Integer.parseInt(getEvalResult(equalWith.left).toString());
             if(left == right){
                 result = 1;
             }
         }
                 else if(e instanceof GreaterorEqualThan greaterorequal){
-            int left = getEvalResult(greaterorequal.left);
-            int right = getEvalResult(greaterorequal.right);
+            int left = Integer.parseInt(getEvalResult(greaterorequal.left).toString());
+            int right = Integer.parseInt(getEvalResult(greaterorequal.left).toString());
             if (left >= right){
                 result = 1;
             }
         }else if(e instanceof LesserorEqualThan lesserorequal){
-            int left = getEvalResult(lesserorequal.left);
-            int right = getEvalResult(lesserorequal.right);
+            int left = Integer.parseInt(getEvalResult(lesserorequal.left).toString());
+            int right = Integer.parseInt(getEvalResult(lesserorequal.left).toString());
             if (left <= right){
                 result = 1;
             }
         }else if(e instanceof isNotEqualWith notequal){
-            int left = getEvalResult(notequal.left);
-            int right = getEvalResult(notequal.right);
+            int left = Integer.parseInt(getEvalResult(notequal.left).toString());
+            int right = Integer.parseInt(getEvalResult(notequal.left).toString());
             if (left != right){
                 result = 1;
             }
@@ -182,11 +195,11 @@ public class ExpressionProcessor {
         }else if(e instanceof VariableReDeclaration){
             String id = ((VariableReDeclaration) e).id;
             Expression expression = ( (VariableReDeclaration) e).expression;
-            int value = getEvalResult(expression);
+            Type value = new Type(getEvalResult(expression));
             values.put(id, value);
         }else if(e instanceof If){
             Expression condition = ((If) e).condition;
-            int check = getEvalResult(condition);
+            int check = Integer.parseInt(getEvalResult(condition).toString());
             if (check == 1){
                 List<Expression> body = ((If) e).body;
                 for (Expression expression : body) {
@@ -195,7 +208,7 @@ public class ExpressionProcessor {
             }
         }else if(e instanceof If_else) {
             Expression condition = ((If_else) e).condition;
-            int check = getEvalResult(condition);
+            int check = Integer.parseInt(getEvalResult(condition).toString());
             if (check == 1) {
                 List<Expression> body = ((If_else) e).body;
                 for (Expression expression : body) {
@@ -213,6 +226,6 @@ public class ExpressionProcessor {
 
 
 
-        return result;
+        return new Type(result);
     }
 }

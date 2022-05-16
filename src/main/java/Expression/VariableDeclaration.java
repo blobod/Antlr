@@ -4,10 +4,10 @@ package Expression;
 public class VariableDeclaration extends Expression {
     public String id;
     public String type;
-    public int value;
+    public Type value;
 
 
-    public VariableDeclaration(String id, String type, int value){
+    public VariableDeclaration(String id, String type, Type value){
         this.id = id;
         this.type = type;
         this.value = value;

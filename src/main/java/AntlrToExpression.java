@@ -9,9 +9,7 @@ public class AntlrToExpression extends languageBaseVisitor<Expression> {
 
     private List<String> vars; //Stores all variables that are declared in the program
     private List<String> semanticErrors; //Duplicate declaration, Reference to undeclared
-    private Map<String, Integer> intValues;
-    private Map<String, String> txtValues;
-    private Map<String, Boolean> boolValues;
+    private Map<String, Type> intValues;
 
     public AntlrToExpression(List<String> semanticErrors) {
         vars = new ArrayList<>();
@@ -140,7 +138,7 @@ public class AntlrToExpression extends languageBaseVisitor<Expression> {
     @Override
     public Expression visitType_definition(languageParser.Type_definitionContext ctx) {
         String id = ctx.getChild(1).getText();
-        int value = Integer.parseInt(ctx.getChild(3).getText());
+        Type value = new Type(ctx.getChild(3).getText());
         if (vars.contains(id)) {
             semanticErrors.add("Error: variable " + id + " already declared ");
         } else {

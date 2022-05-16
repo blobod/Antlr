@@ -1,2 +1,4 @@
-scan(x)
-print(x)
+bool x = true
+if(x){
+print(x * 12)
+}

@@ -25,11 +25,11 @@ print
     : PRINT LPAR (expression | stmts)+ RPAR;
 
 input
-    : SCAN LPAR expression RPAR;
+    : INPUT LPAR expression RPAR;
 
 //TYPES
 type_definition
-    : TYPE ID ASSIGN (ID | VALUE | TXT | BOOL);
+    : TYPE ID ASSIGN (VALUE | TXT | BOOL);
 type_reassign
     : ID ASSIGN (expression | ID | VALUE | TXT | BOOL);
 //TYPES
@@ -104,8 +104,8 @@ ISNOTEQUAL
 
 
 // TOKENS
-SCAN
-    : 'scan';
+INPUT
+    : 'input';
 
 PRINT
     : 'print';
