@@ -1,8 +1,2 @@
-int x = 0
-forever{
+scan(x)
 print(x)
-x = x + 1
-if(x == 5){
-break
-}
-}

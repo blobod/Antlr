@@ -2,11 +2,9 @@ package grammar;
 
 import Expression.*;
 import Expression.Number;
+import org.apache.commons.math3.util.Precision;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class ExpressionProcessor {
     List<Expression> list;
@@ -52,7 +50,7 @@ public class ExpressionProcessor {
             }
             else if(e instanceof Print){
                 Expression body = ((Print) e).body;
-                getEvalResult(body);
+                System.out.println(getEvalResult(body));
             }else if(e instanceof While){
                 Expression condition = ((While) e).condition;
                 int check = getEvalResult(condition);
@@ -77,6 +75,25 @@ public class ExpressionProcessor {
                         getEvalResult(expression);
                     }
                 }
+            }else if(e instanceof Input input){
+                Scanner myObj = new Scanner(System.in);
+                System.out.println("Enter value: ");
+                String value = myObj.nextLine();
+                try {
+                    int x = Integer.parseInt(value);
+                    VariableDeclaration scannerTest = new VariableDeclaration(input.toString(), "int", x);
+                    values.put(input.toString(), x);
+                    getEvalResult(scannerTest);
+                }catch (NumberFormatException c){
+                    try {
+                        double y = Float.parseFloat(value);
+                        y = Precision.round(y, 2);
+                        System.out.println(y);
+                    }catch (NumberFormatException g){
+                        System.out.println(value);
+                    }
+                }
+
             }
             else{
                 String input = e.toString();

@@ -13,7 +13,8 @@ stmt
     : conditional_statement
     | iterative_statement
     | declaration
-    | print;
+    | print
+    | input;
 
 declaration
     : type_definition
@@ -22,6 +23,9 @@ declaration
 
 print
     : PRINT LPAR (expression | stmts)+ RPAR;
+
+input
+    : SCAN LPAR expression RPAR;
 
 //TYPES
 type_definition
@@ -100,6 +104,9 @@ ISNOTEQUAL
 
 
 // TOKENS
+SCAN
+    : 'scan';
+
 PRINT
     : 'print';
 

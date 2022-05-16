@@ -1,4 +1,4 @@
-// Generated from C:/Users/thetr/OneDrive/Dokumenter/GitHub/Antlr/src/main/java/grammar\language.g4 by ANTLR 4.9.2
+// Generated from C:/Users/thetr/Desktop/Antlr/src/main/java/grammar\language.g4 by ANTLR 4.9.2
 package grammar;
 import org.antlr.v4.runtime.tree.ParseTreeListener;
 
@@ -67,6 +67,16 @@ public interface languageListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitPrint(languageParser.PrintContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link languageParser#input}.
+	 * @param ctx the parse tree
+	 */
+	void enterInput(languageParser.InputContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link languageParser#input}.
+	 * @param ctx the parse tree
+	 */
+	void exitInput(languageParser.InputContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link languageParser#type_definition}.
 	 * @param ctx the parse tree

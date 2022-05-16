@@ -55,21 +55,9 @@ public class AntlrToExpression extends languageBaseVisitor<Expression> {
     }
 
     @Override
-    public Expression visitBigger_expression(languageParser.Bigger_expressionContext ctx) {
-        return visitChildren(ctx);
-    }
-
-    @Override
-    public Expression visitParanthesis(languageParser.ParanthesisContext ctx) {
-        return visitChildren(ctx);
-    }
-
-    @Override
     public Expression visitVariable(languageParser.VariableContext ctx) {
         String id = ctx.getChild(0).getText();
-        if (!vars.contains(id)) {
-            semanticErrors.add("Error: variable " + id + " not declared");
-        }
+
         return new Variable(id);
     }
 
@@ -144,8 +132,13 @@ public class AntlrToExpression extends languageBaseVisitor<Expression> {
     }
 
     @Override
+    public Expression visitInput(languageParser.InputContext ctx){
+        Expression body = visit(ctx.getChild(2));
+        return new Input(body);
+    }
+
+    @Override
     public Expression visitType_definition(languageParser.Type_definitionContext ctx) {
-        System.out.println();
         String id = ctx.getChild(1).getText();
         int value = Integer.parseInt(ctx.getChild(3).getText());
         if (vars.contains(id)) {
