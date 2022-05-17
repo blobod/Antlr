@@ -126,6 +126,13 @@ public interface languageVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitEqualWith(languageParser.EqualWithContext ctx);
 	/**
+	 * Visit a parse tree produced by the {@code String}
+	 * labeled alternative in {@link languageParser#expression}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitString(languageParser.StringContext ctx);
+	/**
 	 * Visit a parse tree produced by the {@code LesserorEqualThan}
 	 * labeled alternative in {@link languageParser#expression}.
 	 * @param ctx the parse tree

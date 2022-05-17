@@ -22,8 +22,7 @@ declaration
     | type_reassign;
 
 print
-    : PRINT LPAR (expression | stmts)+ RPAR;
-
+    : PRINT LPAR (expression)+ RPAR;
 input
     : INPUT LPAR expression RPAR;
 
@@ -57,7 +56,8 @@ expression
     | ((PLUS | MINUS | MULTIPLICATION | DIVISION)+ LPAR expression+ RPAR) # Paranthesis
     | (PLUS | MINUS | MULTIPLICATION | DIVISION)+ expression #Bigger_expression
     | ID # Variable
-    | VALUE # Number;
+    | VALUE # Number
+    | TXT # String;
 
 //CONDITINAL STATEMENT
 conditional_statement
@@ -176,22 +176,20 @@ INT
 DOT
     : '.';
 DOUBLE
-    : [0-9]+ DOT [0-9]+
-    ;
-TXT
-    : [a-z][A-Z]+;
+    : [0-9]+ DOT [0-9]+;
+
+TXT:
+    '"' [a-z_]?([A-Za-z0-9_])+ '"' ;
 
 BOOL
     : TRUE | FALSE;
 
 TRUE
-    : '1'
-    | 'true';
+    : 'true';
 FALSE
-    : '0'
-    | 'false';
+    : 'false';
 ID
-    :[a-z_]?([A-Za-z0-9_])+;
+    : [a-z_]?([A-Za-z0-9_ ])+;
 
 // Whitespace and comments
 WS  :  [ \t\r\n\u000C]+ -> channel(HIDDEN)

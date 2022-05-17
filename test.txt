@@ -1,2 +1,1 @@
-input(x)
-print(x)
+print(5 + 12)

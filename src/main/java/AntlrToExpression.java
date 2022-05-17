@@ -3,6 +3,7 @@ import Expression.*;
 import grammar.languageBaseVisitor;
 import grammar.languageParser;
 import org.antlr.v4.runtime.ParserRuleContext;
+import org.apache.commons.math3.analysis.function.Exp;
 
 import java.util.*;
 
@@ -10,18 +11,23 @@ public class AntlrToExpression extends languageBaseVisitor<Expression> {
 
     private List<String> vars; //Stores all variables that are declared in the program
     private List<String> semanticErrors; //Duplicate declaration, Reference to undeclared
-    private Map<String, Type> intValues;
-    private int input;
-    public AntlrToExpression(List<String> semanticErrors) {
+    private List<String> typeErrors;
+    private Map<String, Type> Values;
+    public AntlrToExpression(List<String> semanticErrors, List<String> typeErrors) {
         vars = new ArrayList<>();
-        intValues = new HashMap<>();
+        Values = new HashMap<>();
         this.semanticErrors = semanticErrors;
+        this.typeErrors = typeErrors;
     }
 
     @Override
     public Expression visitAddition(languageParser.AdditionContext ctx) {
         Expression left = visit(ctx.getChild(0)); // recursively visit the left subtree of the current Multiplication node
         Expression right = visit(ctx.getChild(2));
+        typeChecking check = new typeChecking(left, right);
+        if (check.expChecker(left, right)){
+            typeErrors.add("Type Error: in " + ctx.getParent().getText());
+        }
         return new Addition(left, right);
     }
 
@@ -29,6 +35,10 @@ public class AntlrToExpression extends languageBaseVisitor<Expression> {
     public Expression visitSubstraktion(languageParser.SubstraktionContext ctx) {
         Expression left = visit(ctx.getChild(0)); // recursively visit the left subtree of the current Multiplication node
         Expression right = visit(ctx.getChild(2));
+        typeChecking check = new typeChecking(left, right);
+        if (check.expChecker(left, right)){
+            typeErrors.add("Type Error: in " + ctx.getParent().getText());
+        }
         return new Substraktion(left, right);
     }
 
@@ -36,6 +46,10 @@ public class AntlrToExpression extends languageBaseVisitor<Expression> {
     public Expression visitMultiplication(languageParser.MultiplicationContext ctx) {
         Expression left = visit(ctx.getChild(0)); // recursively visit the left subtree of the current Multiplication node
         Expression right = visit(ctx.getChild(2));
+        typeChecking check = new typeChecking(left, right);
+        if (check.expChecker(left, right)){
+            typeErrors.add("Type Error: in " + ctx.getParent().getText());
+        }
         return new Multiplication(left, right);
     }
 
@@ -43,6 +57,10 @@ public class AntlrToExpression extends languageBaseVisitor<Expression> {
     public Expression visitDivision(languageParser.DivisionContext ctx) {
         Expression left = visit(ctx.getChild(0)); // recursively visit the left subtree of the current MUltiplication node
         Expression right = visit(ctx.getChild(2));
+        typeChecking check = new typeChecking(left, right);
+        if (check.expChecker(left, right)){
+            typeErrors.add("Type Error: in " + ctx.getParent().getText());
+        }
         return new Division(left, right);
     }
 
@@ -50,16 +68,17 @@ public class AntlrToExpression extends languageBaseVisitor<Expression> {
     public Expression visitPower_of(languageParser.Power_ofContext ctx) {
         Expression left = visit(ctx.getChild(0)); // recursively visit the left subtree of the current MUltiplication node
         Expression right = visit(ctx.getChild(2));
+        typeChecking check = new typeChecking(left, right);
+        if (check.expChecker(left, right)){
+            typeErrors.add("Type Error: in " + ctx.getParent().getText());
+        }
         return new Power_Of(left, right);
     }
 
     @Override
     public Expression visitVariable(languageParser.VariableContext ctx) {
         String id = ctx.getChild(0).getText();
-
-        if (input == 1){
-
-        } else if(!vars.contains(id)) {
+        if(!vars.contains(id)) {
             semanticErrors.add("Error: variable " + id + " not declared");
         }
         return new Variable(id);
@@ -68,10 +87,15 @@ public class AntlrToExpression extends languageBaseVisitor<Expression> {
     @Override
     public Expression visitNumber(languageParser.NumberContext ctx) {
         String numText = ctx.getChild(0).getText();
-        int num = Integer.parseInt(numText);
+        Type num = new Type(numText);
         return new Number(num);
     }
 
+    @Override public Expression visitString(languageParser.StringContext ctx) {
+        String txtText = ctx.getChild(0).getText();
+        Type txt = new Type(txtText);
+        return new txt(txt);
+    }
 
     @Override
     public Expression visitIf(languageParser.IfContext ctx) {
@@ -137,7 +161,8 @@ public class AntlrToExpression extends languageBaseVisitor<Expression> {
 
     @Override
     public Expression visitInput(languageParser.InputContext ctx){
-        input = 1;
+        String id = ctx.getChild(2).getText();
+        vars.add(id);
         Expression body = visit(ctx.getChild(2));
 
         return new Input(body);
@@ -151,10 +176,15 @@ public class AntlrToExpression extends languageBaseVisitor<Expression> {
             semanticErrors.add("Error: variable " + id + " already declared ");
         } else {
             vars.add(id);
-            intValues.put(id, value);
+            Values.put(id, value);
         }
         String type = ctx.getChild(0).getText();
-        System.out.print("TYPE DEF " + id + " " + type + " " + value + "\n");
+        typeChecking check = new typeChecking(null, null);
+        if(check.defChecker(type, value)){
+            typeErrors.add("Type Error: in " + ctx.getParent().getText());
+        }else{
+            System.out.print("TYPE DEF " + id + " " + type + " " + value + "\n");
+        }
         return new VariableDeclaration(id, type, value);
     }
 
@@ -183,6 +213,10 @@ public class AntlrToExpression extends languageBaseVisitor<Expression> {
     public Expression visitGreaterThan(languageParser.GreaterThanContext ctx) {
         Expression left = visit(ctx.getChild(0)); // recursively visit the left subtree of the current Multiplication node
         Expression right = visit(ctx.getChild(2));
+        typeChecking check = new typeChecking(left, right);
+        if (check.expChecker(left, right)){
+            typeErrors.add("Type Error: in " + ctx.getParent().getText());
+        }
         return new GreaterThan(left, right);
     }
 
@@ -191,6 +225,10 @@ public class AntlrToExpression extends languageBaseVisitor<Expression> {
     public Expression visitLesserThan(languageParser.LesserThanContext ctx) {
         Expression left = visit(ctx.getChild(0)); // recursively visit the left subtree of the current Multiplication node
         Expression right = visit(ctx.getChild(2));
+        typeChecking check = new typeChecking(left, right);
+        if (check.expChecker(left, right)){
+            typeErrors.add("Type Error: in " + ctx.getParent().getText());
+        }
         return new LesserThan(left, right);
     }
 
@@ -198,6 +236,10 @@ public class AntlrToExpression extends languageBaseVisitor<Expression> {
     public Expression visitEqualWith(languageParser.EqualWithContext ctx) {
         Expression left = visit(ctx.getChild(0)); // recursively visit the left subtree of the current Multiplication node
         Expression right = visit(ctx.getChild(2));
+        typeChecking check = new typeChecking(left, right);
+        if (check.expChecker(left, right)){
+            typeErrors.add("Type Error: in " + ctx.getParent().getText());
+        }
         return new EqualWith(left, right);
     }
 
@@ -205,6 +247,10 @@ public class AntlrToExpression extends languageBaseVisitor<Expression> {
     public Expression visitGreaterorEqualThan(languageParser.GreaterorEqualThanContext ctx) {
         Expression left = visit(ctx.getChild(0)); // recursively visit the left subtree of the current Multiplication node
         Expression right = visit(ctx.getChild(2));
+        typeChecking check = new typeChecking(left, right);
+        if (check.expChecker(left, right)){
+            typeErrors.add("Type Error: in " + ctx.getParent().getText());
+        }
         return new GreaterorEqualThan(left, right);
     }
 
@@ -213,6 +259,10 @@ public class AntlrToExpression extends languageBaseVisitor<Expression> {
     public Expression visitLesserorEqualThan(languageParser.LesserorEqualThanContext ctx) {
         Expression left = visit(ctx.getChild(0)); // recursively visit the left subtree of the current Multiplication node
         Expression right = visit(ctx.getChild(2));
+        typeChecking check = new typeChecking(left, right);
+        if (check.expChecker(left, right)){
+            typeErrors.add("Type Error: in " + ctx.getParent().getText());
+        }
         return new LesserorEqualThan(left, right);
     }
 
@@ -220,6 +270,10 @@ public class AntlrToExpression extends languageBaseVisitor<Expression> {
     public Expression visitIsNotEqualWith(languageParser.IsNotEqualWithContext ctx) {
         Expression left = visit(ctx.getChild(0)); // recursively visit the left subtree of the current Multiplication node
         Expression right = visit(ctx.getChild(2));
+        typeChecking check = new typeChecking(left, right);
+        if (check.expChecker(left, right)){
+            typeErrors.add("Type Error: in " + ctx.getParent().getText());
+        }
         return new isNotEqualWith(left, right);
     }
 }

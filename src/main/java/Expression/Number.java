@@ -1,15 +1,15 @@
 package Expression;
 
 public class Number extends Expression {
-    public int num;
+    public Type num;
 
-    public Number(int num){
+    public Number(Type num){
         this.num = num;
     }
 
     @Override
     public String toString(){
-        return Integer.toString(num);
+        return num.toString();
     }
 
 

@@ -202,6 +202,18 @@ public interface languageListener extends ParseTreeListener {
 	 */
 	void exitEqualWith(languageParser.EqualWithContext ctx);
 	/**
+	 * Enter a parse tree produced by the {@code String}
+	 * labeled alternative in {@link languageParser#expression}.
+	 * @param ctx the parse tree
+	 */
+	void enterString(languageParser.StringContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code String}
+	 * labeled alternative in {@link languageParser#expression}.
+	 * @param ctx the parse tree
+	 */
+	void exitString(languageParser.StringContext ctx);
+	/**
 	 * Enter a parse tree produced by the {@code LesserorEqualThan}
 	 * labeled alternative in {@link languageParser#expression}.
 	 * @param ctx the parse tree
