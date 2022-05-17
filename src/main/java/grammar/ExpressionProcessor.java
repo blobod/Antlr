@@ -106,7 +106,7 @@ public class ExpressionProcessor {
                     }
                 }
 
-                System.out.print("TYPE DEF " + input.toString() + " " + type + " " + typeValue + "\n");
+                System.out.print("TYPE DEF " + input + " " + type + " " + typeValue + "\n");
             }
             else{
                 String input = e.toString();

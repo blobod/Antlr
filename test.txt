@@ -1,4 +1,2 @@
-bool x = true
-if(x){
-print(x * 12)
-}
+input(x)
+print(x)

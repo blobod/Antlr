@@ -2,6 +2,7 @@ import Expression.Number;
 import Expression.*;
 import grammar.languageBaseVisitor;
 import grammar.languageParser;
+import org.antlr.v4.runtime.ParserRuleContext;
 
 import java.util.*;
 
@@ -10,7 +11,7 @@ public class AntlrToExpression extends languageBaseVisitor<Expression> {
     private List<String> vars; //Stores all variables that are declared in the program
     private List<String> semanticErrors; //Duplicate declaration, Reference to undeclared
     private Map<String, Type> intValues;
-
+    private int input;
     public AntlrToExpression(List<String> semanticErrors) {
         vars = new ArrayList<>();
         intValues = new HashMap<>();
@@ -56,6 +57,11 @@ public class AntlrToExpression extends languageBaseVisitor<Expression> {
     public Expression visitVariable(languageParser.VariableContext ctx) {
         String id = ctx.getChild(0).getText();
 
+        if (input == 1){
+
+        } else if(!vars.contains(id)) {
+            semanticErrors.add("Error: variable " + id + " not declared");
+        }
         return new Variable(id);
     }
 
@@ -131,7 +137,9 @@ public class AntlrToExpression extends languageBaseVisitor<Expression> {
 
     @Override
     public Expression visitInput(languageParser.InputContext ctx){
+        input = 1;
         Expression body = visit(ctx.getChild(2));
+
         return new Input(body);
     }
 
