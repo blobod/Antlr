@@ -1,11 +1,7 @@
 package Expression;
-import java.util.ArrayList;
-import java.util.List;
-
 public class typeChecking extends Expression {
     Expression left;
     Expression right;
-    public String err;
     public typeChecking(Expression left, Expression right){
         this.left = left;
         this.right = right;
@@ -38,11 +34,22 @@ public class typeChecking extends Expression {
         if (type.equals("int")){
             try{
                 int x = Integer.parseInt(value.toString());
-                System.out.println(x);
             }catch (NumberFormatException e){
-                check = true;
+               return true;
             }
-
+        }
+        if(type.equals("double")){
+            try{
+                double x = Double.parseDouble(value.toString());
+            }catch (NumberFormatException e){
+                return true;
+            }
+        }
+        if(type.equals("txt")){
+                String x = value.toString();
+                if (x.indexOf('"') != 0){
+                    return true;
+                }
         }
         return check;
     }

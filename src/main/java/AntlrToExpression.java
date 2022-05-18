@@ -22,8 +22,8 @@ public class AntlrToExpression extends languageBaseVisitor<Expression> {
 
     @Override
     public Expression visitAddition(languageParser.AdditionContext ctx) {
-        Expression left = visit(ctx.getChild(0)); // recursively visit the left subtree of the current Multiplication node
-        Expression right = visit(ctx.getChild(2));
+        Expression left = visit(ctx.getChild(0)); // recursively visit the left subtree of the current Addition node
+        Expression right = visit(ctx.getChild(2)); // recursively visit the right subtree of the current Addition node
         typeChecking check = new typeChecking(left, right);
         if (check.expChecker(left, right)){
             typeErrors.add("Type Error: in " + ctx.getParent().getText());
