@@ -23,32 +23,39 @@ public class ExpressionProcessor {
                 String id = ((VariableDeclaration) e).id;
                 Type value = new Type(((VariableDeclaration) e).value);
                 values.put(id, value);
+                evaluations.add("Variable declaration id:  " + id + " value: " + value);
 
             } else if (e instanceof VariableReDeclaration) {
                 String id = ((VariableReDeclaration) e).id;
                 Expression expression = ((VariableReDeclaration) e).expression;
                 Type value = getEvalResult(expression);
                 values.put(id, value);
+                evaluations.add("Variable redeclaration id:  " + id + " value: " + value);
             } else if (e instanceof Forever_Loop) {
                 ForeverCheck = 1;
+                List<Expression> body = ((Forever_Loop) e).body;
                 while (ForeverCheck == 1) {
-                    List<Expression> body = ((Forever_Loop) e).body;
+                    body = ((Forever_Loop) e).body;
                     for (Expression expression : body) {
                         getEvalResult(expression);
                     }
                 }
+                evaluations.add("Forever loop body: " + body);
             } else if (e instanceof If) {
                 Expression condition = ((If) e).condition;
                 Type check = getEvalResult(condition);
+                List<Expression> body = ((If) e).body;
                 if (Integer.parseInt(check.toString()) == 1) {
-                    List<Expression> body = ((If) e).body;
+                    body = ((If) e).body;
                     for (Expression expression : body) {
                         getEvalResult(expression);
                     }
                 }
+                evaluations.add("If statement condition: " + condition + " body: " + body);
             } else if (e instanceof Print) {
                 Expression body = ((Print) e).body;
                 System.out.println(getEvalResult(body));
+                evaluations.add(getEvalResult(body).toString());
             } else if (e instanceof While) {
                 Expression condition = ((While) e).condition;
                 Type check = getEvalResult(condition);
@@ -161,37 +168,49 @@ public class ExpressionProcessor {
             int left = Integer.parseInt(getEvalResult(great.left).toString());
             int right = Integer.parseInt(getEvalResult(great.right).toString());
             if (left > right) {
-                result = 1;
+                return new Type("true");
+            }else{
+                return new Type("false");
             }
         } else if (e instanceof LesserThan lesser) {
             int left = Integer.parseInt(getEvalResult(lesser.left).toString());
             int right = Integer.parseInt(getEvalResult(lesser.right).toString());
             if (left < right) {
-                result = 1;
+                return new Type("true");
+            }else{
+                return new Type("false");
             }
         } else if (e instanceof EqualWith equalWith) {
             int left = Integer.parseInt(getEvalResult(equalWith.left).toString());
             int right = Integer.parseInt(getEvalResult(equalWith.right).toString());
             if (left == right) {
-                result = 1;
+                return new Type("true");
+            }else{
+                return new Type("false");
             }
         } else if (e instanceof GreaterorEqualThan greaterorequal) {
             int left = Integer.parseInt(getEvalResult(greaterorequal.left).toString());
             int right = Integer.parseInt(getEvalResult(greaterorequal.right).toString());
             if (left >= right) {
-                result = 1;
+                return new Type("true");
+            }else{
+                return new Type("false");
             }
         } else if (e instanceof LesserorEqualThan lesserorequal) {
             int left = Integer.parseInt(getEvalResult(lesserorequal.left).toString());
             int right = Integer.parseInt(getEvalResult(lesserorequal.right).toString());
             if (left <= right) {
-                result = 1;
+                return new Type("true");
+            }else{
+                return new Type("false");
             }
         } else if (e instanceof isNotEqualWith notequal) {
             int left = Integer.parseInt(getEvalResult(notequal.left).toString());
             int right = Integer.parseInt(getEvalResult(notequal.right).toString());
             if (left != right) {
-                result = 1;
+                return new Type("true");
+            }else{
+                return new Type("false");
             }
         } else if (e instanceof Print print) {
             System.out.println(getEvalResult(print.body));

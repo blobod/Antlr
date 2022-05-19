@@ -40,6 +40,7 @@ public class EntryPoint {
                 frame.pack();
                 frame.setVisible(true);
                 ExpressionProcessor ep = new ExpressionProcessor(lang.expressions);
+                System.out.println(ep.getEvaluationResults());
                 for (String evaluation : ep.getEvaluationResults()) {
                     System.out.println(evaluation);
                 }
