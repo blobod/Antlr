@@ -17,7 +17,7 @@ stmt
     | input;
 
 declaration
-    : type_definition
+    : type_declaration
     | function_declaration
     | type_reassign;
 
@@ -27,15 +27,15 @@ input
     : INPUT LPAR expression RPAR;
 
 //TYPES
-type_definition
-    : TYPE ID ASSIGN (VALUE | TXT | BOOL);
+type_declaration
+    : TYPE ID ASSIGN (DOUBLE | INT | TXT | BOOL);
 type_reassign
-    : ID ASSIGN (expression | ID | VALUE | TXT | BOOL);
+    : ID ASSIGN (expression | ID | DOUBLE | INT | TXT | BOOL);
 //TYPES
 
 //Function declaration
 function_declaration
-    : (TYPE | VOID) ID LPAR param+ RPAR LCBRAC (stmts | ID | expression | type_definition)* RCBRAC;
+    : (TYPE | VOID) ID LPAR param+ RPAR LCBRAC (stmts | ID | expression | type_declaration)* RCBRAC;
 param
     : TYPE ID
     | (COMMA)* TYPE ID;
@@ -56,7 +56,7 @@ expression
     | ((PLUS | MINUS | MULTIPLICATION | DIVISION)+ LPAR expression+ RPAR) # Paranthesis
     | (PLUS | MINUS | MULTIPLICATION | DIVISION)+ expression #Bigger_expression
     | ID # Variable
-    | VALUE # Number
+    | (DOUBLE | INT) # Number
     | TXT # String;
 
 //CONDITINAL STATEMENT
@@ -168,9 +168,6 @@ BOOL_TYPE
     : 'bool';
 ASSIGN
     : '=';
-VALUE
-    : INT
-    | DOUBLE;
 INT
     : [0-9]+;
 DOT
@@ -189,7 +186,7 @@ TRUE
 FALSE
     : 'false';
 ID
-    : [a-z_]?([A-Za-z0-9_ ])+;
+    : [a-z_]?([A-Za-z0-9_])+;
 
 // Whitespace and comments
 WS  :  [ \t\r\n\u000C]+ -> channel(HIDDEN)

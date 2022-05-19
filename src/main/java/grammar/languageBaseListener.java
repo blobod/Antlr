@@ -100,13 +100,13 @@ public class languageBaseListener implements languageListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterType_definition(languageParser.Type_definitionContext ctx) { }
+	@Override public void enterType_declaration(languageParser.Type_declarationContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitType_definition(languageParser.Type_definitionContext ctx) { }
+	@Override public void exitType_declaration(languageParser.Type_declarationContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *

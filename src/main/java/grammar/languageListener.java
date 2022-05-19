@@ -78,15 +78,15 @@ public interface languageListener extends ParseTreeListener {
 	 */
 	void exitInput(languageParser.InputContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link languageParser#type_definition}.
+	 * Enter a parse tree produced by {@link languageParser#type_declaration}.
 	 * @param ctx the parse tree
 	 */
-	void enterType_definition(languageParser.Type_definitionContext ctx);
+	void enterType_declaration(languageParser.Type_declarationContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link languageParser#type_definition}.
+	 * Exit a parse tree produced by {@link languageParser#type_declaration}.
 	 * @param ctx the parse tree
 	 */
-	void exitType_definition(languageParser.Type_definitionContext ctx);
+	void exitType_declaration(languageParser.Type_declarationContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link languageParser#type_reassign}.
 	 * @param ctx the parse tree

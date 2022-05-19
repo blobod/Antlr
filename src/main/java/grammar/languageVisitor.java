@@ -53,11 +53,11 @@ public interface languageVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitInput(languageParser.InputContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link languageParser#type_definition}.
+	 * Visit a parse tree produced by {@link languageParser#type_declaration}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitType_definition(languageParser.Type_definitionContext ctx);
+	T visitType_declaration(languageParser.Type_declarationContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link languageParser#type_reassign}.
 	 * @param ctx the parse tree

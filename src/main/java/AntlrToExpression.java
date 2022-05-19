@@ -169,7 +169,7 @@ public class AntlrToExpression extends languageBaseVisitor<Expression> {
     }
 
     @Override
-    public Expression visitType_definition(languageParser.Type_definitionContext ctx) {
+    public Expression visitType_declaration(languageParser.Type_declarationContext ctx) {
         String id = ctx.getChild(1).getText();
         Type value = new Type(ctx.getChild(3).getText());
         if (vars.contains(id)) {

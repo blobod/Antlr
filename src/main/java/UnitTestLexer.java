@@ -15,9 +15,6 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 public class UnitTestLexer {
-
-    private List<String> object;
-    private Object o;
     ANTLRErrorListener errorListener = new ANTLRErrorListener() {
         @Override
         public void syntaxError(Recognizer<?, ?> recognizer, Object o, int i, int i1, String s, RecognitionException e) {
@@ -35,14 +32,6 @@ public class UnitTestLexer {
         @Override
         public void reportContextSensitivity(Parser parser, DFA dfa, int i, int i1, int i2, ATNConfigSet atnConfigSet) { }
     };
-    public static void main(String[] args){
-        for (StackTraceElement element : Thread.currentThread().getStackTrace()) {
-            if (element.getClassName().startsWith("org.junit.")) {
-                System.out.println("hello");
-            }
-        }
-    }
-
 
     private List<Token> getTokensFromText(String txt){
         try {
@@ -63,7 +52,6 @@ public class UnitTestLexer {
         List<Token> tokens = getTokensFromText("eofTest.txt");
         assert tokens != null;
         Assertions.assertTrue(tokens.stream().anyMatch(p -> p.getType() == languageLexer.EOF));
-        System.out.println("Tokens: " + tokens);
     }
 
     @Test
@@ -71,9 +59,15 @@ public class UnitTestLexer {
         List<Token> tokens = getTokensFromText("sizeTest.txt");
         assert tokens != null;
         Assertions.assertEquals(21, tokens.size());
+    }
+
+    @Test
+    public void testCorrectToken(){
+        List<Token> tokens = getTokensFromText("sizeTest.txt");
+        assert tokens != null;
         Assertions.assertEquals(languageLexer.TYPE, tokens.get(0).getType());
         Assertions.assertEquals(languageLexer.ID, tokens.get(2).getType());
-        Assertions.assertEquals(languageLexer.VALUE, tokens.get(6).getType());
+        Assertions.assertEquals(languageLexer.INT, tokens.get(6).getType());
     }
 }
 
