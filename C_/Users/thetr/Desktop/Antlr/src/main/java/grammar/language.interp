@@ -104,7 +104,7 @@ function_declaration
 param
 stmts
 stmt
-expression
+astNode
 conditional_statement
 if_statement
 break_statement

@@ -2,21 +2,22 @@ import AstNodes.Language;
 import grammar.Interpreter;
 import grammar.languageLexer;
 import grammar.languageParser;
+import org.antlr.v4.gui.TreeViewer;
 import org.antlr.v4.runtime.CharStream;
 import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.tree.ParseTree;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
 
+import javax.swing.*;
 import java.io.IOException;
+import java.util.Arrays;
 
 import static org.antlr.v4.runtime.CharStreams.fromFileName;
 
-public class UnitTestInterpreter {
-
-    public Interpreter txtToInterpreter(String txt) {
+public class mainFile {
+    public static void main(String[] args) {
         try {
-            CharStream cs = fromFileName(txt);
+            String source = "test.txt";
+            CharStream cs = fromFileName(source);
             languageLexer lexer = new languageLexer(cs);
             CommonTokenStream token = new CommonTokenStream(lexer);
             languageParser parser = new languageParser(token);
@@ -25,9 +26,24 @@ public class UnitTestInterpreter {
             CstToLanguageAst visitor = new CstToLanguageAst();
             Language lang = visitor.visit(tree);
 
+            JFrame frame = new JFrame("Antlr AST");
+            JPanel panel = new JPanel();
+            TreeViewer viewer = new TreeViewer(Arrays.asList(
+                    parser.getRuleNames()), tree);
+            viewer.setScale(1.5); // Scale a little
+
+
             if (visitor.semanticErrors.isEmpty() && visitor.typeErrors.isEmpty()) {
+                panel.add(viewer);
+                frame.add(panel);
+                frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                frame.pack();
+                frame.setVisible(true);
                 Interpreter ep = new Interpreter(lang.astNodes);
-                return ep;
+                System.out.println(ep.getEvaluationResults());
+                for (String evaluation : ep.getEvaluationResults()) {
+                    System.out.println(evaluation);
+                }
             } else {
                 for (String err : visitor.semanticErrors) {
                     System.out.println(err);
@@ -39,25 +55,6 @@ public class UnitTestInterpreter {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-        return null;
-    }
-
-
-
-    @Test
-    public void ExpressionTest(){
-        Interpreter ep = txtToInterpreter("ExpressionTest.txt");
-        Assertions.assertEquals(33, Integer.parseInt(ep.getEvaluationResults().get(0)));
-        Assertions.assertEquals(10, Integer.parseInt(ep.getEvaluationResults().get(1)));
-        Assertions.assertEquals(6, Integer.parseInt(ep.getEvaluationResults().get(2)));
-    }
-
-    @Test
-    public void ConditionTest(){
-        Interpreter ep = txtToInterpreter("ConditionTest.txt");
-        Assertions.assertTrue(Boolean.parseBoolean(ep.getEvaluationResults().get(0)));
     }
 
 }
-

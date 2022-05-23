@@ -22,39 +22,39 @@ declaration
     | type_reassign;
 
 print
-    : PRINT LPAR (expression)+ RPAR;
+    : PRINT LPAR (astNode)+ RPAR;
 input
-    : INPUT LPAR expression RPAR;
+    : INPUT LPAR astNode RPAR;
 
 //TYPES
 type_declaration
     : TYPE ID ASSIGN (DOUBLE | INT | TXT | BOOL);
 type_reassign
-    : ID ASSIGN (expression | ID | DOUBLE | INT | TXT | BOOL);
+    : ID ASSIGN (astNode | ID | DOUBLE | INT | TXT | BOOL);
 //TYPES
 
 //Function declaration
 function_declaration
-    : (TYPE | VOID) ID LPAR param+ RPAR LCBRAC (stmts | ID | expression | type_declaration)* RCBRAC;
+    : (TYPE | VOID) ID LPAR param+ RPAR LCBRAC (stmts | ID | astNode | type_declaration)* RCBRAC;
 param
     : TYPE ID
     | (COMMA)* TYPE ID;
 
 //Function Declaration
-expression
-    : expression PLUS expression # Addition
-    | expression MINUS expression # Substraktion
-    | expression MULTIPLICATION expression # Multiplication
-    | expression DIVISION expression # Division
-    | expression POWER_OF expression # Power_of
-    | expression GREATER expression # GreaterThan
-    | expression LESSER expression # LesserThan
-    | expression EQUAL expression # EqualWith
-    | expression GREATEROREQUAL expression # GreaterorEqualThan
-    | expression LESSEROREQUAL expression # LesserorEqualThan
-    | expression ISNOTEQUAL expression # IsNotEqualWith
-    | ((PLUS | MINUS | MULTIPLICATION | DIVISION)+ LPAR expression+ RPAR) # Paranthesis
-    | (PLUS | MINUS | MULTIPLICATION | DIVISION)+ expression #Bigger_expression
+astNode
+    : astNode PLUS astNode # Addition
+    | astNode MINUS astNode # Substraktion
+    | astNode MULTIPLICATION astNode # Multiplication
+    | astNode DIVISION astNode # Division
+    | astNode POWER_OF astNode # Power_of
+    | astNode GREATER astNode # GreaterThan
+    | astNode LESSER astNode # LesserThan
+    | astNode EQUAL astNode # EqualWith
+    | astNode GREATEROREQUAL astNode # GreaterorEqualThan
+    | astNode LESSEROREQUAL astNode # LesserorEqualThan
+    | astNode ISNOTEQUAL astNode # IsNotEqualWith
+    | ((PLUS | MINUS | MULTIPLICATION | DIVISION)+ LPAR astNode+ RPAR) # Paranthesis
+    | (PLUS | MINUS | MULTIPLICATION | DIVISION)+ astNode #Bigger_expression
     | ID # Variable
     | (DOUBLE | INT) # Number
     | TXT # String;
@@ -64,8 +64,8 @@ conditional_statement
     : if_statement
     | break_statement;
 if_statement
-    : IF LPAR expression (OR expression)* RPAR LCBRAC (stmts) RCBRAC # If
-    | IF LPAR expression  (OR expression)* RPAR LCBRAC (stmts) RCBRAC (ELSE LCBRAC (stmts) RCBRAC) # Else;
+    : IF LPAR astNode (OR astNode)* RPAR LCBRAC (stmts) RCBRAC # If
+    | IF LPAR astNode  (OR astNode)* RPAR LCBRAC (stmts) RCBRAC (ELSE LCBRAC (stmts) RCBRAC) # Else;
 break_statement
     : BREAK;
 
@@ -77,9 +77,9 @@ iterative_statement
     | while_loop
     | forever_loop;
 for_loop
-    : FOR LPAR (stmt) COMMA (expression) COMMA expression LCBRAC (stmts) RCBRAC;
+    : FOR LPAR (stmt) COMMA (astNode) COMMA astNode LCBRAC (stmts) RCBRAC;
 while_loop
-    : WHILE LPAR (expression) RPAR LCBRAC (stmts) RCBRAC;
+    : WHILE LPAR (astNode) RPAR LCBRAC (stmts) RCBRAC;
 forever_loop
     : FOREVER LCBRAC (stmts) RCBRAC;
 // ITERATIVE STATEMENT
