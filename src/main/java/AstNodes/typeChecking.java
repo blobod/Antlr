@@ -54,3 +54,4 @@ public class typeChecking extends AstNode {
         return check;
     }
 }
+    
