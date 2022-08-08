@@ -1,29 +1,24 @@
-import AstNodes.Language;
+import AstNodes.SyntaxAnalysis;
 import grammar.languageBaseVisitor;
 import grammar.languageParser;
 
-import java.util.ArrayList;
 import java.util.List;
 
-public class CstToLanguageAst extends languageBaseVisitor<Language> {
-    public List<String> semanticErrors;
-    public List<String> typeErrors;
-    @Override public Language visitLanguage(languageParser.LanguageContext ctx) {
-       Language language = new Language();
-       semanticErrors = new ArrayList<>();
-       typeErrors = new ArrayList<>();
+public class CstToLanguageAst extends languageBaseVisitor<SyntaxAnalysis> {
+    @Override public SyntaxAnalysis visitLanguage(languageParser.LanguageContext ctx) {
+       SyntaxAnalysis astnodes = new SyntaxAnalysis();
 
-       CstToAst exprVisitor = new CstToAst(semanticErrors, typeErrors);
+       CstToAst astVisitor = new CstToAst();
        for (int i = 0; i < ctx.getChild(0).getChildCount(); i++){
             if (i == ctx.getChild(0).getChildCount()){
                 System.out.println("\n EOF");
             }
             else{
-                language.addExpression(exprVisitor.visit(ctx.getChild(0).getChild(i)));
+                astnodes.addAst(astVisitor.visit(ctx.getChild(0).getChild(i)));
             }
 
         }
 
-       return language;
+       return astnodes;
     }
 }

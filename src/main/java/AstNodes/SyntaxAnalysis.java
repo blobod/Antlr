@@ -3,15 +3,17 @@ package AstNodes;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Language {
+public class SyntaxAnalysis {
     public List<AstNode> astNodes;
 
 
-    public Language(){
+    public SyntaxAnalysis(){
         this.astNodes = new ArrayList<>();
     }
 
-    public void addExpression(AstNode e){
+    public void addAst(AstNode e){
         astNodes.add(e);
     }
+
+    public int getSize(){return astNodes.size();}
 }

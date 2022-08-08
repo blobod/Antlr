@@ -95,7 +95,7 @@ COMMENT
 LINE_COMMENT
 
 rule names:
-language
+AST
 entrypoint
 declaration
 type_definition

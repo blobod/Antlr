@@ -1,5 +1,5 @@
-grammar language;
-language
+grammar AST;
+AST
     :  (stmts)* EOF
     |  stmts* entrypoint EOF;
 

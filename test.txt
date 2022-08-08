@@ -1,1 +1,1 @@
-forver{print(10 + 10)}
+forever{print(10 + 10)}

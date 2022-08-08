@@ -103,7 +103,7 @@ LINE_COMMENT
 EXPRESSION
 
 rule names:
-language
+AST
 declaration
 stmts
 stmt

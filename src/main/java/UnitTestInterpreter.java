@@ -1,4 +1,4 @@
-import AstNodes.Language;
+import AstNodes.SyntaxAnalysis;
 import grammar.Interpreter;
 import grammar.languageLexer;
 import grammar.languageParser;
@@ -23,7 +23,7 @@ public class UnitTestInterpreter {
             ParseTree tree = parser.language();
 
             CstToLanguageAst visitor = new CstToLanguageAst();
-            Language lang = visitor.visit(tree);
+            SyntaxAnalysis lang = visitor.visit(tree);
 
             if (visitor.semanticErrors.isEmpty() && visitor.typeErrors.isEmpty()) {
                 Interpreter ep = new Interpreter(lang.astNodes);

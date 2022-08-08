@@ -1,15 +1,13 @@
-import AstNodes.Language;
+import AstNodes.SyntaxAnalysis;
+import dAstNodes.ContextualAnalysis;
 import grammar.Interpreter;
 import grammar.languageLexer;
 import grammar.languageParser;
-import org.antlr.v4.gui.TreeViewer;
 import org.antlr.v4.runtime.CharStream;
 import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.tree.ParseTree;
 
-import javax.swing.*;
 import java.io.IOException;
-import java.util.Arrays;
 
 import static org.antlr.v4.runtime.CharStreams.fromFileName;
 
@@ -24,37 +22,21 @@ public class mainFile {
             ParseTree tree = parser.language();
 
             CstToLanguageAst visitor = new CstToLanguageAst();
-            Language lang = visitor.visit(tree);
+            SyntaxAnalysis ast = visitor.visit(tree);
 
-            JFrame frame = new JFrame("Antlr AST");
-            JPanel panel = new JPanel();
-            TreeViewer viewer = new TreeViewer(Arrays.asList(
-                    parser.getRuleNames()), tree);
-            viewer.setScale(1.5); // Scale a little
+            ContextualAnalysis visitor2 = new ContextualAnalysis();
+            DecoratingAST dast = visitor2.VisitAST(ast);
 
 
-            if (visitor.semanticErrors.isEmpty() && visitor.typeErrors.isEmpty()) {
-                panel.add(viewer);
-                frame.add(panel);
-                frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-                frame.pack();
-                frame.setVisible(true);
-                Interpreter ep = new Interpreter(lang.astNodes);
+                Interpreter ep = new Interpreter(ast.astNodes);
                 System.out.println(ep.getEvaluationResults());
                 for (String evaluation : ep.getEvaluationResults()) {
                     System.out.println(evaluation);
                 }
-            } else {
-                for (String err : visitor.semanticErrors) {
-                    System.out.println(err);
-                }
-                for (String err : visitor.typeErrors) {
-                    System.out.println(err);
-                }
-            }
-        } catch (IOException e) {
+            } catch (IOException e) {
             e.printStackTrace();
         }
     }
+
 
 }
