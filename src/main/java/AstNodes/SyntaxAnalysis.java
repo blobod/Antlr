@@ -16,4 +16,6 @@ public class SyntaxAnalysis {
     }
 
     public int getSize(){return astNodes.size();}
+
+    public List<AstNode> getAstNodes(){return astNodes;}
 }

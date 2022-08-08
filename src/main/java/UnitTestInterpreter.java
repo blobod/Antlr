@@ -25,7 +25,7 @@ public class UnitTestInterpreter {
             CstToLanguageAst visitor = new CstToLanguageAst();
             SyntaxAnalysis lang = visitor.visit(tree);
 
-            if (visitor.semanticErrors.isEmpty() && visitor.typeErrors.isEmpty()) {
+            /*if (visitor.semanticErrors.isEmpty() && visitor.typeErrors.isEmpty()) {
                 Interpreter ep = new Interpreter(lang.astNodes);
                 return ep;
             } else {
@@ -36,6 +36,8 @@ public class UnitTestInterpreter {
                     System.out.println(err);
                 }
             }
+            */
+
         } catch (IOException e) {
             e.printStackTrace();
         }

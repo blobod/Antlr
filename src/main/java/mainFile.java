@@ -1,5 +1,4 @@
 import AstNodes.SyntaxAnalysis;
-import dAstNodes.ContextualAnalysis;
 import grammar.Interpreter;
 import grammar.languageLexer;
 import grammar.languageParser;
@@ -24,8 +23,11 @@ public class mainFile {
             CstToLanguageAst visitor = new CstToLanguageAst();
             SyntaxAnalysis ast = visitor.visit(tree);
 
-            ContextualAnalysis visitor2 = new ContextualAnalysis();
-            DecoratingAST dast = visitor2.VisitAST(ast);
+            AstToDast decorator = new AstToDast();
+
+            ContextualAnalysis dast = decorator.visitAST(ast);
+
+            System.out.println(dast.getdAstNodes().get(0).toString());
 
 
                 Interpreter ep = new Interpreter(ast.astNodes);
