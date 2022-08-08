@@ -108,7 +108,7 @@ type_declaration
 type_reassign
 function_declaration
 param
-astNode
+expression
 conditional_statement
 if_statement
 break_statement
