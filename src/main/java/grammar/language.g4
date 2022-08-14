@@ -1,5 +1,5 @@
-grammar AST;
-AST
+grammar language;
+language
     :  (stmts)* EOF
     |  stmts* entrypoint EOF;
 
@@ -77,7 +77,7 @@ iterative_statement
     | while_loop
     | forever_loop;
 for_loop
-    : FOR LPAR (stmt) COMMA (expression) COMMA expression LCBRAC (stmts) RCBRAC;
+    : FOR LPAR (type_declaration|type_reassign|ID) COMMA (expression) COMMA expression LCBRAC (stmts) RCBRAC;
 while_loop
     : WHILE LPAR (expression) RPAR LCBRAC (stmts) RCBRAC;
 forever_loop

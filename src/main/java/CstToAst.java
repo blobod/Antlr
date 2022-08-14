@@ -98,10 +98,35 @@ public class CstToAst extends languageBaseVisitor<AstNode> {
         return new Break();
     }
 
+    @Override
+    public AstNode visitFunction_declaration(languageParser.Function_declarationContext ctx) {
+        AstNode FunctionType = visit(ctx.getChild(0));
+        AstNode FunctionId = visit(ctx.getChild(1));
+
+        ArrayList<AstNode> parameter = new ArrayList<>();
+        for (int i = 0; i < ctx.getChild(3).getChildCount(); i++){
+            parameter.add(visit(ctx.getChild(3).getChild(i)));
+        }
+
+        ArrayList<AstNode> bodyList = new ArrayList<>();
+        for (int i = 0; i < ctx.getChild(6).getChildCount(); i++){
+            bodyList.add(visit(ctx.getChild(6).getChild(i)));
+        }
+        return new Functions(FunctionType, FunctionId, parameter, bodyList);
+    }
+
 
     @Override
     public AstNode visitFor_loop(languageParser.For_loopContext ctx) {
-        return visitChildren(ctx);
+        AstNode initialization = visit(ctx.getChild(2));
+        AstNode condition = visit(ctx.getChild(4));
+        AstNode expression = visit(ctx.getChild(6));
+
+        ArrayList<AstNode> bodyList = new ArrayList<>();
+        for (int i = 0; i < ctx.getChild(9).getChildCount(); i++){
+            bodyList.add(visit(ctx.getChild(9).getChild(i)));
+        }
+        return new ForLoop(initialization, condition, expression, bodyList);
     }
 
     @Override
@@ -117,11 +142,11 @@ public class CstToAst extends languageBaseVisitor<AstNode> {
     @Override
     public AstNode visitForever_loop(languageParser.Forever_loopContext ctx) {
         ArrayList<AstNode> bodyList = new ArrayList<>();
-            for (int i = 0; i < ctx.getChild(2).getChildCount(); i++) {
-                bodyList.add(visit(ctx.getChild(2).getChild(i)));
-            }
-        return new Forever_Loop(bodyList);
+        for (int i = 0; i < ctx.getChild(2).getChildCount(); i++) {
+            bodyList.add(visit(ctx.getChild(2).getChild(i)));
         }
+        return new Forever_Loop(bodyList);
+    }
 
 
     @Override
@@ -153,11 +178,6 @@ public class CstToAst extends languageBaseVisitor<AstNode> {
         String id = ctx.getChild(0).getText();
         AstNode astNode = visit(ctx.getChild(2));
         return new VariableReDeclaration(id, astNode);
-    }
-
-    @Override
-    public AstNode visitFunction_declaration(languageParser.Function_declarationContext ctx) {
-        return visitChildren(ctx);
     }
 
     @Override
@@ -209,4 +229,5 @@ public class CstToAst extends languageBaseVisitor<AstNode> {
         return new isNotEqualWith(left, right);
     }
 }
+
 
