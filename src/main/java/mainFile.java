@@ -5,9 +5,7 @@ import grammar.languageParser;
 import org.antlr.v4.runtime.CharStream;
 import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.tree.ParseTree;
-
 import java.io.IOException;
-
 import static org.antlr.v4.runtime.CharStreams.fromFileName;
 
 public class mainFile {
@@ -20,12 +18,12 @@ public class mainFile {
             languageParser parser = new languageParser(token);
             ParseTree tree = parser.language();
 
-            CstToLanguageAst visitor = new CstToLanguageAst();
+            CstToASt visitor = new CstToLanguageAst();
             SyntaxAnalysis ast = visitor.visit(tree);
 
-            AstToDast decorator = new AstToDast();
+            DecoratedAbstractSyntaxTreeVisitor decorator = new DecoratedAbstractSyntaxTreeVisitor();
 
-            ContextualAnalysis dast = decorator.visitAST(ast);
+            ContextualAnalysis dast = decorator.visit(ast);
 
             System.out.println(dast.getdAstNodes().get(0).toString());
 

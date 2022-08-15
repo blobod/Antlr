@@ -7,6 +7,7 @@ import java.util.*;
 
 public class CstToAst extends languageBaseVisitor<AstNode> {
 
+
     private List<String> vars; //Stores all variables that are declared in the program
     private Map<String, Type> Values;
     public CstToAst() {
@@ -14,6 +15,14 @@ public class CstToAst extends languageBaseVisitor<AstNode> {
         Values = new HashMap<>();
     }
 
+    @Override
+    public AstNode visitLanguage(languageParser.LanguageContext ctx) {
+        ArrayList<AstNode> bodyList = new ArrayList<>();
+        for (int i = 0; i < ctx.getChild(0).getChildCount(); i++){
+            bodyList.add(visit(ctx.getChild(0).getChild(i)));
+        }
+        return new Language(bodyList);
+    }
     @Override
     public AstNode visitAddition(languageParser.AdditionContext ctx) {
         AstNode left = visit(ctx.getChild(0)); // recursively visit the left subtree of the current Addition node
@@ -101,7 +110,16 @@ public class CstToAst extends languageBaseVisitor<AstNode> {
 
     @Override
     public AstNode visitFor_loop(languageParser.For_loopContext ctx) {
-        return visitChildren(ctx);
+        AstNode initialization = visit(ctx.getChild(2));
+        AstNode condition = visit(ctx.getChild(4));
+        AstNode expression = visit(ctx.getChild(6));
+
+        ArrayList<AstNode> bodyList = new ArrayList<>();
+        for (int i = 0; i < ctx.getChild(9).getChildCount(); i++){
+            bodyList.add(visit(ctx.getChild(9).getChild(i)));
+        }
+        return new ForLoop(initialization, condition, expression, bodyList);
+
     }
 
     @Override
@@ -157,7 +175,18 @@ public class CstToAst extends languageBaseVisitor<AstNode> {
 
     @Override
     public AstNode visitFunction_declaration(languageParser.Function_declarationContext ctx) {
-        return visitChildren(ctx);
+        AstNode FunctionType = visit(ctx.getChild(0));
+        AstNode FunctionId = visit(ctx.getChild(1));
+        ArrayList<AstNode> parameter = new ArrayList<>();
+        for (int i = 0; i < ctx.getChild(3).getChildCount(); i++){
+            parameter.add(visit(ctx.getChild(3).getChild(i)));
+        }
+
+        ArrayList<AstNode> bodyList = new ArrayList<>();
+        for (int i = 0; i < ctx.getChild(6).getChildCount(); i++){
+            bodyList.add(visit(ctx.getChild(6).getChild(i)));
+        }
+        return new Functions(FunctionType, FunctionId, parameter, bodyList);
     }
 
     @Override

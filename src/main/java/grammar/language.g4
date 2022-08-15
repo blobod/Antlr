@@ -1,5 +1,5 @@
-grammar AST;
-AST
+grammar language;
+language
     :  (stmts)* EOF
     |  stmts* entrypoint EOF;
 
@@ -35,7 +35,7 @@ type_reassign
 
 //Function declaration
 function_declaration
-    : (TYPE | VOID) ID LPAR param+ RPAR LCBRAC (stmts | ID | expression | type_declaration)* RCBRAC;
+    : (TYPE | VOID) ID LPAR param+ RPAR LCBRAC (stmts | ID | type_declaration)* RCBRAC;
 param
     : TYPE ID
     | (COMMA)* TYPE ID;
@@ -77,7 +77,7 @@ iterative_statement
     | while_loop
     | forever_loop;
 for_loop
-    : FOR LPAR (stmt) COMMA (expression) COMMA expression LCBRAC (stmts) RCBRAC;
+    : FOR LPAR (type_declaration | ) COMMA (expression) COMMA expression LCBRAC (stmts) RCBRAC;
 while_loop
     : WHILE LPAR (expression) RPAR LCBRAC (stmts) RCBRAC;
 forever_loop
