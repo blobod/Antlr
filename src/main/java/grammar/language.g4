@@ -28,7 +28,7 @@ input
 
 //TYPES
 type_declaration
-    : TYPE ID ASSIGN (DOUBLE | INT | TXT | BOOL);
+    : TYPE ID ASSIGN (expression);
 type_reassign
     : ID ASSIGN (expression | ID | DOUBLE | INT | TXT | BOOL);
 //TYPES
@@ -56,7 +56,8 @@ expression
     | ((PLUS | MINUS | MULTIPLICATION | DIVISION)+ LPAR expression+ RPAR) # Paranthesis
     | (PLUS | MINUS | MULTIPLICATION | DIVISION)+ expression #Bigger_expression
     | ID # Variable
-    | (DOUBLE | INT) # Number
+    | INT # Integer_NUM
+    | DOUBLE # Double_NUM
     | TXT # String;
 
 //CONDITINAL STATEMENT
@@ -77,7 +78,8 @@ iterative_statement
     | while_loop
     | forever_loop;
 for_loop
-    : FOR LPAR (type_declaration | ) COMMA (expression) COMMA expression LCBRAC (stmts) RCBRAC;
+    : FOR LPAR (type_declaration|type_reassign|ID) COMMA (expression) COMMA expression LCBRAC (stmts) RCBRAC;
+
 while_loop
     : WHILE LPAR (expression) RPAR LCBRAC (stmts) RCBRAC;
 forever_loop
