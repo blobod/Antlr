@@ -1,4 +1,4 @@
-// Generated from C:/Users/thetr/Desktop/Antlr/src/main/java/grammar\language.g4 by ANTLR 4.9.2
+// Generated from C:/Users/thetr/OneDrive/Dokumenter/GitHub/Antlr/src/main/java/grammar\language.g4 by ANTLR 4.9.2
 package grammar;
 import org.antlr.v4.runtime.tree.ParseTreeVisitor;
 
@@ -119,6 +119,13 @@ public interface languageVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitBigger_expression(languageParser.Bigger_expressionContext ctx);
 	/**
+	 * Visit a parse tree produced by the {@code Integer_NUM}
+	 * labeled alternative in {@link languageParser#expression}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitInteger_NUM(languageParser.Integer_NUMContext ctx);
+	/**
 	 * Visit a parse tree produced by the {@code EqualWith}
 	 * labeled alternative in {@link languageParser#expression}.
 	 * @param ctx the parse tree
@@ -154,13 +161,6 @@ public interface languageVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitLesserThan(languageParser.LesserThanContext ctx);
 	/**
-	 * Visit a parse tree produced by the {@code Number}
-	 * labeled alternative in {@link languageParser#expression}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitNumber(languageParser.NumberContext ctx);
-	/**
 	 * Visit a parse tree produced by the {@code GreaterThan}
 	 * labeled alternative in {@link languageParser#expression}.
 	 * @param ctx the parse tree
@@ -174,6 +174,13 @@ public interface languageVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitPower_of(languageParser.Power_ofContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code Double_NUM}
+	 * labeled alternative in {@link languageParser#expression}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitDouble_NUM(languageParser.Double_NUMContext ctx);
 	/**
 	 * Visit a parse tree produced by the {@code Division}
 	 * labeled alternative in {@link languageParser#expression}.

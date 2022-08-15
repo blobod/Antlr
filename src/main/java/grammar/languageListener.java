@@ -1,4 +1,4 @@
-// Generated from C:/Users/thetr/Desktop/Antlr/src/main/java/grammar\language.g4 by ANTLR 4.9.2
+// Generated from C:/Users/thetr/OneDrive/Dokumenter/GitHub/Antlr/src/main/java/grammar\language.g4 by ANTLR 4.9.2
 package grammar;
 import org.antlr.v4.runtime.tree.ParseTreeListener;
 
@@ -190,6 +190,18 @@ public interface languageListener extends ParseTreeListener {
 	 */
 	void exitBigger_expression(languageParser.Bigger_expressionContext ctx);
 	/**
+	 * Enter a parse tree produced by the {@code Integer_NUM}
+	 * labeled alternative in {@link languageParser#expression}.
+	 * @param ctx the parse tree
+	 */
+	void enterInteger_NUM(languageParser.Integer_NUMContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code Integer_NUM}
+	 * labeled alternative in {@link languageParser#expression}.
+	 * @param ctx the parse tree
+	 */
+	void exitInteger_NUM(languageParser.Integer_NUMContext ctx);
+	/**
 	 * Enter a parse tree produced by the {@code EqualWith}
 	 * labeled alternative in {@link languageParser#expression}.
 	 * @param ctx the parse tree
@@ -250,18 +262,6 @@ public interface languageListener extends ParseTreeListener {
 	 */
 	void exitLesserThan(languageParser.LesserThanContext ctx);
 	/**
-	 * Enter a parse tree produced by the {@code Number}
-	 * labeled alternative in {@link languageParser#expression}.
-	 * @param ctx the parse tree
-	 */
-	void enterNumber(languageParser.NumberContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code Number}
-	 * labeled alternative in {@link languageParser#expression}.
-	 * @param ctx the parse tree
-	 */
-	void exitNumber(languageParser.NumberContext ctx);
-	/**
 	 * Enter a parse tree produced by the {@code GreaterThan}
 	 * labeled alternative in {@link languageParser#expression}.
 	 * @param ctx the parse tree
@@ -285,6 +285,18 @@ public interface languageListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitPower_of(languageParser.Power_ofContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code Double_NUM}
+	 * labeled alternative in {@link languageParser#expression}.
+	 * @param ctx the parse tree
+	 */
+	void enterDouble_NUM(languageParser.Double_NUMContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code Double_NUM}
+	 * labeled alternative in {@link languageParser#expression}.
+	 * @param ctx the parse tree
+	 */
+	void exitDouble_NUM(languageParser.Double_NUMContext ctx);
 	/**
 	 * Enter a parse tree produced by the {@code Division}
 	 * labeled alternative in {@link languageParser#expression}.

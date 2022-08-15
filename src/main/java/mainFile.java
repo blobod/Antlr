@@ -1,5 +1,7 @@
+import AstNodes.AstNode;
 import AstNodes.SyntaxAnalysis;
-import grammar.Interpreter;
+import dAstNodes.dAstNode;
+//import grammar.Interpreter;
 import grammar.languageLexer;
 import grammar.languageParser;
 import org.antlr.v4.runtime.CharStream;
@@ -18,21 +20,20 @@ public class mainFile {
             languageParser parser = new languageParser(token);
             ParseTree tree = parser.language();
 
-            CstToASt visitor = new CstToLanguageAst();
-            SyntaxAnalysis ast = visitor.visit(tree);
+            CstToAst visitor = new CstToAst();
+            AstNode ast = visitor.visit(tree);
 
             DecoratedAbstractSyntaxTreeVisitor decorator = new DecoratedAbstractSyntaxTreeVisitor();
 
-            ContextualAnalysis dast = decorator.visit(ast);
+            dAstNode dast = decorator.visitAST(ast);
 
-            System.out.println(dast.getdAstNodes().get(0).toString());
+            System.out.println(dast);
 
-
-                Interpreter ep = new Interpreter(ast.astNodes);
-                System.out.println(ep.getEvaluationResults());
-                for (String evaluation : ep.getEvaluationResults()) {
-                    System.out.println(evaluation);
-                }
+                //Interpreter ep = new Interpreter(ast.astNodes);
+                //System.out.println(ep.getEvaluationResults());
+                //for (String evaluation : ep.getEvaluationResults()) {
+                //    System.out.println(evaluation);
+                //}
             } catch (IOException e) {
             e.printStackTrace();
         }

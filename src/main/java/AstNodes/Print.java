@@ -10,6 +10,6 @@ public class Print extends AstNode {
     @Override
     public String toString(){
 
-        return "print " + body;
+        return "print " + body.toString();
     }
 }

@@ -1,15 +1,14 @@
 package AstNodes;
 
-public class Integer extends AstNode {
+public class IntType extends AstNode {
     public int num;
 
-    public Integer(int num){
+    public IntType(int num){
         this.num = num;
     }
 
 
-    public String toString(int num){
-        System.out.println(num);
+    public String toString(){
         return java.lang.Integer.toString(num);
     }
 

@@ -1,9 +1,9 @@
 package AstNodes;
 
-public class Double extends AstNode{
+public class DoubleType extends AstNode{
     public double doub;
 
-    public Double(int doub){
+    public DoubleType(double doub){
         this.doub = doub;
     }
 

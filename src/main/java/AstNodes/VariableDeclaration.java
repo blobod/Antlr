@@ -4,10 +4,10 @@ package AstNodes;
 public class VariableDeclaration extends AstNode {
     public String id;
     public String type;
-    public Type value;
+    public AstNode value;
 
 
-    public VariableDeclaration(String id, String type, Type value){
+    public VariableDeclaration(String id, String type, AstNode value){
         this.id = id;
         this.type = type;
         this.value = value;

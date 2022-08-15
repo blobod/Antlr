@@ -2,23 +2,15 @@ import AstNodes.*;
 import AstNodes.Addition;
 import dAstNodes.*;
 
-public class ContextualDecorator {
+public class ContextualDecorator extends DecoratedAbstractSyntaxTreeVisitor {
 
 
-
-
-    public dAstNode visitExpression(AstNode left, AstNode right){
-        System.out.println("vi er her " + left + " and " + right);
-            return new dAstNodes.Expression(left, right);
+    public dAstNode decorate(AstNode ast){
+        dAstNode dast = visitAST(ast);
+        return dast;
     }
 
-    public dAstNode visitStatement(AstNode condition, AstNode body, AstNode elseBody){
-        return new dAstNodes.Statement(condition, body, elseBody);
-    }
 
-    public byte typeChecking(AstNode left, AstNode right){
-        Type leftT = new (Type) visit(left);
-        Type rigthT = new Type(right);
 
-    }
+
 }

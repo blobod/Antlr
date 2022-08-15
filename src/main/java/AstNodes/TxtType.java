@@ -1,9 +1,9 @@
 package AstNodes;
 
-public class txt extends AstNode {
+public class TxtType extends AstNode {
     public String string;
 
-    public txt(String string){
+    public TxtType(String string){
         this.string = string;
     }
 

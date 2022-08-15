@@ -11,7 +11,7 @@ public class VariableReDeclaration extends AstNode {
 
     @Override
     public String toString(){
-        return astNode.toString();
+        return id.toString() + " " + astNode.toString();
     }
 
 }

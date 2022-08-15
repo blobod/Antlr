@@ -10,12 +10,11 @@ public class Addition extends AstNode {
     }
 
     public String toString(){
-        System.out.println("vi er i ast addition");
-        return left.toString() + " + " + right.toString();
+        return "print " +  left.toString() + " " + right.toString();
     }
 
 
-    public AstNode getLeft(){return left;}
+    public int getLeft(){return java.lang.Integer.parseInt(left.toString());}
     public AstNode getRight(){return right;}
 
 }
