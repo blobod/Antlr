@@ -21,35 +21,28 @@ public class CstToAst extends languageBaseVisitor<AstNode> {
     public AstNode visitAddition(languageParser.AdditionContext ctx) {
         AstNode left = visit(ctx.getChild(0)); // recursively visit the left subtree of the current Addition node
         AstNode right = visit(ctx.getChild(2)); // recursively visit the right subtree of the current Addition node
-        return new Addition(left, right);
+        return new Addition(left, right, false);
     }
 
     @Override
     public AstNode visitSubstraktion(languageParser.SubstraktionContext ctx) {
         AstNode left = visit(ctx.getChild(0)); // recursively visit the left subtree of the current Multiplication node
         AstNode right = visit(ctx.getChild(2));
-        return new Substraktion(left, right);
+        return new Substraktion(left, right, false);
     }
 
     @Override
     public AstNode visitMultiplication(languageParser.MultiplicationContext ctx) {
         AstNode left = visit(ctx.getChild(0)); // recursively visit the left subtree of the current Multiplication node
         AstNode right = visit(ctx.getChild(2));
-        return new Multiplication(left, right);
+        return new Multiplication(left, right, false);
     }
 
     @Override
     public AstNode visitDivision(languageParser.DivisionContext ctx) {
         AstNode left = visit(ctx.getChild(0)); // recursively visit the left subtree of the current MUltiplication node
         AstNode right = visit(ctx.getChild(2));
-        return new Division(left, right);
-    }
-
-    @Override
-    public AstNode visitPower_of(languageParser.Power_ofContext ctx) {
-        AstNode left = visit(ctx.getChild(0)); // recursively visit the left subtree of the current MUltiplication node
-        AstNode right = visit(ctx.getChild(2));
-        return new Power_Of(left, right);
+        return new Division(left, right, false);
     }
 
     @Override
@@ -156,14 +149,14 @@ public class CstToAst extends languageBaseVisitor<AstNode> {
         String id = ctx.getChild(1).getText();
         String type = ctx.getChild(0).getText();
         AstNode value = visit(ctx.getChild(3));
-        return new VariableDeclaration(id, type, value);
+        return new VariableDeclaration(id, type, value, false);
     }
 
     @Override
     public AstNode visitType_reassign(languageParser.Type_reassignContext ctx) {
         String id = ctx.getChild(0).getText();
         AstNode value = visit(ctx.getChild(2));
-        return new VariableReDeclaration(id, value);
+        return new VariableReDeclaration(id, value, false);
     }
 
     @Override
@@ -192,7 +185,7 @@ public class CstToAst extends languageBaseVisitor<AstNode> {
     public AstNode visitGreaterThan(languageParser.GreaterThanContext ctx) {
         AstNode left = visit(ctx.getChild(0)); // recursively visit the left subtree of the current Multiplication node
         AstNode right = visit(ctx.getChild(2));
-        return new GreaterThan(left, right);
+        return new GreaterThan(left, right, false);
     }
 
 
@@ -200,21 +193,21 @@ public class CstToAst extends languageBaseVisitor<AstNode> {
     public AstNode visitLesserThan(languageParser.LesserThanContext ctx) {
         AstNode left = visit(ctx.getChild(0)); // recursively visit the left subtree of the current Multiplication node
         AstNode right = visit(ctx.getChild(2));
-        return new LesserThan(left, right);
+        return new LesserThan(left, right, false);
     }
 
     @Override
     public AstNode visitEqualWith(languageParser.EqualWithContext ctx) {
         AstNode left = visit(ctx.getChild(0)); // recursively visit the left subtree of the current Multiplication node
         AstNode right = visit(ctx.getChild(2));
-        return new EqualWith(left, right);
+        return new EqualWith(left, right, false);
     }
 
     @Override
     public AstNode visitGreaterorEqualThan(languageParser.GreaterorEqualThanContext ctx) {
         AstNode left = visit(ctx.getChild(0)); // recursively visit the left subtree of the current Multiplication node
         AstNode right = visit(ctx.getChild(2));
-        return new GreaterorEqualThan(left, right);
+        return new GreaterorEqualThan(left, right, false);
     }
 
 
@@ -222,14 +215,14 @@ public class CstToAst extends languageBaseVisitor<AstNode> {
     public AstNode visitLesserorEqualThan(languageParser.LesserorEqualThanContext ctx) {
         AstNode left = visit(ctx.getChild(0)); // recursively visit the left subtree of the current Multiplication node
         AstNode right = visit(ctx.getChild(2));
-        return new LesserorEqualThan(left, right);
+        return new LesserorEqualThan(left, right, false);
     }
 
     @Override
     public AstNode visitIsNotEqualWith(languageParser.IsNotEqualWithContext ctx) {
         AstNode left = visit(ctx.getChild(0)); // recursively visit the left subtree of the current Multiplication node
         AstNode right = visit(ctx.getChild(2));
-        return new isNotEqualWith(left, right);
+        return new isNotEqualWith(left, right, false);
     }
 }
 

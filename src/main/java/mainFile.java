@@ -1,4 +1,6 @@
+import AstNodes.Addition;
 import AstNodes.AstNode;
+import AstNodes.Language;
 import AstNodes.SyntaxAnalysis;
 import dAstNodes.dAstNode;
 //import grammar.Interpreter;
@@ -25,10 +27,9 @@ public class mainFile {
 
             DecoratedAbstractSyntaxTreeVisitor decorator = new DecoratedAbstractSyntaxTreeVisitor();
 
-            dAstNode dast = decorator.visitAST(ast);
+            AstNode dast = decorator.visitAST(ast);
 
-            System.out.println(dast);
-
+            System.out.println(dast instanceof Language);
                 //Interpreter ep = new Interpreter(ast.astNodes);
                 //System.out.println(ep.getEvaluationResults());
                 //for (String evaluation : ep.getEvaluationResults()) {

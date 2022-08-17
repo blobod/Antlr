@@ -3,11 +3,11 @@ package AstNodes;
 public class Multiplication extends AstNode {
     public AstNode left;
     public AstNode right;
-
-    public Multiplication(AstNode left, AstNode right){
+    public boolean typeChecking;
+    public Multiplication(AstNode left, AstNode right, boolean typeChecking){
         this.left = left;
         this.right = right;
-
+        this.typeChecking = typeChecking;
     }
 
     @Override
