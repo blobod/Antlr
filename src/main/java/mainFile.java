@@ -30,12 +30,13 @@ public class mainFile {
             AstNode dast = decorator.visitAST(ast);
 
             System.out.println(dast instanceof Language);
+
                 //Interpreter ep = new Interpreter(ast.astNodes);
                 //System.out.println(ep.getEvaluationResults());
                 //for (String evaluation : ep.getEvaluationResults()) {
                 //    System.out.println(evaluation);
                 //}
-            } catch (IOException e) {
+            } catch (Exception e) {
             e.printStackTrace();
         }
     }

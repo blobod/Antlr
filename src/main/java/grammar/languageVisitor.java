@@ -53,11 +53,19 @@ public interface languageVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitInput(languageParser.InputContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link languageParser#type_declaration}.
+	 * Visit a parse tree produced by the {@code Var_dec_with_value}
+	 * labeled alternative in {@link languageParser#type_declaration}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitType_declaration(languageParser.Type_declarationContext ctx);
+	T visitVar_dec_with_value(languageParser.Var_dec_with_valueContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code Var_dec_no_value}
+	 * labeled alternative in {@link languageParser#type_declaration}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitVar_dec_no_value(languageParser.Var_dec_no_valueContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link languageParser#type_reassign}.
 	 * @param ctx the parse tree
@@ -76,6 +84,12 @@ public interface languageVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitParam(languageParser.ParamContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link languageParser#function_call}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitFunction_call(languageParser.Function_callContext ctx);
 	/**
 	 * Visit a parse tree produced by the {@code Addition}
 	 * labeled alternative in {@link languageParser#expression}.

@@ -144,12 +144,18 @@ public class CstToAst extends languageBaseVisitor<AstNode> {
         return new Input(body);
     }
 
-    @Override
-    public AstNode visitType_declaration(languageParser.Type_declarationContext ctx) {
+    @Override public AstNode visitVar_dec_with_value(languageParser.Var_dec_with_valueContext ctx) {
         String id = ctx.getChild(1).getText();
         String type = ctx.getChild(0).getText();
         AstNode value = visit(ctx.getChild(3));
-        return new VariableDeclaration(id, type, value, false);
+        return new VariableDeclarationWithValue(id, type, value, false);
+    }
+
+    @Override public AstNode visitVar_dec_no_value(languageParser.Var_dec_no_valueContext ctx) {
+        String type = ctx.getChild(0).getText();
+        String id = ctx.getChild(1).getText();
+
+        return new VariableDeclarationNoValue(type, id);
     }
 
     @Override
@@ -172,7 +178,16 @@ public class CstToAst extends languageBaseVisitor<AstNode> {
         for (int i = 0; i < ctx.getChild(6).getChildCount(); i++){
             bodyList.add(visit(ctx.getChild(6).getChild(i)));
         }
-        return new Functions(FunctionType, FunctionId, parameter, bodyList);
+        AstNode returnValue = visit(ctx.getChild(8));
+        return new Functions(FunctionType, FunctionId, parameter, bodyList, returnValue);
+    }
+
+    @Override public AstNode visitFunction_call(languageParser.Function_callContext ctx)    {
+        ArrayList<AstNode> parameter = new ArrayList<>();
+        for (int i = 0; i < ctx.getChild(3).getChildCount(); i++){
+            parameter.add(visit(ctx.getChild(3).getChild(i)));
+        }
+    return new FunctionCall(parameter);
     }
 
     @Override

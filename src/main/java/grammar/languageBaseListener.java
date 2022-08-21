@@ -100,13 +100,25 @@ public class languageBaseListener implements languageListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterType_declaration(languageParser.Type_declarationContext ctx) { }
+	@Override public void enterVar_dec_with_value(languageParser.Var_dec_with_valueContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitType_declaration(languageParser.Type_declarationContext ctx) { }
+	@Override public void exitVar_dec_with_value(languageParser.Var_dec_with_valueContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterVar_dec_no_value(languageParser.Var_dec_no_valueContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitVar_dec_no_value(languageParser.Var_dec_no_valueContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -143,6 +155,18 @@ public class languageBaseListener implements languageListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitParam(languageParser.ParamContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterFunction_call(languageParser.Function_callContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitFunction_call(languageParser.Function_callContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *

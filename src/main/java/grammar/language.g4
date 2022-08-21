@@ -14,7 +14,8 @@ stmt
     | iterative_statement
     | declaration
     | print
-    | input;
+    | input
+    | function_call;
 
 declaration
     : type_declaration
@@ -28,19 +29,25 @@ input
 
 //TYPES
 type_declaration
-    : TYPE ID ASSIGN (expression);
+    : TYPE ID ASSIGN (expression)+ # Var_dec_with_value
+    | TYPE ID # Var_dec_no_value;
 type_reassign
-    : ID ASSIGN (expression | ID | DOUBLE | INT | TXT | BOOL);
+    : ID ASSIGN (expression* | ID | DOUBLE | INT | TXT | BOOL);
 //TYPES
 
 //Function declaration
 function_declaration
-    : (TYPE | VOID) ID LPAR param+ RPAR LCBRAC (stmts | ID | type_declaration)* RCBRAC;
+    : (TYPE) ID LPAR param* RPAR LCBRAC (stmts | ID | type_declaration)* RETURN expression RCBRAC
+    | VOID ID LPAR param* RPAR LCBRAC (stmts | ID | type_declaration)* RCBRAC;
 param
-    : TYPE ID
-    | (COMMA)* TYPE ID;
-
+    : TYPE ID (COMMA TYPE ID)*
+    | (INT | BOOL | TXT | DOUBLE | ID) (COMMA (INT | BOOL | TXT | DOUBLE | ID))*;
 //Function Declaration
+//Function call
+function_call
+    : ID LPAR param* RPAR;
+
+//Function call
 expression
     : expression PLUS expression # Addition
     | expression MINUS expression # Substraktion
@@ -182,6 +189,9 @@ TXT:
 
 BOOL
     : TRUE | FALSE;
+
+RETURN
+    : 'return';
 
 TRUE
     : 'true';

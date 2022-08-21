@@ -1,14 +1,14 @@
 package AstNodes;
 
 
-public class VariableDeclaration extends AstNode {
+public class VariableDeclarationWithValue extends AstNode {
     public String id;
     public String type;
     public AstNode value;
     public boolean typeChecking;
 
 
-    public VariableDeclaration(String id, String type, AstNode value, boolean typeChecking){
+    public VariableDeclarationWithValue(String id, String type, AstNode value, boolean typeChecking){
         this.id = id;
         this.type = type;
         this.value = value;

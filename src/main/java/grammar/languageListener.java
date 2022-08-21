@@ -78,15 +78,29 @@ public interface languageListener extends ParseTreeListener {
 	 */
 	void exitInput(languageParser.InputContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link languageParser#type_declaration}.
+	 * Enter a parse tree produced by the {@code Var_dec_with_value}
+	 * labeled alternative in {@link languageParser#type_declaration}.
 	 * @param ctx the parse tree
 	 */
-	void enterType_declaration(languageParser.Type_declarationContext ctx);
+	void enterVar_dec_with_value(languageParser.Var_dec_with_valueContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link languageParser#type_declaration}.
+	 * Exit a parse tree produced by the {@code Var_dec_with_value}
+	 * labeled alternative in {@link languageParser#type_declaration}.
 	 * @param ctx the parse tree
 	 */
-	void exitType_declaration(languageParser.Type_declarationContext ctx);
+	void exitVar_dec_with_value(languageParser.Var_dec_with_valueContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code Var_dec_no_value}
+	 * labeled alternative in {@link languageParser#type_declaration}.
+	 * @param ctx the parse tree
+	 */
+	void enterVar_dec_no_value(languageParser.Var_dec_no_valueContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code Var_dec_no_value}
+	 * labeled alternative in {@link languageParser#type_declaration}.
+	 * @param ctx the parse tree
+	 */
+	void exitVar_dec_no_value(languageParser.Var_dec_no_valueContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link languageParser#type_reassign}.
 	 * @param ctx the parse tree
@@ -117,6 +131,16 @@ public interface languageListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitParam(languageParser.ParamContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link languageParser#function_call}.
+	 * @param ctx the parse tree
+	 */
+	void enterFunction_call(languageParser.Function_callContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link languageParser#function_call}.
+	 * @param ctx the parse tree
+	 */
+	void exitFunction_call(languageParser.Function_callContext ctx);
 	/**
 	 * Enter a parse tree produced by the {@code Addition}
 	 * labeled alternative in {@link languageParser#expression}.
