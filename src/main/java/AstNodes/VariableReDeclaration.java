@@ -2,17 +2,17 @@ package AstNodes;
 
 public class VariableReDeclaration extends AstNode {
     public String id;
-    public AstNode expression;
+    public AstNode value;
     public boolean typeChecking;
-    public VariableReDeclaration(String id, AstNode expression, boolean typeChecking){
+    public VariableReDeclaration(String id, AstNode value, boolean typeChecking){
         this.id = id;
-        this.expression = expression;
+        this.value = value;
         this.typeChecking = typeChecking;
     }
 
     @Override
     public String toString(){
-        return id.toString() + " " + expression.toString();
+        return id.toString() + " " + value.toString();
     }
 
 }

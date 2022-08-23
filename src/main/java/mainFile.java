@@ -4,12 +4,12 @@ import AstNodes.Language;
 import AstNodes.SyntaxAnalysis;
 import dAstNodes.dAstNode;
 //import grammar.Interpreter;
+import grammar.Interpreter;
 import grammar.languageLexer;
 import grammar.languageParser;
 import org.antlr.v4.runtime.CharStream;
 import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.tree.ParseTree;
-import java.io.IOException;
 import static org.antlr.v4.runtime.CharStreams.fromFileName;
 
 public class mainFile {
@@ -25,17 +25,12 @@ public class mainFile {
             CstToAst visitor = new CstToAst();
             AstNode ast = visitor.visit(tree);
 
-            DecoratedAbstractSyntaxTreeVisitor decorator = new DecoratedAbstractSyntaxTreeVisitor();
+            ContextualAnalysis decorator = new ContextualAnalysis();
 
             AstNode dast = decorator.visitAST(ast);
 
-            System.out.println(dast instanceof Language);
-
-                //Interpreter ep = new Interpreter(ast.astNodes);
-                //System.out.println(ep.getEvaluationResults());
-                //for (String evaluation : ep.getEvaluationResults()) {
-                //    System.out.println(evaluation);
-                //}
+            Interpreter ep = new Interpreter();
+            ep.visitAst(dast);
             } catch (Exception e) {
             e.printStackTrace();
         }

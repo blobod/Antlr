@@ -8,7 +8,7 @@ public class BooleanType extends AstNode{
     }
 
 
-    public String toString(boolean bool){
-        return java.lang.Boolean.toString(bool);
+    public String toString(){
+        return Boolean.toString(bool);
     }
 }

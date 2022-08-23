@@ -17,12 +17,6 @@ public interface languageVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitLanguage(languageParser.LanguageContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link languageParser#entrypoint}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitEntrypoint(languageParser.EntrypointContext ctx);
-	/**
 	 * Visit a parse tree produced by {@link languageParser#stmts}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -35,6 +29,12 @@ public interface languageVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitStmt(languageParser.StmtContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link languageParser#stop}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitStop(languageParser.StopContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link languageParser#declaration}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -46,6 +46,12 @@ public interface languageVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitPrint(languageParser.PrintContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link languageParser#println}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitPrintln(languageParser.PrintlnContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link languageParser#input}.
 	 * @param ctx the parse tree
@@ -174,6 +180,13 @@ public interface languageVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitLesserThan(languageParser.LesserThanContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code Bool}
+	 * labeled alternative in {@link languageParser#expression}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitBool(languageParser.BoolContext ctx);
 	/**
 	 * Visit a parse tree produced by the {@code GreaterThan}
 	 * labeled alternative in {@link languageParser#expression}.

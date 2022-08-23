@@ -18,16 +18,6 @@ public interface languageListener extends ParseTreeListener {
 	 */
 	void exitLanguage(languageParser.LanguageContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link languageParser#entrypoint}.
-	 * @param ctx the parse tree
-	 */
-	void enterEntrypoint(languageParser.EntrypointContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link languageParser#entrypoint}.
-	 * @param ctx the parse tree
-	 */
-	void exitEntrypoint(languageParser.EntrypointContext ctx);
-	/**
 	 * Enter a parse tree produced by {@link languageParser#stmts}.
 	 * @param ctx the parse tree
 	 */
@@ -48,6 +38,16 @@ public interface languageListener extends ParseTreeListener {
 	 */
 	void exitStmt(languageParser.StmtContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link languageParser#stop}.
+	 * @param ctx the parse tree
+	 */
+	void enterStop(languageParser.StopContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link languageParser#stop}.
+	 * @param ctx the parse tree
+	 */
+	void exitStop(languageParser.StopContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link languageParser#declaration}.
 	 * @param ctx the parse tree
 	 */
@@ -67,6 +67,16 @@ public interface languageListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitPrint(languageParser.PrintContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link languageParser#println}.
+	 * @param ctx the parse tree
+	 */
+	void enterPrintln(languageParser.PrintlnContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link languageParser#println}.
+	 * @param ctx the parse tree
+	 */
+	void exitPrintln(languageParser.PrintlnContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link languageParser#input}.
 	 * @param ctx the parse tree
@@ -285,6 +295,18 @@ public interface languageListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitLesserThan(languageParser.LesserThanContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code Bool}
+	 * labeled alternative in {@link languageParser#expression}.
+	 * @param ctx the parse tree
+	 */
+	void enterBool(languageParser.BoolContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code Bool}
+	 * labeled alternative in {@link languageParser#expression}.
+	 * @param ctx the parse tree
+	 */
+	void exitBool(languageParser.BoolContext ctx);
 	/**
 	 * Enter a parse tree produced by the {@code GreaterThan}
 	 * labeled alternative in {@link languageParser#expression}.

@@ -16,6 +16,7 @@ public class Addition extends AstNode {
     }
 
 
+
     public int getLeft(){return java.lang.Integer.parseInt(left.toString());}
     public AstNode getRight(){return right;}
 

@@ -8,7 +8,7 @@ public class DoubleType extends AstNode{
     }
 
 
-    public String toString(double doub){
+    public String toString(){
         return java.lang.Double.toString(doub);
     }
 }

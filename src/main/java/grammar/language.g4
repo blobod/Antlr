@@ -1,10 +1,6 @@
 grammar language;
 language
-    :  (stmts)* EOF
-    |  stmts* entrypoint EOF;
-
-entrypoint
-    : (AT_SIGN START (stmts)+ AT_SIGN STOP);
+    :  (stmts)* EOF;
 
 stmts
     : stmt+;
@@ -14,8 +10,13 @@ stmt
     | iterative_statement
     | declaration
     | print
+    | println
     | input
-    | function_call;
+    | function_call
+    | stop;
+
+stop
+    : STOP;
 
 declaration
     : type_declaration
@@ -24,15 +25,18 @@ declaration
 
 print
     : PRINT LPAR (expression)+ RPAR;
+
+println
+    : PRINTLN LPAR (expression)+ RPAR;
 input
     : INPUT LPAR expression RPAR;
 
 //TYPES
 type_declaration
-    : TYPE ID ASSIGN (expression)+ # Var_dec_with_value
+    : TYPE ID ASSIGN ((expression)+ | BOOL) # Var_dec_with_value
     | TYPE ID # Var_dec_no_value;
 type_reassign
-    : ID ASSIGN (expression* | ID | DOUBLE | INT | TXT | BOOL);
+    : ID ASSIGN (expression*);
 //TYPES
 
 //Function declaration
@@ -65,7 +69,8 @@ expression
     | ID # Variable
     | INT # Integer_NUM
     | DOUBLE # Double_NUM
-    | TXT # String;
+    | TXT # String
+    | BOOL # Bool;
 
 //CONDITINAL STATEMENT
 conditional_statement
@@ -85,7 +90,7 @@ iterative_statement
     | while_loop
     | forever_loop;
 for_loop
-    : FOR LPAR (type_declaration|type_reassign|ID) COMMA (expression) COMMA expression LCBRAC (stmts) RCBRAC;
+    : FOR LPAR (type_declaration|type_reassign|ID) COMMA (expression) COMMA type_reassign RPAR LCBRAC (stmts) RCBRAC;
 
 while_loop
     : WHILE LPAR (expression) RPAR LCBRAC (stmts) RCBRAC;
@@ -118,7 +123,8 @@ INPUT
 
 PRINT
     : 'print';
-
+PRINTLN
+    : 'println';
 BREAK
     : 'break';
 IF
@@ -145,8 +151,6 @@ WHILE
     : 'while';
 FOREVER
     : 'forever';
-START
-    : 'start';
 COMMA
     : ',';
 AT_SIGN

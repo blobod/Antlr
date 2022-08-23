@@ -69,6 +69,11 @@ public class CstToAst extends languageBaseVisitor<AstNode> {
         return new TxtType(txtText);
     }
 
+    @Override public AstNode visitBool(languageParser.BoolContext ctx) {
+        String txtText = ctx.getChild(0).getText();
+        boolean bool = Boolean.parseBoolean(txtText);
+        return new BooleanType(bool);
+    }
     @Override
     public AstNode visitIf(languageParser.IfContext ctx) {
         AstNode condition = visit(ctx.getChild(2));
@@ -100,11 +105,14 @@ public class CstToAst extends languageBaseVisitor<AstNode> {
     }
 
     @Override
+    public AstNode visitStop(languageParser.StopContext ctx) {
+        return new Stop(); }
+
+    @Override
     public AstNode visitFor_loop(languageParser.For_loopContext ctx) {
         AstNode initialization = visit(ctx.getChild(2));
         AstNode condition = visit(ctx.getChild(4));
         AstNode expression = visit(ctx.getChild(6));
-
         ArrayList<AstNode> bodyList = new ArrayList<>();
         for (int i = 0; i < ctx.getChild(9).getChildCount(); i++){
             bodyList.add(visit(ctx.getChild(9).getChild(i)));
@@ -136,6 +144,12 @@ public class CstToAst extends languageBaseVisitor<AstNode> {
     public AstNode visitPrint(languageParser.PrintContext ctx) {
         AstNode body = visit(ctx.getChild(2));
         return new Print(body);
+    }
+
+    @Override
+    public AstNode visitPrintln(languageParser.PrintlnContext ctx) {
+        AstNode body = visit(ctx.getChild(2));
+        return new Println(body);
     }
 
     @Override
