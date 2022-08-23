@@ -19,6 +19,6 @@ public class Functions extends AstNode {
 
     @Override
     public String toString(){
-        return "func" +FunctionType + " " + FunctionId + " " + parameter+ "  " + body;
+        return "function " + FunctionType + " " + FunctionId + " " + parameter+ " " + body;
     }
 }

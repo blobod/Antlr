@@ -187,28 +187,28 @@ public class CstToAst extends languageBaseVisitor<AstNode> {
         for (int i = 0; i < ctx.getChild(3).getChildCount(); i++){
             parameter.add(visit(ctx.getChild(3).getChild(i)));
         }
-
+        AstNode returnValue;
         ArrayList<AstNode> bodyList = new ArrayList<>();
         for (int i = 0; i < ctx.getChild(6).getChildCount(); i++){
             bodyList.add(visit(ctx.getChild(6).getChild(i)));
         }
-        AstNode returnValue = visit(ctx.getChild(8));
+        if (bodyList == null){
+            returnValue = visit(ctx.getChild(8));
+        }else{
+            returnValue = visit(ctx.getChild(7));
+        }
         return new Functions(FunctionType, FunctionId, parameter, bodyList, returnValue);
     }
 
     @Override public AstNode visitFunction_call(languageParser.Function_callContext ctx)    {
+        String id = ctx.getChild(0).getText();
         ArrayList<AstNode> parameter = new ArrayList<>();
-        for (int i = 0; i < ctx.getChild(3).getChildCount(); i++){
-            parameter.add(visit(ctx.getChild(3).getChild(i)));
+        for (int i = 0; i < ctx.getChild(2).getChildCount(); i++){
+            parameter.add(visit(ctx.getChild(2).getChild(i)));
         }
-    return new FunctionCall(parameter);
+    return new FunctionCall(parameter, id);
     }
 
-    @Override
-
-    public AstNode visitParam(languageParser.ParamContext ctx) {
-        return visitChildren(ctx);
-    }
 
     @Override
     public AstNode visitGreaterThan(languageParser.GreaterThanContext ctx) {

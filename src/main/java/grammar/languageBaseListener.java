@@ -184,6 +184,18 @@ public class languageBaseListener implements languageListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterFunction_call_param(languageParser.Function_call_paramContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitFunction_call_param(languageParser.Function_call_paramContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterAddition(languageParser.AdditionContext ctx) { }
 	/**
 	 * {@inheritDoc}

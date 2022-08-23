@@ -8,7 +8,7 @@ import java.util.List;
 
 public class ContextualAnalysis {
     public HashMap<String, AstNode> Variables;
-    public HashMap<String, Integer> Functions;
+    public HashMap<String, AstNode> Functions;
     public ArrayList<String> typeChecking;
     public ArrayList<String> error;
 
@@ -41,6 +41,12 @@ public class ContextualAnalysis {
                 return  visitConditionExpression(((isNotEqualWith) astNode).left, ((isNotEqualWith) astNode).right);
             } else if (astNode instanceof VariableDeclarationWithValue) {
                 return new VariableDeclarationWithValue(((VariableDeclarationWithValue) astNode).type, ((VariableDeclarationWithValue) astNode).id, ((VariableDeclarationWithValue) astNode).value, visitDeclaration(((VariableDeclarationWithValue) astNode).type, ((VariableDeclarationWithValue) astNode).id, ((VariableDeclarationWithValue) astNode).value));
+            }else if (astNode instanceof VariableDeclarationNoValue) {
+                if (!Variables.containsKey(((VariableDeclarationNoValue) astNode).id) && ((VariableDeclarationNoValue) astNode).type.equals("int")){
+                    Variables.put(((VariableDeclarationNoValue) astNode).id, new IntType(0));
+                }else if (!Variables.containsKey(((VariableDeclarationNoValue) astNode).id) && ((VariableDeclarationNoValue) astNode).type.equals("double")){
+                    Variables.put(((VariableDeclarationNoValue) astNode).id, new DoubleType(0.0));
+                }
             }else if (astNode instanceof Variable) {
                 return Variables.get(((Variable) astNode).id);
             }else if (astNode instanceof IntType) {
@@ -124,7 +130,18 @@ public class ContextualAnalysis {
                     visitAST(((Functions) astNode).body.get(x));
                     x++;
                 }
-                visitFunctionDefinition(((Functions) astNode).FunctionType, ((Functions) astNode).FunctionId, ((Functions) astNode).parameter, ((Functions) astNode).body, ((Functions) astNode).returnValue);
+                visitFunctionDefinition(((Functions) astNode).FunctionType, ((Functions) astNode).FunctionId, ((Functions) astNode).returnValue, ((Functions) astNode).parameter);
+
+            }else if (astNode instanceof FunctionCall) {
+                int i = 0;
+                if (Variables.containsKey(((FunctionCall) astNode).functionID)){
+                    while(i < ((FunctionCall) astNode).parameter.size()){
+                        visitAST(((FunctionCall) astNode).parameter.get(i));
+                        i++;
+                    }
+                }else {
+                    error.add("Undefined Function Call");
+                }
 
             } else if (astNode instanceof ForLoop) {
                 int i = 0;
@@ -205,15 +222,17 @@ public class ContextualAnalysis {
         return false;
     }
 
-    public void visitFunctionDefinition(String FunctionType, String FunctionId, List<AstNode> parameter, List<AstNode> body, AstNode returnValue) {
+    public void visitFunctionDefinition(String FunctionType, String FunctionId, AstNode returnValue, List<AstNode> parameter) throws Exception {
         if (Variables.containsKey(FunctionId)) {
-            error.add("Variable " + FunctionId + " is already declared");
-            return;
+            error.add("Function " + FunctionId + " is already defined");
         }
-        if (returnValue instanceof Variable) {
-            returnValue = Variables.get(((Variable) returnValue).id);
+        int i = 0;
+        while(i < parameter.size()){
+            visitAST(parameter.get(i));
+            i++;
         }
-        if (FunctionType.equals("int") && returnValue instanceof IntType) {
+            if (FunctionType.equals("int") && returnValue instanceof IntType) {
+                System.out.println("hello");
             Variables.put(FunctionId, returnValue);
         } else if (FunctionType.equals("double") && returnValue instanceof DoubleType) {
             Variables.put(FunctionId, returnValue);

@@ -152,6 +152,16 @@ public interface languageListener extends ParseTreeListener {
 	 */
 	void exitFunction_call(languageParser.Function_callContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link languageParser#function_call_param}.
+	 * @param ctx the parse tree
+	 */
+	void enterFunction_call_param(languageParser.Function_call_paramContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link languageParser#function_call_param}.
+	 * @param ctx the parse tree
+	 */
+	void exitFunction_call_param(languageParser.Function_call_paramContext ctx);
+	/**
 	 * Enter a parse tree produced by the {@code Addition}
 	 * labeled alternative in {@link languageParser#expression}.
 	 * @param ctx the parse tree

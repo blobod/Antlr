@@ -115,6 +115,13 @@ public class languageBaseVisitor<T> extends AbstractParseTreeVisitor<T> implemen
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
+	@Override public T visitFunction_call_param(languageParser.Function_call_paramContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
 	@Override public T visitAddition(languageParser.AdditionContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}

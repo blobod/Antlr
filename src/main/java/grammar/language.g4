@@ -12,8 +12,8 @@ stmt
     | print
     | println
     | input
-    | function_call
-    | stop;
+    | stop
+    | function_call;
 
 stop
     : STOP;
@@ -24,10 +24,10 @@ declaration
     | type_reassign;
 
 print
-    : PRINT LPAR (expression)+ RPAR;
+    : PRINT LPAR ((expression)+ | function_call) RPAR;
 
 println
-    : PRINTLN LPAR (expression)+ RPAR;
+    : PRINTLN LPAR ((expression)+ | function_call) RPAR;
 input
     : INPUT LPAR expression RPAR;
 
@@ -41,16 +41,17 @@ type_reassign
 
 //Function declaration
 function_declaration
-    : (TYPE) ID LPAR param* RPAR LCBRAC (stmts | ID | type_declaration)* RETURN expression RCBRAC
+    : (TYPE) ID LPAR param* RPAR LCBRAC (stmts | ID | type_declaration)* RETURN (expression)+ RCBRAC
     | VOID ID LPAR param* RPAR LCBRAC (stmts | ID | type_declaration)* RCBRAC;
 param
-    : TYPE ID (COMMA TYPE ID)*
-    | (INT | BOOL | TXT | DOUBLE | ID) (COMMA (INT | BOOL | TXT | DOUBLE | ID))*;
+    : type_declaration (COMMA type_declaration)*;
 //Function Declaration
 //Function call
 function_call
-    : ID LPAR param* RPAR;
+    : ID LPAR function_call_param* RPAR;
 
+function_call_param
+    : expression (COMMA expression)*;
 //Function call
 expression
     : expression PLUS expression # Addition

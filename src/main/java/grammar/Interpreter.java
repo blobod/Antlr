@@ -6,13 +6,16 @@ import java.util.*;
 
 public class Interpreter {
     public Map<String, AstNode> values;
+    public Map<String, List<AstNode>> functionsBody;
+    public Map<String, List<AstNode>> functionsParameters;
     public int breakCheck = 0;
     public Interpreter() {
         values = new HashMap<>();
+        functionsBody = new HashMap<>();
+        functionsParameters = new HashMap<>();
     }
 
-    public AstNode visitAst(AstNode astNode) throws Exception {
-
+    public AstNode visitAst(AstNode astNode){
         if (astNode instanceof Addition) {
             AstNode left = ((Addition) astNode).left;
             AstNode right = ((Addition) astNode).right;
@@ -306,16 +309,30 @@ public class Interpreter {
             return new Language(((Language) astNode).body);
 
         } else if (astNode instanceof Functions) {
-            int i = 0, x = 0;
-            while (i < ((Functions) astNode).parameter.size()) {
-                visitAst(((Functions) astNode).parameter.get(i));
-                i++;
-            }
-            while (x < ((Functions) astNode).body.size()) {
-                visitAst(((Functions) astNode).body.get(x));
+            values.put(((Functions) astNode).FunctionId, ((Functions) astNode).returnValue);
+                functionsParameters.put(((Functions) astNode).FunctionId, ((Functions) astNode).parameter);
+
+                functionsBody.put(((Functions) astNode).FunctionId, ((Functions) astNode).body);
+
+        }else if (astNode instanceof FunctionCall) {
+            int x = 0;
+            while (x < (functionsParameters.get(((FunctionCall) astNode).functionID).size()) ){
+                visitAst(functionsParameters.get(((FunctionCall) astNode).functionID).get(x));
                 x++;
             }
-
+            int i = 0;
+            while(i < functionsBody.get(((FunctionCall) astNode).functionID).size()) {
+                visitAst(functionsBody.get(((FunctionCall) astNode).functionID).get(i));
+                i++;
+            }
+            int z = 0;
+            while(z < ((FunctionCall) astNode).parameter.size()){
+                visitAst(((FunctionCall) astNode).parameter.get(z));
+                if (((FunctionCall) astNode).parameter.get(z) != null){
+                }
+                z++;
+            }
+            return visitAst(values.get(((FunctionCall) astNode).functionID));
         } else if (astNode instanceof ForLoop) {
             int i = 0;
             visitAst(((ForLoop) astNode).initialization);
@@ -345,11 +362,8 @@ public class Interpreter {
         }else if(astNode instanceof BooleanType){
             return new BooleanType(((BooleanType) astNode).bool);
         }else if(astNode instanceof  Variable){
-            try{
-                return visitAst(values.get(((Variable) astNode).id));
-            }catch (NullPointerException e){
-                throw new Exception("Undeclared variable");
-            }
+                return values.get(((Variable) astNode).id);
+
         }
         return null;
     }
