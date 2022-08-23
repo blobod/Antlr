@@ -99,7 +99,6 @@ public class Interpreter {
             }
         } else if (astNode instanceof LesserThan) {
             if (((LesserThan) astNode).left instanceof Variable && visitAst(((LesserThan) astNode).left) instanceof IntType){
-                System.out.println("sup3 " + (visitAst(((LesserThan) astNode).left) + " " + ((LesserThan) astNode).right));
                 if (Integer.parseInt(visitAst(((LesserThan) astNode).left).toString()) < Integer.parseInt(visitAst(((LesserThan) astNode).right).toString())){
                     return new BooleanType(true);
                 }else{
@@ -248,7 +247,6 @@ public class Interpreter {
             values.put(((VariableDeclarationWithValue) astNode).id, ((VariableDeclarationWithValue) astNode).value);
             return new VariableDeclarationWithValue(((VariableDeclarationWithValue) astNode).type, ((VariableDeclarationWithValue) astNode).id, ((VariableDeclarationWithValue) astNode).value, true);
         } else if (astNode instanceof VariableReDeclaration) {
-            System.out.println("hello");
             values.put(((VariableReDeclaration) astNode).id, visitAst(((VariableReDeclaration) astNode).value));
             return new VariableReDeclaration(((VariableReDeclaration) astNode).id, ((VariableReDeclaration) astNode).value, true);
         } else if (astNode instanceof If) {
