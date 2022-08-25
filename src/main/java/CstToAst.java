@@ -180,11 +180,11 @@ public class CstToAst extends languageBaseVisitor<AstNode> {
     }
 
     @Override
-    public AstNode visitFunction_declaration(languageParser.Function_declarationContext ctx) {
+    public AstNode visitFuncWithReturn(languageParser.FuncWithReturnContext ctx) {
         String FunctionType = ctx.getChild(0).getText();
         String FunctionId = ctx.getChild(1).getText();
         ArrayList<AstNode> parameter = new ArrayList<>();
-        for (int i = 0; i < ctx.getChild(3).getChildCount(); i++){
+        for (int i = 0; i < ctx.getChild(3).getChildCount(); i = i + 2){
             parameter.add(visit(ctx.getChild(3).getChild(i)));
         }
         AstNode returnValue;
@@ -192,18 +192,32 @@ public class CstToAst extends languageBaseVisitor<AstNode> {
         for (int i = 0; i < ctx.getChild(6).getChildCount(); i++){
             bodyList.add(visit(ctx.getChild(6).getChild(i)));
         }
-        if (bodyList == null){
-            returnValue = visit(ctx.getChild(8));
-        }else{
+        if (bodyList.isEmpty()){
             returnValue = visit(ctx.getChild(7));
+        }else{
+            returnValue = visit(ctx.getChild(8));
         }
-        return new Functions(FunctionType, FunctionId, parameter, bodyList, returnValue);
+        return new FunctionsWithReturn(FunctionType, FunctionId, parameter, bodyList, returnValue);
+    }
+
+    @Override public AstNode visitFuncVoid(languageParser.FuncVoidContext ctx) {
+        String FunctionType = ctx.getChild(0).getText();
+        String FunctionId = ctx.getChild(1).getText();
+        ArrayList<AstNode> parameter = new ArrayList<>();
+        for (int i = 0; i < ctx.getChild(3).getChildCount(); i = i + 2){
+            parameter.add(visit(ctx.getChild(3).getChild(i)));
+        }
+        ArrayList<AstNode> bodyList = new ArrayList<>();
+        for (int i = 0; i < ctx.getChild(6).getChildCount(); i++){
+            bodyList.add(visit(ctx.getChild(6).getChild(i)));
+        }
+        return new FunctionsWithoutReturn(FunctionType, FunctionId, parameter, bodyList);
     }
 
     @Override public AstNode visitFunction_call(languageParser.Function_callContext ctx)    {
         String id = ctx.getChild(0).getText();
         ArrayList<AstNode> parameter = new ArrayList<>();
-        for (int i = 0; i < ctx.getChild(2).getChildCount(); i++){
+        for (int i = 0; i < ctx.getChild(2).getChildCount(); i = i + 2){
             parameter.add(visit(ctx.getChild(2).getChild(i)));
         }
     return new FunctionCall(parameter, id);

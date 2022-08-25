@@ -1,5 +1,4 @@
-int sum(int y, int z){
-print(20)
-return 3
+void x(int y, int i){
+print(y + i)
 }
-print(sum(10, 12))
+x(12, 15)

@@ -79,11 +79,19 @@ public interface languageVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitType_reassign(languageParser.Type_reassignContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link languageParser#function_declaration}.
+	 * Visit a parse tree produced by the {@code FuncWithReturn}
+	 * labeled alternative in {@link languageParser#function_declaration}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitFunction_declaration(languageParser.Function_declarationContext ctx);
+	T visitFuncWithReturn(languageParser.FuncWithReturnContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code FuncVoid}
+	 * labeled alternative in {@link languageParser#function_declaration}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitFuncVoid(languageParser.FuncVoidContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link languageParser#param}.
 	 * @param ctx the parse tree

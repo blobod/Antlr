@@ -122,15 +122,29 @@ public interface languageListener extends ParseTreeListener {
 	 */
 	void exitType_reassign(languageParser.Type_reassignContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link languageParser#function_declaration}.
+	 * Enter a parse tree produced by the {@code FuncWithReturn}
+	 * labeled alternative in {@link languageParser#function_declaration}.
 	 * @param ctx the parse tree
 	 */
-	void enterFunction_declaration(languageParser.Function_declarationContext ctx);
+	void enterFuncWithReturn(languageParser.FuncWithReturnContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link languageParser#function_declaration}.
+	 * Exit a parse tree produced by the {@code FuncWithReturn}
+	 * labeled alternative in {@link languageParser#function_declaration}.
 	 * @param ctx the parse tree
 	 */
-	void exitFunction_declaration(languageParser.Function_declarationContext ctx);
+	void exitFuncWithReturn(languageParser.FuncWithReturnContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code FuncVoid}
+	 * labeled alternative in {@link languageParser#function_declaration}.
+	 * @param ctx the parse tree
+	 */
+	void enterFuncVoid(languageParser.FuncVoidContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code FuncVoid}
+	 * labeled alternative in {@link languageParser#function_declaration}.
+	 * @param ctx the parse tree
+	 */
+	void exitFuncVoid(languageParser.FuncVoidContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link languageParser#param}.
 	 * @param ctx the parse tree

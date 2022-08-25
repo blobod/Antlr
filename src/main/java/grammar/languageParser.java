@@ -905,6 +905,60 @@ public class languageParser extends Parser {
 	}
 
 	public static class Function_declarationContext extends ParserRuleContext {
+		public Function_declarationContext(ParserRuleContext parent, int invokingState) {
+			super(parent, invokingState);
+		}
+		@Override public int getRuleIndex() { return RULE_function_declaration; }
+	 
+		public Function_declarationContext() { }
+		public void copyFrom(Function_declarationContext ctx) {
+			super.copyFrom(ctx);
+		}
+	}
+	public static class FuncVoidContext extends Function_declarationContext {
+		public TerminalNode VOID() { return getToken(languageParser.VOID, 0); }
+		public List<TerminalNode> ID() { return getTokens(languageParser.ID); }
+		public TerminalNode ID(int i) {
+			return getToken(languageParser.ID, i);
+		}
+		public TerminalNode LPAR() { return getToken(languageParser.LPAR, 0); }
+		public TerminalNode RPAR() { return getToken(languageParser.RPAR, 0); }
+		public TerminalNode LCBRAC() { return getToken(languageParser.LCBRAC, 0); }
+		public TerminalNode RCBRAC() { return getToken(languageParser.RCBRAC, 0); }
+		public List<ParamContext> param() {
+			return getRuleContexts(ParamContext.class);
+		}
+		public ParamContext param(int i) {
+			return getRuleContext(ParamContext.class,i);
+		}
+		public List<StmtsContext> stmts() {
+			return getRuleContexts(StmtsContext.class);
+		}
+		public StmtsContext stmts(int i) {
+			return getRuleContext(StmtsContext.class,i);
+		}
+		public List<Type_declarationContext> type_declaration() {
+			return getRuleContexts(Type_declarationContext.class);
+		}
+		public Type_declarationContext type_declaration(int i) {
+			return getRuleContext(Type_declarationContext.class,i);
+		}
+		public FuncVoidContext(Function_declarationContext ctx) { copyFrom(ctx); }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof languageListener ) ((languageListener)listener).enterFuncVoid(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof languageListener ) ((languageListener)listener).exitFuncVoid(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof languageVisitor ) return ((languageVisitor<? extends T>)visitor).visitFuncVoid(this);
+			else return visitor.visitChildren(this);
+		}
+	}
+	public static class FuncWithReturnContext extends Function_declarationContext {
 		public List<TerminalNode> ID() { return getTokens(languageParser.ID); }
 		public TerminalNode ID(int i) {
 			return getToken(languageParser.ID, i);
@@ -939,22 +993,18 @@ public class languageParser extends Parser {
 		public ExpressionContext expression(int i) {
 			return getRuleContext(ExpressionContext.class,i);
 		}
-		public TerminalNode VOID() { return getToken(languageParser.VOID, 0); }
-		public Function_declarationContext(ParserRuleContext parent, int invokingState) {
-			super(parent, invokingState);
-		}
-		@Override public int getRuleIndex() { return RULE_function_declaration; }
+		public FuncWithReturnContext(Function_declarationContext ctx) { copyFrom(ctx); }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof languageListener ) ((languageListener)listener).enterFunction_declaration(this);
+			if ( listener instanceof languageListener ) ((languageListener)listener).enterFuncWithReturn(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof languageListener ) ((languageListener)listener).exitFunction_declaration(this);
+			if ( listener instanceof languageListener ) ((languageListener)listener).exitFuncWithReturn(this);
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof languageVisitor ) return ((languageVisitor<? extends T>)visitor).visitFunction_declaration(this);
+			if ( visitor instanceof languageVisitor ) return ((languageVisitor<? extends T>)visitor).visitFuncWithReturn(this);
 			else return visitor.visitChildren(this);
 		}
 	}
@@ -968,6 +1018,7 @@ public class languageParser extends Parser {
 			_errHandler.sync(this);
 			switch (_input.LA(1)) {
 			case TYPE:
+				_localctx = new FuncWithReturnContext(_localctx);
 				enterOuterAlt(_localctx, 1);
 				{
 				{
@@ -1049,6 +1100,7 @@ public class languageParser extends Parser {
 				}
 				break;
 			case VOID:
+				_localctx = new FuncVoidContext(_localctx);
 				enterOuterAlt(_localctx, 2);
 				{
 				setState(153);

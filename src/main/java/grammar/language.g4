@@ -41,8 +41,8 @@ type_reassign
 
 //Function declaration
 function_declaration
-    : (TYPE) ID LPAR param* RPAR LCBRAC (stmts | ID | type_declaration)* RETURN (expression)+ RCBRAC
-    | VOID ID LPAR param* RPAR LCBRAC (stmts | ID | type_declaration)* RCBRAC;
+    : (TYPE) ID LPAR param* RPAR LCBRAC (stmts | ID | type_declaration)* RETURN (expression)+ RCBRAC #FuncWithReturn
+    | VOID ID LPAR param* RPAR LCBRAC (stmts | ID | type_declaration)* RCBRAC #FuncVoid;
 param
     : type_declaration (COMMA type_declaration)*;
 //Function Declaration

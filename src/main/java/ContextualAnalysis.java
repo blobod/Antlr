@@ -1,14 +1,13 @@
 
 import AstNodes.*;
 
-import java.beans.Visibility;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
 public class ContextualAnalysis {
     public HashMap<String, AstNode> Variables;
-    public HashMap<String, AstNode> Functions;
+    public HashMap<String, List<AstNode>> Functions;
     public ArrayList<String> typeChecking;
     public ArrayList<String> error;
 
@@ -44,8 +43,12 @@ public class ContextualAnalysis {
             }else if (astNode instanceof VariableDeclarationNoValue) {
                 if (!Variables.containsKey(((VariableDeclarationNoValue) astNode).id) && ((VariableDeclarationNoValue) astNode).type.equals("int")){
                     Variables.put(((VariableDeclarationNoValue) astNode).id, new IntType(0));
+                    return new VariableDeclarationWithValue(((VariableDeclarationNoValue) astNode).type, ((VariableDeclarationNoValue) astNode).id, new IntType(0), true);
                 }else if (!Variables.containsKey(((VariableDeclarationNoValue) astNode).id) && ((VariableDeclarationNoValue) astNode).type.equals("double")){
                     Variables.put(((VariableDeclarationNoValue) astNode).id, new DoubleType(0.0));
+                    return new VariableDeclarationWithValue(((VariableDeclarationNoValue) astNode).type, ((VariableDeclarationNoValue) astNode).id, new DoubleType(0.0), true);
+                }else{
+                    return visitAST(Variables.get(((VariableDeclarationNoValue) astNode).id));
                 }
             }else if (astNode instanceof Variable) {
                 return Variables.get(((Variable) astNode).id);
@@ -53,7 +56,12 @@ public class ContextualAnalysis {
                 return new IntType(((IntType) astNode).num);
             }else if (astNode instanceof DoubleType) {
                 return new DoubleType(((DoubleType) astNode).doub);
-            }  else if (astNode instanceof VariableReDeclaration) {
+            }else if (astNode instanceof TxtType) {
+                return new TxtType(((TxtType) astNode).string);
+            }else if (astNode instanceof BooleanType) {
+                return new BooleanType(((BooleanType) astNode).bool);
+            }
+            else if (astNode instanceof VariableReDeclaration) {
                 visitAST(((VariableReDeclaration) astNode).value);
                 return new VariableReDeclaration(((VariableReDeclaration) astNode).id, visitAST(((VariableReDeclaration) astNode).value), visitAssign((((VariableReDeclaration) astNode).id), visitAST(((VariableReDeclaration) astNode).value)));
             } else if (astNode instanceof If) {
@@ -120,25 +128,33 @@ public class ContextualAnalysis {
                     throw new Exception("Error during Contextual Analysis " + error.toString() + " and " + typeChecking.toString());
                 }
                 return new Language(((Language) astNode).body);
-            } else if (astNode instanceof Functions) {
+            } else if (astNode instanceof FunctionsWithReturn) {
                 int i = 0, x = 0;
-                while (i < ((Functions) astNode).parameter.size()) {
-                    visitAST(((Functions) astNode).parameter.get(i));
+                while (i < ((FunctionsWithReturn) astNode).parameter.size()) {
+                    visitAST(((FunctionsWithReturn) astNode).parameter.get(i));
                     i++;
                 }
-                while (x < ((Functions) astNode).body.size()) {
-                    visitAST(((Functions) astNode).body.get(x));
+                while (x < ((FunctionsWithReturn) astNode).body.size()) {
+                    visitAST(((FunctionsWithReturn) astNode).body.get(x));
                     x++;
                 }
-                visitFunctionDefinition(((Functions) astNode).FunctionType, ((Functions) astNode).FunctionId, ((Functions) astNode).returnValue, ((Functions) astNode).parameter);
+                visitFunctionDefinition(((FunctionsWithReturn) astNode).FunctionType, ((FunctionsWithReturn) astNode).FunctionId, ((FunctionsWithReturn) astNode).returnValue, ((FunctionsWithReturn) astNode).parameter);
 
+            }else if (astNode instanceof FunctionsWithoutReturn) {
+                int i = 0, x = 0;
+                while (i < ((FunctionsWithoutReturn) astNode).parameter.size()) {
+                    visitAST(((FunctionsWithoutReturn) astNode).parameter.get(i));
+                    i++;
+                }
+                while (x < ((FunctionsWithoutReturn) astNode).body.size()) {
+                    visitAST(((FunctionsWithoutReturn) astNode).body.get(x));
+                    x++;
+                }
+                Variables.put(((FunctionsWithoutReturn) astNode).FunctionId, null);
+                Functions.put(((FunctionsWithoutReturn) astNode).FunctionId, ((FunctionsWithoutReturn) astNode).parameter);
             }else if (astNode instanceof FunctionCall) {
-                int i = 0;
                 if (Variables.containsKey(((FunctionCall) astNode).functionID)){
-                    while(i < ((FunctionCall) astNode).parameter.size()){
-                        visitAST(((FunctionCall) astNode).parameter.get(i));
-                        i++;
-                    }
+                    visitFunctionCall(((FunctionCall) astNode).functionID, ((FunctionCall) astNode).parameter);
                 }else {
                     error.add("Undefined Function Call");
                 }
@@ -194,7 +210,6 @@ public class ContextualAnalysis {
             error.add("Variable " + id + " is already declared");
             return false;
         }
-
         if (type.equals("int") && value instanceof IntType) {
             Variables.put(id, value);
             return true;
@@ -226,22 +241,28 @@ public class ContextualAnalysis {
         if (Variables.containsKey(FunctionId)) {
             error.add("Function " + FunctionId + " is already defined");
         }
+        AstNode Value = visitAST(returnValue);
         int i = 0;
-        while(i < parameter.size()){
-            visitAST(parameter.get(i));
-            i++;
-        }
-            if (FunctionType.equals("int") && returnValue instanceof IntType) {
-                System.out.println("hello");
-            Variables.put(FunctionId, returnValue);
-        } else if (FunctionType.equals("double") && returnValue instanceof DoubleType) {
-            Variables.put(FunctionId, returnValue);
-        } else if (FunctionType.equals("txt") && returnValue instanceof TxtType) {
-            Variables.put(FunctionId, returnValue);
-        } else if (FunctionType.equals("bool") && returnValue instanceof BooleanType) {
-            Variables.put(FunctionId, returnValue);
+            if (FunctionType.equals("int") && Value instanceof IntType) {
+            Variables.put(FunctionId, Value);
+        } else if (FunctionType.equals("double") && Value instanceof DoubleType) {
+            Variables.put(FunctionId, Value);
+        } else if (FunctionType.equals("txt") && Value instanceof TxtType) {
+            Variables.put(FunctionId, Value);
+        } else if (FunctionType.equals("bool") && Value instanceof BooleanType) {
+            Variables.put(FunctionId, Value);
         } else {
             error.add("The return value does not match the type of the function");
+        }
+        Functions.put(FunctionId, parameter);
+    }
+
+    public void visitFunctionCall(String id, List<AstNode> parameter) throws Exception {
+        List<AstNode> FunctionReturn =  Functions.get(id);
+        int i = 0;
+        while (i < parameter.size()){
+            visitExpression(visitAST(FunctionReturn.get(i)), parameter.get(i));
+            i++;
         }
     }
 
