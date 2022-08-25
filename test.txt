@@ -1,4 +1,4 @@
-void x(int y, int i){
-print(y + i)
+txt x(){
+return "hej"
 }
-x(12, 15)
+print(x())

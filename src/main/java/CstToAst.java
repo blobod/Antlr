@@ -181,22 +181,26 @@ public class CstToAst extends languageBaseVisitor<AstNode> {
 
     @Override
     public AstNode visitFuncWithReturn(languageParser.FuncWithReturnContext ctx) {
-        String FunctionType = ctx.getChild(0).getText();
-        String FunctionId = ctx.getChild(1).getText();
+        int type = 0, id = 1, param = 3, body = 6, value = 8;
+        String FunctionType = ctx.getChild(type).getText();
+        String FunctionId = ctx.getChild(id).getText();
         ArrayList<AstNode> parameter = new ArrayList<>();
-        for (int i = 0; i < ctx.getChild(3).getChildCount(); i = i + 2){
-            parameter.add(visit(ctx.getChild(3).getChild(i)));
+        for (int i = 0; i < ctx.getChild(param).getChildCount(); i = i + 2){
+            parameter.add(visit(ctx.getChild(param).getChild(i)));
         }
-        AstNode returnValue;
+        if (parameter.isEmpty()){
+            body = 5;
+        }
         ArrayList<AstNode> bodyList = new ArrayList<>();
-        for (int i = 0; i < ctx.getChild(6).getChildCount(); i++){
-            bodyList.add(visit(ctx.getChild(6).getChild(i)));
+        for (int i = 0; i < ctx.getChild(body).getChildCount(); i++){
+            bodyList.add(visit(ctx.getChild(body).getChild(i)));
         }
-        if (bodyList.isEmpty()){
-            returnValue = visit(ctx.getChild(7));
-        }else{
-            returnValue = visit(ctx.getChild(8));
+        if (bodyList.isEmpty() && parameter.isEmpty()){
+            value = 6;
+        }else if(bodyList.isEmpty() || parameter.isEmpty()){
+            value = 7;
         }
+        AstNode returnValue = visit(ctx.getChild(value));
         return new FunctionsWithReturn(FunctionType, FunctionId, parameter, bodyList, returnValue);
     }
 
