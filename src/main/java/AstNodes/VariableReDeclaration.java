@@ -12,7 +12,7 @@ public class VariableReDeclaration extends AstNode {
 
     @Override
     public String toString(){
-        return id.toString() + " " + value.toString();
+        return id + " = " + value.toString();
     }
 
 }

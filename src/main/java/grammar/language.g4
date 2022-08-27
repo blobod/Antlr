@@ -41,7 +41,7 @@ type_reassign
 
 //Function declaration
 function_declaration
-    : (TYPE) ID LPAR param* RPAR LCBRAC (stmts | ID | type_declaration)* RETURN (expression)+ RCBRAC #FuncWithReturn
+    : (TYPE) ID LPAR param* RPAR LCBRAC (stmts | ID | type_declaration)* return_func RCBRAC #FuncWithReturn
     | VOID ID LPAR param* RPAR LCBRAC (stmts | ID | type_declaration)* RCBRAC #FuncVoid;
 param
     : type_declaration (COMMA type_declaration)*;
@@ -49,6 +49,9 @@ param
 //Function call
 function_call
     : ID LPAR function_call_param* RPAR;
+
+return_func
+    : RETURN (expression | function_call)+;
 
 function_call_param
     : expression (COMMA expression)*;
@@ -78,8 +81,8 @@ conditional_statement
     : if_statement
     | break_statement;
 if_statement
-    : IF LPAR expression (OR expression)* RPAR LCBRAC (stmts) RCBRAC # If
-    | IF LPAR expression  (OR expression)* RPAR LCBRAC (stmts) RCBRAC (ELSE LCBRAC (stmts) RCBRAC) # Else;
+    : IF LPAR expression (OR expression)* RPAR LCBRAC (stmts | return_func) RCBRAC # If
+    | IF LPAR expression  (OR expression)* RPAR LCBRAC (stmts | return_func) RCBRAC (ELSE LCBRAC (stmts) RCBRAC) # Else;
 break_statement
     : BREAK;
 
@@ -91,12 +94,12 @@ iterative_statement
     | while_loop
     | forever_loop;
 for_loop
-    : FOR LPAR (type_declaration|type_reassign|ID) COMMA (expression) COMMA type_reassign RPAR LCBRAC (stmts) RCBRAC;
+    : FOR LPAR (type_declaration|type_reassign|ID) COMMA (expression) COMMA type_reassign RPAR LCBRAC (stmts | return_func) RCBRAC;
 
 while_loop
-    : WHILE LPAR (expression) RPAR LCBRAC (stmts) RCBRAC;
+    : WHILE LPAR (expression) RPAR LCBRAC (stmts| return_func) RCBRAC;
 forever_loop
-    : FOREVER LCBRAC (stmts) RCBRAC;
+    : FOREVER LCBRAC (stmts| return_func) RCBRAC;
 // ITERATIVE STATEMENT
 GREATER
     : '>';

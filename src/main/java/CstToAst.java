@@ -13,6 +13,7 @@ public class CstToAst extends languageBaseVisitor<AstNode> {
     public AstNode visitLanguage(languageParser.LanguageContext ctx) {
         ArrayList<AstNode> bodyList = new ArrayList<>();
         for (int i = 0; i < ctx.getChild(0).getChildCount(); i++){
+            System.out.println(visit(ctx.getChild(0).getChild(i)));
             bodyList.add(visit(ctx.getChild(0).getChild(i)));
         }
         return new Language(bodyList);
@@ -201,8 +202,16 @@ public class CstToAst extends languageBaseVisitor<AstNode> {
             value = 7;
         }
         AstNode returnValue = visit(ctx.getChild(value));
+
         return new FunctionsWithReturn(FunctionType, FunctionId, parameter, bodyList, returnValue);
     }
+
+    @Override public AstNode visitReturn_func(languageParser.Return_funcContext ctx) {
+        System.out.println("yo yo yo yo");
+        AstNode value = visit(ctx.getChild(1));
+        System.out.println(value);
+        return new ReturnFunc(value); }
+
 
     @Override public AstNode visitFuncVoid(languageParser.FuncVoidContext ctx) {
         String FunctionType = ctx.getChild(0).getText();

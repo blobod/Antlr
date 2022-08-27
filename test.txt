@@ -1,4 +1,16 @@
-txt x(){
-return "hej"
+int fib(int n){
+int a = 0
+int b = 1
+int c
+
+if(n == 0){
+return a}
+for(int i = 2, i <= n, i = i + 1){
+c = a + b
+a + b
+b + c
 }
-print(x())
+return b
+}
+
+print(fib(10))

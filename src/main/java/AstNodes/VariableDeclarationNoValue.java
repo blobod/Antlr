@@ -8,4 +8,9 @@ public class VariableDeclarationNoValue extends AstNode{
         this.type = type;
         this.id = id;
     }
+
+    @Override
+    public String toString(){
+        return "type def of " + type + " " + id + ",";
+    }
 }

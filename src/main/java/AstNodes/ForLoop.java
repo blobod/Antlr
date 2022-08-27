@@ -19,6 +19,6 @@ public class ForLoop extends AstNode{
 
     @Override
     public String toString(){
-        return "for" + initialization+ " " + condition + " " + expression+ " do " + body;
+        return "for " + initialization + " " + condition + " " + expression+ " do " + body;
     }
 }

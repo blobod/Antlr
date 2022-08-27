@@ -12,7 +12,7 @@ public class Addition extends AstNode {
     }
 
     public String toString(){
-        return "print " +  left.toString() + " " + right.toString();
+        return left.toString() + " + " + right.toString();
     }
 
 

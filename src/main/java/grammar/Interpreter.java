@@ -212,8 +212,9 @@ public class Interpreter {
             while (i < ((Language) astNode).body.size()) {
                 visitAst(((Language) astNode).body.get(i));
                 i++;
+
+                breakCheck = 1;
             }
-            breakCheck = 0;
             return new Language(((Language) astNode).body);
 
         } else if (astNode instanceof FunctionsWithReturn) {
