@@ -4,13 +4,14 @@ int b = 1
 int c
 
 if(n == 0){
-return a}
+return 1
+}
 for(int i = 2, i <= n, i = i + 1){
 c = a + b
-a + b
-b + c
+a = b
+b = c
 }
 return b
 }
-
-print(fib(10))
+int x = 12
+print(fib(12))

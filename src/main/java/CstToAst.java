@@ -13,7 +13,6 @@ public class CstToAst extends languageBaseVisitor<AstNode> {
     public AstNode visitLanguage(languageParser.LanguageContext ctx) {
         ArrayList<AstNode> bodyList = new ArrayList<>();
         for (int i = 0; i < ctx.getChild(0).getChildCount(); i++){
-            System.out.println(visit(ctx.getChild(0).getChild(i)));
             bodyList.add(visit(ctx.getChild(0).getChild(i)));
         }
         return new Language(bodyList);
@@ -152,13 +151,6 @@ public class CstToAst extends languageBaseVisitor<AstNode> {
         AstNode body = visit(ctx.getChild(2));
         return new Println(body);
     }
-
-    @Override
-    public AstNode visitInput(languageParser.InputContext ctx){
-        AstNode body = visit(ctx.getChild(2));
-        return new Input(body);
-    }
-
     @Override public AstNode visitVar_dec_with_value(languageParser.Var_dec_with_valueContext ctx) {
         String id = ctx.getChild(1).getText();
         String type = ctx.getChild(0).getText();
@@ -182,7 +174,7 @@ public class CstToAst extends languageBaseVisitor<AstNode> {
 
     @Override
     public AstNode visitFuncWithReturn(languageParser.FuncWithReturnContext ctx) {
-        int type = 0, id = 1, param = 3, body = 6, value = 8;
+        int type = 0, id = 1, param = 3, body = 6, value = 7;
         String FunctionType = ctx.getChild(type).getText();
         String FunctionId = ctx.getChild(id).getText();
         ArrayList<AstNode> parameter = new ArrayList<>();
@@ -202,16 +194,16 @@ public class CstToAst extends languageBaseVisitor<AstNode> {
             value = 7;
         }
         AstNode returnValue = visit(ctx.getChild(value));
-
         return new FunctionsWithReturn(FunctionType, FunctionId, parameter, bodyList, returnValue);
     }
 
     @Override public AstNode visitReturn_func(languageParser.Return_funcContext ctx) {
-        System.out.println("yo yo yo yo");
         AstNode value = visit(ctx.getChild(1));
-        System.out.println(value);
         return new ReturnFunc(value); }
-
+    @Override public AstNode visitFunc_Call(languageParser.Func_CallContext ctx) {
+        AstNode func = visit(ctx.getChild(0));
+        return new ReturnFunc(func);
+    }
 
     @Override public AstNode visitFuncVoid(languageParser.FuncVoidContext ctx) {
         String FunctionType = ctx.getChild(0).getText();

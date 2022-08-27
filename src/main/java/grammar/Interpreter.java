@@ -18,6 +18,12 @@ public class Interpreter {
         if (astNode instanceof Addition) {
             AstNode left = visitAst(((Addition) astNode).left);
             AstNode right = visitAst(((Addition) astNode).right);
+            if (left instanceof Variable){
+                left = visitAst(left);
+            }
+            if (right instanceof Variable){
+                right = visitAst(right);
+            }
             if (left instanceof IntType) {
                 return new IntType(Integer.parseInt(left.toString()) + Integer.parseInt(right.toString()));
             } else if (left instanceof DoubleType) {
@@ -26,6 +32,12 @@ public class Interpreter {
         } else if (astNode instanceof Substraktion) {
             AstNode left = visitAst(((Substraktion) astNode).left);
             AstNode right = visitAst(((Substraktion) astNode).right);
+            if (left instanceof Variable){
+                left = visitAst(left);
+            }
+            if (right instanceof Variable){
+                right = visitAst(right);
+            }
             if (left instanceof IntType) {
                 return new IntType(Integer.parseInt(left.toString()) - Integer.parseInt(right.toString()));
             } else if (left instanceof DoubleType) {
@@ -34,6 +46,12 @@ public class Interpreter {
         } else if (astNode instanceof Multiplication) {
             AstNode left = visitAst(((Multiplication) astNode).left);
             AstNode right = visitAst(((Multiplication) astNode).right);
+            if (left instanceof Variable){
+                left = visitAst(left);
+            }
+            if (right instanceof Variable){
+                right = visitAst(right);
+            }
             if (left instanceof IntType) {
                 return new IntType(Integer.parseInt(left.toString()) * Integer.parseInt(right.toString()));
             } else if (left instanceof DoubleType) {
@@ -42,6 +60,12 @@ public class Interpreter {
         } else if (astNode instanceof Division) {
             AstNode left = visitAst(((Division) astNode).left);
             AstNode right = visitAst(((Division) astNode).right);
+            if (left instanceof Variable){
+                left = visitAst(left);
+            }
+            if (right instanceof Variable){
+                right = visitAst(right);
+            }
             if (left instanceof IntType) {
                 return new IntType(Integer.parseInt(left.toString()) * Integer.parseInt(right.toString()));
             } else if (left instanceof DoubleType) {
@@ -50,6 +74,12 @@ public class Interpreter {
         } else if (astNode instanceof GreaterThan) {
             AstNode left = visitAst(((GreaterThan) astNode).left);
             AstNode right = visitAst(((GreaterThan) astNode).right);
+            if (left instanceof Variable){
+                left = visitAst(left);
+            }
+            if (right instanceof Variable){
+                right = visitAst(right);
+            }
             if (left instanceof IntType){
                 if (Integer.parseInt(left.toString()) > Integer.parseInt(right.toString())){
                     return new BooleanType(true);
@@ -66,6 +96,12 @@ public class Interpreter {
         } else if (astNode instanceof LesserThan) {
             AstNode left = visitAst(((LesserThan) astNode).left);
             AstNode right = visitAst(((LesserThan) astNode).right);
+            if (left instanceof Variable){
+                left = visitAst(left);
+            }
+            if (right instanceof Variable){
+                right = visitAst(right);
+            }
             if (left instanceof IntType){
                 if (Integer.parseInt(left.toString()) < Integer.parseInt(right.toString())){
                     return new BooleanType(true);
@@ -82,6 +118,12 @@ public class Interpreter {
         } else if (astNode instanceof GreaterorEqualThan) {
             AstNode left = visitAst(((GreaterorEqualThan) astNode).left);
             AstNode right = visitAst(((GreaterorEqualThan) astNode).right);
+            if (left instanceof Variable){
+                left = visitAst(left);
+            }
+            if (right instanceof Variable){
+                right = visitAst(right);
+            }
             if (left instanceof IntType){
                 if (Integer.parseInt(left.toString()) >= Integer.parseInt(right.toString())){
                     return new BooleanType(true);
@@ -98,6 +140,12 @@ public class Interpreter {
         } else if (astNode instanceof LesserorEqualThan) {
             AstNode left = visitAst(((LesserorEqualThan) astNode).left);
             AstNode right = visitAst(((LesserorEqualThan) astNode).right);
+            if (left instanceof Variable){
+                left = visitAst(left);
+            }
+            if (right instanceof Variable){
+                right = visitAst(right);
+            }
             if (left instanceof IntType){
                 if (Integer.parseInt(left.toString()) <= Integer.parseInt(right.toString())){
                     return new BooleanType(true);
@@ -114,6 +162,12 @@ public class Interpreter {
         } else if (astNode instanceof EqualWith) {
             AstNode left = visitAst(((EqualWith) astNode).left);
             AstNode right = visitAst(((EqualWith) astNode).right);
+            if (left instanceof Variable){
+                left = visitAst(left);
+            }
+            if (right instanceof Variable){
+                right = visitAst(((EqualWith) astNode).right);
+            }
             if (left instanceof IntType){
                 if (Integer.parseInt(left.toString()) == Integer.parseInt(right.toString())){
                     return new BooleanType(true);
@@ -130,6 +184,12 @@ public class Interpreter {
         } else if (astNode instanceof isNotEqualWith) {
             AstNode left = visitAst(((isNotEqualWith) astNode).left);
             AstNode right = visitAst(((isNotEqualWith) astNode).right);
+            if (left instanceof Variable){
+                left = visitAst(left);
+            }
+            if (right instanceof Variable){
+                right = visitAst(right);
+            }
             if (left instanceof IntType){
                 if (Integer.parseInt(left.toString()) != Integer.parseInt(right.toString())){
                     return new BooleanType(true);
@@ -213,7 +273,7 @@ public class Interpreter {
                 visitAst(((Language) astNode).body.get(i));
                 i++;
 
-                breakCheck = 1;
+                breakCheck = 0;
             }
             return new Language(((Language) astNode).body);
 
@@ -245,19 +305,19 @@ public class Interpreter {
                 x++;
             }
             int i = 0;
+            int z = 0;
+            while(z < ((FunctionCall) astNode).parameter.size()){
+                visitAst(((FunctionCall) astNode).parameter.get(z));
+                z++;
+            }
             while(i < functionsBody.get(((FunctionCall) astNode).functionID).size()) {
                 visitAst(functionsBody.get(((FunctionCall) astNode).functionID).get(i));
                 i++;
             }
-            int z = 0;
-            while(z < ((FunctionCall) astNode).parameter.size()){
-                visitAst(((FunctionCall) astNode).parameter.get(z));
-                if (((FunctionCall) astNode).parameter.get(z) != null){
-                }
-                z++;
-            }
             return visitAst(values.get(((FunctionCall) astNode).functionID));
-        } else if (astNode instanceof ForLoop) {
+        }else if (astNode instanceof ReturnFunc) {
+            return visitAst(((ReturnFunc) astNode).value);
+        }  else if (astNode instanceof ForLoop) {
             int i = 0;
             visitAst(((ForLoop) astNode).initialization);
             while(Boolean.parseBoolean(visitAst(((ForLoop) astNode).condition).toString()) && breakCheck== 0) {
@@ -286,7 +346,7 @@ public class Interpreter {
         }else if(astNode instanceof BooleanType){
             return new BooleanType(((BooleanType) astNode).bool);
         }else if(astNode instanceof  Variable){
-                return values.get(((Variable) astNode).id);
+            return values.get(((Variable) astNode).id);
 
         }
         return null;

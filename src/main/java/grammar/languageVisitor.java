@@ -53,12 +53,6 @@ public interface languageVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitPrintln(languageParser.PrintlnContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link languageParser#input}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitInput(languageParser.InputContext ctx);
-	/**
 	 * Visit a parse tree produced by the {@code Var_dec_with_value}
 	 * labeled alternative in {@link languageParser#type_declaration}.
 	 * @param ctx the parse tree
@@ -193,6 +187,13 @@ public interface languageVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitIsNotEqualWith(languageParser.IsNotEqualWithContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code Func_Call}
+	 * labeled alternative in {@link languageParser#expression}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitFunc_Call(languageParser.Func_CallContext ctx);
 	/**
 	 * Visit a parse tree produced by the {@code LesserThan}
 	 * labeled alternative in {@link languageParser#expression}.

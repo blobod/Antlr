@@ -78,16 +78,6 @@ public interface languageListener extends ParseTreeListener {
 	 */
 	void exitPrintln(languageParser.PrintlnContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link languageParser#input}.
-	 * @param ctx the parse tree
-	 */
-	void enterInput(languageParser.InputContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link languageParser#input}.
-	 * @param ctx the parse tree
-	 */
-	void exitInput(languageParser.InputContext ctx);
-	/**
 	 * Enter a parse tree produced by the {@code Var_dec_with_value}
 	 * labeled alternative in {@link languageParser#type_declaration}.
 	 * @param ctx the parse tree
@@ -317,6 +307,18 @@ public interface languageListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitIsNotEqualWith(languageParser.IsNotEqualWithContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code Func_Call}
+	 * labeled alternative in {@link languageParser#expression}.
+	 * @param ctx the parse tree
+	 */
+	void enterFunc_Call(languageParser.Func_CallContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code Func_Call}
+	 * labeled alternative in {@link languageParser#expression}.
+	 * @param ctx the parse tree
+	 */
+	void exitFunc_Call(languageParser.Func_CallContext ctx);
 	/**
 	 * Enter a parse tree produced by the {@code LesserThan}
 	 * labeled alternative in {@link languageParser#expression}.

@@ -10,4 +10,8 @@ public class FunctionCall extends AstNode {
         this.functionID = functionID;
         this.parameter = parameter;
     }
+
+    public String toString(){
+        return functionID + " (" + parameter + ") ";
+    }
 }

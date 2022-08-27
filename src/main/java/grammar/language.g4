@@ -11,7 +11,6 @@ stmt
     | declaration
     | print
     | println
-    | input
     | stop
     | function_call;
 
@@ -28,15 +27,13 @@ print
 
 println
     : PRINTLN LPAR ((expression)+ | function_call) RPAR;
-input
-    : INPUT LPAR expression RPAR;
 
 //TYPES
 type_declaration
     : TYPE ID ASSIGN ((expression)+ | BOOL) # Var_dec_with_value
     | TYPE ID # Var_dec_no_value;
 type_reassign
-    : ID ASSIGN (expression*);
+    : ID ASSIGN (expression+);
 //TYPES
 
 //Function declaration
@@ -51,7 +48,7 @@ function_call
     : ID LPAR function_call_param* RPAR;
 
 return_func
-    : RETURN (expression | function_call)+;
+    : RETURN (expression+);
 
 function_call_param
     : expression (COMMA expression)*;
@@ -74,15 +71,16 @@ expression
     | INT # Integer_NUM
     | DOUBLE # Double_NUM
     | TXT # String
-    | BOOL # Bool;
+    | BOOL # Bool
+    | function_call #Func_Call;
 
 //CONDITINAL STATEMENT
 conditional_statement
     : if_statement
     | break_statement;
 if_statement
-    : IF LPAR expression (OR expression)* RPAR LCBRAC (stmts | return_func) RCBRAC # If
-    | IF LPAR expression  (OR expression)* RPAR LCBRAC (stmts | return_func) RCBRAC (ELSE LCBRAC (stmts) RCBRAC) # Else;
+    : IF LPAR expression (OR expression)* RPAR LCBRAC (stmts* | return_func) RCBRAC # If
+    | IF LPAR expression  (OR expression)* RPAR LCBRAC (stmts* | return_func) RCBRAC (ELSE LCBRAC (stmts) RCBRAC) # Else;
 break_statement
     : BREAK;
 
@@ -120,10 +118,6 @@ ISNOTEQUAL
     | 'Is_not_equal';
 //CONDITIONS
 
-
-// TOKENS
-INPUT
-    : 'input';
 
 PRINT
     : 'print';

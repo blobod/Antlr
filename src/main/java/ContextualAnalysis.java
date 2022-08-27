@@ -1,5 +1,6 @@
 
 import AstNodes.*;
+import kotlin.reflect.jvm.internal.ReflectProperties;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -17,7 +18,6 @@ public class ContextualAnalysis {
     }
 
     public AstNode visitAST(AstNode astNode) throws Exception {
-        System.out.println(astNode);
         if (typeChecking.isEmpty() || error.isEmpty()) {
             if (astNode instanceof Addition) {
                 return visitExpression(((Addition) astNode).left, ((Addition) astNode).right);
@@ -157,15 +157,13 @@ public class ContextualAnalysis {
                 if (Variables.containsKey(((FunctionCall) astNode).functionID)){
                     visitFunctionCall(((FunctionCall) astNode).functionID, ((FunctionCall) astNode).parameter);
                 }else {
-                    System.out.println(Variables.keySet());
-                    System.out.println(((FunctionCall) astNode).functionID);
                     error.add("Undefined Function Call");
                 }
-
             }else if (astNode instanceof ReturnFunc) {
-                System.out.println("sup");
-                AstNode value = visitAST(astNode);
-            }  else if (astNode instanceof ForLoop) {
+                return visitAST(((ReturnFunc) astNode).value);
+            }else if (astNode instanceof FuncCallExpression) {
+                return new FuncCallExpression(visitAST(((FuncCallExpression) astNode).func));
+            }else if (astNode instanceof ForLoop) {
                 int i = 0;
                 visitAST(((ForLoop) astNode).initialization);
                 var cont_type = visitAST(((ForLoop) astNode).condition);
@@ -247,8 +245,9 @@ public class ContextualAnalysis {
         if (Variables.containsKey(FunctionId)) {
             error.add("Function " + FunctionId + " is already defined");
         }
+        Variables.put(FunctionId, null);
+        Functions.put(FunctionId, parameter);
         AstNode Value = visitAST(returnValue);
-        System.out.println(Value);
             if (FunctionType.equals("int") && Value instanceof IntType) {
             Variables.put(FunctionId, Value);
         } else if (FunctionType.equals("double") && Value instanceof DoubleType) {
@@ -260,7 +259,6 @@ public class ContextualAnalysis {
         } else {
             error.add("The return value does not match the type of the function");
         }
-        Functions.put(FunctionId, parameter);
     }
 
     public void visitFunctionCall(String id, List<AstNode> parameter) throws Exception {
