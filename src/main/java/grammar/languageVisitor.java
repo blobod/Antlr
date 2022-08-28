@@ -216,13 +216,6 @@ public interface languageVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitGreaterThan(languageParser.GreaterThanContext ctx);
 	/**
-	 * Visit a parse tree produced by the {@code Power_of}
-	 * labeled alternative in {@link languageParser#expression}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitPower_of(languageParser.Power_ofContext ctx);
-	/**
 	 * Visit a parse tree produced by the {@code Double_NUM}
 	 * labeled alternative in {@link languageParser#expression}.
 	 * @param ctx the parse tree

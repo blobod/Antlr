@@ -1,6 +1,5 @@
 package grammar;
 import AstNodes.*;
-
 import java.util.*;
 
 public class Interpreter {
@@ -67,9 +66,9 @@ public class Interpreter {
                 right = visitAst(right);
             }
             if (left instanceof IntType) {
-                return new IntType(Integer.parseInt(left.toString()) * Integer.parseInt(right.toString()));
+                return new IntType(Integer.parseInt(left.toString()) / Integer.parseInt(right.toString()));
             } else if (left instanceof DoubleType) {
-                return new DoubleType(Double.parseDouble(left.toString()) * Double.parseDouble(right.toString()));
+                return new DoubleType(Double.parseDouble(left.toString()) / Double.parseDouble(right.toString()));
             }
         } else if (astNode instanceof GreaterThan) {
             AstNode left = visitAst(((GreaterThan) astNode).left);
@@ -316,7 +315,12 @@ public class Interpreter {
             }
             return visitAst(values.get(((FunctionCall) astNode).functionID));
         }else if (astNode instanceof ReturnFunc) {
-            return visitAst(((ReturnFunc) astNode).value);
+            AstNode value = visitAst(((ReturnFunc) astNode).value);
+
+            if (value instanceof Variable){
+                value = visitAst(value);
+            }
+            return value;
         }  else if (astNode instanceof ForLoop) {
             int i = 0;
             visitAst(((ForLoop) astNode).initialization);

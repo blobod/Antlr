@@ -12,7 +12,8 @@ stmt
     | print
     | println
     | stop
-    | function_call;
+    | function_call
+    | return_func;
 
 stop
     : STOP;
@@ -58,7 +59,6 @@ expression
     | expression MINUS expression # Substraktion
     | expression MULTIPLICATION expression # Multiplication
     | expression DIVISION expression # Division
-    | expression POWER_OF expression # Power_of
     | expression GREATER expression # GreaterThan
     | expression LESSER expression # LesserThan
     | expression EQUAL expression # EqualWith
@@ -79,7 +79,7 @@ conditional_statement
     : if_statement
     | break_statement;
 if_statement
-    : IF LPAR expression (OR expression)* RPAR LCBRAC (stmts* | return_func) RCBRAC # If
+    : IF LPAR expression (OR expression | AND expression)* RPAR LCBRAC (stmts* | return_func) RCBRAC # If
     | IF LPAR expression  (OR expression)* RPAR LCBRAC (stmts* | return_func) RCBRAC (ELSE LCBRAC (stmts) RCBRAC) # Else;
 break_statement
     : BREAK;
@@ -137,8 +137,8 @@ MULTIPLICATION
     :'*';
 DIVISION
     :'/';
-POWER_OF
-    :'^';
+AND
+    : '&&';
 OR
     : '||';
 STOP

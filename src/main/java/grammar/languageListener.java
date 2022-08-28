@@ -356,18 +356,6 @@ public interface languageListener extends ParseTreeListener {
 	 */
 	void exitGreaterThan(languageParser.GreaterThanContext ctx);
 	/**
-	 * Enter a parse tree produced by the {@code Power_of}
-	 * labeled alternative in {@link languageParser#expression}.
-	 * @param ctx the parse tree
-	 */
-	void enterPower_of(languageParser.Power_ofContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code Power_of}
-	 * labeled alternative in {@link languageParser#expression}.
-	 * @param ctx the parse tree
-	 */
-	void exitPower_of(languageParser.Power_ofContext ctx);
-	/**
 	 * Enter a parse tree produced by the {@code Double_NUM}
 	 * labeled alternative in {@link languageParser#expression}.
 	 * @param ctx the parse tree

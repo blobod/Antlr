@@ -388,18 +388,6 @@ public class languageBaseListener implements languageListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterPower_of(languageParser.Power_ofContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitPower_of(languageParser.Power_ofContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
 	@Override public void enterDouble_NUM(languageParser.Double_NUMContext ctx) { }
 	/**
 	 * {@inheritDoc}
