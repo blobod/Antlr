@@ -7,6 +7,7 @@ public class Interpreter {
     public Map<String, List<AstNode>> functionsBody;
     public Map<String, List<AstNode>> functionsParameters;
     public int breakCheck = 0;
+    public int returnCheck = 0;
     public Interpreter() {
         values = new HashMap<>();
         functionsBody = new HashMap<>();
@@ -310,13 +311,17 @@ public class Interpreter {
                 z++;
             }
             while(i < functionsBody.get(((FunctionCall) astNode).functionID).size()) {
+                if (returnCheck == 1){
+                    break;
+                }
                 visitAst(functionsBody.get(((FunctionCall) astNode).functionID).get(i));
                 i++;
             }
+            returnCheck = 0;
             return visitAst(values.get(((FunctionCall) astNode).functionID));
         }else if (astNode instanceof ReturnFunc) {
             AstNode value = visitAst(((ReturnFunc) astNode).value);
-
+            returnCheck = 1;
             if (value instanceof Variable){
                 value = visitAst(value);
             }

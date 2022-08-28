@@ -187,7 +187,10 @@ DOUBLE
     : [0-9]+ DOT [0-9]+;
 
 TXT:
-    '"' [a-z_]?([A-Za-z0-9_])+ '"' ;
+    CITATION [a-z_]?([A-Za-z0-9_])+ CITATION;
+
+CITATION
+    : '"';
 
 BOOL
     : TRUE | FALSE;
