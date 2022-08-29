@@ -1,17 +1,11 @@
-int fib ( int n ) {
-int a = 0
-int b = 1
-int c
-if(n == 0){
-return 1
+int x = 2
+while(x < 10){
+print(x)
+x = x + 1
+if(x > 5){
+break
+}
 }
 print("hello")
-for ( int i = 2 , i <= n , i = i + 1) {
-c = a + b
-a = b
-b = c
-}
-return b
-}
-
-print(fib(0))
+stop
+print("wont print")

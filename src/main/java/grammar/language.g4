@@ -187,7 +187,7 @@ DOUBLE
     : [0-9]+ DOT [0-9]+;
 
 TXT:
-    CITATION [a-z_]?([A-Za-z0-9_])+ CITATION;
+    CITATION [a-z_]?([A-Za-z0-9_])+ (WS [a-z_]?([A-Za-z0-9_])+)*  CITATION;
 
 CITATION
     : '"';
