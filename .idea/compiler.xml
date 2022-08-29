@@ -6,11 +6,11 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="Antlr" />
+        <module name="Medius" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="Antlr" target="16" />
+      <module name="Medius" target="16" />
     </bytecodeTargetLevel>
   </component>
 </project>
